@@ -1,0 +1,15 @@
+C:\Users\jrafa\RiderProjects\workshop-cli\WorkshopCli\bin\Debug\net6.0\WorkshopCli.exe
+C:\Users\jrafa\RiderProjects\workshop-cli\WorkshopCli\bin\Debug\net6.0\WorkshopCli.deps.json
+C:\Users\jrafa\RiderProjects\workshop-cli\WorkshopCli\bin\Debug\net6.0\WorkshopCli.runtimeconfig.json
+C:\Users\jrafa\RiderProjects\workshop-cli\WorkshopCli\bin\Debug\net6.0\WorkshopCli.dll
+C:\Users\jrafa\RiderProjects\workshop-cli\WorkshopCli\bin\Debug\net6.0\WorkshopCli.pdb
+C:\Users\jrafa\RiderProjects\workshop-cli\WorkshopCli\obj\Debug\net6.0\WorkshopCli.csproj.AssemblyReference.cache
+C:\Users\jrafa\RiderProjects\workshop-cli\WorkshopCli\obj\Debug\net6.0\WorkshopCli.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\jrafa\RiderProjects\workshop-cli\WorkshopCli\obj\Debug\net6.0\WorkshopCli.AssemblyInfoInputs.cache
+C:\Users\jrafa\RiderProjects\workshop-cli\WorkshopCli\obj\Debug\net6.0\WorkshopCli.AssemblyInfo.cs
+C:\Users\jrafa\RiderProjects\workshop-cli\WorkshopCli\obj\Debug\net6.0\WorkshopCli.csproj.CoreCompileInputs.cache
+C:\Users\jrafa\RiderProjects\workshop-cli\WorkshopCli\obj\Debug\net6.0\WorkshopCli.dll
+C:\Users\jrafa\RiderProjects\workshop-cli\WorkshopCli\obj\Debug\net6.0\refint\WorkshopCli.dll
+C:\Users\jrafa\RiderProjects\workshop-cli\WorkshopCli\obj\Debug\net6.0\WorkshopCli.pdb
+C:\Users\jrafa\RiderProjects\workshop-cli\WorkshopCli\obj\Debug\net6.0\WorkshopCli.genruntimeconfig.cache
+C:\Users\jrafa\RiderProjects\workshop-cli\WorkshopCli\obj\Debug\net6.0\ref\WorkshopCli.dll

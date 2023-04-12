@@ -1,0 +1,35 @@
+
+    [
+        {
+            "Id": "welcome-1",
+            "Type": "question",
+            "Message": "Bem vindo, Qual é o teu nome?"
+        },
+        {
+            "Id": "welcome-2",
+            "Type": "question",
+            "Message": "Bem vindo, Qual é o teu nome?"
+        },
+        {
+            "Id": "welcome-3",
+            "Type": "question",
+            "Message": "Bem vindo, Qual é o teu nome?"
+        },
+        {
+            "Id": "welcome-4",
+            "Type": "Exercise",
+            "Message": "Faz um hello world?"
+        },
+        {
+            "Id": "welcome-5",
+            "Type": "Exercise",
+            "Message": "Faz um hello world??"
+        },
+        {
+            "Id": "welcome-6",
+            "Type": "Exercise",
+            "Message": "Faz um hello world??"
+        }
+
+    ]
+    
