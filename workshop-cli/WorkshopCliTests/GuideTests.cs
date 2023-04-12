@@ -48,7 +48,7 @@ public class Tests
         
         foreach (Guide.Step step in guide.Steps)
         {
-            Console.WriteLine($"ID:"+ step.Id);
+            Console.WriteLine("ID:"+ step.Id);
             Console.WriteLine("Type: "+ step.Type);
             Console.WriteLine("Message: "+step.Message);
         }

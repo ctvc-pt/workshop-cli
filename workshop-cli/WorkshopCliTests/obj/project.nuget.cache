@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "H1KsIcYQ6dhzWhcM1keC3TFukxzYxwboQ65vYD2RKdWn9INzXm27MnsTNFJqooksAA2O1mmTyjKs2oItKqZCWQ==",
+  "dgSpecHash": "tvq/zJum+fkCa279EsJ/jFCSwsI8NWRWmhjb6Dpd+CsMOokvDPpp+JOvpK8dS7OT3jhw19DzX/dVdlToWxiSBQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\jrafa\\RiderProjects\\workshop-cli\\WorkshopCliTests\\WorkshopCliTests.csproj",
+  "projectFilePath": "C:\\Users\\jrafa\\Desktop\\REPO\\workshop-cli\\workshop-cli\\WorkshopCliTests\\WorkshopCliTests.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\jrafa\\.nuget\\packages\\coverlet.collector\\3.1.2\\coverlet.collector.3.1.2.nupkg.sha512",
     "C:\\Users\\jrafa\\.nuget\\packages\\microsoft.codecoverage\\17.1.0\\microsoft.codecoverage.17.1.0.nupkg.sha512",

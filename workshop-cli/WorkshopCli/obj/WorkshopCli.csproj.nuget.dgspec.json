@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\jrafa\\RiderProjects\\workshop-cli\\WorkshopCli\\WorkshopCli.csproj": {}
+    "C:\\Users\\jrafa\\Desktop\\REPO\\workshop-cli\\workshop-cli\\WorkshopCli\\WorkshopCli.csproj": {}
   },
   "projects": {
-    "C:\\Users\\jrafa\\RiderProjects\\workshop-cli\\WorkshopCli\\WorkshopCli.csproj": {
+    "C:\\Users\\jrafa\\Desktop\\REPO\\workshop-cli\\workshop-cli\\WorkshopCli\\WorkshopCli.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\jrafa\\RiderProjects\\workshop-cli\\WorkshopCli\\WorkshopCli.csproj",
+        "projectUniqueName": "C:\\Users\\jrafa\\Desktop\\REPO\\workshop-cli\\workshop-cli\\WorkshopCli\\WorkshopCli.csproj",
         "projectName": "WorkshopCli",
-        "projectPath": "C:\\Users\\jrafa\\RiderProjects\\workshop-cli\\WorkshopCli\\WorkshopCli.csproj",
+        "projectPath": "C:\\Users\\jrafa\\Desktop\\REPO\\workshop-cli\\workshop-cli\\WorkshopCli\\WorkshopCli.csproj",
         "packagesPath": "C:\\Users\\jrafa\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\jrafa\\RiderProjects\\workshop-cli\\WorkshopCli\\obj\\",
+        "outputPath": "C:\\Users\\jrafa\\Desktop\\REPO\\workshop-cli\\workshop-cli\\WorkshopCli\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\jrafa\\AppData\\Roaming\\NuGet\\NuGet.Config",
