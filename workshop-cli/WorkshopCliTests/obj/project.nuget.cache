@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "tvq/zJum+fkCa279EsJ/jFCSwsI8NWRWmhjb6Dpd+CsMOokvDPpp+JOvpK8dS7OT3jhw19DzX/dVdlToWxiSBQ==",
+  "dgSpecHash": "/GFVxt39Wrhq3zsXmac1eusNXUznS6xmHmqK47vmM3XVUoj3dyI5qcqEydLPQYyffM04jruk8XjGJBRlflILWQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\jrafa\\Desktop\\REPO\\workshop-cli\\workshop-cli\\WorkshopCliTests\\WorkshopCliTests.csproj",
   "expectedPackageFiles": [
@@ -18,6 +18,7 @@
     "C:\\Users\\jrafa\\.nuget\\packages\\nunit\\3.13.3\\nunit.3.13.3.nupkg.sha512",
     "C:\\Users\\jrafa\\.nuget\\packages\\nunit.analyzers\\3.3.0\\nunit.analyzers.3.3.0.nupkg.sha512",
     "C:\\Users\\jrafa\\.nuget\\packages\\nunit3testadapter\\4.2.1\\nunit3testadapter.4.2.1.nupkg.sha512",
+    "C:\\Users\\jrafa\\.nuget\\packages\\sharprompt\\3.0.0-preview2\\sharprompt.3.0.0-preview2.nupkg.sha512",
     "C:\\Users\\jrafa\\.nuget\\packages\\system.collections\\4.0.11\\system.collections.4.0.11.nupkg.sha512",
     "C:\\Users\\jrafa\\.nuget\\packages\\system.diagnostics.debug\\4.0.11\\system.diagnostics.debug.4.0.11.nupkg.sha512",
     "C:\\Users\\jrafa\\.nuget\\packages\\system.diagnostics.tools\\4.0.1\\system.diagnostics.tools.4.0.1.nupkg.sha512",

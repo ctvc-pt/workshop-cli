@@ -431,6 +431,23 @@
           "build/netcoreapp2.1/NUnit3TestAdapter.props": {}
         }
       },
+      "Sharprompt/3.0.0-preview2": {
+        "type": "package",
+        "compile": {
+          "lib/net6.0/Sharprompt.dll": {}
+        },
+        "runtime": {
+          "lib/net6.0/Sharprompt.dll": {}
+        },
+        "resource": {
+          "lib/net6.0/de-DE/Sharprompt.resources.dll": {
+            "locale": "de-DE"
+          },
+          "lib/net6.0/ja/Sharprompt.resources.dll": {
+            "locale": "ja"
+          }
+        }
+      },
       "System.Collections/4.0.11": {
         "type": "package",
         "dependencies": {
@@ -977,6 +994,10 @@
       "WorkshopCli/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "Newtonsoft.Json": "9.0.1",
+          "Sharprompt": "3.0.0-preview2"
+        },
         "compile": {
           "bin/placeholder/WorkshopCli.dll": {}
         },
@@ -1935,6 +1956,22 @@
         "build/netcoreapp2.1/testcentric.engine.metadata.dll",
         "nunit3testadapter.4.2.1.nupkg.sha512",
         "nunit3testadapter.nuspec"
+      ]
+    },
+    "Sharprompt/3.0.0-preview2": {
+      "sha512": "Jt/+ofedijE8/2bWZ6GLI2N3qmbzbZc/dpQMOQOfz5DbbOM2A4gBVicvxmuJUo7DRbPu3Uvbldl2LTcyuRO2Qg==",
+      "type": "package",
+      "path": "sharprompt/3.0.0-preview2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "icon.png",
+        "lib/net6.0/Sharprompt.dll",
+        "lib/net6.0/de-DE/Sharprompt.resources.dll",
+        "lib/net6.0/ja/Sharprompt.resources.dll",
+        "sharprompt.3.0.0-preview2.nupkg.sha512",
+        "sharprompt.nuspec"
       ]
     },
     "System.Collections/4.0.11": {

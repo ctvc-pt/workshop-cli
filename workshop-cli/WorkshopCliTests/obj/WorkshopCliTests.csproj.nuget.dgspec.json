@@ -120,6 +120,16 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
+          "dependencies": {
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[9.0.1, )"
+            },
+            "Sharprompt": {
+              "target": "Package",
+              "version": "[3.0.0-preview2, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",

@@ -1,35 +1,58 @@
-
-    [
-        {
-            "Id": "welcome-1",
-            "Type": "question",
-            "Message": "Bem vindo, Qual é o teu nome?"
-        },
-        {
-            "Id": "welcome-2",
-            "Type": "question",
-            "Message": "Bem vindo, Qual é o teu nome?"
-        },
-        {
-            "Id": "welcome-3",
-            "Type": "question",
-            "Message": "Bem vindo, Qual é o teu nome?"
-        },
-        {
-            "Id": "welcome-4",
-            "Type": "Exercise",
-            "Message": "Faz um hello world?"
-        },
-        {
-            "Id": "welcome-5",
-            "Type": "Exercise",
-            "Message": "Faz um hello world??"
-        },
-        {
-            "Id": "welcome-6",
-            "Type": "Exercise",
-            "Message": "Faz um hello world??"
-        }
-
-    ]
-    
+[
+    {
+        "Id": "1",
+        "Type": "question",
+        "Message": "Bem vindo, Qual é o teu nome?"
+    },
+    {
+        "Id": "2",
+        "Type": "question",
+        "Message": "Qual é a tua idade?"
+    },
+    {
+        "Id": "3",
+        "Type": "question",
+        "Message": "Qual é o teu email?"
+    },
+    {
+        "Id": "4",
+        "Type": "information",
+        "Message": "Para começar, acessa o site Love2D (https://love2d.org/) e clica no botão Download na página inicial."
+    },
+    {
+        "Id": "5",
+        "Type": "information",
+        "Message": "Escolhe o download apropriado para o teu sistema operacional (Windows, MacOS ou Linux). O Love2D é um software gratuito e de código aberto."
+    },
+    {
+        "Id": "6",
+        "Type": "information",
+        "Message": "Assim que o download estiver concluído, extraia os arquivos do arquivo baixado."
+    },
+  {
+        "Id": "7",
+        "Type": "information",
+        "Message": "Agora estás pronto para começar a programar! Cria uma nova pasta para o teu projeto Love2D e cria um novo arquivo com a extensão .lua. Este será o arquivo onde poderás escrever o teu código Love2D."
+    },
+  {
+        "Id": "8",
+        "Type": "information",
+        "Message": "Clica com o botão do lado direito em cima do ficheiro e clica em 'Abrir com Code'.Isto iniciará seu projeto Love2D em uma janela."
+    },
+  {
+        "Id": "9",
+        "Type": "exercise",
+        "Message": "O jogo terá 3 funções, começando pelo load, que traduzida literalmente significa carregar, ou seja, tudo o que escreveres dentro desta função será informação que será carregada no jogo. Entenderás melhor mais à frente: /n Escreve o código da função: /n 'function love.load() /n end' ."
+    },
+{
+        "Id": "10",
+        "Type": "information",
+        "Message": "Para executar o projeto Love2D, precisas de arrastar a pasta do projeto para o executável do Love2D (o executável love no Windows ou o arquivo love.app no MacOS)."
+},
+{
+        "Id": "11",
+        "Type": "information",
+        "Message": "Alternativamente, podes executar o projeto a partir da linha de comando. Abra um terminal ou prompt de comando(Windows+R e escreve cmd) e navegua até o diretório do projeto. Em seguida, digita o seguinte comando: /n love . /n Isto iniciará seu projeto Love2D em uma janela."
+}
+  
+]
