@@ -2,6 +2,19 @@
   "version": 3,
   "targets": {
     "net6.0": {
+      "EPPlus/4.1.0": {
+        "type": "package",
+        "compile": {
+          "lib/net40/EPPlus.dll": {
+            "related": ".XML"
+          }
+        },
+        "runtime": {
+          "lib/net40/EPPlus.dll": {
+            "related": ".XML"
+          }
+        }
+      },
       "Microsoft.CSharp/4.0.1": {
         "type": "package",
         "dependencies": {
@@ -84,6 +97,18 @@
           "lib/netstandard1.0/Newtonsoft.Json.dll": {
             "related": ".xml"
           }
+        }
+      },
+      "OfficeOpenXml.Extends/1.0.6": {
+        "type": "package",
+        "dependencies": {
+          "EPPlus": "4.1.0"
+        },
+        "compile": {
+          "lib/net40/OfficeOpenXml.Extends.dll": {}
+        },
+        "runtime": {
+          "lib/net40/OfficeOpenXml.Extends.dll": {}
         }
       },
       "Sharprompt/3.0.0-preview2": {
@@ -636,6 +661,22 @@
     }
   },
   "libraries": {
+    "EPPlus/4.1.0": {
+      "sha512": "Eiy0belVoScBXVX6ctXX5845ppf50MxLngX2sHZLFUT0x9yVxN9flQAJjQO9hYrqY1+tFTGRoAkZh7iaZ/HMjA==",
+      "type": "package",
+      "path": "epplus/4.1.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "epplus.4.1.0.nupkg.sha512",
+        "epplus.nuspec",
+        "lib/net35/EPPlus.XML",
+        "lib/net35/EPPlus.dll",
+        "lib/net40/EPPlus.XML",
+        "lib/net40/EPPlus.dll",
+        "lib/readme.txt"
+      ]
+    },
     "Microsoft.CSharp/4.0.1": {
       "sha512": "17h8b5mXa87XYKrrVqdgZ38JefSUqLChUQpXgSnpzsM0nDOhE40FTeNWOJ/YmySGV6tG6T8+hjz6vxbknHJr6A==",
       "type": "package",
@@ -750,6 +791,18 @@
         "newtonsoft.json.9.0.1.nupkg.sha512",
         "newtonsoft.json.nuspec",
         "tools/install.ps1"
+      ]
+    },
+    "OfficeOpenXml.Extends/1.0.6": {
+      "sha512": "MRdNiAbSMzCx/WQzch4tkSJUhRD4BfVRD5WF120310PimMzUY6ge06XKS85daDbkZN20PQbhO0eUNKEYAkpFOA==",
+      "type": "package",
+      "path": "officeopenxml.extends/1.0.6",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net40/OfficeOpenXml.Extends.dll",
+        "officeopenxml.extends.1.0.6.nupkg.sha512",
+        "officeopenxml.extends.nuspec"
       ]
     },
     "Sharprompt/3.0.0-preview2": {
@@ -2781,30 +2834,29 @@
   "projectFileDependencyGroups": {
     "net6.0": [
       "Newtonsoft.Json >= 9.0.1",
+      "OfficeOpenXml.Extends >= 1.0.6",
       "Sharprompt >= 3.0.0-preview2"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\jrafa\\.nuget\\packages\\": {}
+    "C:\\Users\\Francisco Costa\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\jrafa\\Desktop\\REPO\\workshop-cli\\workshop-cli\\WorkshopCli\\WorkshopCli.csproj",
+      "projectUniqueName": "D:\\CPDS\\workshop-cli\\workshop-cli\\WorkshopCli\\WorkshopCli.csproj",
       "projectName": "WorkshopCli",
-      "projectPath": "C:\\Users\\jrafa\\Desktop\\REPO\\workshop-cli\\workshop-cli\\WorkshopCli\\WorkshopCli.csproj",
-      "packagesPath": "C:\\Users\\jrafa\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\jrafa\\Desktop\\REPO\\workshop-cli\\workshop-cli\\WorkshopCli\\obj\\",
+      "projectPath": "D:\\CPDS\\workshop-cli\\workshop-cli\\WorkshopCli\\WorkshopCli.csproj",
+      "packagesPath": "C:\\Users\\Francisco Costa\\.nuget\\packages\\",
+      "outputPath": "D:\\CPDS\\workshop-cli\\workshop-cli\\WorkshopCli\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\jrafa\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\Francisco Costa\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net6.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -2827,6 +2879,10 @@
             "target": "Package",
             "version": "[9.0.1, )"
           },
+          "OfficeOpenXml.Extends": {
+            "target": "Package",
+            "version": "[1.0.6, )"
+          },
           "Sharprompt": {
             "target": "Package",
             "version": "[3.0.0-preview2, )"
@@ -2848,8 +2904,30 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "c:\\program files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.408\\RuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'EPPlus 4.1.0' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net6.0'. This package may not be fully compatible with your project.",
+      "libraryId": "EPPlus",
+      "targetGraphs": [
+        "net6.0"
+      ]
+    },
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'OfficeOpenXml.Extends 1.0.6' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net6.0'. This package may not be fully compatible with your project.",
+      "libraryId": "OfficeOpenXml.Extends",
+      "targetGraphs": [
+        "net6.0"
+      ]
+    }
+  ]
 }

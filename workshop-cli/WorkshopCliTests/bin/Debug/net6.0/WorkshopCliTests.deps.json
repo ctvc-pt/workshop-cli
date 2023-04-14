@@ -20,6 +20,14 @@
         }
       },
       "coverlet.collector/3.1.2": {},
+      "EPPlus/4.1.0": {
+        "runtime": {
+          "lib/net40/EPPlus.dll": {
+            "assemblyVersion": "4.1.0.0",
+            "fileVersion": "4.1.0.0"
+          }
+        }
+      },
       "Microsoft.CodeCoverage/17.1.0": {
         "runtime": {
           "lib/netcoreapp1.0/Microsoft.VisualStudio.CodeCoverage.Shim.dll": {
@@ -361,6 +369,33 @@
       },
       "NUnit.Analyzers/3.3.0": {},
       "NUnit3TestAdapter/4.2.1": {},
+      "OfficeOpenXml.Extends/1.0.6": {
+        "dependencies": {
+          "EPPlus": "4.1.0"
+        },
+        "runtime": {
+          "lib/net40/OfficeOpenXml.Extends.dll": {
+            "assemblyVersion": "1.0.6.0",
+            "fileVersion": "1.0.6.0"
+          }
+        }
+      },
+      "Sharprompt/3.0.0-preview2": {
+        "runtime": {
+          "lib/net6.0/Sharprompt.dll": {
+            "assemblyVersion": "3.0.0.0",
+            "fileVersion": "3.0.0.0"
+          }
+        },
+        "resources": {
+          "lib/net6.0/de-DE/Sharprompt.resources.dll": {
+            "locale": "de-DE"
+          },
+          "lib/net6.0/ja/Sharprompt.resources.dll": {
+            "locale": "ja"
+          }
+        }
+      },
       "System.Collections/4.0.11": {
         "dependencies": {
           "Microsoft.NETCore.Platforms": "1.1.0",
@@ -654,6 +689,11 @@
         }
       },
       "WorkshopCli/1.0.0": {
+        "dependencies": {
+          "Newtonsoft.Json": "9.0.1",
+          "OfficeOpenXml.Extends": "1.0.6",
+          "Sharprompt": "3.0.0-preview2"
+        },
         "runtime": {
           "WorkshopCli.dll": {}
         }
@@ -672,6 +712,13 @@
       "sha512": "sha512-wuLDIDKD5XMt0A7lE31JPenT7QQwZPFkP5rRpdJeblyXZ9MGLI8rYjvm5fvAKln+2/X+4IxxQDxBtwdrqKNLZw==",
       "path": "coverlet.collector/3.1.2",
       "hashPath": "coverlet.collector.3.1.2.nupkg.sha512"
+    },
+    "EPPlus/4.1.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Eiy0belVoScBXVX6ctXX5845ppf50MxLngX2sHZLFUT0x9yVxN9flQAJjQO9hYrqY1+tFTGRoAkZh7iaZ/HMjA==",
+      "path": "epplus/4.1.0",
+      "hashPath": "epplus.4.1.0.nupkg.sha512"
     },
     "Microsoft.CodeCoverage/17.1.0": {
       "type": "package",
@@ -763,6 +810,20 @@
       "sha512": "sha512-kgH8VKsrcZZgNGQXRpVCrM7TnNz9li3b/snH+YmnXUNqsaWa1Xw9EQWHpbzq4Li2FbTjTE/E5N5HdLNXzZ8BpQ==",
       "path": "nunit3testadapter/4.2.1",
       "hashPath": "nunit3testadapter.4.2.1.nupkg.sha512"
+    },
+    "OfficeOpenXml.Extends/1.0.6": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-MRdNiAbSMzCx/WQzch4tkSJUhRD4BfVRD5WF120310PimMzUY6ge06XKS85daDbkZN20PQbhO0eUNKEYAkpFOA==",
+      "path": "officeopenxml.extends/1.0.6",
+      "hashPath": "officeopenxml.extends.1.0.6.nupkg.sha512"
+    },
+    "Sharprompt/3.0.0-preview2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Jt/+ofedijE8/2bWZ6GLI2N3qmbzbZc/dpQMOQOfz5DbbOM2A4gBVicvxmuJUo7DRbPu3Uvbldl2LTcyuRO2Qg==",
+      "path": "sharprompt/3.0.0-preview2",
+      "hashPath": "sharprompt.3.0.0-preview2.nupkg.sha512"
     },
     "System.Collections/4.0.11": {
       "type": "package",

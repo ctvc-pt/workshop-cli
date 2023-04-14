@@ -9,10 +9,19 @@
       "WorkshopCli/1.0.0": {
         "dependencies": {
           "Newtonsoft.Json": "9.0.1",
+          "OfficeOpenXml.Extends": "1.0.6",
           "Sharprompt": "3.0.0-preview2"
         },
         "runtime": {
           "WorkshopCli.dll": {}
+        }
+      },
+      "EPPlus/4.1.0": {
+        "runtime": {
+          "lib/net40/EPPlus.dll": {
+            "assemblyVersion": "4.1.0.0",
+            "fileVersion": "4.1.0.0"
+          }
         }
       },
       "Microsoft.CSharp/4.0.1": {
@@ -66,6 +75,17 @@
           "lib/netstandard1.0/Newtonsoft.Json.dll": {
             "assemblyVersion": "9.0.0.0",
             "fileVersion": "9.0.1.19813"
+          }
+        }
+      },
+      "OfficeOpenXml.Extends/1.0.6": {
+        "dependencies": {
+          "EPPlus": "4.1.0"
+        },
+        "runtime": {
+          "lib/net40/OfficeOpenXml.Extends.dll": {
+            "assemblyVersion": "1.0.6.0",
+            "fileVersion": "1.0.6.0"
           }
         }
       },
@@ -384,6 +404,13 @@
       "serviceable": false,
       "sha512": ""
     },
+    "EPPlus/4.1.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Eiy0belVoScBXVX6ctXX5845ppf50MxLngX2sHZLFUT0x9yVxN9flQAJjQO9hYrqY1+tFTGRoAkZh7iaZ/HMjA==",
+      "path": "epplus/4.1.0",
+      "hashPath": "epplus.4.1.0.nupkg.sha512"
+    },
     "Microsoft.CSharp/4.0.1": {
       "type": "package",
       "serviceable": true,
@@ -411,6 +438,13 @@
       "sha512": "sha512-U82mHQSKaIk+lpSVCbWYKNavmNH1i5xrExDEquU1i6I5pV6UMOqRnJRSlKO3cMPfcpp0RgDY+8jUXHdQ4IfXvw==",
       "path": "newtonsoft.json/9.0.1",
       "hashPath": "newtonsoft.json.9.0.1.nupkg.sha512"
+    },
+    "OfficeOpenXml.Extends/1.0.6": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-MRdNiAbSMzCx/WQzch4tkSJUhRD4BfVRD5WF120310PimMzUY6ge06XKS85daDbkZN20PQbhO0eUNKEYAkpFOA==",
+      "path": "officeopenxml.extends/1.0.6",
+      "hashPath": "officeopenxml.extends.1.0.6.nupkg.sha512"
     },
     "Sharprompt/3.0.0-preview2": {
       "type": "package",

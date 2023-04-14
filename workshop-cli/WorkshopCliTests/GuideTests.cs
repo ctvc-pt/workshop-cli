@@ -1,5 +1,7 @@
 using Newtonsoft.Json;
 using workshop_cli;
+using OfficeOpenXml;
+
 
 namespace WorkshopCliTests;
 
@@ -53,5 +55,28 @@ public class Tests
             Console.WriteLine("Message: "+step.Message);
         }
 
+    }
+
+    [Test]
+    public void TestShowExcel()
+    {
+        string jsonFilePath = "D:/CPDS/workshop-cli/workshop-cli/sessions.csv";
+        // Read all lines from the CSV file into an array
+        string[] lines = File.ReadAllLines(jsonFilePath);
+
+        // Loop through each line in the array
+        foreach (string line in lines)
+        {
+            // Split the line into an array of values
+            string[] values = line.Split(',');
+
+            // Print each value to the console
+            foreach (string value in values)
+            {
+                Console.Write(value + " ");
+            }
+
+            Console.WriteLine();
+        }
     }
 }
