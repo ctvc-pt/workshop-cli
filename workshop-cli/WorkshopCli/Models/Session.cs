@@ -1,4 +1,4 @@
-﻿namespace workshop_cli;
+﻿namespace workshopCli;
 
 public struct Session
 {

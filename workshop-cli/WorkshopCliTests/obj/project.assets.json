@@ -4075,32 +4075,34 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Francisco Costa\\.nuget\\packages\\": {}
+    "C:\\Users\\jrafa\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\CPDS\\workshop-cli\\workshop-cli\\WorkshopCliTests\\WorkshopCliTests.csproj",
+      "projectUniqueName": "C:\\Users\\jrafa\\Desktop\\REPO\\workshop-cli\\workshop-cli\\WorkshopCliTests\\WorkshopCliTests.csproj",
       "projectName": "WorkshopCliTests",
-      "projectPath": "D:\\CPDS\\workshop-cli\\workshop-cli\\WorkshopCliTests\\WorkshopCliTests.csproj",
-      "packagesPath": "C:\\Users\\Francisco Costa\\.nuget\\packages\\",
-      "outputPath": "D:\\CPDS\\workshop-cli\\workshop-cli\\WorkshopCliTests\\obj\\",
+      "projectPath": "C:\\Users\\jrafa\\Desktop\\REPO\\workshop-cli\\workshop-cli\\WorkshopCliTests\\WorkshopCliTests.csproj",
+      "packagesPath": "C:\\Users\\jrafa\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\jrafa\\Desktop\\REPO\\workshop-cli\\workshop-cli\\WorkshopCliTests\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Francisco Costa\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\jrafa\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net6.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "D:\\CPDS\\workshop-cli\\workshop-cli\\WorkshopCli\\WorkshopCli.csproj": {
-              "projectPath": "D:\\CPDS\\workshop-cli\\workshop-cli\\WorkshopCli\\WorkshopCli.csproj"
+            "C:\\Users\\jrafa\\Desktop\\REPO\\workshop-cli\\workshop-cli\\WorkshopCli\\WorkshopCli.csproj": {
+              "projectPath": "C:\\Users\\jrafa\\Desktop\\REPO\\workshop-cli\\workshop-cli\\WorkshopCli\\WorkshopCli.csproj"
             }
           }
         }
@@ -4152,7 +4154,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.408\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "c:\\program files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
       }
     }
   },

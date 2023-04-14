@@ -1,12 +1,12 @@
 ﻿using Newtonsoft.Json;
 using Sharprompt;
 
-namespace workshop_cli;
+
+   namespace workshopCli;
 
 public class GuideCli
 {
     private Session session;
-
     private readonly Guide guide;
 
     public GuideCli(Guide guide)
@@ -17,79 +17,81 @@ public class GuideCli
 
     public void Run()
     {
-        const string filePath = @"D:\CPDS\workshop-cli\workshop-cli\session.txt"; // session file
-        var csv = "D:/CPDS/workshop-cli/workshop-cli/sessions.csv";
+        var txtFilePath = Path.Combine(AppContext.BaseDirectory, "..", "..","..","..", "session.txt");
+        Console.WriteLine("Bem vindo!/n");
 
-        Console.WriteLine("Welcome to the programming workshop!/n");
-
-        if (File.Exists(filePath))
+        if (File.Exists(txtFilePath))
         {
-            var jsonText = File.ReadAllText(filePath);
-
-            session = JsonConvert.DeserializeObject<Session>(jsonText);
-
+            session = JsonConvert.DeserializeObject<Session>(File.ReadAllText(txtFilePath));
             Console.WriteLine($"Bem-vindo outra vez {session.Name}!");
         }
         
         foreach (var step in guide.Steps.Skip(session.StepId))
         {
             Console.WriteLine(step.Message);
+            session.StepId++;
 
             switch (step.Type)
             {
-                // 
-                case "question": // TODO: Can be improved
-                    var answer = Prompt.Input<string>(":");
-                    Console.WriteLine($"You entered: {answer}");
-                    
-                    switch (step.Id)
-                    {
-                        case "ask-name":
-                            session.Name = answer;
-                            break;
-                        case "ask-age":
-                            session.Age = answer;
-                            break;
-                        case "ask-email":
-                            session.Email = answer;
-                            break;
-                    }
-
-                    session.StepId++;
-
+                case "ask-name":
+                    PromptAnswerAndPrint("name", ref session.Name);
+                    break;
+                
+                case "ask-age": 
+                    PromptAnswerAndPrint("age", ref session.Age);
+                    break;
+                
+                case "ask-email": 
+                    PromptAnswerAndPrint("email", ref session.Email);
                     break;
 
                 case "information":
                     Prompt.Confirm("Did you complete the task?", false);
                     Console.WriteLine("lets work!");
-                    session.StepId++;
                     break;
 
                 case "exercise":
-                    while (true)
-                    {
-                        Prompt.Confirm("Did you complete the exercise?", false);
-                        var input = Prompt.Input<string>("Type 'finish' to move to the next exercise", "");
-                        if (input.ToLower() == "finish")
-                        {
-                            Console.WriteLine("Great job!");
-                            session.StepId++;
-                            break;
-                        }
-                    }
-
+                    while (!PromptAnswerAndConfirm("exercise"));
+                    Console.WriteLine("Great job!");
                     break;
             }
 
-            var json = JsonConvert.SerializeObject(session);
-            using (var writer = new StreamWriter(filePath))
-            {
-                writer.WriteLine(json);
-            }
+            AddSessionToCsv(session.Name, session.Age, session.Email, session.StepId);
+            File.WriteAllText(txtFilePath, JsonConvert.SerializeObject(session));
+        }
+    }
 
-            Console.WriteLine();
+    private static bool PromptAnswerAndConfirm(string prompt)
+    {
+        Prompt.Confirm("Did you complete the " + prompt + "?", false);
+        return Prompt.Input<string>("Type 'finish' to move to the next exercise", "").ToLower() == "finish";
+    }
+
+    private static void PromptAnswerAndPrint(string prompt, ref string sessionValue)
+    {
+        sessionValue = Prompt.Input<string>(prompt + ":");
+        Console.WriteLine($"You entered: {sessionValue}");
+    }
+
+    public void AddSessionToCsv(string name, string age, string email, int stepId)
+    {
+        var csvFilePath = Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "..", "sessions.csv");
+        var lines = File.ReadAllLines(csvFilePath).ToList();
+
+        for (var i = 0; i < lines.Count; i++)
+        {
+            var values = lines[i].Split(';');
+            if (values[0] != name) continue;
+            values[1] = age;
+            values[2] = email;
+            values[3] = stepId.ToString();
+            lines[i] = string.Join(";", values);
+            File.WriteAllLines(csvFilePath, lines);
+            return;
         }
 
-        Console.WriteLine("Congratulations, you have completed the workshop!");
+        lines.Add($"{name};{age};{email};{stepId}");
+        File.WriteAllLines(csvFilePath, lines);
     }
 }
+

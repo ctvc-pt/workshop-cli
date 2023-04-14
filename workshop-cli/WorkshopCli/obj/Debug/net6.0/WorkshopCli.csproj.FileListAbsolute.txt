@@ -55,3 +55,5 @@ D:\CPDS\workshop-cli\workshop-cli\WorkshopCli\obj\Debug\net6.0\WorkshopCli.genru
 D:\CPDS\workshop-cli\workshop-cli\WorkshopCli\obj\Debug\net6.0\ref\WorkshopCli.dll
 D:\CPDS\workshop-cli\workshop-cli\WorkshopCli\bin\Debug\net6.0\EPPlus.dll
 D:\CPDS\workshop-cli\workshop-cli\WorkshopCli\bin\Debug\net6.0\OfficeOpenXml.Extends.dll
+C:\Users\jrafa\Desktop\REPO\workshop-cli\workshop-cli\WorkshopCli\bin\Debug\net6.0\EPPlus.dll
+C:\Users\jrafa\Desktop\REPO\workshop-cli\workshop-cli\WorkshopCli\bin\Debug\net6.0\OfficeOpenXml.Extends.dll
