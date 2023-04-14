@@ -22,6 +22,13 @@ public class GuideCli
         foreach (var step in guide.Steps)
         {
             Console.WriteLine(step.Message);
+
+            var filepath = $"D:/CPDS/workshop-cli/workshop-cli/Guide/{step.Id}.md";
+            if (File.Exists(filepath))
+            {
+                string fileContents = File.ReadAllText(filepath);
+                Console.WriteLine(fileContents);
+            }
             
 
             switch (step.Type)

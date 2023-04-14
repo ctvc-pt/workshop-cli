@@ -5,7 +5,7 @@ using workshop_cli;
 
 
 
-    var jsonFilePath = "C:/Users/jrafa/Desktop/REPO/workshop-cli/workshop-cli/Steps.json";
+    var jsonFilePath = "D:/CPDS/workshop-cli/workshop-cli/Guide/Steps.json";
     var jsonText = File.ReadAllText(jsonFilePath);
     //Console.WriteLine(jsonText);
             

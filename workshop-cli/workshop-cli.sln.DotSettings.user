@@ -4,4 +4,10 @@
     &lt;TestId&gt;NUnit3x::3031673C-0F20-4DFA-941F-989FCAB27CC2::net6.0::WorkshopCliTests.Tests.TestSerialization&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;NUnit3x::3031673C-0F20-4DFA-941F-989FCAB27CC2::net6.0::WorkshopCliTests.Tests.TestDeserialization&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=fe4ddd0f_002D45a9_002D456d_002D93ee_002D9cb9512a7d8f/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="TestShowExcel" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::3031673C-0F20-4DFA-941F-989FCAB27CC2::net6.0::WorkshopCliTests.Tests.TestSerialization&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::3031673C-0F20-4DFA-941F-989FCAB27CC2::net6.0::WorkshopCliTests.Tests.TestMessageFilePath&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>
