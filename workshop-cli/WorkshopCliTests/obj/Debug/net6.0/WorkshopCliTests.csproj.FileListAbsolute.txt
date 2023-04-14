@@ -208,3 +208,6 @@ C:\Users\jrafa\Desktop\REPO\workshop-cli\workshop-cli\WorkshopCliTests\obj\Debug
 C:\Users\jrafa\Desktop\REPO\workshop-cli\workshop-cli\WorkshopCliTests\obj\Debug\net6.0\WorkshopCliTests.pdb
 C:\Users\jrafa\Desktop\REPO\workshop-cli\workshop-cli\WorkshopCliTests\obj\Debug\net6.0\WorkshopCliTests.genruntimeconfig.cache
 C:\Users\jrafa\Desktop\REPO\workshop-cli\workshop-cli\WorkshopCliTests\obj\Debug\net6.0\ref\WorkshopCliTests.dll
+C:\Users\jrafa\Desktop\REPO\workshop-cli\workshop-cli\WorkshopCliTests\bin\Debug\net6.0\Sharprompt.dll
+C:\Users\jrafa\Desktop\REPO\workshop-cli\workshop-cli\WorkshopCliTests\bin\Debug\net6.0\de-DE\Sharprompt.resources.dll
+C:\Users\jrafa\Desktop\REPO\workshop-cli\workshop-cli\WorkshopCliTests\bin\Debug\net6.0\ja\Sharprompt.resources.dll

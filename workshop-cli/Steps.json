@@ -2,7 +2,7 @@
     {
         "Id": "1",
         "Type": "question",
-        "Message": "Bem vindo, Qual é o teu nome?"
+        "Message": "Qual é o teu nome?"
     },
     {
         "Id": "2",
@@ -17,42 +17,198 @@
     {
         "Id": "4",
         "Type": "information",
-        "Message": "Para começar, acessa o site Love2D (https://love2d.org/) e clica no botão Download na página inicial."
+        "Message": "Quando tiveres pronto para começar podes avançar!"
     },
     {
         "Id": "5",
         "Type": "information",
-        "Message": "Escolhe o download apropriado para o teu sistema operacional (Windows, MacOS ou Linux). O Love2D é um software gratuito e de código aberto."
+        "Message": "Para começar, acessa o site Love2D (https://love2d.org/) e clica no botão Download na página inicial."
     },
     {
         "Id": "6",
         "Type": "information",
-        "Message": "Assim que o download estiver concluído, extraia os arquivos do arquivo baixado."
+        "Message": "Agora acede ao site o visual studio code (https://code.visualstudio.com/download) e clica no botão Download"
     },
-  {
+    {
         "Id": "7",
         "Type": "information",
-        "Message": "Agora estás pronto para começar a programar! Cria uma nova pasta para o teu projeto Love2D e cria um novo arquivo com a extensão .lua. Este será o arquivo onde poderás escrever o teu código Love2D."
+        "Message": "Escolhe o download apropriado para o teu sistema operacional (Windows, MacOS ou Linux)."
     },
-  {
+    {
         "Id": "8",
         "Type": "information",
-        "Message": "Clica com o botão do lado direito em cima do ficheiro e clica em 'Abrir com Code'.Isto iniciará seu projeto Love2D em uma janela."
+        "Message": "Assim que o download do Love2D estiver concluído, extraia os arquivos do arquivo baixado."
     },
   {
         "Id": "9",
-        "Type": "exercise",
-        "Message": "O jogo terá 3 funções, começando pelo load, que traduzida literalmente significa carregar, ou seja, tudo o que escreveres dentro desta função será informação que será carregada no jogo. Entenderás melhor mais à frente: /n Escreve o código da função: /n 'function love.load() /n end' ."
+        "Type": "information",
+        "Message": "Agora estás pronto para começar a programar! Cria uma nova pasta 'mygame' para o teu projeto Love2D e abre a pasta no Visual Studio Code"
     },
-{
+  {
         "Id": "10",
         "Type": "information",
-        "Message": "Para executar o projeto Love2D, precisas de arrastar a pasta do projeto para o executável do Love2D (o executável love no Windows ou o arquivo love.app no MacOS)."
-},
-{
+        "Message": "Agora cria um ficheiro com o nome 'main.lua "
+    },
+    {
         "Id": "11",
         "Type": "information",
-        "Message": "Alternativamente, podes executar o projeto a partir da linha de comando. Abra um terminal ou prompt de comando(Windows+R e escreve cmd) e navegua até o diretório do projeto. Em seguida, digita o seguinte comando: /n love . /n Isto iniciará seu projeto Love2D em uma janela."
-}
+        "Message": "Para correr o projeto temos 2 opçoes ou arrastar a pasta 'mygame' para o icon do love2D ou usar o atalho alt+L (ATENÇÃO ATALHO)"
+    },
+    {
+        "Id": "12",
+        "Type": "information",
+        "Message": "no ficheiro main.lua vamos ter 3 funções importantes"
+    },
+    {
+        "Id": "13",
+        "Type": "information",
+        "Message": "começando com a função load() que é usada para inicializar objetos e carregar recursos quando o jogo começa.\n\u001b[32mCodigo para meter no main.lua:\u001b[31m\nfunction load()\n\nend\u001b[0m"
+    },
+    {
+        "Id": "14",
+        "Type": "information",
+        "Message": "epois a função update() que é chamada a cada frame do jogo e é usada para atualizar a lógica do jogo (por exemplo, mover objetos, verificar colisões, etc.).\n\u001b[32mCodigo para meter no main.lua:\n\u001b[31mfunction love.update(dt)\n\nend\u001b[0m"
+    },
+    {
+        "Id": "15",
+        "Type": "information",
+        "Message": "E por fim a função draw que é chamada a cada frame do jogo e é usada para desenhar os objetos na tela.\n\u001b[32mCodigo para meter no main.lua:\n\u001b[31mfunction love.draw()\n\n end\u001b[0m"
+    },
+    {
+        "Id": "16",
+        "Type": "exercise",
+        "Message": "No fim o 'main.lua' deve estar assim:\n\u001b[31mfunction load()\n\nend\nfunction love.update(dt)\n\nend\nfunction love.draw()\n\nend\u001b[0m"
+    },
+    {
+        "Id": "17",
+        "Type": "information",
+        "Message": "a pasta do 'mygames' cria uma pasta chamada 'sprites' e copia para la as imagem fornecidas."
+    },
+    {
+        "Id": "18",
+        "Type": "exercise",
+        "Message": "vamos começar por craiar um jogador, na função load() \n\u001b[32minsere o seguinte codigo\n\u001b[31m  player={}\u001b[0m"
+    },
+    {
+        "Id": "19",
+        "Type": "exercise",
+        "Message": "De seguida vamos indicar onde o jogador vai começar ou seja vamos indicar as coordenadas onde o jogador vai nascer.\n\u001b[32minsere o seguinte codigo\n\u001b[31m  player.x=400\n  player.y=200\u001b[0m"
+    }
+    ,
+    {
+        "Id": "20",
+        "Type": "exercise",
+        "Message": "agora vamos indicar a imagem do nosso jogador \n\u001b[32minsere o seguinte codigo\n\u001b[31m  player.sprite=love.graphics.newImage('sprites/'nome da imagem'.png')\u001b[0m"
+    },
+    {
+        "Id": "21",
+        "Type": "exercise",
+        "Message": "por fim vamos indicar a nossa imagem de fundo \n\u001b[32minsere o seguinte codigo\n\u001b[31m  background=love.graphics.newImage('sprites/'nome da imagem'.png')\u001b[0m"
+    },
+    {
+        "Id": "22",
+        "Type": "exercise",
+        "Message": "\u001b[32mA tua função deve estar assim:\n\u001b[31m  function love.load()\n     player={}\n     player.x=400\n     player.y=200\n     player.sprite=love.graphics.newImage('sprites/'nome da imagem'.png')\n     background=love.graphics.newImage('sprites/'nome da imagem'.png')\n  end\u001b[0m"
+    },
+    {
+        "Id": "23",
+        "Type": "exercise",
+        "Message": "Agora vamos passar para a função draw(), vamos desenhar a nossa imagem de fundo e associar a nossa imagem ao jogador.\nPara poder desenhar temos de implemtar as coordenadas que queremos onde sejam desenhas no caso da imagem do fundo é o (0,0) canto suprior esquerdo \ne na do jogador queremos as coordenadas que foram dadas para o jogador na função load().\n\u001b[32mO codigo vai ser o seguinte:\n\u001b[31m  love.graphics.draw(background,0,0)\n  love.graphics.draw(player.sprite,player.x,player.y)\u001b[0m"
+    },
+    {
+        "Id": "24",
+        "Type": "information",
+        "Message": "Atenção o background tem de estar em primeiro se não o jogador vai ser desenhado por tras do nosso fundo"
+    },
+    {
+        "Id": "25",
+        "Type": "exercise",
+        "Message": "Agora vamos fazer a movimentação do nosso jogador. Vamos começar por algo muito simples.\n\u001b[32mNa função update vamos inserir o seguinte codigo:\n\u001b[31m   player.x=player.x + 3\u001b[0m"
+    },
+    {
+        "Id": "26",
+        "Type": "information",
+        "Message": "corre o programa e ve o resultado."
+    },
+    {
+        "Id": "27",
+        "Type": "information",
+        "Message": "Neste momento temos o nosso jogador a andar para a direita até desaparecer do nosso ecrã.Vamos avançar para a movimentação do jogador com as setas do teclado."
+    },
+    {
+        "Id": "28",
+        "Type": "exercise",
+        "Message": "\u001b[32mo codigo para poder andar com o jogador para o lado direito é o seguite\n\u001b[31m  if love.keyboard.isDown(\"right\") then\n     player.x=player.x + 3\n  end\u001b[0m"
+    },
+    {
+        "Id": "29",
+        "Type": "exercise",
+        "Message": "corre o programa e ve o resultado.\n\u001b[32mo codigo completo deve estar assim:\n\u001b[31m function love.load()\n     player={}\n     player.x=400\n     player.y=200\n     player.sprite=love.graphics.newImage('sprites/'nome da imagem'.png')\n     background=love.graphics.newImage('sprites/'nome da imagem'.png')\n  end\n  function love.update(dt)\n     if love.keyboard.isDown(\"right\") then\n       player.x=player.x + 3\n     end\n  end\n  function love.draw()\n     love.graphics.draw(background,0,0)\n     love.graphics.draw(player.sprite,player.x,player.y)\n  end\u001b[0m"
+    },
+    {
+        "Id": "30",
+        "Type": "challenge",
+        "Message": "\u001b[32mDESAFIO:\u001b[0mVisto que ja conseguimos com que o jogador ande para o lado direito desafio-te para o fazeres andar para o restos dos lado.\n\u001b[32mDicas:\u001b[0m\n Esquerda -> left\n Cima -> up\n baixo -> Down"
+    },
+    {
+        "Id": "31",
+        "Type": "information",
+        "Message": "\u001b[32mQuando acabares a tua função update deve estar assim:\n\u001b[31m  function love.update(dt)\n     if love.keyboard.isDown(\"right\") then\n       player.x=player.x + 3\n     end\n     if love.keyboard.isDown(\"left\") then\n       player.x=player.x - 3\n     end\n     if love.keyboard.isDown(\"up\") then\n       player.y=player.y - 3\n     end\n     if love.keyboard.isDown(\"down\") then\n       player.y=player.y + 3\n     end\n  end\u001b[0m"
+    },
+    {
+        "Id": "32",
+        "Type": "exercise",
+        "Message": "Se repares o indicador da velocidade do nosso jogador está defenida pelo numero 3 e é muito chato se decidir mudar a velocidade tenho de mudar a velocidade em 4 sitios difrentes.\nA sulução para isso é voltar á função load() e meter o seguinte codigo:\n\u001b[31mplayer.speed=3\u001b[0m"
+    },
+    {
+        "Id": "33",
+        "Type": "exercise",
+        "Message": "De seguida vamos á função update e mudamos a linha para a seguinte:\n\u001b[31mplayer.x=player.x + player.speed\u001b[0m"
+    },
+    {
+        "Id": "34",
+        "Type": "exercise",
+        "Message": "\u001b[32mO codigo agora deve estar assim:\n\u001b[31m  function love.load()\n     player={}\n     player.x=400\n     player.y=200\n     player.speed=3\n     player.sprite=love.graphics.newImage('sprites/'nome da imagem'.png')\n     background=love.graphics.newImage('sprites/'nome da imagem'.png')\n  end\n  function love.update(dt)\n     if love.keyboard.isDown(\"right\") then\n       player.x=player.x + 3\n     end\n     if love.keyboard.isDown(\"left\") then\n       player.x=player.x - 3\n     end\n     if love.keyboard.isDown(\"up\") then\n       player.x=player.y - player.speed\n     end\n     if love.keyboard.isDown(\"down\") then\n       player.x=player.y + player.speed\n     end\n  end\n  function love.draw()\n     love.graphics.draw(background,0,0)\n     love.graphics.draw(player.sprite,player.x,player.y)\n  end\u001b[0m" 
+    },
+    {
+        "Id": "35",
+        "Type": "information",
+        "Message": "O objetivo seguinte é quando houver um click no rato o tamanho da imagem vai ser alterado."
+    },
+    {
+        "Id": "36",
+        "Type": "exercise",
+        "Message": "O primeiro passo vai ser adicionar na função load() a seguinte variavel:\n\u001b[31mplayer.scale=1 \u001b[0m"
+    },
+    {
+        "Id": "37",
+        "Type": "exercise",
+        "Message": "de seguida temos de adicionar essa variavel á nosso imagem:\n\u001b[31mlove.graphics.draw(player.sprite,player.x,player.y,0, player.scale, player.scale) \u001b[0m"
+    },
+    {
+        "Id": "38",
+        "Type": "information",
+        "Message": "Foram adicionados 3 campos novos o '0' que indica a rotação da imagem e os player.scale para puder altar o tamanho da imagem."
+    },
+    {
+        "Id": "39",
+        "Type": "exercise",
+        "Message": "Agora vamos adicionar uma função para o click do rato:\n\u001b[31m  function love.mousepressed(x, y, button)\n  end\u001b[0m"
+    },
+    {
+        "Id": "40",
+        "Type": "exercise",
+        "Message": "E dentro vamos dizer que cada vez que houver um click (buttun ==1) o player.scale vai ser alterado para o valor 3\n\u001b[31m  function love.mousepressed(x, y, button)\n     if button == 1 then\n       player.scale = 3\n     end\n  end\u001b[0m"
+    },
+    {
+        "Id": "41",
+        "Type": "exercise",
+        "Message": "Agora queremos que ele volte ao normal então cada vez que houver um click (buttun ==1) se o valor for 1 ele troca para 3 e se o valos for 3 ele troca novamente para 1\n\u001b[32mo codigo é o seguinte:\n\u001b[31m  function love.mousepressed(x, y, button)\n     if button == 1 then\n       player.scale = 3\n     else\n       player.scale = 1\n     end\n      end\n  end\u001b[0m"
+    },
+    {
+        "Id": "42",
+        "Type": "exercise",
+        "Message": "\u001b[32mAgora tens de ter o codigo igual a este:\n\u001b[31m  function love.load()\n     player={}\n     player.x=400\n     player.y=200\n     player.speed=3\n     player.scale=1\n     player.sprite=love.graphics.newImage('sprites/'nome da imagem'.png')\n     background=love.graphics.newImage('sprites/'nome da imagem'.png')\n  end\n  function love.update(dt)\n     if love.keyboard.isDown(\"right\") then\n       player.x=player.x + 3\n     end\n     if love.keyboard.isDown(\"left\") then\n       player.x=player.x - 3\n     end\n     if love.keyboard.isDown(\"up\") then\n       player.x=player.y - player.speed\n     end\n     if love.keyboard.isDown(\"down\") then\n       player.x=player.y + player.speed\n     end\n  end\n  function love.draw()\n     love.graphics.draw(background,0,0)\n     love.graphics.draw(player.sprite,player.x,player.y)\n  end\n  function love.mousepressed(x, y, button)\n     if button == 1 then\n       player.scale = 3\n     else\n       player.scale = 1\n     end\n      end\n  end\u001b[0m" 
+    }
   
 ]
