@@ -6,7 +6,7 @@ using workshopCli;
 
 
    
-    var filePath = Path.Combine(AppContext.BaseDirectory,"..","..","..","..","Resources","Guide","Steps.json");
+    var filePath = Path.Combine(AppContext.BaseDirectory,"Resources","Guide","Steps.json");
     Console.WriteLine(filePath);
             
     string json = File.ReadAllText(filePath);

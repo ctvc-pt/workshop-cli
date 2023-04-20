@@ -18,7 +18,7 @@ public class GuideCli
 
     public void Run()
     {
-        var txtFilePath = Path.Combine(AppContext.BaseDirectory,"..","..","..","..","Resources", "session.txt");
+        var txtFilePath = Path.Combine(AppContext.BaseDirectory,"Resources", "session.txt");
         Console.WriteLine("Bem-vindo!/n");
 
         if (File.Exists(txtFilePath))
@@ -32,7 +32,7 @@ public class GuideCli
             Console.WriteLine(step.Message);
             session.StepId++;
 
-            var filePath =  Path.Combine(AppContext.BaseDirectory,"..","..","..","..","Resources","Guide",$"{step.Id}.md");
+            var filePath =  Path.Combine(AppContext.BaseDirectory,"Resources","Guide",$"{step.Id}.md");
             if (File.Exists(filePath))
             {
                 string fileContents = File.ReadAllText(filePath);
