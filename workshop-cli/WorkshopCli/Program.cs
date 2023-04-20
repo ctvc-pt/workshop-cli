@@ -5,12 +5,12 @@ using workshopCli;
 
 
 
-    var jsonFilePath = "D:/CPDS/workshop-cli/workshop-cli/Guide/Steps.json";
-    var jsonText = File.ReadAllText(jsonFilePath);
-    //Console.WriteLine(jsonText);
+   
+    var filePath = Path.Combine(AppContext.BaseDirectory,"Resources","Guide","Steps.json");
+    Console.WriteLine(filePath);
             
-    var  steps = JsonConvert.DeserializeObject<List<Guide.Step>>(jsonText);
-            
+    string json = File.ReadAllText(filePath);
+    var  steps = JsonConvert.DeserializeObject<List<Guide.Step>>(json);
     var guide = new Guide { Steps = steps };
 
     var guideCli = new GuideCli(guide);
