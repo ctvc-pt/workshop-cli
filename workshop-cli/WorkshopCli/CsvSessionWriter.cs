@@ -7,7 +7,7 @@ public class CsvSessionWriter
     
     public CsvSessionWriter()
     {
-        csvFilePath = Path.Combine(AppContext.BaseDirectory,"Resources", "sessions.csv");
+        csvFilePath = Path.Combine(AppContext.BaseDirectory,"..","..","..","..","Resources", "sessions.csv");
     }
 
     public void AddSession(string name, string age, string email, int stepId)
