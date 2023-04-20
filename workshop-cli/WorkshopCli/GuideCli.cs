@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using System.Reflection;
+using Newtonsoft.Json;
 using Sharprompt;
 
 
@@ -18,7 +19,8 @@ public class GuideCli
 
     public void Run()
     {
-        var txtFilePath = Path.Combine(AppContext.BaseDirectory,"Resources", "session.txt");
+        var assembly = Assembly.GetExecutingAssembly();
+        var txtFilePath = Path.Combine(Environment.CurrentDirectory,"..","..","..","..","..","Resources", "session.txt");
         Console.WriteLine("Bem-vindo!/n");
 
         if (File.Exists(txtFilePath))
@@ -32,14 +34,18 @@ public class GuideCli
             Console.WriteLine(step.Message);
             session.StepId++;
 
-            var filePath =  Path.Combine(AppContext.BaseDirectory,"Resources","Guide",$"{step.Id}.md");
-            if (File.Exists(filePath))
+            var filePath = $"{step.Id}.md";
+            using (var resourceStream = assembly.GetManifestResourceStream($"workshop_cli.Guide.{filePath}"))
             {
-                string fileContents = File.ReadAllText(filePath);
-                Console.WriteLine(fileContents);
+                if (resourceStream != null)
+                {
+                    using (var reader = new StreamReader(resourceStream))
+                    {
+                        var fileContents = reader.ReadToEnd();
+                        Console.WriteLine(fileContents);
+                    }
+                }
             }
-            
-
             switch (step.Type)
             {
                 case "ask-name":
@@ -55,9 +61,12 @@ public class GuideCli
                     break;
 
                 case "information":
-                    Prompt.Confirm("Quando completares a taréfa Avança para a frente", false);
-                    Console.WriteLine("");
+                    Prompt.Confirm("Quando completares a taréfa Avança para a frente\n", false);
                     break;
+                
+                case "challange":
+                    Prompt.Confirm("Quando completares o desafio avança para a frente\n", false);
+                    break;/**/
 
                 case "exercise":
                     while (!PromptAnswerAndConfirm("exercise")) ;
