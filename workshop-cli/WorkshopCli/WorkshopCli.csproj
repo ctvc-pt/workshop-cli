@@ -17,7 +17,6 @@
     <ItemGroup>
       <None Remove="Steps.json" />
       <None Remove="Guide\3.md" />
-      <EmbeddedResource Include="Guide\3.md" />
       <None Remove="Guide\5.md" />
       <EmbeddedResource Include="Guide\5.md" />
       <None Remove="Guide\6.md" />
