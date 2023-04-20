@@ -4,5 +4,14 @@ using Newtonsoft.Json;
 using workshopCli;
 
 
-var guide = new Guide { Steps = JsonConvert.DeserializeObject<List<Guide.Step>>(File.ReadAllText(Path.Combine(AppContext.BaseDirectory, "..", "..","..","..", "Steps.json"))) };
-new GuideCli(guide).Run();
+
+    var jsonFilePath = "D:/CPDS/workshop-cli/workshop-cli/Guide/Steps.json";
+    var jsonText = File.ReadAllText(jsonFilePath);
+    //Console.WriteLine(jsonText);
+            
+    var  steps = JsonConvert.DeserializeObject<List<Guide.Step>>(jsonText);
+            
+    var guide = new Guide { Steps = steps };
+
+    var guideCli = new GuideCli(guide);
+    guideCli.Run();

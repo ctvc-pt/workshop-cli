@@ -166,4 +166,31 @@ public class Tests
         
     }
 
+    
+    [Test]
+    public void TestMessageFilePath()
+    {
+        string jsonFilePath = "D:/CPDS/workshop-cli/workshop-cli/Steps1.json";
+        var jsonText = File.ReadAllText(jsonFilePath);
+        
+        var  steps = JsonConvert.DeserializeObject<List<Guide.Step>>(jsonText);
+            
+        var guide = new Guide { Steps = steps };
+        
+        foreach (var step in guide.Steps)
+        {
+            
+            try
+            {
+                string fileContents = File.ReadAllText("D:/CPDS/workshop-cli/workshop-cli/" + step.Message);
+                Console.WriteLine(fileContents);
+            }
+            catch
+            {
+                Console.WriteLine(step.Message);
+            }
+            
+        }
+
+    }
 }

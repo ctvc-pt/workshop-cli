@@ -31,6 +31,14 @@ public class GuideCli
             Console.WriteLine(step.Message);
             session.StepId++;
 
+            var filepath = $"D:/CPDS/workshop-cli/workshop-cli/Guide/{step.Id}.md";
+            if (File.Exists(filepath))
+            {
+                string fileContents = File.ReadAllText(filepath);
+                Console.WriteLine(fileContents);
+            }
+            
+
             switch (step.Type)
             {
                 case "ask-name":
@@ -46,8 +54,8 @@ public class GuideCli
                     break;
 
                 case "information":
-                    Prompt.Confirm("Did you complete the task?", false);
-                    Console.WriteLine("lets work!");
+                    Prompt.Confirm("Quando completares a taréfa Avança para a frente", false);
+                    Console.WriteLine("");
                     break;
 
                 case "exercise":
