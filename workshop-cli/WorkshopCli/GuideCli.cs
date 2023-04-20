@@ -2,7 +2,7 @@
 using Sharprompt;
 
 
-   namespace workshopCli;
+namespace workshopCli;
 
 public class GuideCli
 {
@@ -17,15 +17,15 @@ public class GuideCli
 
     public void Run()
     {
-        var txtFilePath = Path.Combine(AppContext.BaseDirectory, "..", "..","..","..", "session.txt");
-        Console.WriteLine("Bem vindo!/n");
+        var txtFilePath = Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "..", "session.txt");
+        Console.WriteLine("Bem-vindo!/n");
 
         if (File.Exists(txtFilePath))
         {
             session = JsonConvert.DeserializeObject<Session>(File.ReadAllText(txtFilePath));
             Console.WriteLine($"Bem-vindo outra vez {session.Name}!");
         }
-        
+
         foreach (var step in guide.Steps.Skip(session.StepId))
         {
             Console.WriteLine(step.Message);
@@ -36,12 +36,12 @@ public class GuideCli
                 case "ask-name":
                     PromptAnswerAndPrint("name", ref session.Name);
                     break;
-                
-                case "ask-age": 
+
+                case "ask-age":
                     PromptAnswerAndPrint("age", ref session.Age);
                     break;
-                
-                case "ask-email": 
+
+                case "ask-email":
                     PromptAnswerAndPrint("email", ref session.Email);
                     break;
 
@@ -51,7 +51,7 @@ public class GuideCli
                     break;
 
                 case "exercise":
-                    while (!PromptAnswerAndConfirm("exercise"));
+                    while (!PromptAnswerAndConfirm("exercise")) ;
                     Console.WriteLine("Great job!");
                     break;
             }
@@ -94,4 +94,3 @@ public class GuideCli
         File.WriteAllLines(csvFilePath, lines);
     }
 }
-
