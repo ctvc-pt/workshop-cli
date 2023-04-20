@@ -8,6 +8,7 @@ public class GuideCli
 {
     private Session session;
     private readonly Guide guide;
+    CsvSessionWriter sessionWriter = new CsvSessionWriter();
 
     public GuideCli(Guide guide)
     {
@@ -17,7 +18,7 @@ public class GuideCli
 
     public void Run()
     {
-        var txtFilePath = Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "..", "session.txt");
+        var txtFilePath = Path.Combine(AppContext.BaseDirectory,"Resources", "session.txt");
         Console.WriteLine("Bem-vindo!/n");
 
         if (File.Exists(txtFilePath))
@@ -31,10 +32,10 @@ public class GuideCli
             Console.WriteLine(step.Message);
             session.StepId++;
 
-            var filepath = $"D:/CPDS/workshop-cli/workshop-cli/Guide/{step.Id}.md";
-            if (File.Exists(filepath))
+            var filePath =  Path.Combine(AppContext.BaseDirectory,"Resources","Guide",$"{step.Id}.md");
+            if (File.Exists(filePath))
             {
-                string fileContents = File.ReadAllText(filepath);
+                string fileContents = File.ReadAllText(filePath);
                 Console.WriteLine(fileContents);
             }
             
@@ -64,7 +65,7 @@ public class GuideCli
                     break;
             }
 
-            AddSessionToCsv(session.Name, session.Age, session.Email, session.StepId);
+            sessionWriter.AddSession(session.Name, session.Age, session.Email, session.StepId);
             File.WriteAllText(txtFilePath, JsonConvert.SerializeObject(session));
         }
     }
@@ -79,26 +80,5 @@ public class GuideCli
     {
         sessionValue = Prompt.Input<string>(prompt + ":");
         Console.WriteLine($"You entered: {sessionValue}");
-    }
-
-    public void AddSessionToCsv(string name, string age, string email, int stepId)
-    {
-        var csvFilePath = Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "..", "sessions.csv");
-        var lines = File.ReadAllLines(csvFilePath).ToList();
-
-        for (var i = 0; i < lines.Count; i++)
-        {
-            var values = lines[i].Split(';');
-            if (values[0] != name) continue;
-            values[1] = age;
-            values[2] = email;
-            values[3] = stepId.ToString();
-            lines[i] = string.Join(";", values);
-            File.WriteAllLines(csvFilePath, lines);
-            return;
-        }
-
-        lines.Add($"{name};{age};{email};{stepId}");
-        File.WriteAllLines(csvFilePath, lines);
     }
 }
