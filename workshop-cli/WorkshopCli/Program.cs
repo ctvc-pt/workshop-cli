@@ -13,4 +13,4 @@ using ( var reader = new StreamReader( stream ) )
 }
 var guide = new Guide { Steps = steps };
 var guideCli = new GuideCli( guide );
-//guideCli.Run();
+guideCli.Run();

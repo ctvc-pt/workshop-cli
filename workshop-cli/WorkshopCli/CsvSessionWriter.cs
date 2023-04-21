@@ -25,7 +25,7 @@ public class CsvSessionWriter
             File.WriteAllLines(csvFilePath, lines);
             return;
         }
-
+        Console.WriteLine($"Name in current session {name}");
         lines.Add($"{name};{age};{email};{stepId}");
         File.WriteAllLines(csvFilePath, lines);
     }
