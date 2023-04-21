@@ -1,3 +1,4 @@
+
 5. Vamos agora carregar a imagem de fundo. 
 Insere o seguinte código no ficheiro "main.lua":
 
@@ -6,3 +7,4 @@ Insere o seguinte código no ficheiro "main.lua":
 	end
 
 Certifica-te de que substituis "nome_da_imagem" pelo nome da imagem que queres usar como fundo.
+
