@@ -1,7 +1,5 @@
 ﻿using System.Reflection;
 using Newtonsoft.Json;
-using Sharprompt;
-
 
 namespace workshopCli;
 
@@ -22,12 +20,15 @@ public class GuideCli
         var assembly = Assembly.GetExecutingAssembly();
         var txtFilePath = Path.Combine( Environment.CurrentDirectory, "..", "..", "..", "..", "..", "Resources",
             "session.txt" );
-        Console.WriteLine( "Bem-vindo!/n" );
 
         if ( File.Exists( txtFilePath ) )
         {
             session = JsonConvert.DeserializeObject<Session>( File.ReadAllText( txtFilePath ) );
             Console.WriteLine( $"Bem-vindo outra vez {session.Name}!" );
+        }
+        else
+        {
+            Console.WriteLine( "Bem-vindo ao Workshop de Luv2D!" );
         }
 
         var actions = new Dictionary<string, IAction>()
@@ -37,7 +38,8 @@ public class GuideCli
             { "ask-email", new AskEmailAction(session) },
             { "information", new InformationAction() },
             { "challenge", new ChallengeAction() },
-            { "exercise", new ExerciseAction() }
+            { "exercise", new ExerciseAction() },
+            { "install", new InstallAction() },
         };
 
         foreach ( var step in guide.Steps.Skip( session.StepId ) )

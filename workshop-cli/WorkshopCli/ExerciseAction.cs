@@ -6,6 +6,6 @@ public class ExerciseAction : IAction
     {
         while (!ExerciseHelper.PromptAnswerAndConfirm("exercise"));
       
-        Console.WriteLine("Great job!");
+        Console.WriteLine("Bom trabalho!");
     }
 }

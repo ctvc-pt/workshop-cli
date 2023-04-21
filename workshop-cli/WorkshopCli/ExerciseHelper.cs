@@ -7,29 +7,29 @@ public class ExerciseHelper
     public static void PromptAnswerAndPrint(string prompt, ref string sessionValue)
     {
         sessionValue = Prompt.Input<string>(prompt + ":");
-        Console.WriteLine($"You entered: {sessionValue}");
+        Console.WriteLine($"Inseris-te: {sessionValue}");
     }
     
     public static bool PromptAnswerAndConfirm(string prompt)
     {
         Console.Write(prompt);
         string answer = Console.ReadLine();
-        Console.WriteLine($"Your answer was: {answer}. Is this correct?");
+        Console.WriteLine($"A tua resposta foi: {answer}. Está correto?");
         while (true)
         {
-            Console.Write("Enter 'yes' or 'no': ");
+            Console.Write("Insere 'sim' ou 'não': ");
             string confirmation = Console.ReadLine().ToLower();
-            if (confirmation == "yes")
+            if (confirmation == "sim" || confirmation == "s" || confirmation == "yes" || confirmation == "y" )
             {
                 return true;
             }
-            else if (confirmation == "no")
+            else if (confirmation == "nao" || confirmation == "n" || confirmation == "no" || confirmation == "não" )
             {
                 return false;
             }
             else
             {
-                Console.WriteLine("Invalid input. Please enter 'yes' or 'no'.");
+                Console.WriteLine("Resposta inválida. Insere 'sim' ou 'não'.");
             }
         }
     }
