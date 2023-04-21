@@ -42,10 +42,10 @@ public class GuideCli
             { "install", new InstallAction() },
         };
 
-        foreach ( var step in guide.Steps.Skip( session.StepId ) )
+        foreach ( var step in guide.Steps )
         {
             Console.WriteLine( step.Message );
-            session.StepId++;
+            session.StepId=step.Id;
 
             var filePath = $"{step.Id}.md";
             using ( var resourceStream = assembly.GetManifestResourceStream( $"workshop_cli.Guide.{filePath}" ) )

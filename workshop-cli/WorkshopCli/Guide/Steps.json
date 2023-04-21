@@ -1,57 +1,57 @@
 [
     {
-        "Id": "1",
+        "Id": "001-name",
         "Type": "ask-name",
         "Message": "Qual é o teu nome?"
     },
     {
-        "Id": "2",
+        "Id": "002-age",
         "Type": "ask-age",
         "Message": "Qual é a tua idade?"
     },
     {
-        "Id": "3",
+        "Id": "003-email",
         "Type": "ask-email",
         "Message": "Qual é o teu email?"
     },
     {
-        "Id": "4",
+        "Id": "004-start",
         "Type": "information",
         "Message": "Quando tiveres pronto para começar podes avançar ao clicar no ENTER!"
     },
     {
-        "Id": "5",
+        "Id": "005-intro",
         "Type": "information"
     },
     {
-        "Id": "6",
+        "Id": "006-love2D-install",
         "Type": "information",
         "Message": "Passo 1: Instalar o Love2D"
     },
     {
-        "Id": "7",
+        "Id": "007-creatFolder",
         "Type": "information",
         "Message": "Passo 2: Criar um novo jogo"
     },
     {
-        "Id": "8",
+        "Id": "008-openFolder",
         "Type": "information"
     },
   {
-        "Id": "9",
+        "Id": "009-createMain",
         "Type": "information"
     },
   {
-        "Id": "10",
+        "Id": "010-resources",
         "Type": "information",
         "Message": "Passo 3: Carregar recursos"
     },
     {
-        "Id": "11",
+        "Id": "011-images",
         "Type": "information"
     },
     {
-        "Id": "12",
+        "Id": "012-OpenLua",
         "Type": "information"
     },
     {
