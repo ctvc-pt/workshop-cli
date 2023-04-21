@@ -40,6 +40,7 @@ public class GuideCli
             { "challenge", new ChallengeAction() },
             { "exercise", new ExerciseAction() },
             { "install", new InstallAction() },
+            { "open-file", new OpenFileAction() },
         };
 
         foreach ( var step in guide.Steps.Skip( session.StepId ) )

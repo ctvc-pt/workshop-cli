@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using System.Diagnostics;
+using System.Reflection;
 using Newtonsoft.Json;
 using workshopCli;
 
@@ -13,4 +14,4 @@ using ( var reader = new StreamReader( stream ) )
 }
 var guide = new Guide { Steps = steps };
 var guideCli = new GuideCli( guide );
-//guideCli.Run();
+guideCli.Run();
