@@ -31,12 +31,10 @@ public class GuideCli
         {
             Console.WriteLine( "Bem-vindo ao Workshop de Luv2D!" );
         }
+        
 
         var actions = new Dictionary<string, IAction>()
         {
-            { "ask-name", new AskNameAction( session ) },
-            { "ask-age", new AskAgeAction( session ) },
-            { "ask-email", new AskEmailAction( session ) },
             { "information", new InformationAction() },
             { "challenge", new ChallengeAction() },
             { "exercise", new ExerciseAction() },
@@ -44,19 +42,18 @@ public class GuideCli
             { "open-file", new OpenFileAction() },
         };
 
-
         var startIndex = guide.Steps.FindIndex( step => step.Id == session.StepId );
         if ( startIndex == -1 ) // Step ID not found
         {
             startIndex = 0;
         }
-
+        else startIndex += 1;
+        
         for ( var i = startIndex; i < guide.Steps.Count; i++ )
             {
                 var step = guide.Steps[ i ];
                 Console.WriteLine( step.Message );
                 session.StepId = step.Id;
-
                 var filePath = $"{step.Id}.md";
                 using ( var resourceStream = assembly.GetManifestResourceStream( $"workshop_cli.Guide.{filePath}" ) )
                 {
@@ -70,20 +67,31 @@ public class GuideCli
                     }
                 }
 
-                if ( actions.TryGetValue( step.Type, out var action ) )
+                switch ( step.Type )
                 {
-                    action.Execute();
+                    case "ask-name":
+                        session.Name = ExerciseHelper.PromptAnswerAndPrint();
+                        break;
+                    case "ask-age":
+                        session.Age = ExerciseHelper.PromptAnswerAndPrint();
+                        break;
+                    case "ask-email":
+                        session.Email = ExerciseHelper.PromptAnswerAndPrint();
+                        break;
+                    default:
+                        if ( actions.TryGetValue( step.Type, out var action ) )
+                        {
+                            action.Execute();
+                        } 
+                        else
+                        { 
+                            Console.WriteLine( $"Unknown action type: {step.Type}" );
+                        }
+                        break;
                 }
-                else
-                {
-                    Console.WriteLine( $"Unknown action type: {step.Type}" );
-                }
-                
-                
                 sessionWriter.AddSession( session.Name, session.Age, session.Email, session.StepId );
                 File.WriteAllText( txtFilePath, JsonConvert.SerializeObject( session ) );
             }
-        
     }
 }
 

@@ -4,10 +4,11 @@ namespace workshopCli;
 
 public class ExerciseHelper
 {
-    public static void PromptAnswerAndPrint(string prompt, ref string sessionValue)
+    public static string PromptAnswerAndPrint()
     {
-        sessionValue = Prompt.Input<string>(prompt + ":");
+        string sessionValue = Prompt.Input<string>("Resposta");
         Console.WriteLine($"Inseris-te: {sessionValue}");
+        return sessionValue;
     }
     
     public static bool PromptAnswerAndConfirm(string prompt)
