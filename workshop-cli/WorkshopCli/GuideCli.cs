@@ -91,6 +91,7 @@ public class GuideCli
                 }
                 sessionWriter.AddSession( session.Name, session.Age, session.Email, session.StepId );
                 File.WriteAllText( txtFilePath, JsonConvert.SerializeObject( session ) );
+                Console.Clear();      
             }
     }
 }
