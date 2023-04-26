@@ -29,26 +29,27 @@
         "Message": "Passo 1: Instalar o Love2D"
     },
     {
-        "Id": "007-Criar-Pasta",
-        "Type": "information",
-        "Message": "Passo 2: Criar um novo jogo"
+        "Id": "007-love2D-install.exe",
+        "Type": "install",
+        "Message": ""
     },
     {
-        "Id": "008-Abrir-Pasta",
+        "Id": "008-Criar-Pasta",
         "Type": "information"
     },
   {
-        "Id": "009-Criar-Main.lua",
-        "Type": "information"
+        "Id": "009-Abrir-Pasta",
+        "Type": "open-file"
     },
   {
         "Id": "010-recursos",
         "Type": "information",
-        "Message": "Passo 3: Carregar recursos"
+        "Message": ""
     },
     {
         "Id": "011-imagens",
-        "Type": "information"
+        "Type": "CreateSprites",
+        "Message": ""
     },
     {
         "Id": "012-Abrir-Lua",

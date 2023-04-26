@@ -41,7 +41,8 @@ public class GuideCli
             { "challenge", new ChallengeAction() },
             { "exercise", new ExerciseAction() },
             { "install", new InstallAction() },
-            { "open-file", new OpenFileAction() },
+            { "open-file", new OpenFileL2DAction() },
+            {"CreateSprites", new CreateSpritesAction()},
         };
 
 
