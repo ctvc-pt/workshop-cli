@@ -10,7 +10,7 @@ public class CsvSessionWriter
         csvFilePath = Path.Combine(AppContext.BaseDirectory,"..","..","..","..","..","Resources", "sessions.csv");
     }
 
-    public void AddSession(string name, string age, string email, int stepId)
+    public void AddSession(string name, string age, string email, string stepId)
     {
         var lines = File.ReadAllLines(csvFilePath).ToList();
 
@@ -20,7 +20,7 @@ public class CsvSessionWriter
             if (values[0] != name) continue;
             values[1] = age;
             values[2] = email;
-            values[3] = stepId.ToString();
+            values[3] = stepId;
             lines[i] = string.Join(";", values);
             File.WriteAllLines(csvFilePath, lines);
             return;
