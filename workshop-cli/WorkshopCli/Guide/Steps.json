@@ -44,16 +44,17 @@
   {
         "Id": "010-recursos",
         "Type": "information",
-        "Message": ""
+        "Message": "FDS"
     },
     {
         "Id": "011-imagens",
         "Type": "CreateSprites",
-        "Message": ""
+        "Message": "IMAGENS"
     },
     {
-        "Id": "012-Abrir-Lua",
-        "Type": "information"
+        "Id": "012-Teste-Lua",
+        "Type": "code",
+      "message": "codigo crl"
     },
     {
         "Id": "013-load",

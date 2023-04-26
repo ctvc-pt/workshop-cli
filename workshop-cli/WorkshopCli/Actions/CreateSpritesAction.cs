@@ -1,5 +1,6 @@
 using System.Diagnostics;
 using Newtonsoft.Json;
+using Sharprompt;
 
 namespace workshopCli;
 
@@ -34,5 +35,6 @@ public class CreateSpritesAction: IAction
         File.Copy(Path.Combine(sourceFolderPath, "parrot.png"), Path.Combine(folderPath, "parrot.png"), true);
         File.Copy(Path.Combine(sourceFolderPath, "background.png"), Path.Combine(folderPath, "background.png"), true);
 
+        Prompt.Confirm("Quando completares o desafio avança para a frente\n", false);
     }
 }

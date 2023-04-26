@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics;
 using System.Text.Json;
 using Newtonsoft.Json;
+using Sharprompt;
 
 namespace workshopCli;
 
@@ -63,5 +64,7 @@ public class OpenFileL2DAction : IAction
         } catch (Exception ex) {
             Console.WriteLine("Error opening file: " + ex.Message);
         }
+        
+        Prompt.Confirm("Quando completares o desafio avança para a frente\n", false);
     }
 }
