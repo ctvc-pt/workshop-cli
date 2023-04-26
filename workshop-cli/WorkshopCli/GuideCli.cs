@@ -31,41 +31,57 @@ public class GuideCli
         {
             Console.WriteLine( "Bem-vindo ao Workshop de Luv2D!" );
         }
-        
-
-        var actions = new Dictionary<string, IAction>()
-        {
-            { "information", new InformationAction() },
-            { "challenge", new ChallengeAction() },
-            { "exercise", new ExerciseAction() },
-            { "install", new InstallAction() },
-            { "open-file", new OpenFileAction() },
-        };
-
         var startIndex = guide.Steps.FindIndex( step => step.Id == session.StepId );
         if ( startIndex == -1 ) // Step ID not found
         {
             startIndex = 0;
+        }else
+        {
+            startIndex += 1;
         }
-        else startIndex += 1;
-        
+        Console.WriteLine(startIndex);
+
+        int currentIndex = 0;
+       
+        Console.WriteLine(startIndex);
+
         for ( var i = startIndex; i < guide.Steps.Count; i++ )
-            {
+        {
                 var step = guide.Steps[ i ];
+                Console.WriteLine(step.Id);
                 Console.WriteLine( step.Message );
                 session.StepId = step.Id;
-                var filePath = $"{step.Id}.md";
-                using ( var resourceStream = assembly.GetManifestResourceStream( $"workshop_cli.Guide.{filePath}" ) )
+                currentIndex = i;
+                if ( step.Type!= "code" )
                 {
-                    if ( resourceStream != null )
+                    var filePath = $"{step.Id}.md";
+                    using ( var resourceStream = assembly.GetManifestResourceStream( $"workshop_cli.Guide.{filePath}" ) )
                     {
-                        using ( var reader = new StreamReader( resourceStream ) )
+                        if ( resourceStream != null )
                         {
-                            var fileContents = reader.ReadToEnd();
-                            Console.WriteLine( fileContents );
+                            using ( var reader = new StreamReader( resourceStream ) )
+                            {
+                                var fileContents = reader.ReadToEnd();
+                                Console.WriteLine( fileContents );
+                            }
                         }
                     }
                 }
+                
+                var actions = new Dictionary<string, IAction>()
+                {
+                    { "ask-name", new AskNameAction( session ) },
+                    { "ask-age", new AskAgeAction( session ) },
+                    { "ask-email", new AskEmailAction( session ) },
+                    { "information", new InformationAction() },
+                    { "challenge", new ChallengeAction() },
+                    { "exercise", new ExerciseAction() },
+                    { "install", new InstallAction() },
+                    { "open-file", new OpenFileL2DAction() },
+                    {"CreateSprites", new CreateSpritesAction()},
+                    {"code",new CodeAction(currentIndex)},
+                };
+
 
                 switch ( step.Type )
                 {
