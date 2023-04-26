@@ -1,145 +1,145 @@
 [
     {
-        "Id": "1",
+        "Id": "001-nome",
         "Type": "ask-name",
         "Message": "Qual é o teu nome?"
     },
     {
-        "Id": "2",
+        "Id": "002-idade",
         "Type": "ask-age",
         "Message": "Qual é a tua idade?"
     },
     {
-        "Id": "3",
+        "Id": "003-email",
         "Type": "ask-email",
         "Message": "Qual é o teu email?"
     },
     {
-        "Id": "4",
+        "Id": "004-inicio",
         "Type": "information",
         "Message": "Quando tiveres pronto para começar podes avançar ao clicar no ENTER!"
     },
     {
-        "Id": "5",
+        "Id": "005-intro",
         "Type": "information"
     },
     {
-        "Id": "6",
+        "Id": "006-love2D-install",
         "Type": "information",
         "Message": "Passo 1: Instalar o Love2D"
     },
     {
-        "Id": "7",
+        "Id": "007-Criar-Pasta",
         "Type": "information",
         "Message": "Passo 2: Criar um novo jogo"
     },
     {
-        "Id": "8",
+        "Id": "008-Abrir-Pasta",
         "Type": "information"
     },
   {
-        "Id": "9",
+        "Id": "009-Criar-Main.lua",
         "Type": "information"
     },
   {
-        "Id": "10",
+        "Id": "010-recursos",
         "Type": "information",
         "Message": "Passo 3: Carregar recursos"
     },
     {
-        "Id": "11",
+        "Id": "011-imagens",
         "Type": "information"
     },
     {
-        "Id": "12",
+        "Id": "012-Abrir-Lua",
         "Type": "information"
     },
     {
-        "Id": "13",
+        "Id": "013-load",
         "Type": "information"
     },
     {
-        "Id": "14",
+        "Id": "014-carrega-imagem",
         "Type": "information"
     },
     {
-        "Id": "15",
+        "Id": "015-Criar-Jogador",
         "Type": "information",
         "Message": "Passo 4: Criar o jogador"
     },
     {
-        "Id": "16",
+        "Id": "016-draw",
         "Type": "information"
     },
     {
-        "Id": "17",
+        "Id": "017-Print-hello-world",
         "Type": "information"
     },
     {
-        "Id": "18",
+        "Id": "018-Desenha-Jogador",
         "Type": "information"
     },
     {
-        "Id": "19",
+        "Id": "019-Movimenta-Jogador",
         "Type": "information",
         "Message": "Passo 5: Movimentar o jogador"
     }
     ,
     {
-        "Id": "20",
+        "Id": "020-Movimenta-Jogador",
         "Type": "information"
     },
     {
-        "Id": "21",
+        "Id": "021-Movimenta-Jogador",
         "Type": "exercise"
     },
     {
-        "Id": "22",
-        "Type": "exercise"
-    },
-    {
-        "Id": "23",
-        "Type": "exercise"
-    },
-    {
-        "Id": "24",
+        "Id": "022-Revisao-codigo",
         "Type": "information"
     },
     {
-        "Id": "25",
-        "Type": "exercise"
+        "Id": "023-desafio",
+        "Type": "challenge"
     },
     {
-        "Id": "26",
+        "Id": "024-codigo-desafio",
         "Type": "information"
     },
     {
-        "Id": "27",
+        "Id": "025-Velocidade-Jogador",
+        "Type": "exercise"
+    },
+    {
+        "Id": "026-Velocidade-Jogador",
+        "Type": "information"
+    },
+    {
+        "Id": "027-player-scale",
         "Type": "information",
         "Message": "Passo 6: Ação do jogador."
     },
     {
-        "Id": "28",
+        "Id": "028-player-scale",
         "Type": "exercise"
     },
     {
-        "Id": "29",
+        "Id": "029-mousepressed",
         "Type": "exercise"
     },
     {
-        "Id": "30",
+        "Id": "030-mousepressed",
         "Type": "challenge"
     },
     {
-        "Id": "31",
+        "Id": "031-mousepressed",
         "Type": "information"
     },
     {
-        "Id": "32",
+        "Id": "032-Codigo-Final",
         "Type": "exercise"
     },
     {
-        "Id": "33",
+        "Id": "033-Fim",
         "Type": "exercise",
         "Message": "Fim"
     }

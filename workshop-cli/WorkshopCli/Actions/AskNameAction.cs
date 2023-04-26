@@ -10,6 +10,8 @@ public class AskNameAction : IAction
     }
     public void Execute()
     {
-        ExerciseHelper.PromptAnswerAndPrint("name", ref session.Name);
+        Console.WriteLine("What is your name?");
+        var input = Console.ReadLine();
+        session.Name = input;
     }
 }
