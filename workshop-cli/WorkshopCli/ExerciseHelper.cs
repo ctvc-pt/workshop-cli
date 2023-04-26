@@ -14,7 +14,7 @@ public class ExerciseHelper
     public static bool PromptAnswerAndConfirm(string prompt)
     {
         Console.Write(prompt);
-        string answer = Console.ReadLine();
+        string answer = Prompt.Input<string>("Resposta");
         Console.WriteLine($"A tua resposta foi: {answer}. Está correto?");
         while (true)
         {
