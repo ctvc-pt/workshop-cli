@@ -5,7 +5,10 @@ namespace workshopCli;
 
 public class GuideCli
 {
-    private Session session;
+    public static string ResourcesPath =
+        Path.Combine( Environment.CurrentDirectory, "..", "..", "..", "..", "..", "Resources" );
+
+    public Session session;
     private readonly Guide guide;
     CsvSessionWriter sessionWriter = new CsvSessionWriter();
 
@@ -31,78 +34,67 @@ public class GuideCli
         {
             Console.WriteLine( "Bem-vindo ao Workshop de Luv2D!" );
         }
+
         var startIndex = guide.Steps.FindIndex( step => step.Id == session.StepId );
         if ( startIndex == -1 ) // Step ID not found
         {
             startIndex = 0;
-        }else
+        }
+        else
         {
             startIndex += 1;
         }
-        
-        var currentIndex = 0;
+
+        int currentIndex = 0;
 
         for ( var i = startIndex; i < guide.Steps.Count; i++ )
         {
-                var step = guide.Steps[ i ];
-               
-                Console.WriteLine( step.Message );
-                session.StepId = step.Id;
-                currentIndex = i;
-                if ( step.Type!= "code" )
+            var step = guide.Steps[ i ];
+            Console.WriteLine( step.Message );
+            session.StepId = step.Id;
+            currentIndex = i;
+            if ( step.Type != "code" )
+            {
+                var filePath = $"{step.Id}.md";
+                using ( var resourceStream = assembly.GetManifestResourceStream( $"workshop_cli.Guide.{filePath}" ) )
                 {
-                    var filePath = $"{step.Id}.md";
-                    using ( var resourceStream = assembly.GetManifestResourceStream( $"workshop_cli.Guide.{filePath}" ) )
+                    if ( resourceStream != null )
                     {
-                        if ( resourceStream != null )
+                        using ( var reader = new StreamReader( resourceStream ) )
                         {
-                            using ( var reader = new StreamReader( resourceStream ) )
-                            {
-                                var fileContents = reader.ReadToEnd();
-                                Console.WriteLine( fileContents );
-                            }
+                            var fileContents = reader.ReadToEnd();
+                            Console.WriteLine( fileContents );
                         }
                     }
                 }
-                
-                var actions = new Dictionary<string, IAction>()
-                {
-                    { "information", new InformationAction() },
-                    { "challenge", new ChallengeAction() },
-                    { "exercise", new ExerciseAction() },
-                    { "install", new InstallAction() },
-                    { "open-file", new OpenFileL2DAction() },
-                    {"CreateSprites", new CreateSpritesAction()},
-                    {"code",new CodeAction(currentIndex)},
-                };
-
-
-                switch ( step.Type )
-                {
-                    case "ask-name":
-                        session.Name = ExerciseHelper.PromptAnswerAndPrint();
-                        break;
-                    case "ask-age":
-                        session.Age = ExerciseHelper.PromptAnswerAndPrint();
-                        break;
-                    case "ask-email":
-                        session.Email = ExerciseHelper.PromptAnswerAndPrint();
-                        break;
-                    default:
-                        if ( actions.TryGetValue( step.Type, out var action ) )
-                        {
-                            action.Execute();
-                        } 
-                        else
-                        { 
-                            Console.WriteLine( $"Unknown action type: {step.Type}" );
-                        }
-                        break;
-                }
-                sessionWriter.AddSession( session.Name, session.Age, session.Email, session.StepId );
-                File.WriteAllText( txtFilePath, JsonConvert.SerializeObject( session ) );
-                Console.Clear();      
             }
+
+            var actions = new Dictionary<string, IAction>()
+            {
+                { "information", new InformationAction() },
+                { "challenge", new ChallengeAction() },
+                { "exercise", new ExerciseAction() },
+                { "install", new InstallAction() },
+                { "open-file", new OpenFileL2DAction() },
+                { "CreateSprites", new CreateSpritesAction() },
+                { "code", new CodeAction( currentIndex ) },
+                { "ask-name", new AskNameAction( this ) },
+                { "ask-age", new AskAgeAction( this ) },
+                { "ask-email", new AskEmailAction( this ) }
+            };
+            
+            if ( actions.TryGetValue( step.Type, out var action ) )
+            {
+                action.Execute();
+            }
+            else
+            {
+                Console.WriteLine( $"Unknown action type: {step.Type}" );
+            }
+
+            sessionWriter.AddSession( session.Name, session.Age, session.Email, session.StepId );
+            File.WriteAllText( txtFilePath, JsonConvert.SerializeObject( session ) );
+            Console.Clear();
+        }
     }
 }
-

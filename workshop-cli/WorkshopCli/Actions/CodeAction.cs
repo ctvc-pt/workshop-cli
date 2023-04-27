@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using System.Reflection;
 using Newtonsoft.Json;
 using Sharprompt;
@@ -18,8 +19,7 @@ public class CodeAction : IAction
         var assembly = Assembly.GetExecutingAssembly();
         var steps = new List<Guide.Step>();
 
-        var txtFilePath = Path.Combine( Environment.CurrentDirectory, "..", "..", "..", "..", "..", "Resources",
-            "session.txt" );
+        var txtFilePath = Path.Combine( GuideCli.ResourcesPath,"session.txt" );
 
         if ( !File.Exists( txtFilePath ) )
         {
@@ -28,6 +28,7 @@ public class CodeAction : IAction
 
         var session = JsonConvert.DeserializeObject<Session>( File.ReadAllText( txtFilePath ) );
         var username = session.Name;
+        username = username.Replace(" ", "-");
 
         using ( var stream = assembly.GetManifestResourceStream( "workshop_cli.Guide.Steps.json" ) )
         using ( var reader = new StreamReader( stream ) )
@@ -55,6 +56,8 @@ public class CodeAction : IAction
         {
             Console.WriteLine( $"Could not find resource file: {mdFilePath}" );
         }
+        
+        
            
         Prompt.Confirm("Quando completares o desafio avança para a frente\n", false);
     }

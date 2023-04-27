@@ -12,10 +12,9 @@ public class CreateSpritesAction: IAction
 
     public void Execute()
     {
-        var sourceFolderPath = Path.Combine( Environment.CurrentDirectory, "..", "..", "..", "..", "..", "Resources","Sprites");
+        var sourceFolderPath = Path.Combine( GuideCli.ResourcesPath,"Sprites");
         var desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
-        var txtFilePath =Path.Combine( Environment.CurrentDirectory, "..", "..", "..", "..", "..", "Resources",
-            "session.txt" );
+        var txtFilePath =Path.Combine( GuideCli.ResourcesPath,"session.txt" );
         
         if ( !File.Exists( txtFilePath ) )
         {
@@ -24,6 +23,7 @@ public class CreateSpritesAction: IAction
       
         var session = JsonConvert.DeserializeObject<Session>(File.ReadAllText( txtFilePath ));
         var username = session.Name;
+        username = username.Replace(" ", "-");
         
         var folderPath = Path.Combine(desktopPath,$"{username}_{DateTime.Now.Year}","mygame","Sprites");
 
