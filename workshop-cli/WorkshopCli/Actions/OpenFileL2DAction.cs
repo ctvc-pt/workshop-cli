@@ -14,8 +14,7 @@ public class OpenFileL2DAction : IAction
     public void Execute()
     {
         var desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
-        var txtFilePath =Path.Combine( Environment.CurrentDirectory, "..", "..", "..", "..", "..", "Resources",
-            "session.txt" );
+        var txtFilePath = Path.Combine( GuideCli.ResourcesPath,"session.txt" );
         if ( !File.Exists( txtFilePath ) )
         {
             return;
@@ -25,6 +24,7 @@ public class OpenFileL2DAction : IAction
 
         // Get username from Session struct
         var username = session.Name;
+        username = username.Replace(" ", "-");
         
         
         var folderPath = Path.Combine(desktopPath, $"{username}_{DateTime.Now.Year}", "mygame");
@@ -60,7 +60,7 @@ public class OpenFileL2DAction : IAction
                 WorkingDirectory = @"C:\",
                 Verb = "runas"
             };
-            Process.Start(startFileInfo);
+            //Process.Start(startFileInfo);
         } catch (Exception ex) {
             Console.WriteLine("Error opening file: " + ex.Message);
         }

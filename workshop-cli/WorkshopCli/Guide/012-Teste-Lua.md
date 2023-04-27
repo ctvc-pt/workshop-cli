@@ -14,7 +14,7 @@
     		player.x = player.x + player.speed
     	end
     	if love.keyboard.isDown("left") then
-	    	player.x = player.x - player.speed --estou  farto desta merda
+	    	player.x = player.x - player.speed -- teste
 	    end
     	if love.keyboard.isDown("up") then
 	    	player.y = player.y - player.speed
