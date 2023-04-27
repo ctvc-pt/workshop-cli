@@ -77,6 +77,8 @@
       <EmbeddedResource Include="Guide\031-mousepressed.md" />
       <None Remove="Guide\032-Codigo-Final.md" />
       <EmbeddedResource Include="Guide\032-Codigo-Final.md" />
+      <None Remove="Guide\012-Teste-Lua.md" />
+      <EmbeddedResource Include="Guide\012-Teste-Lua.md" />
     </ItemGroup>
 
     <ItemGroup>
@@ -85,17 +87,12 @@
       <None Remove="Guide\006-love2D-install.md" />
       <EmbeddedResource Include="Guide\006-love2D-install.md" />
       <None Remove="Guide\007-Criar-Pasta.md" />
-      <EmbeddedResource Include="Guide\007-Criar-Pasta.md" />
       <None Remove="Guide\008-Abrir-Pasta.md" />
-      <EmbeddedResource Include="Guide\008-Abrir-Pasta.md" />
       <None Remove="Guide\009-Criar-Main.lua.md" />
-      <EmbeddedResource Include="Guide\009-Criar-Main.lua.md" />
       <None Remove="Guide\010-recursos.md" />
       <EmbeddedResource Include="Guide\010-recursos.md" />
       <None Remove="Guide\011-imagens.md" />
-      <EmbeddedResource Include="Guide\011-imagens.md" />
       <None Remove="Guide\012-Abrir-Lua.md" />
-      <EmbeddedResource Include="Guide\012-Abrir-Lua.md" />
       <None Remove="Guide\013-load.md" />
       <EmbeddedResource Include="Guide\013-load.md" />
       <None Remove="Guide\014-carrega-imagem.md" />

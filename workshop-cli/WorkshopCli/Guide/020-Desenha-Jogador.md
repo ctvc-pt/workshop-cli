@@ -6,5 +6,4 @@
   		love.graphics.draw(player.sprite, player.x, player.y)
 	end
 
-Certifica-te de que colocas este código depois de teres carregado a imagem de fundo.
 

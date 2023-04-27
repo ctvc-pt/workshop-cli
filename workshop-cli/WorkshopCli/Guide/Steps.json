@@ -17,7 +17,7 @@
     {
         "Id": "004-inicio",
         "Type": "information",
-        "Message": "Quando tiveres pronto para começar podes avançar ao clicar no ENTER!"
+        "Message": "Pronto para começar?"
     },
     {
         "Id": "005-intro",
@@ -25,124 +25,176 @@
     },
     {
         "Id": "006-love2D-install",
-        "Type": "information",
+        "Type": "install",
         "Message": "Passo 1: Instalar o Love2D"
     },
     {
         "Id": "007-love2D-install.exe",
-        "Type": "install",
+        "Type": "information",
         "Message": ""
     },
     {
         "Id": "008-Criar-Pasta",
-        "Type": "information"
-    },
-  {
-        "Id": "009-Abrir-Pasta",
         "Type": "open-file"
     },
-  {
-        "Id": "010-recursos",
-        "Type": "information",
-        "Message": "FDS"
+    {
+        "Id": "009-recursos",
+        "Type": "CreateSprites"
     },
     {
-        "Id": "011-imagens",
-        "Type": "CreateSprites",
-        "Message": "IMAGENS"
-    },
-    {
-        "Id": "012-Teste-Lua",
-        "Type": "code",
-      "message": "codigo crl"
-    },
-    {
-        "Id": "013-load",
+        "Id": "010-load",
         "Type": "information"
     },
     {
-        "Id": "014-carrega-imagem",
+        "Id": "011-code",
+        "Type": "code"
+    },
+    {
+        "Id": "012-carrega-imagem",
         "Type": "information"
     },
     {
-        "Id": "015-Criar-Jogador",
+        "Id": "013-code",
+        "Type": "code"
+    },
+    {
+        "Id": "014-Criar-Jogador",
         "Type": "information",
         "Message": "Passo 4: Criar o jogador"
+    },
+    {
+        "Id": "015-code",
+        "Type": "code"
     },
     {
         "Id": "016-draw",
         "Type": "information"
     },
     {
-        "Id": "017-Print-hello-world",
+        "Id": "017-code",
+        "Type": "code"
+    },
+    {
+        "Id": "018-Print-hello-world",
         "Type": "information"
     },
     {
-        "Id": "018-Desenha-Jogador",
+        "Id": "019-code",
+        "Type": "code"
+    },
+    {
+        "Id": "020-Desenha-Jogador",
         "Type": "information"
     },
     {
-        "Id": "019-Movimenta-Jogador",
+        "Id": "021-code",
+        "Type": "code"
+    },
+    {
+        "Id": "022-Movimenta-Jogador",
         "Type": "information",
         "Message": "Passo 5: Movimentar o jogador"
-    }
-    ,
+    },
     {
-        "Id": "020-Movimenta-Jogador",
+        "Id": "023-code",
+        "Type": "code"
+    },
+    {
+        "Id": "024-Movimenta-Jogador",
         "Type": "information"
     },
     {
-        "Id": "021-Movimenta-Jogador",
-        "Type": "exercise"
+        "Id": "025-code",
+        "Type": "code"
     },
     {
-        "Id": "022-Revisao-codigo",
+        "Id": "026-Movimenta-Jogador",
         "Type": "information"
     },
     {
-        "Id": "023-desafio",
+        "Id": "027-code",
+        "Type": "code"
+    },
+    {
+        "Id": "028-desafio",
         "Type": "challenge"
     },
     {
-        "Id": "024-codigo-desafio",
+        "Id": "029-codigo-desafio",
         "Type": "information"
     },
     {
-        "Id": "025-Velocidade-Jogador",
-        "Type": "exercise"
+        "Id": "030-code",
+        "Type": "code"
     },
     {
-        "Id": "026-Velocidade-Jogador",
+        "Id": "031-Velocidade-Jogador",
         "Type": "information"
     },
     {
-        "Id": "027-player-scale",
+        "Id": "032-code",
+        "Type": "code"
+    },
+    {
+        "Id": "033-Velocidade-Jogador",
+        "Type": "information"
+    },
+    {
+        "Id": "034-code",
+        "Type": "code"
+    },
+    {
+        "Id": "035-player-scale",
         "Type": "information",
         "Message": "Passo 6: Ação do jogador."
     },
     {
-        "Id": "028-player-scale",
-        "Type": "exercise"
+        "Id": "036-code",
+        "Type": "code"
     },
     {
-        "Id": "029-mousepressed",
-        "Type": "exercise"
-    },
-    {
-        "Id": "030-mousepressed",
-        "Type": "challenge"
-    },
-    {
-        "Id": "031-mousepressed",
+        "Id": "037-player-scale",
         "Type": "information"
     },
     {
-        "Id": "032-Codigo-Final",
-        "Type": "exercise"
+        "Id": "038-code",
+        "Type": "code"
     },
     {
-        "Id": "033-Fim",
-        "Type": "exercise",
+        "Id": "039-mousepressed",
+        "Type": "information"
+    },
+    {
+        "Id": "040-code",
+        "Type": "code"
+    },
+    {
+        "Id": "041-mousepressed",
+        "Type": "information"
+    },
+    {
+        "Id": "042-code",
+        "Type": "code"
+    },
+    {
+        "Id": "043-mousepressed",
+        "Type": "information"
+    },
+    {
+        "Id": "044-code",
+        "Type": "code"
+    },
+    {
+        "Id": "045-Codigo-Final",
+        "Type": "information"
+    },
+    {
+        "Id": "046-code",
+        "Type": "code"
+    },
+    {
+        "Id": "047-Fim",
+        "Type": "information",
         "Message": "Fim"
     }
 ]

@@ -1,3 +1,0 @@
-
-2. Copia as imagens fornecidas para a pasta "sprites".
-

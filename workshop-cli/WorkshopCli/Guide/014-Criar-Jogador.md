@@ -1,8 +1,7 @@
 
-
 Agora que já carregaste a imagem de fundo, é hora de criar o jogador.
 
-1. Dentro do ficheiro "main.lua", insere o seguinte código:
+1. Dentro do ficheiro "main.lua", inserimos o seguinte código:
 
 	function love.load()
   		background = love.graphics.newImage('sprites/nome_da_imagem.png')

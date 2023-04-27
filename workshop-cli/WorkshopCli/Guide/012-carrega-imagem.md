@@ -1,6 +1,6 @@
 
-5. Vamos agora carregar a imagem de fundo. 
-Insere o seguinte código no ficheiro "main.lua":
+3. Vamos agora carregar a imagem de fundo. 
+Inserimos o seguinte código no ficheiro "main.lua":
 
 	function love.load()
   		background = love.graphics.newImage('sprites/nome_da_imagem.png')

@@ -1,2 +1,2 @@
 
-EXPLICALÃO DO QUE VAI ACONTECER NA CRIAÇÃO DA PASTA
+2. Verifica se tens as pastas.

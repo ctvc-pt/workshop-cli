@@ -39,16 +39,13 @@ public class GuideCli
         {
             startIndex += 1;
         }
-        Console.WriteLine(startIndex);
-
-        int currentIndex = 0;
-       
-        Console.WriteLine(startIndex);
+        
+        var currentIndex = 0;
 
         for ( var i = startIndex; i < guide.Steps.Count; i++ )
         {
                 var step = guide.Steps[ i ];
-                Console.WriteLine(step.Id);
+               
                 Console.WriteLine( step.Message );
                 session.StepId = step.Id;
                 currentIndex = i;
@@ -70,9 +67,6 @@ public class GuideCli
                 
                 var actions = new Dictionary<string, IAction>()
                 {
-                    { "ask-name", new AskNameAction( session ) },
-                    { "ask-age", new AskAgeAction( session ) },
-                    { "ask-email", new AskEmailAction( session ) },
                     { "information", new InformationAction() },
                     { "challenge", new ChallengeAction() },
                     { "exercise", new ExerciseAction() },

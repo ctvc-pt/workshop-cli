@@ -5,3 +5,5 @@
 
 Executa o jogo e vê o resultado.
 
+Podes mudar o número para ter diferentes resultados.
+
