@@ -23,7 +23,7 @@ public class CreateSpritesAction: IAction
       
         var session = JsonConvert.DeserializeObject<Session>(File.ReadAllText( txtFilePath ));
         var username = session.Name;
-        username = username.Replace(" ", "-");
+        if(username != null) username = username.Replace(" ", "-");
         
         var folderPath = Path.Combine(desktopPath,$"{username}_{DateTime.Now.Year}","mygame","Sprites");
 

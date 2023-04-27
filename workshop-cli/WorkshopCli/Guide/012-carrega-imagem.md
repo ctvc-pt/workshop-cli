@@ -8,3 +8,5 @@ Inserimos o seguinte código no ficheiro "main.lua":
 
 Certifica-te de que substituis "nome_da_imagem" pelo nome da imagem que queres usar como fundo.
 
+E para correr o jogo usa o atalho do teclado Alt+j
+

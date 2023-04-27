@@ -24,9 +24,11 @@ public class OpenFileL2DAction : IAction
 
         // Get username from Session struct
         var username = session.Name;
-        username = username.Replace(" ", "-");
-        
-        
+        if ( username != null )
+        {
+            username = username.Replace(" ", "-");
+        }
+
         var folderPath = Path.Combine(desktopPath, $"{username}_{DateTime.Now.Year}", "mygame");
         var filePath = Path.Combine(folderPath, "main.lua");
            
@@ -48,7 +50,7 @@ public class OpenFileL2DAction : IAction
         try {
             var startFolderInfo = new ProcessStartInfo {
                 FileName = $"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}/../Local/Programs/Microsoft VS Code/Code.exe",
-                Arguments = folderPath,
+                Arguments = $"\"{ folderPath }\"",
                 WorkingDirectory = @"C:\",
                 Verb = "runas"
             };
@@ -56,7 +58,7 @@ public class OpenFileL2DAction : IAction
         
             var startFileInfo = new ProcessStartInfo {
                 FileName = $"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}/../Local/Programs/Microsoft VS Code/Code.exe",
-                Arguments = filePath,
+                Arguments = $"\"{ filePath }\"",
                 WorkingDirectory = @"C:\",
                 Verb = "runas"
             };
@@ -65,6 +67,6 @@ public class OpenFileL2DAction : IAction
             Console.WriteLine("Error opening file: " + ex.Message);
         }
         
-        Prompt.Confirm("Quando completares o desafio avança para a frente\n", false);
+        Prompt.Confirm("Verifica o código e clica ENTER para continuar\n", false);
     }
 }

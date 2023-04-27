@@ -16,6 +16,5 @@ public class InstallAction : IAction
         loveProcess.StartInfo.Arguments = $"\"{lovePath}\" /SILENT /NORESTART /SP-";
         loveProcess.StartInfo.Verb = "runas";
         loveProcess.Start();
-        loveProcess.WaitForExit();
     }
 }

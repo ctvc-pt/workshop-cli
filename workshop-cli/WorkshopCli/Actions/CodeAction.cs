@@ -28,7 +28,7 @@ public class CodeAction : IAction
 
         var session = JsonConvert.DeserializeObject<Session>( File.ReadAllText( txtFilePath ) );
         var username = session.Name;
-        username = username.Replace(" ", "-");
+        if(username != null) username = username.Replace(" ", "-");
 
         using ( var stream = assembly.GetManifestResourceStream( "workshop_cli.Guide.Steps.json" ) )
         using ( var reader = new StreamReader( stream ) )
@@ -44,7 +44,7 @@ public class CodeAction : IAction
         var folderPath = Path.Combine( desktopPath, $"{username}_{DateTime.Now.Year}", "mygame" );
         
         var mdFilePath =$"{step.Id}.md";
-        using var resourceStream = assembly.GetManifestResourceStream( $"workshop_cli.Guide.012-Teste-Lua.md" );
+        using var resourceStream = assembly.GetManifestResourceStream( $"workshop_cli.Guide.{mdFilePath}" );
         if ( resourceStream != null )
         {
             var mdFileContents = new StreamReader( resourceStream ).ReadToEnd();
@@ -57,8 +57,14 @@ public class CodeAction : IAction
             Console.WriteLine( $"Could not find resource file: {mdFilePath}" );
         }
         
-        
+        var startFolderInfo = new ProcessStartInfo {
+            FileName = $"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}/../Local/Programs/Microsoft VS Code/Code.exe",
+            Arguments = $"\"{ folderPath }\"",
+            WorkingDirectory = @"C:\",
+            Verb = "runas"
+        };
+        Process.Start(startFolderInfo);
            
-        Prompt.Confirm("Quando completares o desafio avança para a frente\n", false);
+        Prompt.Confirm("Verifica o código e clica ENTER para continuar\n", false);
     }
 }

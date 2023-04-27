@@ -29,9 +29,8 @@
         "Message": "Passo 1: Instalar o Love2D"
     },
     {
-        "Id": "007-love2D-install.exe",
-        "Type": "information",
-        "Message": ""
+        "Id": "007-Criar-ficheiro",
+        "Type": "information"
     },
     {
         "Id": "008-Criar-Pasta",

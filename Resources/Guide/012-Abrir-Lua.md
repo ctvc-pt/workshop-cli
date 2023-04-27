@@ -1,3 +1,0 @@
-
-3. Abre o ficheiro "main.lua" que acabaste de criar no Visual Studio Code.
-

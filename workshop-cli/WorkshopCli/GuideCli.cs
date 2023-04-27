@@ -56,7 +56,7 @@ public class GuideCli
             if ( step.Type != "code" )
             {
                 var filePath = $"{step.Id}.md";
-                using ( var resourceStream = assembly.GetManifestResourceStream( $"workshop_cli.Guide.{filePath}" ) )
+                var resourceStream = assembly.GetManifestResourceStream( $"workshop_cli.Guide.{filePath}" );
                 {
                     if ( resourceStream != null )
                     {
