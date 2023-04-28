@@ -5,6 +5,8 @@ namespace workshopCli;
 
 public class GuideCli
 {
+    
+    
     public static string ResourcesPath =
         Path.Combine( Environment.CurrentDirectory, "..", "..", "..", "..", "..", "Resources" );
 
@@ -21,8 +23,7 @@ public class GuideCli
     public void Run()
     {
         var assembly = Assembly.GetExecutingAssembly();
-        var txtFilePath = Path.Combine( Environment.CurrentDirectory, "..", "..", "..", "..", "..", "Resources",
-            "session.txt" );
+        var txtFilePath = Path.Combine( ResourcesPath,"session.txt" );
 
 
         if ( File.Exists( txtFilePath ) )
@@ -80,7 +81,8 @@ public class GuideCli
                 { "code", new CodeAction( currentIndex ) },
                 { "ask-name", new AskNameAction( this ) },
                 { "ask-age", new AskAgeAction( this ) },
-                { "ask-email", new AskEmailAction( this ) }
+                { "ask-email", new AskEmailAction( this ) },
+                { "video", new VideoAction( currentIndex ) }
             };
             
             if ( actions.TryGetValue( step.Type, out var action ) )

@@ -19,10 +19,9 @@ public class OpenFileL2DAction : IAction
         {
             return;
         }
-        // Parse session file contents into a Session struct
+        
         var session = JsonConvert.DeserializeObject<Session>(File.ReadAllText( txtFilePath ));
-
-        // Get username from Session struct
+        
         var username = session.Name;
         if ( username != null )
         {
