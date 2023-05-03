@@ -4,7 +4,7 @@
   		player = {}
   		player.x = 400
 		player.y = 200
- 		player.sprite = love.graphics.newImage('sprites/nome_da_imagem.png')
+ 		player.sprite = love.graphics.newImage('sprites/parrot.png')
 	end
 
     function love.update(dt)

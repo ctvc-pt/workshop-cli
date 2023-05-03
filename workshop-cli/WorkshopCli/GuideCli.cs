@@ -98,6 +98,7 @@ public class GuideCli
             File.WriteAllText( txtFilePath, JsonConvert.SerializeObject( session ) );
             Console.Clear();
         }
+        Thread.Sleep(2000);
         Environment.Exit(0);
     }
 }

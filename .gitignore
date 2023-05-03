@@ -487,3 +487,4 @@ fabric.properties
 *.restore.info
 
 # End of https://www.toptal.com/developers/gitignore/api/csharp,rider
+Resources/VLCPortable.zip
