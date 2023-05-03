@@ -54,6 +54,17 @@ public class OpenFileL2DAction : IAction
                 Verb = "runas"
             };
             Process.Start(startFolderInfo);
+            
+            var startCommandInfo = new ProcessStartInfo {
+                FileName = "cmd.exe",
+                Arguments = $"/C code --install-extension pixelbyte-studios.pixelbyte-love2d",
+                WorkingDirectory = folderPath,
+                Verb = "runas"
+            };
+            Process.Start(startCommandInfo);
+            
+            KeyboardShortcut.AddKeyboardShortcut();
+            
 
             var startFileInfo = new ProcessStartInfo {
                 FileName = $"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}/../Local/Programs/Microsoft VS Code/Code.exe",
@@ -66,6 +77,7 @@ public class OpenFileL2DAction : IAction
             Console.WriteLine("Error opening file: " + ex.Message);
         }
         
+       
         Prompt.Confirm("Verifica o código e clica ENTER para continuar\n", false);
     }
 }
