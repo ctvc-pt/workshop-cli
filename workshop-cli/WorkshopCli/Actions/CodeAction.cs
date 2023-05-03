@@ -65,6 +65,6 @@ public class CodeAction : IAction
         };
         Process.Start(startFolderInfo);
            
-        Prompt.Confirm("Verifica o código e clica ENTER para continuar\n", false);
+        //Prompt.Confirm("Verifica o código e clica ENTER para continuar\n", false);
     }
 }

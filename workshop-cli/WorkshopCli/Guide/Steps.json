@@ -1,5 +1,8 @@
 [
     {
+        "_comment": "Alguns ficheiros não estao a aparecer"
+    },
+    {
         "Id": "000-video",
         "Type": "video",
         "Message": "teste.mp4"
@@ -45,155 +48,155 @@
         "Type": "CreateSprites"
     },
     {
-        "Id": "010-load",
-        "Type": "information"
-    },
-    {
-        "Id": "011-code",
+        "Id": "010-code",
         "Type": "code"
     },
     {
-        "Id": "012-carrega-imagem",
+        "Id": "011-load",
         "Type": "information"
     },
     {
-        "Id": "013-code",
+        "Id": "012-code",
         "Type": "code"
     },
     {
-        "Id": "014-Criar-Jogador",
+        "Id": "013-carrega-imagem",
+        "Type": "information"
+    },
+    {
+        "Id": "014-code",
+        "Type": "code"
+    },
+    {
+        "Id": "015-Criar-Jogador",
         "Type": "information",
         "Message": "Passo 4: Criar o jogador"
     },
     {
-        "Id": "015-code",
+        "Id": "016-code",
         "Type": "code"
     },
     {
-        "Id": "016-draw",
+        "Id": "017-draw",
         "Type": "information"
     },
     {
-        "Id": "017-code",
+        "Id": "018-code",
         "Type": "code"
     },
     {
-        "Id": "018-Print-hello-world",
+        "Id": "019-Print-hello-world",
         "Type": "information"
     },
     {
-        "Id": "019-code",
+        "Id": "020-code",
         "Type": "code"
     },
     {
-        "Id": "020-Desenha-Jogador",
+        "Id": "021-Desenha-Jogador",
         "Type": "information"
     },
     {
-        "Id": "021-code",
+        "Id": "022-code",
         "Type": "code"
     },
     {
-        "Id": "022-Movimenta-Jogador",
+        "Id": "023-Movimenta-Jogador",
         "Type": "information",
         "Message": "Passo 5: Movimentar o jogador"
     },
     {
-        "Id": "023-code",
+        "Id": "024-code",
         "Type": "code"
     },
     {
-        "Id": "024-Movimenta-Jogador",
+        "Id": "025-Movimenta-Jogador",
         "Type": "information"
     },
     {
-        "Id": "025-code",
+        "Id": "026-code",
         "Type": "code"
     },
     {
-        "Id": "026-Movimenta-Jogador",
+        "Id": "027-Movimenta-Jogador",
         "Type": "information"
-    },
-    {
-        "Id": "027-code",
-        "Type": "code"
     },
     {
         "Id": "028-desafio",
         "Type": "challenge"
     },
     {
-        "Id": "029-codigo-desafio",
-        "Type": "information"
-    },
-    {
-        "Id": "030-code",
+        "Id": "029-code",
         "Type": "code"
     },
     {
-        "Id": "031-Velocidade-Jogador",
+        "Id": "030-codigo-desafio",
         "Type": "information"
     },
     {
-        "Id": "032-code",
+        "Id": "031-code",
         "Type": "code"
     },
     {
-        "Id": "033-Velocidade-Jogador",
+        "Id": "032-Velocidade-Jogador",
         "Type": "information"
     },
     {
-        "Id": "034-code",
+        "Id": "033-code",
         "Type": "code"
     },
     {
-        "Id": "035-player-scale",
+        "Id": "034-Velocidade-Jogador",
+        "Type": "information"
+    },
+    {
+        "Id": "035-code",
+        "Type": "code"
+    },
+    {
+        "Id": "036-player-scale",
         "Type": "information",
         "Message": "Passo 6: Ação do jogador."
     },
     {
-        "Id": "036-code",
+        "Id": "037-code",
         "Type": "code"
     },
     {
-        "Id": "037-player-scale",
+        "Id": "038-player-scale",
         "Type": "information"
     },
     {
-        "Id": "038-code",
+        "Id": "039-code",
         "Type": "code"
     },
     {
-        "Id": "039-mousepressed",
+        "Id": "040-mousepressed",
         "Type": "information"
     },
     {
-        "Id": "040-code",
+        "Id": "041-code",
         "Type": "code"
     },
     {
-        "Id": "041-mousepressed",
+        "Id": "042-mousepressed",
         "Type": "information"
     },
     {
-        "Id": "042-code",
+        "Id": "043-code",
         "Type": "code"
     },
     {
-        "Id": "043-mousepressed",
+        "Id": "044-mousepressed",
         "Type": "information"
     },
     {
-        "Id": "044-code",
+        "Id": "045-code",
         "Type": "code"
     },
     {
-        "Id": "045-Codigo-Final",
+        "Id": "046-Codigo-Final",
         "Type": "information"
-    },
-    {
-        "Id": "046-code",
-        "Type": "code"
     },
     {
         "Id": "047-Fim",

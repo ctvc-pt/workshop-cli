@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics;
-using System.Text.Json;
 using Newtonsoft.Json;
 using Sharprompt;
+using System.Runtime.InteropServices;
 
 namespace workshopCli;
 
@@ -54,7 +54,7 @@ public class OpenFileL2DAction : IAction
                 Verb = "runas"
             };
             Process.Start(startFolderInfo);
-        
+
             var startFileInfo = new ProcessStartInfo {
                 FileName = $"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}/../Local/Programs/Microsoft VS Code/Code.exe",
                 Arguments = $"\"{ filePath }\"",

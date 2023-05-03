@@ -8,6 +8,5 @@
 	end
 
     function love.draw()
-        love.graphics.draw(background, 0, 0)
-  		love.graphics.draw(player.sprite, player.x, player.y)
+        love.graphics.print("Hello, world!", 100, 100);
 	end
