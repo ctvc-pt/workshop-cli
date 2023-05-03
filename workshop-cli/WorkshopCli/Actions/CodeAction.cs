@@ -61,10 +61,14 @@ public class CodeAction : IAction
             FileName = $"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}/../Local/Programs/Microsoft VS Code/Code.exe",
             Arguments = $"\"{ folderPath }\"",
             WorkingDirectory = @"C:\",
-            Verb = "runas"
+            Verb = "runas",
+            Environment =
+            {
+                { "VSCODE_LOG_LEVEL", "error" },
+                { "VSCODE_DISABLE_REDACTED_EXTENSIONS", "true" }
+            }
         };
         Process.Start(startFolderInfo);
-           
         //Prompt.Confirm("Verifica o código e clica ENTER para continuar\n", false);
     }
 }

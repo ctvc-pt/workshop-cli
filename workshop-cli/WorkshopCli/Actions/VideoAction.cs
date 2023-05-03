@@ -34,7 +34,7 @@ public class VideoAction: IAction
             // Call the method to play the video using the path in step.Message
             var path = Path.Combine( GuideCli.ResourcesPath, step.Message );
            
-            Process.Start( "C:/Program Files (x86)/VideoLAN/VLC/vlc.exe",path );
+            Process.Start( $"{GuideCli.ResourcesPath}/VLCPortable/VLCPortable.exe",path );
 
         
         
