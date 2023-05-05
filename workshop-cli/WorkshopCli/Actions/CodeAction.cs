@@ -56,6 +56,8 @@ public class CodeAction : IAction
         {
             Console.WriteLine( $"Could not find resource file: {mdFilePath}" );
         }
+
+        
         
         var startFolderInfo = new ProcessStartInfo {
             FileName = $"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}/../Local/Programs/Microsoft VS Code/Code.exe",

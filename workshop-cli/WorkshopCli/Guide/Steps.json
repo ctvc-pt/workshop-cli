@@ -1,12 +1,5 @@
 [
     {
-        "_comment": "Alguns ficheiros não estao a aparecer"
-    },
-    {
-        "Id": "000-video",
-        "Type": "video",
-        "Message": "teste.mp4"
-    },{
         "Id": "001-nome",
         "Type": "ask-name",
         "Message": "Qual é o teu nome?"

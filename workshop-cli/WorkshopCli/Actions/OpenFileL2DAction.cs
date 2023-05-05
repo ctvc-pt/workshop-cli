@@ -63,6 +63,34 @@ public class OpenFileL2DAction : IAction
             };
             Process.Start(startCommandInfo);
             
+            string settingsPath = Path.Combine(
+                Environment.GetFolderPath( Environment.SpecialFolder.ApplicationData ),
+                "Code",
+                "User",
+                "settings.json" );
+
+            string jsonset = File.ReadAllText( settingsPath );
+            Console.WriteLine("2");
+            // Check if the "files.autoSave" setting is already present in the JSON
+            if ( !jsonset.Contains( "\"files.autoSave\":" ) )
+            {
+                // Add the "files.autoSave" setting with the value "afterDelay"
+                jsonset = jsonset.TrimEnd();
+                if ( jsonset.EndsWith( "}" ) )
+                {
+                    jsonset = jsonset.Substring( 0, jsonset.Length - 1 );
+                }
+
+                jsonset += ",\n  \"files.autoSave\": \"afterDelay\"\n}";
+            }
+            else
+            {
+                // Replace the "files.autoSave" value with "afterDelay" if it exists
+                jsonset = jsonset.Replace( "\"files.autoSave\": \"off\"", "\"files.autoSave\": \"afterDelay\"" );
+            }
+
+            File.WriteAllText( settingsPath, jsonset );
+            
             KeyboardShortcut.AddKeyboardShortcut();
             
 

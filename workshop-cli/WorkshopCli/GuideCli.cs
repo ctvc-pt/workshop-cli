@@ -25,7 +25,6 @@ public class GuideCli
         var assembly = Assembly.GetExecutingAssembly();
         var txtFilePath = Path.Combine( ResourcesPath,"session.txt" );
 
-
         if ( File.Exists( txtFilePath ) )
         {
             session = JsonConvert.DeserializeObject<Session>( File.ReadAllText( txtFilePath ) );
@@ -84,7 +83,7 @@ public class GuideCli
                 { "ask-email", new AskEmailAction( this ) },
                 { "video", new VideoAction( currentIndex ) }
             };
-            
+
             if ( actions.TryGetValue( step.Type, out var action ) )
             {
                 action.Execute();

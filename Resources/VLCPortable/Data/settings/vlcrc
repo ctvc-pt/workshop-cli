@@ -71,10 +71,10 @@
 #projectm-preset-path=
 
 # Title font (string)
-#projectm-title-font=C:\WINDOWS\Fonts\arial.ttf
+#projectm-title-font=D:\WINDOWS\Fonts\arial.ttf
 
 # Font menu (string)
-#projectm-menu-font=C:\WINDOWS\Fonts\arial.ttf
+#projectm-menu-font=D:\WINDOWS\Fonts\arial.ttf
 
 # Video width (inteiro)
 #projectm-width=800
