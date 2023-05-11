@@ -488,3 +488,5 @@ fabric.properties
 
 # End of https://www.toptal.com/developers/gitignore/api/csharp,rider
 Resources/VLCPortable.zip
+Resources/VLCPortable
+Resources/session.txt

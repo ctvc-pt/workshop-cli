@@ -29,4 +29,5 @@ public class CsvSessionWriter
         lines.Add($"{name};{age};{email};{stepId}");
         File.WriteAllLines(csvFilePath, lines);
     }
+    
 }
