@@ -1,5 +1,6 @@
 ﻿using System.Reflection;
 using Newtonsoft.Json;
+using Sharprompt;
 
 namespace workshopCli;
 
@@ -55,6 +56,22 @@ public class GuideCli
             currentIndex = i;
             if ( step.Type != "code" )
             {
+                
+
+                var userInput = Console.ReadLine();
+
+                if (userInput?.ToLower() == "ajuda")
+                {
+                    Console.WriteLine("espera um bocado que a ajuda está a caminho\n");
+                    Console.WriteLine("ATENÇÃO: se saires desta pagina o teu pedido de ajuda vai parar de existir\n");
+                    var confirm = ExerciseHelper.PromptAnswerAndConfirm("Estas Pronto para continuar (sim, não)");
+                    if (!confirm) 
+                    {
+                        Console.WriteLine("Saindo...");
+                        Thread.Sleep(2000);
+                        Environment.Exit(0);
+                    }
+                }
                 var filePath = $"{step.Id}.md";
                 var resourceStream = assembly.GetManifestResourceStream( $"workshop_cli.Guide.{filePath}" );
                 {

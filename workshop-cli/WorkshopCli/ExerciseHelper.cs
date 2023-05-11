@@ -13,18 +13,18 @@ public class ExerciseHelper
     
     public static bool PromptAnswerAndConfirm(string prompt)
     {
-        Console.Write(prompt);
-        string answer = Prompt.Input<string>("Resposta");
-        Console.WriteLine($"A tua resposta foi: {answer}. Está correto?");
+        string answer = Prompt.Input<string>($"{prompt} Resposta:");
+        Console.WriteLine($"A tua resposta foi: {answer}. Está correto? (sim ou não)");
+
         while (true)
         {
             Console.Write("Insere 'sim' ou 'não': ");
             string confirmation = Console.ReadLine().ToLower();
-            if (confirmation == "sim" || confirmation == "s" || confirmation == "yes" || confirmation == "y" )
+            if (confirmation == "sim" || confirmation == "s" || confirmation == "yes" || confirmation == "y")
             {
                 return true;
             }
-            else if (confirmation == "nao" || confirmation == "n" || confirmation == "no" || confirmation == "não" )
+            else if (confirmation == "nao" || confirmation == "n" || confirmation == "no" || confirmation == "não")
             {
                 return false;
             }
@@ -34,4 +34,5 @@ public class ExerciseHelper
             }
         }
     }
+
 }
