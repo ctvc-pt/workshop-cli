@@ -1,15 +1,17 @@
 ﻿using System.Diagnostics;
 using Newtonsoft.Json;
 using Sharprompt;
+using System.Reflection;
 using System.Runtime.InteropServices;
 
 namespace workshopCli;
 
 public class OpenFileL2DAction : IAction
 {
-
-    public OpenFileL2DAction()
+   string stepId;
+    public OpenFileL2DAction(string stepId)
     {
+        this.stepId = stepId;
     }
     public void Execute()
     {
@@ -63,13 +65,13 @@ public class OpenFileL2DAction : IAction
             };
             Process.Start(startCommandInfo);
             
-            string settingsPath = Path.Combine(
+            var settingsPath = Path.Combine(
                 Environment.GetFolderPath( Environment.SpecialFolder.ApplicationData ),
                 "Code",
                 "User",
                 "settings.json" );
 
-            string jsonset = File.ReadAllText( settingsPath );
+            var jsonset = File.ReadAllText( settingsPath );
             Console.WriteLine("2");
             // Check if the "files.autoSave" setting is already present in the JSON
             if ( !jsonset.Contains( "\"files.autoSave\":" ) )
@@ -104,8 +106,27 @@ public class OpenFileL2DAction : IAction
         } catch (Exception ex) {
             Console.WriteLine("Error opening file: " + ex.Message);
         }
+
         
+        Thread.Sleep(500); 
+        
+        Console.Clear();
+        
+        var MDPath = $"{stepId}.md";
+        var assembly = Assembly.GetExecutingAssembly();
+
+        var resourceStream = assembly.GetManifestResourceStream( $"workshop_cli.Guide.{MDPath}" );
+        if ( resourceStream != null )
+        {
+            using ( var reader = new StreamReader( resourceStream ) )
+            {
+                var fileContents = reader.ReadToEnd();
+                Console.WriteLine( fileContents );
+            }
+        }
+   
        
-        Prompt.Confirm("Verifica o código e clica ENTER para continuar\n", false);
+        
+       Prompt.Confirm("Clica Enter para continuar\n", false);
     }
 }

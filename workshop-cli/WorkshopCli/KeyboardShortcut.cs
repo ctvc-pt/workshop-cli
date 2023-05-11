@@ -30,7 +30,7 @@ public class KeyboardShortcut
         // Check if the keybinding already exists
         if (userKeybindingsJson.Contains($"\"command\": \"{shortcutName}\""))
         {
-            Console.WriteLine($"The keybinding \"{shortcutName}\" already exists.");
+            //Console.WriteLine($"The keybinding \"{shortcutName}\" already exists.");
             return;
         }
 

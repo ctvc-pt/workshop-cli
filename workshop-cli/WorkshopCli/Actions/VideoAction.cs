@@ -38,6 +38,6 @@ public class VideoAction: IAction
 
         
         
-        Prompt.Confirm("Verifica o código e clica ENTER para continuar\n", false);
+        Prompt.Confirm("Quando o video acabar, clica ENTER para continuar\n", false);
     }
 }

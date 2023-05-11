@@ -11,9 +11,9 @@ public class GuideCli
         Path.Combine( Environment.CurrentDirectory, "..", "..", "..", "..", "..", "Resources" );
 
     public Session session;
-    private readonly Guide guide;
+    public Guide guide;
     CsvSessionWriter sessionWriter = new CsvSessionWriter();
-
+   
     public GuideCli( Guide guide )
     {
         this.guide = guide;
@@ -53,7 +53,7 @@ public class GuideCli
             Console.WriteLine( step.Message );
             session.StepId = step.Id;
             currentIndex = i;
-            if ( step.Type != "code" )
+            if ( step.Type != "code" & step.Type != "open-file")
             {
                 var filePath = $"{step.Id}.md";
                 var resourceStream = assembly.GetManifestResourceStream( $"workshop_cli.Guide.{filePath}" );
@@ -75,7 +75,7 @@ public class GuideCli
                 { "challenge", new ChallengeAction() },
                 { "exercise", new ExerciseAction() },
                 { "install", new InstallAction() },
-                { "open-file", new OpenFileL2DAction() },
+                { "open-file", new OpenFileL2DAction(step.Id) },
                 { "CreateSprites", new CreateSpritesAction() },
                 { "code", new CodeAction( currentIndex ) },
                 { "ask-name", new AskNameAction( this ) },
