@@ -1,4 +1,8 @@
-﻿using System.Reflection;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Reflection;
+using System.Threading;
 using Newtonsoft.Json;
 using Sharprompt;
 
@@ -14,6 +18,7 @@ public class GuideCli
     public Session session;
     private readonly Guide guide;
     CsvSessionWriter sessionWriter = new CsvSessionWriter();
+    CsvHelpRequest helpRequest = new CsvHelpRequest();
 
     public GuideCli( Guide guide )
     {
@@ -56,22 +61,6 @@ public class GuideCli
             currentIndex = i;
             if ( step.Type != "code" )
             {
-                
-
-                var userInput = Console.ReadLine();
-
-                if (userInput?.ToLower() == "ajuda")
-                {
-                    Console.WriteLine("espera um bocado que a ajuda está a caminho\n");
-                    Console.WriteLine("ATENÇÃO: se saires desta pagina o teu pedido de ajuda vai parar de existir\n");
-                    var confirm = ExerciseHelper.PromptAnswerAndConfirm("Estas Pronto para continuar (sim, não)");
-                    if (!confirm) 
-                    {
-                        Console.WriteLine("Saindo...");
-                        Thread.Sleep(2000);
-                        Environment.Exit(0);
-                    }
-                }
                 var filePath = $"{step.Id}.md";
                 var resourceStream = assembly.GetManifestResourceStream( $"workshop_cli.Guide.{filePath}" );
                 {
@@ -109,8 +98,11 @@ public class GuideCli
             {
                 Console.WriteLine( $"Unknown action type: {step.Type}" );
             }
+            
+            
 
             sessionWriter.AddSession( session.Name, session.Age, session.Email, session.StepId );
+            helpRequest.GetHelp(session.Name,session.StepId);
             File.WriteAllText( txtFilePath, JsonConvert.SerializeObject( session ) );
             Console.Clear();
         }
