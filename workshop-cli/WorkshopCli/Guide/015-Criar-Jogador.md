@@ -1,4 +1,5 @@
 
+
 Agora que já carregaste a imagem de fundo, é hora de criar o jogador.
 
 1. Dentro do ficheiro "main.lua", inserimos o seguinte código:

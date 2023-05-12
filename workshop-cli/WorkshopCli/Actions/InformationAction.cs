@@ -7,6 +7,7 @@ public class InformationAction : IAction
     
     public void Execute()
     {
-        Prompt.Input<string>("Clica Enter para continuar");
+        ExerciseHelper.PromptAnswerAndConfirm( "Clica Enter para continuar" );
+        //Prompt.Input<string>("Clica Enter para continuar");
     }
 }

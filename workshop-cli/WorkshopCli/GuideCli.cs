@@ -1,5 +1,10 @@
-﻿using System.Reflection;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Reflection;
+using System.Threading;
 using Newtonsoft.Json;
+using Sharprompt;
 
 namespace workshopCli;
 
@@ -13,7 +18,8 @@ public class GuideCli
     public Session session;
     public Guide guide;
     CsvSessionWriter sessionWriter = new CsvSessionWriter();
-   
+    CsvHelpRequest helpRequest = new CsvHelpRequest();
+
     public GuideCli( Guide guide )
     {
         this.guide = guide;
@@ -50,6 +56,7 @@ public class GuideCli
         for ( var i = startIndex; i < guide.Steps.Count; i++ )
         {
             var step = guide.Steps[ i ];
+            Console.WriteLine(step.Id);
             Console.WriteLine( step.Message );
             session.StepId = step.Id;
             currentIndex = i;
@@ -92,8 +99,11 @@ public class GuideCli
             {
                 Console.WriteLine( $"Unknown action type: {step.Type}" );
             }
+            
+            
 
             sessionWriter.AddSession( session.Name, session.Age, session.Email, session.StepId );
+            helpRequest.GetHelp(session.Name,session.StepId);
             File.WriteAllText( txtFilePath, JsonConvert.SerializeObject( session ) );
             Console.Clear();
         }
