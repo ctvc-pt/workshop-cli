@@ -17,7 +17,12 @@ public class ExerciseHelper
     {
         while (true)
         {
-            var answer = Prompt.Input<string>($"{prompt} Resposta (escreve 'ajuda' para chamar alguém):");        
+            var answer = Prompt.Input<string>($"{prompt} Resposta (escreve 'ajuda' para chamar alguém):");   
+            if (answer == null)
+            {
+                Console.WriteLine("Resposta inválida. Insere 'proximo' ou 'p'.");
+                continue;
+            }
             if (answer.ToLower() == "ajuda")
             {
                 CsvHelpRequest.printHelp(true);
@@ -34,27 +39,23 @@ public class ExerciseHelper
                     }
                     else
                     {
-                        Console.WriteLine("Resposta inválida. Escreve 'continue' ou 'done'.");
+                        Console.WriteLine("Resposta inválida. Escreve 'continuar' ou 'done'.");
                     }
                 }
             }
             else
-            {
-                while (true)
+            { 
+                if (answer == "proximo" || answer == "p" )
                 {
-                    if (answer == "sim" || answer == "s" || answer == "yes" || answer == "y")
-                    {
-                        return true;
-                    }
-                    else if (answer == "nao" || answer == "n" || answer == "no" || answer == "não")
-                    {
-                        return false;
-                    }
-                    else
-                    {
-                        Console.WriteLine("Resposta inválida. Insere 'sim' ou 'não'.");
-                        return false;
-                    }
+                    return true;
+                }
+                else if (answer == "s")
+                {
+                    return false;
+                }
+                else
+                {
+                    Console.WriteLine("Resposta inválida. Insere 'proximo' ou 'p'.");
                 }
             }
         }

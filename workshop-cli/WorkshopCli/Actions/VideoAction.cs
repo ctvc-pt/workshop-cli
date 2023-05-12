@@ -59,8 +59,6 @@ public class VideoAction: IAction
             };
             Process.Start(startAhkR);
             
-        
-        
         Prompt.Confirm("Quando o video acabar, clica ENTER para continuar\n", false);
     }
 }
