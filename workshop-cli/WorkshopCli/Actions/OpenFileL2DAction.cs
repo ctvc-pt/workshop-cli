@@ -100,12 +100,13 @@ public class OpenFileL2DAction : IAction
                 WorkingDirectory = @"C:\",
                 Verb = "runas"
             };
+            
             //Process.Start(startFileInfo);
         } catch (Exception ex) {
             Console.WriteLine("Error opening file: " + ex.Message);
         }
-        
-       
-        Prompt.Confirm("Verifica o código e clica ENTER para continuar\n", false);
+
+        ExerciseHelper.PromptAnswerAndConfirm( "Verifica o código e clica ENTER para continuar\n" );
+        //Prompt.Confirm("Verifica o código e clica ENTER para continuar\n", false);
     }
 }

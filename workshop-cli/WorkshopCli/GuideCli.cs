@@ -56,6 +56,7 @@ public class GuideCli
         for ( var i = startIndex; i < guide.Steps.Count; i++ )
         {
             var step = guide.Steps[ i ];
+            Console.WriteLine(step.Id);
             Console.WriteLine( step.Message );
             session.StepId = step.Id;
             currentIndex = i;
