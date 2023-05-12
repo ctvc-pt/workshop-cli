@@ -148,16 +148,7 @@ namespace workshopCli
 
             Console.WriteLine($"Name in current session {name}");
 
-            if (needsHelp)
-            {
-                message = "needs help";
-                backgroundColor = "red";
-            }
-            else
-            {
-                message = "";
-                backgroundColor = "white";
-            }
+            message = needsHelp ? "needs help" : "";
 
             var credentialsPath = Path.Combine(GuideCli.ResourcesPath, "client_secrets.json");
             var spreadsheetId = "1dctnni6FLGz4OVmFI47y6bK7Vzl0SZ1G-v2N2hivWIs";

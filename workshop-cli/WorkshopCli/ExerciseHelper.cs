@@ -53,6 +53,7 @@ public class ExerciseHelper
                     else
                     {
                         Console.WriteLine("Resposta inválida. Insere 'sim' ou 'não'.");
+                        return false;
                     }
                 }
             }

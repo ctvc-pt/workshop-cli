@@ -16,6 +16,9 @@ public class VideoAction: IAction
 
     public void Execute()
     {
+        
+        
+        
         var assembly = Assembly.GetExecutingAssembly();
         var steps = new List<Guide.Step>();
 
@@ -36,6 +39,26 @@ public class VideoAction: IAction
            
             Process.Start( $"{GuideCli.ResourcesPath}/VLCPortable/VLCPortable.exe",path );
 
+            
+            var startAhkL = new ProcessStartInfo
+            {
+                FileName = @"C:\Program Files\AutoHotkey\v1.1.36.02\AutoHotkeyU64.exe",
+                Arguments = Path.Combine( GuideCli.ResourcesPath,"win-left.ahk"),
+                WorkingDirectory = @"C:\",
+                Verb = "runas"
+            };
+            Process.Start(startAhkL);
+            
+            Thread.Sleep(2000); 
+            var startAhkR = new ProcessStartInfo
+            {
+                FileName = @"C:\Program Files\AutoHotkey\v1.1.36.02\AutoHotkeyU64.exe",
+                Arguments = Path.Combine( GuideCli.ResourcesPath,"win-rigth.ahk"),
+                WorkingDirectory = @"C:\",
+                Verb = "runas"
+            };
+            Process.Start(startAhkR);
+            
         
         
         Prompt.Confirm("Quando o video acabar, clica ENTER para continuar\n", false);
