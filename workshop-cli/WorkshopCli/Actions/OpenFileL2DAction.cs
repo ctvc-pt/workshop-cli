@@ -56,6 +56,17 @@ public class OpenFileL2DAction : IAction
                 Verb = "runas"
             };
             Process.Start(startFolderInfo);
+            Thread.Sleep(1000); 
+            var startAhkR = new ProcessStartInfo
+            {
+                FileName = Path.Combine( GuideCli.ResourcesPath,"AutoHotkey","v1.1.36.02","AutoHotkeyU64.exe"),
+                Arguments = Path.Combine( GuideCli.ResourcesPath,"win-rigth.ahk"),
+                WorkingDirectory = @"C:\",
+                Verb = "runas"
+            };
+            Process.Start(startAhkR);
+            
+
             
             var startCommandInfo = new ProcessStartInfo {
                 FileName = "cmd.exe",
