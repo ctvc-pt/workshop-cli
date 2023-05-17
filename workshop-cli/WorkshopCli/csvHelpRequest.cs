@@ -93,7 +93,7 @@ namespace workshopCli
                         // Execute the update request
                         updateRequest.Execute();
 
-                        Console.WriteLine( $"Updated row {foundRowIndex} in Google Sheets." );
+                        //Console.WriteLine( $"Updated row {foundRowIndex} in Google Sheets." );
                     }
                     else
                     {
@@ -109,7 +109,7 @@ namespace workshopCli
                         // Execute the append request
                         appendRequest.Execute();
 
-                        Console.WriteLine( "Text file saved in Google Sheets." );
+                       // Console.WriteLine( "Text file saved in Google Sheets." );
                     }
                 }
 
@@ -147,7 +147,7 @@ namespace workshopCli
 
             var name = session.Name;
 
-            Console.WriteLine($"Name in current session {name}");
+            
 
             message = needsHelp ? "needs help" : "";
 
@@ -251,7 +251,7 @@ namespace workshopCli
                     var batchUpdateRequest = new BatchUpdateSpreadsheetRequest { Requests = requests };
                     service.Spreadsheets.BatchUpdate(batchUpdateRequest, spreadsheetId).Execute();
 
-                    Console.WriteLine($"Updated row {foundRowIndex} in Google Sheets with '{message}'.");
+                    //Console.WriteLine($"Updated row {foundRowIndex} in Google Sheets with '{message}'.");
                 }
                 else
                 {

@@ -30,12 +30,14 @@ public class ExerciseHelper
                 CsvHelpRequest.printHelp( false, true );
                 Console.WriteLine( "Qual é o problema?" );
 
-                Console.Write( "User: " ); //pergunra
+                Console.Write( "User: " ); //pergunta
                 var userMessage = Console.ReadLine();
                 var response = chatGptClient.AskGPT( userMessage ).Result; //resposta
-                Console.WriteLine( $"Assistant: {response}" );
+                var typewriter = new TypewriterEffect(100); // Create an instance of TypewriterEffect with a delay of 100ms
+                typewriter.Type(response, ConsoleColor.Cyan);
+                //Console.WriteLine( $"Assistant: {response}" );
 
-                Console.WriteLine( "conseguiste resolver? (sim ou não)" );
+                Console.WriteLine( "\nconseguiste resolver? (sim ou não)" );
                 var input = Console.ReadLine().ToLower();
                 if ( input is "sim" or "s")
                 {
@@ -46,9 +48,12 @@ public class ExerciseHelper
                 if ( input is "não" or "nao" or "n" )
                 {
                     CsvHelpRequest.printHelp(true,false);
-                    Console.WriteLine( "Fizeste um pedido de ajuda, espera um bocado que alguém vem ter contigo\n" );
-                    Console.WriteLine( "ATENÇÃO: se saires desta mensagem o teu pedido de ajuda desaparece" );
-                    Console.WriteLine( "Escreve 'continuar' ou 'done' para continuar o workshop." );
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Fizeste um pedido de ajuda, espera um bocado que alguém vem ter contigo");
+                    Console.WriteLine("ATENÇÃO: se saires desta mensagem o teu pedido de ajuda desaparece");
+                    Console.WriteLine("Escreve 'continuar' ou 'done' para continuar o workshop.");
+                    Console.ResetColor();
+
                     while (true)
                     {
                         var inputHelp = Console.ReadLine().ToLower();
@@ -65,7 +70,7 @@ public class ExerciseHelper
                 }
                 else
                 {
-                    Console.WriteLine( "Resposta inválida. Escreve 'continuar' ou 'done'." );
+                    Console.WriteLine( "Resposta inválida. Escreve 'sim' ou 'não'." );
                 }
             }
             else

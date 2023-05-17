@@ -41,7 +41,8 @@ public class OpenFileL2DAction : IAction
             File.Create(filePath).Close();
             using var sw = File.CreateText(filePath);
             sw.WriteLine("--É aqui onde começa a tua aventura");
-            /*
+                
+                /*
                  * NOTE:
                  * we need to call '.Close()' on the returned stream from 'File.Create'
                  * to ensure that the file is closed properly before we try to open it with Visual Studio Code.
