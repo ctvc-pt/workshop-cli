@@ -29,7 +29,6 @@ public class OpenFileL2DAction : IAction
         {
             username = username.Replace(" ", "-");
         }
-
         var folderPath = Path.Combine(desktopPath, $"{username}_{DateTime.Now.Year}", "mygame");
         var filePath = Path.Combine(folderPath, "main.lua");
            

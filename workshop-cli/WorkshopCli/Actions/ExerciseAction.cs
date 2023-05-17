@@ -4,8 +4,8 @@ public class ExerciseAction : IAction
 {
     public void Execute()
     {
-        while (!ExerciseHelper.PromptAnswerAndConfirm("Responde"));
+        //while (ExerciseHelper.PromptAnswerAndConfirm("Responde"));
       
-        Console.WriteLine("Bom trabalho!");
+        //Console.WriteLine("Bom trabalho!");
     }
 }

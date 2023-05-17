@@ -134,9 +134,10 @@ namespace workshopCli
             return null;
         }
 
-        public static void printHelp(bool needsHelp)
+        public static void printHelp(bool needsHelp,bool orange)
         {
             string message;
+            
             string backgroundColor;
             var assembly = Assembly.GetExecutingAssembly();
             var txtFilePath = Path.Combine( GuideCli.ResourcesPath,"session.txt" );
@@ -209,6 +210,12 @@ namespace workshopCli
                     {
                         cellFormat.BackgroundColor = new Color { Red = 1.0f, Green = 0.0f, Blue = 0.0f };
                     }
+
+                    if ( orange )
+                    {
+                        cellFormat.BackgroundColor = new Color { Red = 1.0f, Green = 0.5f, Blue = 0.0f };
+
+                    }
                     var formatRequest = new Request
                     {
                         RepeatCell = new RepeatCellRequest
@@ -226,6 +233,11 @@ namespace workshopCli
                     if (needsHelp)
                     {
                         cellFormat.BackgroundColor = new Color { Red = 1.0f, Green = 0.0f, Blue = 0.0f };
+                    }
+                    if ( orange )
+                    {
+                        cellFormat.BackgroundColor = new Color { Red = 1.0f, Green = 0.5f, Blue = 0.0f };
+
                     }
                     var updateRequest = service.Spreadsheets.Values.Update(valueRange, spreadsheetId,
                         $"{sheetName}!C{foundRowIndex}");
