@@ -9,7 +9,9 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <PackageReference Include="DotNetEnv" Version="2.5.0" />
       <PackageReference Include="Google.Apis.Sheets.v4" Version="1.60.0.2979" />
+      <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="7.0.0" />
       <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
       <PackageReference Include="OfficeOpenXml.Extends" Version="1.0.6" />
       <PackageReference Include="Sharprompt" Version="3.0.0-preview2" />
@@ -200,6 +202,10 @@
       <None Remove="Guide\017-Print-hello-world.md" />
       <None Remove="Guide\018-Desenha-Jogador.md" />
       <None Remove="Guide\019-Movimenta-Jogador.md" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove=".env" />
     </ItemGroup>
 
 </Project>
