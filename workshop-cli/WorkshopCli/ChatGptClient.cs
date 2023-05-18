@@ -26,7 +26,7 @@ namespace workshopCli
             //-----------------------
             
             var request = new HttpRequestMessage(HttpMethod.Post, "https://api.openai.com/v1/chat/completions");
-            request.Headers.Add("Authorization", "Bearer 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");
+            request.Headers.Add("Authorization", "Bearer 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");
 
             var requestBody = new
             {

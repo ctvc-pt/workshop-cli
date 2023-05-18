@@ -38,39 +38,42 @@ public class ExerciseHelper
                 //Console.WriteLine( $"Assistant: {response}" );
 
                 Console.WriteLine( "\nconseguiste resolver? (sim ou não)" );
-                var input = Console.ReadLine().ToLower();
-                if ( input is "sim" or "s")
+                while ( true )
                 {
-                    CsvHelpRequest.printHelp( false, false );
-                    return PromptAnswerAndConfirm( prompt );
-                }
-
-                if ( input is "não" or "nao" or "n" )
-                {
-                    CsvHelpRequest.printHelp(true,false);
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("Fizeste um pedido de ajuda, espera um bocado que alguém vem ter contigo");
-                    Console.WriteLine("ATENÇÃO: se saires desta mensagem o teu pedido de ajuda desaparece");
-                    Console.WriteLine("Escreve 'continuar' ou 'done' para continuar o workshop.");
-                    Console.ResetColor();
-
-                    while (true)
+                    var input = Console.ReadLine().ToLower();
+                    if ( input is "sim" or "s" )
                     {
-                        var inputHelp = Console.ReadLine().ToLower();
-                        if (inputHelp is "continuar" or "done")
+                        CsvHelpRequest.printHelp( false, false );
+                        return PromptAnswerAndConfirm( prompt );
+                    }
+
+                    if ( input is "não" or "nao" or "n" )
+                    {
+                        CsvHelpRequest.printHelp( true, false );
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine( "Fizeste um pedido de ajuda, espera um bocado que alguém vem ter contigo" );
+                        Console.WriteLine( "ATENÇÃO: se saires desta mensagem o teu pedido de ajuda desaparece" );
+                        Console.WriteLine( "Escreve 'continuar' ou 'done' para continuar o workshop." );
+                        Console.ResetColor();
+
+                        while ( true )
                         {
-                            CsvHelpRequest.printHelp(false,false);
-                            return PromptAnswerAndConfirm( prompt );
-                        }
-                        else
-                        {
-                            Console.WriteLine("Resposta inválida. Escreve 'continuar' ou 'done'.");
+                            var inputHelp = Console.ReadLine().ToLower();
+                            if ( inputHelp is "continuar" or "done" )
+                            {
+                                CsvHelpRequest.printHelp( false, false );
+                                return PromptAnswerAndConfirm( prompt );
+                            }
+                            else
+                            {
+                                Console.WriteLine( "Resposta inválida. Escreve 'continuar' ou 'done'." );
+                            }
                         }
                     }
-                }
-                else
-                {
-                    Console.WriteLine( "Resposta inválida. Escreve 'sim' ou 'não'." );
+                    else
+                    {
+                        Console.WriteLine( "Resposta inválida. Escreve 'sim' ou 'não'." );
+                    }
                 }
             }
             else
