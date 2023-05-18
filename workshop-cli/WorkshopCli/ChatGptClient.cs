@@ -26,14 +26,14 @@ namespace workshopCli
             //-----------------------
             
             var request = new HttpRequestMessage(HttpMethod.Post, "https://api.openai.com/v1/chat/completions");
-            request.Headers.Add("Authorization", "Bearer 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");
+            request.Headers.Add("Authorization", "Bearer ");
 
             var requestBody = new
             {
                 model = "gpt-3.5-turbo-0301",
                 messages = new[]
                 {
-                    new { role = "system", content = "Este programa é um workshop em love2d em lua. Os alunos são crianças de 12 aos 16 que nunca programaram na vida. Eles vão-te escrever duvidas e tens de o ajudar este é o codigo que ele fizeram até agora:"+filePath+" Responde em Português de portugal"},
+                    new { role = "system", content = " Responde em Português de portugal, Este programa é um workshop em love2d em lua. Os alunos são crianças de 12 aos 16 que nunca programaram na vida. Eles vão-te escrever duvidas e tens de o ajudar este é o codigo que ele fizeram até agora:"+filePath+" Responde em Português de portugal"},
                     new { role = "user", content = userMessage }
                 }
             };

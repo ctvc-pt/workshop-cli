@@ -1,4 +1,0 @@
-    
-    function love.load()
-
-    end

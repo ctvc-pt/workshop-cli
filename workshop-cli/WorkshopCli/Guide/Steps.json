@@ -41,78 +41,78 @@
         "Type": "open-file"
     },
     {
-        "Id": "009-recursos",
+        "Id": "009-code",
         "Type": "CreateSprites"
     },
     {
-        "Id": "010-code",
+        "Id": "010-helloWorld",
         "Type": "code"
     },
     {
-        "Id": "011-load",
+        "Id": "011-helloWorld",
+        "Type": "challenge"
+    },
+    {
+        "Id": "012-helloWorld ",
         "Type": "information"
     },
     {
-        "Id": "012-code",
-        "Type": "code"
-    },
-    {
-        "Id": "013-carrega-imagem",
-        "Type": "information"
+        "Id": "013-recursos",
+        "Type": "CreateSprites"
     },
     {
         "Id": "014-code",
         "Type": "code"
     },
     {
-        "Id": "015-Criar-Jogador",
+        "Id": "015-load",
         "Type": "information",
-        "Message": "Passo 4: Criar o jogador"
+        "Message": ""
     },
     {
-        "Id": "016-code",
-        "Type": "code"
-    },
-    {
-        "Id": "017-draw",
+        "Id": "016-imagem",
         "Type": "information"
     },
     {
-        "Id": "018-code",
-        "Type": "code"
-    },
-    {
-        "Id": "019-Print-hello-world",
+        "Id": "017-imagem",
         "Type": "information"
     },
     {
-        "Id": "020-code",
-        "Type": "code"
-    },
-    {
-        "Id": "021-Desenha-Jogador",
+        "Id": "018-jogador",
         "Type": "information"
     },
     {
-        "Id": "022-code",
-        "Type": "code"
+        "Id": "019-desenha-jogador",
+        "Type": "information"
     },
     {
-        "Id": "023-Movimenta-Jogador",
-        "Type": "information",
+        "Id": "020-Desafio-Nave",
+        "Type": "challenge"
+    },
+    {
+        "Id": "021-update",
+        "Type": "information"
+    },
+    {
+        "Id": "022-movimentacao",
+        "Type": "information"
+    },
+    {
+        "Id": "023-Desafio-movimentacao",
+        "Type": "challenge",
         "Message": "Passo 5: Movimentar o jogador"
     },
     {
-        "Id": "024-code",
-        "Type": "code"
-    },
-    {
-        "Id": "025-Movimenta-Jogador",
+        "Id": "024-code-check",
         "Type": "information"
     },
     {
-        "Id": "026-code",
-        "Type": "code"
+        "Id": "025-colisao-tela",
+        "Type": "information"
+    },
+    {
+        "Id": "026-colisao-tela",
+        "Type": "information"
     },
     {
         "Id": "027-Movimenta-Jogador",
