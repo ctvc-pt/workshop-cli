@@ -34,8 +34,9 @@ public class CreateSpritesAction: IAction
 
         File.Copy(Path.Combine(sourceFolderPath, "parrot.png"), Path.Combine(folderPath, "parrot.png"), true);
         File.Copy(Path.Combine(sourceFolderPath, "background.png"), Path.Combine(folderPath, "background.png"), true);
-
-        ExerciseHelper.PromptAnswerAndConfirm( "Escreve 'proximo' para avançar\n" );
+        
+        Console.ForegroundColor = ConsoleColor.Yellow;
+        ExerciseHelper.PromptAnswerAndConfirm( "Escreve 'proximo' para avançar" );
         //Prompt.Confirm("Quando completares o desafio avança para a frente\n", false);
     }
 }

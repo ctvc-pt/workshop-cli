@@ -7,7 +7,8 @@ public class InformationAction : IAction
     
     public void Execute()
     {
-        ExerciseHelper.PromptAnswerAndConfirm( "escreve 'proximo' para avançar" );
+        Console.ForegroundColor = ConsoleColor.Yellow;
+        ExerciseHelper.PromptAnswerAndConfirm( "Escreve 'proximo' para avançar" );
         
     }
 }

@@ -1,4 +1,5 @@
-﻿using Sharprompt;
+﻿using Newtonsoft.Json;
+using Sharprompt;
 
 namespace workshopCli;
 
@@ -9,18 +10,24 @@ public class ExerciseHelper
     public static string PromptAnswerAndPrint()
     {
         var sessionValue = Prompt.Input<string>("Resposta");
+        Console.ForegroundColor = ConsoleColor.Yellow;
         Console.WriteLine($"Inseris-te: {sessionValue}");
         return sessionValue;
     }
     
     public static bool PromptAnswerAndConfirm(string prompt)
     {
+        var txtFilePath = Path.Combine( GuideCli.ResourcesPath,"session.txt" );
+        Session session = JsonConvert.DeserializeObject<Session>( File.ReadAllText( txtFilePath ) );
         var chatGptClient = new ChatGptClient();
         while (true)
         {
-            var answer = Prompt.Input<string>($"{prompt} Resposta (escreve 'ajuda' para chamar alguém):");   
+            Console.WriteLine(prompt);
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            var answer = Prompt.Input<string>("Resposta (escreve 'ajuda' para chamar alguém):");   
             if (answer == null)
             {
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("Resposta inválida. Insere 'proximo' ou 'p'.");
                 continue;
             }
@@ -28,9 +35,10 @@ public class ExerciseHelper
             if ( answer.ToLower() == "ajuda" )
             {
                 CsvHelpRequest.printHelp( false, true );
+                Console.ForegroundColor = ConsoleColor.DarkCyan;
                 Console.WriteLine( "Qual é o problema?" );
-
-                Console.Write( "User: " ); //pergunta
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.Write( $"{session.Name}: " ); //pergunta
                 var userMessage = Console.ReadLine();
                 var response = chatGptClient.AskGPT( userMessage ).Result; //resposta
                 var typewriter = new TypewriterEffect(100); // Create an instance of TypewriterEffect with a delay of 100ms

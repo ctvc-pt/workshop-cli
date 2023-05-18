@@ -38,7 +38,7 @@ public class VideoAction: IAction
             var path = Path.Combine( GuideCli.ResourcesPath, step.Message );
            
             Process.Start( $"{GuideCli.ResourcesPath}/VLCPortable/VLCPortable.exe",path );
-
+            
             
             var startAhkL = new ProcessStartInfo
             {
@@ -59,6 +59,7 @@ public class VideoAction: IAction
             };
             Process.Start(startAhkR);
             
-        Prompt.Confirm("Quando o video acabar, clica ENTER para continuar\n", false);
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Prompt.Confirm("Quando o video acabar, clica ENTER para continuar\n", false);
     }
 }

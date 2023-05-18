@@ -1,6 +1,7 @@
 using System;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 
 namespace workshopCli
@@ -25,8 +26,12 @@ namespace workshopCli
             var filePath = Path.Combine(folderPath, "main.lua");
             //-----------------------
             
+            var configuration = new ConfigurationBuilder()
+                .AddJsonFile("appsettings.json")
+                .Build();
+            
             var request = new HttpRequestMessage(HttpMethod.Post, "https://api.openai.com/v1/chat/completions");
-            request.Headers.Add("Authorization", "Bearer ");
+            request.Headers.Add("Authorization", $"Bearer {configuration["MySettings:OpenAiKey"]}");
 
             var requestBody = new
             {
