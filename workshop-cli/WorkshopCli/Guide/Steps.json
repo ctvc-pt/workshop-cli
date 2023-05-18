@@ -42,11 +42,11 @@
     },
     {
         "Id": "009-code",
-        "Type": "CreateSprites"
+        "Type": "code"
     },
     {
         "Id": "010-helloWorld",
-        "Type": "code"
+        "Type": "information"
     },
     {
         "Id": "011-helloWorld",
