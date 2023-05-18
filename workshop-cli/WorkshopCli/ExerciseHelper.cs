@@ -23,7 +23,6 @@ public class ExerciseHelper
         while (true)
         {
             Console.WriteLine(prompt);
-            Console.ForegroundColor = ConsoleColor.Yellow;
             var answer = Prompt.Input<string>("Resposta (escreve 'ajuda' para chamar alguém):");   
             if (answer == null)
             {
@@ -32,7 +31,7 @@ public class ExerciseHelper
                 continue;
             }
 
-            if ( answer.ToLower() == "ajuda" )
+            if ( answer.ToLower() == "ajuda" || answer.ToLower() == "a" )
             {
                 CsvHelpRequest.printHelp( false, true );
                 Console.ForegroundColor = ConsoleColor.DarkCyan;

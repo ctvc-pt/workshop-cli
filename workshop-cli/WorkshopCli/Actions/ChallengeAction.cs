@@ -7,6 +7,6 @@ public class ChallengeAction : IAction
     public void Execute()
     {
         Console.ForegroundColor = ConsoleColor.Yellow;
-        ExerciseHelper.PromptAnswerAndConfirm("Quando completares o desafio escreve 'proximo' para avançar\n");
+        ExerciseHelper.PromptAnswerAndConfirm("Quando completares o desafio escreve 'proximo' ou 'p' para avançar\n");
     }
 }
