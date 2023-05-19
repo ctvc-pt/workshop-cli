@@ -83,6 +83,26 @@ public class ExerciseHelper
                     }
                 }
             }
+            else if (answer.ToLower() is "admin")
+            {
+                Console.ForegroundColor = ConsoleColor.Black;
+                var input = Console.ReadLine().ToLower();
+                string[] inputs = new string[] { };
+                
+                if ( input.Contains( " " ) )
+                {
+                    inputs = input.Split( " " );
+                }
+                
+                if ( input is "anterior" or "a" )
+                {
+                    GuideCli.adminInput = -1;
+                } 
+                else if ( inputs[0] is "id")
+                {
+                    GuideCli.adminInput = Int32.Parse(inputs[1]);
+                }
+            }
             else
             { 
                 if (answer is "proximo" or "p" )

@@ -216,6 +216,8 @@
       <EmbeddedResource Include="Guide\030-missel-spawn.md" />
       <None Remove="Guide\031-missel-update.md" />
       <EmbeddedResource Include="Guide\031-missel-update.md" />
+      <None Remove="Guide\023-Desafio-movimentacao.md" />
+      <EmbeddedResource Include="Guide\023-Desafio-movimentacao.md" />
     </ItemGroup>
 
 </Project>
