@@ -72,7 +72,20 @@ public class GuideCli
                         using ( var reader = new StreamReader( resourceStream ) )
                         {
                             var fileContents = reader.ReadToEnd();
-                            Console.WriteLine( fileContents );
+                            int currentLineLength = 0;
+                            int terminalWidth = Console.WindowWidth;
+                            foreach (string word in fileContents.Split(' '))
+                            {
+                                if (currentLineLength + word.Length > terminalWidth)
+                                {
+                                    Console.WriteLine();
+                                    currentLineLength = 0;
+                                }
+
+                                Console.Write(word + " ");
+                                currentLineLength += word.Length + 1;
+                            }
+                            
                         }
                     }
                 }

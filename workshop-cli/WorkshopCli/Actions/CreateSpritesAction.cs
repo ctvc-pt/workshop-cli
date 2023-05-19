@@ -25,7 +25,7 @@ public class CreateSpritesAction: IAction
         var username = session.Name;
         if(username != null) username = username.Replace(" ", "-");
         
-        var folderPath = Path.Combine(desktopPath,$"{username}_{DateTime.Now.Year}","mygame","Images");
+        var folderPath = Path.Combine(desktopPath,$"{username}_{DateTime.Now.Year}","mygame");
 
         if (!Directory.Exists(folderPath))
         {
@@ -41,7 +41,7 @@ public class CreateSpritesAction: IAction
         }
         
         Console.ForegroundColor = ConsoleColor.Yellow;
-        ExerciseHelper.PromptAnswerAndConfirm( "Escreve 'proximo' ou 'p' para avançar" );
+        ExerciseHelper.PromptAnswerAndConfirm( "Escreve 'proximo' ou 'p' para avançar (ou 'ajuda')" );
         //Prompt.Confirm("Quando completares o desafio avança para a frente\n", false);
     }
 }

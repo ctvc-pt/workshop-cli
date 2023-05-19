@@ -23,7 +23,7 @@ public class ExerciseHelper
         while (true)
         {
             Console.WriteLine(prompt);
-            var answer = Prompt.Input<string>("Resposta (escreve 'ajuda' para chamar alguém):");   
+            var answer = Prompt.Input<string>("Resposta :");   
             if (answer == null)
             {
                 Console.ForegroundColor = ConsoleColor.Red;

@@ -141,7 +141,7 @@ public class OpenFileL2DAction : IAction
         
         Console.ForegroundColor = ConsoleColor.Yellow;
 
-        ExerciseHelper.PromptAnswerAndConfirm( "Verifica o código e escreve 'proximo' ou 'p' para continuar\n" );
+        ExerciseHelper.PromptAnswerAndConfirm( "Verifica o código e escreve 'proximo' ou 'p' para continuar (ou 'ajuda')\n" );
         //Prompt.Confirm("Verifica o código e clica ENTER para continuar\n", false);
     }
 }

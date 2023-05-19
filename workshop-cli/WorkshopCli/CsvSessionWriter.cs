@@ -93,7 +93,7 @@ public class CsvSessionWriter
                     // Execute the update request
                     updateRequest.Execute();
 
-                    Console.WriteLine( $"Updated row {foundRowIndex} in Google Sheets." );
+                    //Console.WriteLine( $"Updated row {foundRowIndex} in Google Sheets." );
                 }
                 else
                 {
@@ -109,7 +109,7 @@ public class CsvSessionWriter
                     // Execute the append request
                     appendRequest.Execute();
 
-                    Console.WriteLine( "Text file saved in Google Sheets." );
+                    //Console.WriteLine( "Text file saved in Google Sheets." );
                 }
             }
 
