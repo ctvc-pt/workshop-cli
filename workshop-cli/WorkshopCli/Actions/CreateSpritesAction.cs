@@ -33,6 +33,7 @@ public class CreateSpritesAction: IAction
         }
 
         string[] files = Directory.GetFiles(sourceFolderPath);
+        
         foreach (string file in files)
         {
             string fileName = Path.GetFileName(file);

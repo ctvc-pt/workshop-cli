@@ -62,7 +62,7 @@ public class GuideCli
             Console.WriteLine( step.Message );
             session.StepId = step.Id;
             currentIndex = i;
-            if ( step.Type != "code" & step.Type != "open-file")
+            if ( step.Type != "code" || step.Type != "open-file")
             {
                 var filePath = $"{step.Id}.md";
                 var resourceStream = assembly.GetManifestResourceStream( $"workshop_cli.Guide.{filePath}" );
@@ -74,6 +74,8 @@ public class GuideCli
                             var fileContents = reader.ReadToEnd();
                             int currentLineLength = 0;
                             int terminalWidth = Console.WindowWidth;
+                            Console.WriteLine(fileContents);
+                            /*
                             foreach (string word in fileContents.Split(' '))
                             {
                                 if (currentLineLength + word.Length > terminalWidth)
@@ -85,6 +87,7 @@ public class GuideCli
                                 Console.Write(word + " ");
                                 currentLineLength += word.Length + 1;
                             }
+                            */
                             
                         }
                     }

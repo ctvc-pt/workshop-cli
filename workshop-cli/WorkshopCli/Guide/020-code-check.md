@@ -1,5 +1,5 @@
 
-Depois do desafio o teu codigo da função load() deve estar assim:
+Depois do desafio o teu código da função load() deve estar assim:
 
 function love.update(dt)
   if love.keyboard.isDown("right") then      
