@@ -1,7 +1,8 @@
-1. Dentro do teu codigo vais ter o seguinte: 
+Deves ter visto no teu programa a seguinte frase
 
-     function love.draw()
-        love.graphics.print("Ola mundo!", 100, 100);
-	end
+        "olá mundo!"
 
-Agora quero que corras o teu jogo, usa a combinação 'alt+j', e vê o que acontece.
+Agora deafio-te a meteres o teu nome a aparecer no ecrã do jogo.
+
+O codigo que acabaste de fazer serve para imprimir texto no ecrã usando a função
+draw(),que serve para desenhar objetos na tela do nosso jogo. 
