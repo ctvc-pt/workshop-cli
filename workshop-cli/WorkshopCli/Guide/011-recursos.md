@@ -1,5 +1,6 @@
+
 Para criar um jogo, precisamos de recursos como imagens, som e fontes.
 Vamos começar por carregar as imagens.
 
-1. Criamos uma nova pasta dentro da pasta "mygame" com o nome "imagens", onde estam varias imagens que usarás no jogo.
+1. Adicionamos várias imagens dentro da pasta "mygame", com os nomes de nave, inimigos e mísseis que usarás no jogo.
 

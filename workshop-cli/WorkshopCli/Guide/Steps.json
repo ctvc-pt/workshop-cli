@@ -34,169 +34,122 @@
     },
     {
         "Id": "007-Criar-ficheiro",
-        "Type": "information"
-    },
-    {
-        "Id": "008-Criar-Pasta",
         "Type": "open-file"
     },
     {
-        "Id": "009-code",
-        "Type": "CreateSprites"
+        "Id": "008-code",
+        "Type": "code"
+    },
+    {
+        "Id": "009-HelloWorld",
+        "Type": "open-file"
     },
     {
         "Id": "010-helloWorld",
-        "Type": "code"
-    },
-    {
-        "Id": "011-helloWorld",
-        "Type": "challenge"
-    },
-    {
-        "Id": "012-helloWorld ",
         "Type": "information"
     },
     {
-        "Id": "013-recursos",
+        "Id": "011-recursos",
         "Type": "CreateSprites"
     },
     {
-        "Id": "014-code",
+        "Id": "012-code",
         "Type": "code"
     },
     {
-        "Id": "015-load",
-        "Type": "information",
-        "Message": ""
-    },
-    {
-        "Id": "016-imagem",
+        "Id": "013-load",
         "Type": "information"
     },
     {
-        "Id": "017-imagem",
+        "Id": "014-desenha-jogador",
         "Type": "information"
     },
     {
-        "Id": "018-jogador",
+        "Id": "015-jogador",
         "Type": "information"
     },
     {
-        "Id": "019-desenha-jogador",
-        "Type": "information"
-    },
-    {
-        "Id": "020-Desafio-Nave",
+        "Id": "016-Desafio-Nave",
         "Type": "challenge"
     },
     {
-        "Id": "021-update",
+        "Id": "017-update",
         "Type": "information"
     },
     {
-        "Id": "022-movimentacao",
+        "Id": "018-Movimentacao",
         "Type": "information"
     },
     {
-        "Id": "023-Desafio-movimentacao",
-        "Type": "challenge",
-        "Message": "Passo 5: Movimentar o jogador"
-    },
-    {
-        "Id": "024-code-check",
-        "Type": "information"
-    },
-    {
-        "Id": "025-colisao-tela",
-        "Type": "information"
-    },
-    {
-        "Id": "026-colisao-tela",
-        "Type": "information"
-    },
-    {
-        "Id": "027-Movimenta-Jogador",
-        "Type": "information"
-    },
-    {
-        "Id": "028-desafio",
+        "Id": "019-Desafio-movimentacao",
         "Type": "challenge"
     },
     {
-        "Id": "029-code",
-        "Type": "code"
-    },
-    {
-        "Id": "030-codigo-desafio",
+        "Id": "020-code-check",
         "Type": "information"
     },
     {
-        "Id": "031-code",
-        "Type": "code"
-    },
-    {
-        "Id": "032-Velocidade-Jogador",
+        "Id": "021-colisao-tela",
         "Type": "information"
     },
     {
-        "Id": "033-code",
-        "Type": "code"
-    },
-    {
-        "Id": "034-Velocidade-Jogador",
+        "Id": "022-missel-load",
         "Type": "information"
     },
     {
-        "Id": "035-code",
-        "Type": "code"
-    },
-    {
-        "Id": "036-player-scale",
-        "Type": "information",
-        "Message": "Passo 6: Ação do jogador."
-    },
-    {
-        "Id": "037-code",
-        "Type": "code"
-    },
-    {
-        "Id": "038-player-scale",
+        "Id": "023-missel-draw",
         "Type": "information"
     },
     {
-        "Id": "039-code",
-        "Type": "code"
-    },
-    {
-        "Id": "040-mousepressed",
+        "Id": "024-missel-update-missel",
         "Type": "information"
     },
     {
-        "Id": "041-code",
-        "Type": "code"
-    },
-    {
-        "Id": "042-mousepressed",
+        "Id": "025-missel-spawn",
         "Type": "information"
     },
     {
-        "Id": "043-code",
-        "Type": "code"
-    },
-    {
-        "Id": "044-mousepressed",
+        "Id": "026-missel-update",
         "Type": "information"
     },
     {
-        "Id": "045-code",
-        "Type": "code"
-    },
-    {
-        "Id": "046-Codigo-Final",
+        "Id": "027-enemy-load",
         "Type": "information"
     },
     {
-        "Id": "047-Fim",
+        "Id": "028-enemy-draw",
+        "Type": "information"
+    },
+    {
+        "Id": "029-enemy-update-enemy",
+        "Type": "information"
+    },
+    {
+        "Id": "030-enemy-spawn",
+        "Type": "information"
+    },
+    {
+        "Id": "031-enemy",
+        "Type": "information"
+    },
+    {
+        "Id": "032-moveLeft",
+        "Type": "information"
+    },
+    {
+        "Id": "033-moveToPlayer",
+        "Type": "information"
+    },
+    {
+        "Id": "034-collisions",
+        "Type": "information"
+    },
+    {
+        "Id": "035-desafio",
+        "Type": "challenge"
+    },
+    {
+        "Id": "036-Fim",
         "Type": "information",
         "Message": "Fim"
     }

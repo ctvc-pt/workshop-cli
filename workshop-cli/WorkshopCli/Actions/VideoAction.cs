@@ -60,6 +60,6 @@ public class VideoAction: IAction
             Process.Start(startAhkR);
             
             Console.ForegroundColor = ConsoleColor.Yellow;
-            Prompt.Confirm("Quando o video acabar, clica ENTER para continuar\n", false);
+            ExerciseHelper.PromptAnswerAndConfirm("Quando o video acabar, escreve 'proximo' ou 'p' para avançar\n");
     }
 }
