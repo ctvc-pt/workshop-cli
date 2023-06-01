@@ -5,7 +5,7 @@
         if spawnTimer > 0 then
             spawnTimer = spawnTimer - dt
         else
-            spawnEnemy()
+            spawnEnemies()
         end
   
         for i=table.getn(enemies), 1, -1 do

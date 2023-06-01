@@ -37,5 +37,7 @@ Estas funções verificam a posição do jogador, dos mísseis e dos inimigos.
 Caso os mísseis toquem nos inimigos, os inimigos desaparecem.
 Se os inimigos tocarem no jogador, recomeça.
 
+Coloca a função "checkCollisions()" na função "load.update(dt)".
+
 E agora, o jogo está completo.
 

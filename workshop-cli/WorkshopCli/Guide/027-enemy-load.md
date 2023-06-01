@@ -6,7 +6,7 @@ Por isso, como já fizemos algumas vezes vamos fazer o seguinte:
 1. Escrever na função "load()" as imagens de cada inimigo:
 
     meteorImage = love.graphics.newImage("meteoro.png")
-    eneImage = love.graphics.newImage("missil1.png")
+    eneImage = love.graphics.newImage("inimigo1.png")
     meteorSpeed = 200
     eneSpeed = 250
     chargeSpeed = 500
