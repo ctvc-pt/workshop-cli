@@ -18,7 +18,8 @@ public class ExerciseHelper
     public static bool PromptAnswerAndConfirm(string prompt)
     {
         var txtFilePath = Path.Combine( GuideCli.ResourcesPath,"session.txt" );
-        Session session = JsonConvert.DeserializeObject<Session>( File.ReadAllText( txtFilePath ) );
+        var session = JsonConvert.DeserializeObject<Session>( File.ReadAllText( txtFilePath ) );
+        
         var chatGptClient = new ChatGptClient();
         while (true)
         {

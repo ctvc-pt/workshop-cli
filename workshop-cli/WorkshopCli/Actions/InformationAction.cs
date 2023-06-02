@@ -4,11 +4,19 @@ namespace workshopCli;
 
 public class InformationAction : IAction
 {
+    public GuideCli Cli;
     
+    public InformationAction(GuideCli cli)
+    {
+        Cli = cli;
+    }
     public void Execute()
     {
         Console.ForegroundColor = ConsoleColor.Yellow;
         ExerciseHelper.PromptAnswerAndConfirm( "Escreve 'proximo' ou 'p' para avançar (ou 'ajuda')" );
+        
+       
+        
         
     }
 }

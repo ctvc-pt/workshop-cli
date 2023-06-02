@@ -30,6 +30,8 @@ public class GuideCli
 
     public void Run()
     {
+        var repoManager = new GitHubManager();
+        
         var assembly = Assembly.GetExecutingAssembly();
         var txtFilePath = Path.Combine( ResourcesPath,"session.txt" );
 
@@ -62,6 +64,12 @@ public class GuideCli
             Console.WriteLine( step.Message );
             session.StepId = step.Id;
             currentIndex = i;
+            if ( i > 8 )
+            {
+                repoManager.Commit( session.Name );
+                Console.WriteLine( "kiko gay" );
+            }
+
             if ( step.Type != "code" && step.Type != "open-file")
             {
                 var filePath = $"{step.Id}.md";
@@ -75,15 +83,17 @@ public class GuideCli
                             int currentLineLength = 0;
                             Console.WriteLine(fileContents);
                         }
+                        //repoManager.Commit( session.Name );
+                        
                     }
                 }
             }
 
             var actions = new Dictionary<string, IAction>()
             {
-                { "information", new InformationAction() },
+                { "information", new InformationAction(this) },
                 { "challenge", new ChallengeAction() },
-                { "exercise", new ExerciseAction() },
+                { "intro", new CreateBranchAction() },
                 { "install", new InstallAction() },
                 { "open-file", new OpenFileL2DAction(step.Id) },
                 { "CreateSprites", new CreateSpritesAction() },

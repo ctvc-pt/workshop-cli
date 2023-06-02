@@ -59,7 +59,13 @@ public class VideoAction: IAction
             };
             Process.Start(startAhkR);
             
+            var installer = new PythonInstaller();
+            installer.InstallPython();
+            
             Console.ForegroundColor = ConsoleColor.Yellow;
-            ExerciseHelper.PromptAnswerAndConfirm("Quando o video acabar, escreve 'proximo' ou 'p' para avançar\n");
+            Console.WriteLine("Press Enter to continue...");
+            Console.ReadLine();
+            
+            
     }
 }

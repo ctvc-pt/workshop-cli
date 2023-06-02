@@ -25,7 +25,7 @@
     },
     {
         "Id": "005-intro",
-        "Type": "information"
+        "Type": "intro"
     },
     {
         "Id": "006-love2D-install",

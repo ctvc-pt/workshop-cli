@@ -23,10 +23,13 @@ def create_branch(repo_owner, repo_name, name_file_path, token):
     print(f"Branch '{branch_name}' created successfully.")
 
 # Usage example
-token = "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"  # Replace with your GitHub access token
+token = "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"  # Replace with your GitHub access token
 repo_owner = "cpdsWorkshop"  # Replace with the repository owner's username or organization name
 repo_name = "workshops23"  # Replace with the repository name
 
-name_file_path = "C:/Users/jrafa/Desktop/REPO/workshop-cli/Resources/session.txt"  # Replace with the path to the file containing the name
+# Get the directory of the current file
+current_directory = os.path.dirname(os.path.abspath(__file__))
+
+name_file_path = os.path.join(current_directory, "session.txt")  
 
 create_branch(repo_owner, repo_name, name_file_path, token)

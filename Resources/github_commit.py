@@ -98,7 +98,7 @@ def read_file(file_path, binary=False):
 
 
 # Usage example
-token = "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"  # Replace with your GitHub access token
+token = "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"  # Replace with your GitHub access token
 repo_owner = "cpdsWorkshop"  # Replace with the repository owner's username or organization name
 repo_name = "workshops23"  # Replace with the repository name
 

@@ -3,7 +3,7 @@ from github import Github
 import os
 
 
-token = "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"
+token = "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"
 g = Github(token)
 
 repo_owner = "cpdsWorkshop"  # Replace with the repository owner's username or organization name

@@ -35,6 +35,7 @@ public class GitHubManager
     }
     public void CreateBranch()
     {
+        Console.WriteLine("hrllo");
         var pythonScriptPath = $"{GuideCli.ResourcesPath}/github_branch.py"; // Replace with the actual path to your Python script
         
         var processStartInfo = new ProcessStartInfo
