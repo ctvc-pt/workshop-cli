@@ -98,7 +98,13 @@ def read_file(file_path, binary=False):
 
 
 # Usage example
-token = "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"  # Replace with your GitHub access token
+script_directory = os.path.dirname(os.path.abspath(__file__))
+json_file_path = os.path.join(script_directory, 'token.json')
+
+with open(json_file_path) as f:
+    data = json.load(f)
+
+token = data['TokenGit']
 repo_owner = "cpdsWorkshop"  # Replace with the repository owner's username or organization name
 repo_name = "workshops23"  # Replace with the repository name
 
