@@ -1,9 +1,16 @@
 import subprocess
 from github import Github
 import os
+import json
 
 
-token = "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"
+script_directory = os.path.dirname(os.path.abspath(__file__))
+json_file_path = os.path.join(script_directory, 'token.json')
+
+with open(json_file_path) as f:
+    data = json.load(f)
+
+token = data['TokenGit']
 g = Github(token)
 
 repo_owner = "cpdsWorkshop"  # Replace with the repository owner's username or organization name

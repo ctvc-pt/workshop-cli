@@ -23,7 +23,13 @@ def create_branch(repo_owner, repo_name, name_file_path, token):
     print(f"Branch '{branch_name}' created successfully.")
 
 # Usage example
-token = "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"  # Replace with your GitHub access token
+script_directory = os.path.dirname(os.path.abspath(__file__))
+json_file_path = os.path.join(script_directory, 'token.json')
+
+with open(json_file_path) as f:
+    data = json.load(f)
+
+token = data['TokenGit']
 repo_owner = "cpdsWorkshop"  # Replace with the repository owner's username or organization name
 repo_name = "workshops23"  # Replace with the repository name
 
