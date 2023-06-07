@@ -25,7 +25,7 @@ public class CreateSpritesAction: IAction
         var username = session.Name;
         if(username != null) username = username.Replace(" ", "-");
         
-        var folderPath = Path.Combine(desktopPath,$"{username}_{DateTime.Now.Year}","mygame");
+        var folderPath = Path.Combine(desktopPath, $"{username}_{DateTime.Now.ToString("dd-MM-yyyy")}", "mygame");
 
         if (!Directory.Exists(folderPath))
         {

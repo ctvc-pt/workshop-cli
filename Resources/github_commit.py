@@ -40,22 +40,21 @@ def create_commit_tree(repo_url, folder_path, token):
         for file_name in files:
             file_path = os.path.join(root, file_name)
 
-            # Read the content of the file in binary mode
-            file_content = read_file(file_path, binary=True)
+            # Read the content of the file
+            file_content = read_file(file_path)
 
             if file_content is None:
                 print(f"Skipping file '{file_path}'. Unable to read file content.")
                 continue
 
             # Create a new tree entry for the file
-            relative_path = os.path.relpath(file_path, folder_path)
+            relative_path = os.path.relpath(file_path, os.path.join(folder_path, ".."))
             tree.append({
                 'path': relative_path.replace(os.sep, '/'),
                 'mode': '100644',  # Regular file mode
                 'type': 'blob',
-                'content': base64.b64encode(file_content).decode('utf-8')
+                'content': file_content
             })
-
 
     # Create the tree on GitHub using the REST API
     url = f"https://api.github.com/repos/{repo_url}/git/trees"
@@ -65,6 +64,7 @@ def create_commit_tree(repo_url, folder_path, token):
     response_json = response.json()
 
     return response_json['sha']
+
 
 
 def create_commit(repo_url, commit_message, tree_sha, parent_shas, branch_name, token):
@@ -121,8 +121,8 @@ with open(session_file_path, "r", encoding="utf-8") as session_file:
     name = session_data.get("Name", "")
     step_id = session_data.get("StepId", "")
     branch_name = f"{name.replace(' ', '-')}_{datetime.now().strftime('%d-%m-%Y')}"
-    foldername = f"{name.replace(' ', '-')}_{datetime.now().strftime('%Y')}"
-    folder_path = os.path.join(os.path.expanduser("~"), "Desktop", "repoWorkshop", foldername)
+    
+    folder_path = os.path.join(os.path.expanduser("~"), "Desktop", "repoWorkshop", branch_name)
  
 
 

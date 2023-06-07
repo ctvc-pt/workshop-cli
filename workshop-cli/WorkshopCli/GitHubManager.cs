@@ -35,7 +35,7 @@ public class GitHubManager
     }
     public void CreateBranch()
     {
-        Console.WriteLine("hrllo");
+        
         var pythonScriptPath = $"{GuideCli.ResourcesPath}/github_branch.py"; // Replace with the actual path to your Python script
         
         var processStartInfo = new ProcessStartInfo
@@ -72,9 +72,9 @@ public class GitHubManager
             Console.WriteLine(username);
         }
         var desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
-        var sourceFolderPath = Path.Combine(desktopPath, $"{username}_{DateTime.Now.Year}");
+        var sourceFolderPath = Path.Combine(desktopPath, $"{username}_{DateTime.Now.ToString("dd-MM-yyyy")}");
 
-        var folderPath = Path.Combine(desktopPath, "repoWorkshop", $"{username}_{DateTime.Now.Year}");
+        var folderPath = Path.Combine(desktopPath,"repoWorkshop", $"{username}_{DateTime.Now.ToString("dd-MM-yyyy")}");
 
         var files = Directory.GetFiles(sourceFolderPath, "*", SearchOption.AllDirectories);
 

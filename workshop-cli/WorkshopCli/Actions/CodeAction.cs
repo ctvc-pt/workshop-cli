@@ -41,7 +41,7 @@ public class CodeAction : IAction
 
         var step = guide.Steps[currentIndex];
         var desktopPath = Environment.GetFolderPath( Environment.SpecialFolder.DesktopDirectory );
-        var folderPath = Path.Combine( desktopPath, $"{username}_{DateTime.Now.Year}", "mygame" );
+        var folderPath = Path.Combine(desktopPath, $"{username}_{DateTime.Now.ToString("dd-MM-yyyy")}", "mygame");
         
         var mdFilePath =$"{step.Id}.md";
         using var resourceStream = assembly.GetManifestResourceStream( $"workshop_cli.Guide.{mdFilePath}" );

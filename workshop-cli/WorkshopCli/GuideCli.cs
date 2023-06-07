@@ -30,6 +30,7 @@ public class GuideCli
 
     public void Run()
     {
+        
         var repoManager = new GitHubManager();
         
         var assembly = Assembly.GetExecutingAssembly();
@@ -60,18 +61,17 @@ public class GuideCli
         for ( var i = startIndex; i < guide.Steps.Count; i++ )
         {
             var step = guide.Steps[ i ];
-            //Console.WriteLine(step.Id);
+            Console.WriteLine(step.Id);
             Console.WriteLine( step.Message );
             session.StepId = step.Id;
             currentIndex = i;
-            if ( i > 8 )
-            {
-                repoManager.Commit( session.Name );
-                Console.WriteLine( "kiko gay" );
-            }
+            
 
             if ( step.Type != "code" && step.Type != "open-file")
             {
+                if ( i > 8 )
+                    repoManager.Commit( session.Name );
+                
                 var filePath = $"{step.Id}.md";
                 var resourceStream = assembly.GetManifestResourceStream( $"workshop_cli.Guide.{filePath}" );
                 {
@@ -125,7 +125,7 @@ public class GuideCli
             sessionWriter.AddSession( session.Name, session.Age, session.Email, session.StepId );
             helpRequest.GetHelp(session.Name,session.StepId);
             File.WriteAllText( txtFilePath, JsonConvert.SerializeObject( session ) );
-            Console.Clear();
+            //Console.Clear();
         }
         Thread.Sleep(2000);
         Environment.Exit(0);
