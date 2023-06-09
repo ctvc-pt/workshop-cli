@@ -42,7 +42,7 @@
     },
     {
         "Id": "009-HelloWorld",
-        "Type": "open-file"
+        "Type": "information"
     },
     {
         "Id": "010-helloWorld",

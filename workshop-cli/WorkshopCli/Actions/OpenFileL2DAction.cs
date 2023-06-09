@@ -83,7 +83,7 @@ public class OpenFileL2DAction : IAction
                 "settings.json" );
 
             var jsonset = File.ReadAllText( settingsPath );
-            Console.WriteLine("2");
+            
             // Check if the "files.autoSave" setting is already present in the JSON
             if ( !jsonset.Contains( "\"files.autoSave\":" ) )
             {
@@ -136,12 +136,8 @@ public class OpenFileL2DAction : IAction
                 Console.WriteLine( fileContents );
             }
         }
-   
-       
-        
         Console.ForegroundColor = ConsoleColor.Yellow;
 
         ExerciseHelper.PromptAnswerAndConfirm( "Verifica o código e escreve 'proximo' ou 'p' para continuar (ou 'ajuda')\n" );
-        //Prompt.Confirm("Verifica o código e clica ENTER para continuar\n", false);
     }
 }
