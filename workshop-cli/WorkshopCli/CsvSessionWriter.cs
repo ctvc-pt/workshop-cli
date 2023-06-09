@@ -19,7 +19,7 @@ public class CsvSessionWriter
         csvFilePath = Path.Combine(GuideCli.ResourcesPath, "sessions.csv");
     }
 
-    public void AddSession(string name, string age, string email, string stepId)
+    public void AddSession(string name, string age, string email, string stepId, string nameId)
     {
         var lines = File.ReadAllLines(csvFilePath).ToList();
 
@@ -30,6 +30,7 @@ public class CsvSessionWriter
             values[ 1 ] = age;
             values[ 2 ] = email;
             values[ 3 ] = stepId;
+            values[ 4 ] = nameId;
             lines[ i ] = string.Join( ";", values );
             File.WriteAllLines( csvFilePath, lines );
             
@@ -83,10 +84,10 @@ public class CsvSessionWriter
                 {
                     // Update the specific cell with new values
                     var valuesCell = new List<IList<object>>
-                        { new List<object> { values[ 0 ], values[ 1 ], values[ 2 ], values[ 3 ] } };
+                        { new List<object> { values[ 0 ], values[ 1 ], values[ 2 ], values[ 3 ], values [ 4 ] } };
                     var valueRange = new ValueRange { Values = valuesCell };
                     var updateRequest = service.Spreadsheets.Values.Update( valueRange, spreadsheetId,
-                        $"{sheetName}!A{foundRowIndex}:D{foundRowIndex}" );
+                        $"{sheetName}!A{foundRowIndex}:E{foundRowIndex}" );
                     updateRequest.ValueInputOption =
                         SpreadsheetsResource.ValuesResource.UpdateRequest.ValueInputOptionEnum.RAW;
 
@@ -99,10 +100,10 @@ public class CsvSessionWriter
                 {
                     // Create the append request to add a new row
                     var valuesCell = new List<IList<object>>
-                        { new List<object> { values[ 0 ], values[ 1 ], values[ 2 ], values[ 3 ] } };
+                        { new List<object> { values[ 0 ], values[ 1 ], values[ 2 ], values[ 3 ], values [ 4 ] } };
                     var valueRange = new ValueRange { Values = valuesCell };
                     var appendRequest =
-                        service.Spreadsheets.Values.Append( valueRange, spreadsheetId, $"{sheetName}!A1:D1" );
+                        service.Spreadsheets.Values.Append( valueRange, spreadsheetId, $"{sheetName}!A1:E1" );
                     appendRequest.ValueInputOption =
                         SpreadsheetsResource.ValuesResource.AppendRequest.ValueInputOptionEnum.RAW;
 
@@ -118,7 +119,7 @@ public class CsvSessionWriter
 
 
         //Console.WriteLine($"Name in current session {name}");
-        lines.Add($"{name};{age};{email};{stepId}");
+        lines.Add($"{name};{age};{email};{stepId};{nameId}");
         File.WriteAllLines(csvFilePath, lines);
     }
     static int? GetSheetId(Spreadsheet spreadsheet, string sheetName)

@@ -4,33 +4,26 @@ namespace workshopCli;
 
 public class PythonInstaller
 {
-    private const string PythonInstallerUrl = "https://www.python.org/ftp/python/3.9.5/python-3.9.5-amd64.exe";
     private const string InstallPath = @"C:\Python39";
+    private const string InstallerFileName = "python-installer.exe";
+    private static readonly string InstallerFilePath = Path.Combine(GuideCli.ResourcesPath, InstallerFileName);
 
     public void InstallPython()
     {
+        Console.WriteLine("Installing Python...");
         Process.Start(new ProcessStartInfo
         {
-            FileName = "curl",
-            Arguments = $"-o python-installer.exe {PythonInstallerUrl}",
-            RedirectStandardOutput = true,
-            RedirectStandardError = true,
-            UseShellExecute = false
-        })
-            ?.WaitForExit();
-
-        Process.Start(new ProcessStartInfo
-        {
-            FileName = "python-installer.exe",
+            FileName = InstallerFilePath,
             Arguments = $"/quiet InstallAllUsers=1 TargetDir=\"{InstallPath}\" PrependPath=1",
             RedirectStandardOutput = true,
             RedirectStandardError = true,
             UseShellExecute = false
-        })
-            ?.WaitForExit();
+        })?.WaitForExit();
 
+        Console.WriteLine("Updating PATH environment variable...");
         Environment.SetEnvironmentVariable("PATH", $"{InstallPath};{Environment.GetEnvironmentVariable("PATH")}");
 
+        Console.WriteLine("Verifying Python installation...");
         Process.Start(new ProcessStartInfo
         {
             FileName = "python",
@@ -38,9 +31,9 @@ public class PythonInstaller
             RedirectStandardOutput = true,
             RedirectStandardError = true,
             UseShellExecute = false
-        })
-            ?.WaitForExit();
+        })?.WaitForExit();
 
+        Console.WriteLine("Installing PyGithub package...");
         Process.Start(new ProcessStartInfo
         {
             FileName = "python",
@@ -48,9 +41,6 @@ public class PythonInstaller
             RedirectStandardOutput = true,
             RedirectStandardError = true,
             UseShellExecute = false
-        })
-            ?.WaitForExit();
+        })?.WaitForExit();
     }
-
-
 }
