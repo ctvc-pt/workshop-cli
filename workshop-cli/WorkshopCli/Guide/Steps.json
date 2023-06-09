@@ -19,137 +19,127 @@
         "Message": "Qual é o teu email?"
     },
     {
-        "Id": "004-inicio",
-        "Type": "information",
-        "Message": "Pronto para começar?"
-    },
-    {
-        "Id": "005-intro",
+        "Id": "004-intro",
         "Type": "intro"
     },
     {
-        "Id": "006-love2D-install",
-        "Type": "install",
-        "Message": "Passo 1: Instalar o Love2D"
+        "Id": "005-love2D-install",
+        "Type": "install"
     },
     {
-        "Id": "007-Criar-ficheiro",
+        "Id": "006-Criar-ficheiro",
         "Type": "open-file"
     },
     {
-        "Id": "008-code",
+        "Id": "007-code",
         "Type": "code"
     },
     {
-        "Id": "009-HelloWorld",
+        "Id": "008-HelloWorld",
+        "Type": "challenge"
+    },
+    {
+        "Id": "009-helloWorld",
         "Type": "information"
     },
     {
-        "Id": "010-helloWorld",
-        "Type": "information"
-    },
-    {
-        "Id": "011-recursos",
+        "Id": "010-recursos",
         "Type": "CreateSprites"
     },
     {
-        "Id": "012-code",
+        "Id": "011-code",
         "Type": "code"
     },
     {
-        "Id": "013-load",
+        "Id": "012-load",
         "Type": "information"
     },
     {
-        "Id": "014-desenha-jogador",
+        "Id": "013-jogador",
         "Type": "information"
     },
     {
-        "Id": "015-jogador",
-        "Type": "information"
-    },
-    {
-        "Id": "016-Desafio-Nave",
+        "Id": "014-Desafio-Nave",
         "Type": "challenge"
     },
     {
-        "Id": "017-update",
+        "Id": "015-update",
         "Type": "information"
     },
     {
-        "Id": "018-Movimentacao",
+        "Id": "016-Movimentacao",
         "Type": "information"
     },
     {
-        "Id": "019-Desafio-movimentacao",
+        "Id": "017-Desafio-movimentacao",
         "Type": "challenge"
     },
     {
-        "Id": "020-code-check",
+        "Id": "018-code-check",
         "Type": "information"
     },
     {
-        "Id": "021-colisao-tela",
+        "Id": "019-colisao-tela",
         "Type": "information"
     },
     {
-        "Id": "022-missel-load",
+        "Id": "020-missel-load",
         "Type": "information"
     },
     {
-        "Id": "023-missel-draw",
+        "Id": "021-missel-draw",
         "Type": "information"
     },
     {
-        "Id": "024-missel-update-missel",
+        "Id": "022-missel-update-missel",
         "Type": "information"
     },
     {
-        "Id": "025-missel-spawn",
+        "Id": "023-missel-spawn",
         "Type": "information"
     },
     {
-        "Id": "026-missel-update",
+        "Id": "024-missel-update",
         "Type": "information"
     },
     {
-        "Id": "027-enemy-load",
+        "Id": "025-enemy-load",
         "Type": "information"
     },
     {
-        "Id": "028-enemy-draw",
+        "Id": "026-enemy-draw",
         "Type": "information"
     },
     {
-        "Id": "029-enemy-update-enemy",
+        "Id": "027-enemy-update-enemy",
         "Type": "information"
     },
     {
-        "Id": "030-enemy-spawn",
+        "Id": "028-enemy-spawn",
         "Type": "information"
     },
     {
-        "Id": "031-enemy",
+        "Id": "029-enemy",
         "Type": "information"
     },
     {
-        "Id": "032-moveLeft",
+        "Id": "030-moveLeft",
         "Type": "information"
     },
     {
-        "Id": "033-moveToPlayer",
+        "Id": "031-moveToPlayer",
         "Type": "information"
     },
     {
-        "Id": "034-collisions",
+        "Id": "032-collisions",
         "Type": "information"
     },
     {
-        "Id": "035-desafio",
+        "Id": "033-desafio",
         "Type": "challenge"
     },
     {
-        "Id": "036-Fim",
+        "Id": "034-Fim",
         "Type": "information",
         "Message": "Fim"
     }

@@ -11,7 +11,7 @@ public class ExerciseHelper
     {
         var sessionValue = Prompt.Input<string>("Resposta");
         Console.ForegroundColor = ConsoleColor.Yellow;
-        Console.WriteLine($"Inseris-te: {sessionValue}");
+        //Console.WriteLine($"Inseris-te: {sessionValue}");
         return sessionValue;
     }
     
@@ -94,18 +94,17 @@ public class ExerciseHelper
                 {
                     inputs = input.Split( " " );
                 }
-                
-                if ( input is "anterior" or "a" )
-                {
-                    GuideCli.adminInput = -1;
-                } 
-                else if ( inputs[0] is "id")
+                if ( inputs[0] is "id")
                 {
                     GuideCli.adminInput = Int32.Parse(inputs[1]);
                 }
             }
             else
             { 
+                if ( answer is "anterior" or "a" )
+                {
+                    GuideCli.adminInput = -1;
+                } 
                 if (answer is "proximo" or "p" )
                 {
                     return true;

@@ -43,7 +43,7 @@ public class GuideCli
         }
         else
         {
-            Console.WriteLine( "Bem-vindo ao Workshop de Luv2D!" );
+            Console.WriteLine( "Bem-vindo ao Workshop de Love2D!" );
         }
 
         var startIndex = guide.Steps.FindIndex( step => step.Id == session.StepId );
@@ -61,13 +61,15 @@ public class GuideCli
         for ( var i = startIndex; i < guide.Steps.Count; i++ )
         {
             var step = guide.Steps[ i ];
+            Console.ForegroundColor = ConsoleColor.DarkGray;
             Console.WriteLine(step.Id);
+            Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine( step.Message );
             session.StepId = step.Id;
             currentIndex = i;
             
 
-            if ( step.Type != "code" && step.Type != "open-file")
+            if ( step.Type != "code" && step.Type != "open-file" && step.Type != "intro")
             {
                 if ( i > 8 )
                     repoManager.Commit( session.Name );
@@ -109,7 +111,7 @@ public class GuideCli
                 action.Execute();
                 if ( adminInput is -1 )
                 {
-                    i = i - 3;
+                    i = i - 2;
                 }
                 else if (adminInput != 0)
                 {
@@ -124,7 +126,7 @@ public class GuideCli
             sessionWriter.AddSession( session.Name, session.Age, session.Email, session.StepId, session.NameId );
             helpRequest.GetHelp(session.Name,session.StepId);
             File.WriteAllText( txtFilePath, JsonConvert.SerializeObject( session ) );
-            //Console.Clear();
+            Console.Clear();
         }
         Thread.Sleep(2000);
         Environment.Exit(0);
