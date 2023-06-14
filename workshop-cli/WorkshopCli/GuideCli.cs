@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
+using System.Text.RegularExpressions;
 using System.Threading;
 using Newtonsoft.Json;
 using OfficeOpenXml.FormulaParsing.Excel.Functions.DateTime;

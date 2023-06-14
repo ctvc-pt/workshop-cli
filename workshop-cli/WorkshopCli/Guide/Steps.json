@@ -38,14 +38,12 @@
     {
         "Id": "008-HelloWorld",
         "Type": "challenge",
-        "Message": "DESAFIO: Agora quero que corras o teu jogo, usa a combinação 'alt+L', e vê o que acontece.",
         "Delay": "20000"
         
     },
     {
         "Id": "009-helloWorld",
         "Type": "information",
-        "Message": "DESAFIO: Imprime o teu nome no ecra de jogo em vez de "Ola mundo!", não te esqueças de executar o jogo com o 'alt+L'",
         "Delay": "20000"
     },
     {
