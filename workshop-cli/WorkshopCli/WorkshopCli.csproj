@@ -12,7 +12,9 @@
       <PackageReference Include="DotNetEnv" Version="2.5.0" />
       <PackageReference Include="Google.Apis.Sheets.v4" Version="1.60.0.2979" />
       <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="7.0.0" />
+      <PackageReference Include="MoonSharp" Version="2.0.0" />
       <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+      <PackageReference Include="NLua" Version="1.6.3" />
       <PackageReference Include="OfficeOpenXml.Extends" Version="1.0.6" />
       <PackageReference Include="Sharprompt" Version="3.0.0-preview2" />
     </ItemGroup>
@@ -193,62 +195,88 @@
     </ItemGroup>
 
     <ItemGroup>
-      <EmbeddedResource Include="Guide\005-intro.md" />
-      <EmbeddedResource Include="Guide\006-love2D-install.md" />
-      <EmbeddedResource Include="Guide\007-Criar-ficheiro.md" />
-      <EmbeddedResource Include="Guide\010-helloWorld.md" />
+      <EmbeddedResource Include="Guide\009-helloWorld.md" />
       <EmbeddedResource Include="Guide\011-code.md" />
       <EmbeddedResource Include="Guide\Steps.json" />
       <None Remove="Guide\008-code.md" />
-      <EmbeddedResource Include="Guide\008-code.md" />
       <None Remove="Guide\009-HelloWorld.md" />
-      <EmbeddedResource Include="Guide\009-HelloWorld.md" />
       <None Remove="Guide\011-recursos.md" />
+      <EmbeddedResource Include="Guide\010-recursos.md" />
       <None Remove="Guide\014-desenha-jogador.md" />
       <None Remove="Guide\015-jogador.md" />
-      <EmbeddedResource Include="Guide\015-jogador.md" />
       <None Remove="Guide\016-Desafio-Nave.md" />
-      <EmbeddedResource Include="Guide\016-Desafio-Nave.md" />
       <None Remove="Guide\017-update.md" />
-      <EmbeddedResource Include="Guide\017-update.md" />
       <None Remove="Guide\018-Movimentacao.md" />
-      <EmbeddedResource Include="Guide\018-Movimentacao.md" />
       <None Remove="Guide\019-Desafio-movimentacao.md" />
-      <EmbeddedResource Include="Guide\019-Desafio-movimentacao.md" />
       <None Remove="Guide\020-code-check.md" />
-      <EmbeddedResource Include="Guide\020-code-check.md" />
       <None Remove="Guide\021-colisao-tela.md" />
-      <EmbeddedResource Include="Guide\021-colisao-tela.md" />
       <None Remove="Guide\022-missel-load.md" />
-      <EmbeddedResource Include="Guide\022-missel-load.md" />
       <None Remove="Guide\023-missel-draw.md" />
-      <EmbeddedResource Include="Guide\023-missel-draw.md" />
       <None Remove="Guide\024-missel-update-missel.md" />
-      <EmbeddedResource Include="Guide\024-missel-update-missel.md" />
       <None Remove="Guide\025-missel-spawn.md" />
-      <EmbeddedResource Include="Guide\025-missel-spawn.md" />
       <None Remove="Guide\026-missel-update.md" />
-      <EmbeddedResource Include="Guide\026-missel-update.md" />
       <None Remove="Guide\027-enemy-load.md" />
-      <EmbeddedResource Include="Guide\027-enemy-load.md" />
       <None Remove="Guide\028-enemy-draw.md" />
-      <EmbeddedResource Include="Guide\028-enemy-draw.md" />
       <None Remove="Guide\029-enemy-update-enemy.md" />
-      <EmbeddedResource Include="Guide\029-enemy-update-enemy.md" />
       <None Remove="Guide\030-enemy-spawn.md" />
-      <EmbeddedResource Include="Guide\030-enemy-spawn.md" />
       <None Remove="Guide\031-enemy.md" />
-      <EmbeddedResource Include="Guide\031-enemy.md" />
       <None Remove="Guide\032-moveLeft.md" />
-      <EmbeddedResource Include="Guide\032-moveLeft.md" />
       <None Remove="Guide\033-moveToPlayer.md" />
-      <EmbeddedResource Include="Guide\033-moveToPlayer.md" />
       <None Remove="Guide\034-collisions.md" />
-      <EmbeddedResource Include="Guide\034-collisions.md" />
       <None Remove="Guide\035-desafio.md" />
-      <EmbeddedResource Include="Guide\035-desafio.md" />
-      <None Remove="Guide\012-recursos_desenhaJogador.md" />
-      <EmbeddedResource Include="Guide\012-recursos_desenhaJogador.md" />
+      <None Remove="Guide\004-intro.md" />
+      <EmbeddedResource Include="Guide\004-intro.md" />
+      <None Remove="Guide\005-love2D-install.md" />
+      <EmbeddedResource Include="Guide\005-love2D-install.md" />
+      <None Remove="Guide\006-Criar-ficheiro.md" />
+      <EmbeddedResource Include="Guide\006-Criar-ficheiro.md" />
+      <None Remove="Guide\007-code.md" />
+      <EmbeddedResource Include="Guide\007-code.md" />
+      <None Remove="Guide\008-HelloWorld.md" />
+      <EmbeddedResource Include="Guide\008-HelloWorld.md" />
+      <None Remove="Guide\012-load.md" />
+      <None Remove="Guide\013-jogador.md" />
+      <EmbeddedResource Include="Guide\013-jogador.md" />
+      <None Remove="Guide\014-Desafio-Nave.md" />
+      <EmbeddedResource Include="Guide\014-Desafio-Nave.md" />
+      <None Remove="Guide\015-update.md" />
+      <EmbeddedResource Include="Guide\015-update.md" />
+      <None Remove="Guide\016-Movimentacao.md" />
+      <EmbeddedResource Include="Guide\016-Movimentacao.md" />
+      <None Remove="Guide\017-Desafio-movimentacao.md" />
+      <EmbeddedResource Include="Guide\017-Desafio-movimentacao.md" />
+      <None Remove="Guide\018-code-check.md" />
+      <EmbeddedResource Include="Guide\018-code-check.md" />
+      <None Remove="Guide\019-colisao-tela.md" />
+      <EmbeddedResource Include="Guide\019-colisao-tela.md" />
+      <None Remove="Guide\020-missel-load.md" />
+      <EmbeddedResource Include="Guide\020-missel-load.md" />
+      <None Remove="Guide\021-missel-draw.md" />
+      <EmbeddedResource Include="Guide\021-missel-draw.md" />
+      <None Remove="Guide\022-missel-update-missel.md" />
+      <EmbeddedResource Include="Guide\022-missel-update-missel.md" />
+      <None Remove="Guide\023-missel-spawn.md" />
+      <EmbeddedResource Include="Guide\023-missel-spawn.md" />
+      <None Remove="Guide\024-missel-update.md" />
+      <EmbeddedResource Include="Guide\024-missel-update.md" />
+      <None Remove="Guide\025-enemy-load.md" />
+      <EmbeddedResource Include="Guide\025-enemy-load.md" />
+      <None Remove="Guide\026-enemy-draw.md" />
+      <EmbeddedResource Include="Guide\026-enemy-draw.md" />
+      <None Remove="Guide\027-enemy-update-enemy.md" />
+      <EmbeddedResource Include="Guide\027-enemy-update-enemy.md" />
+      <None Remove="Guide\028-enemy-spawn.md" />
+      <EmbeddedResource Include="Guide\028-enemy-spawn.md" />
+      <None Remove="Guide\029-enemy.md" />
+      <EmbeddedResource Include="Guide\029-enemy.md" />
+      <None Remove="Guide\030-moveLeft.md" />
+      <EmbeddedResource Include="Guide\030-moveLeft.md" />
+      <None Remove="Guide\031-moveToPlayer.md" />
+      <EmbeddedResource Include="Guide\031-moveToPlayer.md" />
+      <None Remove="Guide\032-collisions.md" />
+      <EmbeddedResource Include="Guide\032-collisions.md" />
+      <None Remove="Guide\033-desafio.md" />
+      <EmbeddedResource Include="Guide\033-desafio.md" />
     </ItemGroup>
 
 </Project>

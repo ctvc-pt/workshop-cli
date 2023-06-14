@@ -4,7 +4,7 @@
 Primeiro escolhe na pasta uma imagem para ser o míssel da tua nave.
 Implementa o seguinte código na função "load()"
 
-    missilImage = love.graphics.newImage("nome_imagem.png")
+    missilImageM = love.graphics.newImage("nome_imagem.png")
     missilTimerMax = 0.2
     missilStartSpeed = 100
     missilMaxSpeed = 300

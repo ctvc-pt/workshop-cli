@@ -51,7 +51,7 @@ public class OpenFileL2DAction : IAction
         try {
             var startFolderInfo = new ProcessStartInfo {
                 FileName = $"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}/../Local/Programs/Microsoft VS Code/Code.exe",
-                Arguments = $"\"{ folderPath }\"",
+                Arguments = $"\"{ folderPath }\" --disable-workspace-trust",
                 WorkingDirectory = @"C:\",
                 Verb = "runas"
             };
@@ -109,7 +109,7 @@ public class OpenFileL2DAction : IAction
 
             var startFileInfo = new ProcessStartInfo {
                 FileName = $"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}/../Local/Programs/Microsoft VS Code/Code.exe",
-                Arguments = $"\"{ filePath }\"",
+                Arguments = $"\"{ filePath }\" --disable-workspace-trust",
                 WorkingDirectory = @"C:\",
                 Verb = "runas"
             };

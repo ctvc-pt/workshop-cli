@@ -63,7 +63,7 @@ public class VideoAction: IAction
             installer.InstallPython();
             
             Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine("Press Enter to continue...");
+            Console.WriteLine("Clica Enter para continuar...");
             Console.ReadLine();
             
             
