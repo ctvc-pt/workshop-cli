@@ -2,12 +2,19 @@
 SendMode Input
 SetWorkingDir %A_ScriptDir%
 
-; Move the active window to one-third of the screen on the left when the script runs
+; Get the screen width and height
+SysGet, MonitorWorkArea, MonitorWorkArea
+ScreenWidth := MonitorWorkAreaRight - MonitorWorkAreaLeft
+ScreenHeight := MonitorWorkAreaBottom - MonitorWorkAreaTop
+
+; Calculate the new window dimensions
+NewWidth := ScreenWidth / 3
+NewHeight := ScreenHeight
+
+; Move the active window to the left and maximize the height
 WinGetPos, WinX, WinY, WinWidth, WinHeight, A
-NewWidth := A_ScreenWidth / 3
-NewHeight := A_ScreenHeight
-WinMove, A,, 0, 0, NewWidth, NewHeight
+NewX := MonitorWorkAreaLeft
+NewY := MonitorWorkAreaTop
+WinMove, A,, NewX, NewY, NewWidth, NewHeight
 
-
-
-ExitApp  ; Exit the script after moving and maximizing the window
+ExitApp ; Exit the script after moving and maximizing the window
