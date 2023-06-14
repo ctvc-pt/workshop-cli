@@ -197,17 +197,14 @@
       <EmbeddedResource Include="Guide\006-love2D-install.md" />
       <EmbeddedResource Include="Guide\007-Criar-ficheiro.md" />
       <EmbeddedResource Include="Guide\010-helloWorld.md" />
-      <EmbeddedResource Include="Guide\012-code.md" />
-      <EmbeddedResource Include="Guide\013-load.md" />
+      <EmbeddedResource Include="Guide\011-code.md" />
       <EmbeddedResource Include="Guide\Steps.json" />
       <None Remove="Guide\008-code.md" />
       <EmbeddedResource Include="Guide\008-code.md" />
       <None Remove="Guide\009-HelloWorld.md" />
       <EmbeddedResource Include="Guide\009-HelloWorld.md" />
       <None Remove="Guide\011-recursos.md" />
-      <EmbeddedResource Include="Guide\011-recursos.md" />
       <None Remove="Guide\014-desenha-jogador.md" />
-      <EmbeddedResource Include="Guide\014-desenha-jogador.md" />
       <None Remove="Guide\015-jogador.md" />
       <EmbeddedResource Include="Guide\015-jogador.md" />
       <None Remove="Guide\016-Desafio-Nave.md" />
@@ -250,6 +247,8 @@
       <EmbeddedResource Include="Guide\034-collisions.md" />
       <None Remove="Guide\035-desafio.md" />
       <EmbeddedResource Include="Guide\035-desafio.md" />
+      <None Remove="Guide\012-recursos_desenhaJogador.md" />
+      <EmbeddedResource Include="Guide\012-recursos_desenhaJogador.md" />
     </ItemGroup>
 
 </Project>

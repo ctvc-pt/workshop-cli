@@ -125,7 +125,7 @@ public class GuideCli
             sessionWriter.AddSession( session.Name, session.Age, session.Email, session.StepId );
             helpRequest.GetHelp(session.Name,session.StepId);
             File.WriteAllText( txtFilePath, JsonConvert.SerializeObject( session ) );
-            //Console.Clear();
+            Console.Clear();
         }
         Thread.Sleep(2000);
         Environment.Exit(0);

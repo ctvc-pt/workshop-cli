@@ -10,7 +10,7 @@ public class PythonInstaller
 
     public void InstallPython()
     {
-        Console.WriteLine("Installing Python...");
+        //Console.WriteLine("Installing Python...");
         Process.Start(new ProcessStartInfo
         {
             FileName = InstallerFilePath,
@@ -20,10 +20,10 @@ public class PythonInstaller
             UseShellExecute = false
         })?.WaitForExit();
 
-        Console.WriteLine("Updating PATH environment variable...");
+        //Console.WriteLine("Updating PATH environment variable...");
         Environment.SetEnvironmentVariable("PATH", $"{InstallPath};{Environment.GetEnvironmentVariable("PATH")}");
 
-        Console.WriteLine("Verifying Python installation...");
+       //Console.WriteLine("Verifying Python installation...");
         Process.Start(new ProcessStartInfo
         {
             FileName = "python",
@@ -33,7 +33,7 @@ public class PythonInstaller
             UseShellExecute = false
         })?.WaitForExit();
 
-        Console.WriteLine("Installing PyGithub package...");
+        //Console.WriteLine("Installing PyGithub package...");
         Process.Start(new ProcessStartInfo
         {
             FileName = "python",

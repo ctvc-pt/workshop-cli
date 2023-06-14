@@ -49,20 +49,22 @@
         "Type": "information"
     },
     {
-        "Id": "011-recursos",
-        "Type": "CreateSprites"
-    },
-    {
-        "Id": "012-code",
+        "Id": "011-code",
         "Type": "code"
     },
     {
-        "Id": "013-load",
-        "Type": "information"
+        "Id": "012-recursos_desenhaJogador",
+        "Type": "CreateSprites"
     },
     {
-        "Id": "014-desenha-jogador",
-        "Type": "information"
+        "Id": "013-",
+        "Type": "information",
+        "Message": ""
+    },
+    {
+        "Id": "014-",
+        "Type": "information",
+        "Message": ""
     },
     {
         "Id": "015-jogador",
