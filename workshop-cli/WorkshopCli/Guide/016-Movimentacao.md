@@ -4,7 +4,7 @@ Vamos começar com a movimentação para a direita.
 Na nossa função "update()" mete o seguinte código:
 
     if love.keyboard.isDown("right") then      
-      player.xPos = player.xPos + dt * player.speed
+      posicaoX = posicaoX + dt * 200
     end
 
 Agora corre o código usando 'Alt+L' e pressiona na tecla da seta para a direita

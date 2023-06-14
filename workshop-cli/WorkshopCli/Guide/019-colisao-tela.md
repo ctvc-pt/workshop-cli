@@ -3,26 +3,26 @@ Agora vou precisar que apagues a função "update()" que tens e metas este códi
 
 function love.update(dt)
   if love.keyboard.isDown("right") then
-    if player.xPos < love.graphics.getWidth() - player.width then
-      player.xPos = player.xPos + dt * player.speed
+    if posicaoX < love.graphics.getWidth() - 64 then
+        posicaoX = posicaoX + dt * 200
     end
   end
 
   if love.keyboard.isDown("left") then
-    if player.xPos > 0 then
-      player.xPos = player.xPos - dt * player.speed
+    if posicaoX > 0 then
+        posicaoX = posicaoX - dt * 200
     end
   end
 
   if love.keyboard.isDown("down") then
-    if player.yPos < love.graphics.getHeight() - player.height then
-      player.yPos = player.yPos + dt * player.speed
+    if posicaoY < love.graphics.getHeight() - 64 then
+        posicaoY = posicaoY + dt * 200
     end
   end
 
   if love.keyboard.isDown("up") then
-    if player.yPos > 0 then
-      player.yPos = player.yPos - dt * player.speed
+    if posicaoY > 0 then
+        posicaoY = posicaoY - dt * 200
     end
   end
 end

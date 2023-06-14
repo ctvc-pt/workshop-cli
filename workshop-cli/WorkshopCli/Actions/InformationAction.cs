@@ -12,11 +12,8 @@ public class InformationAction : IAction
     }
     public void Execute()
     {
+        Thread.Sleep(2000);
         Console.ForegroundColor = ConsoleColor.Yellow;
         ExerciseHelper.PromptAnswerAndConfirm( "Escreve 'proximo' ou 'p' para avançar (ou 'ajuda')" );
-        
-       
-        
-        
     }
 }

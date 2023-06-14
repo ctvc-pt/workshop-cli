@@ -8,5 +8,5 @@ Dicas:
 	cima -> up
 	baixo -> down
 
-Não te esqueças de verifcar em que direção o jogador é movimentado, se for horizontal usa o xPos, se for vertical usa o yPos.
+Não te esqueças de verifcar em que direção o jogador é movimentado, se for horizontal usa o posicaoX, se for vertical usa o posicaoY.
 

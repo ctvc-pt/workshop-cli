@@ -235,7 +235,6 @@
       <None Remove="Guide\008-HelloWorld.md" />
       <EmbeddedResource Include="Guide\008-HelloWorld.md" />
       <None Remove="Guide\012-load.md" />
-      <EmbeddedResource Include="Guide\012-load.md" />
       <None Remove="Guide\013-jogador.md" />
       <EmbeddedResource Include="Guide\013-jogador.md" />
       <None Remove="Guide\014-Desafio-Nave.md" />

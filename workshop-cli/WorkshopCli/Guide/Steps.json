@@ -43,16 +43,12 @@
         "Type": "information"
     },
     {
-        "Id": "010-recursos",
-        "Type": "CreateSprites"
-    },
-    {
         "Id": "011-code",
         "Type": "code"
     },
     {
-        "Id": "012-load",
-        "Type": "information"
+        "Id": "010-recursos",
+        "Type": "CreateSprites"
     },
     {
         "Id": "013-jogador",
