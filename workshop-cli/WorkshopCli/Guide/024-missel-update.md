@@ -11,7 +11,7 @@
         elseif(right) then
           missilSpeed = missilSpeed + player.speed/2
         end
-        spawnMissil(player.xPos + player.width, player.yPos + player.height/2, missilSpeed)
+        spawnMissil(posicaoX + 64, posicaoY + 32, missilSpeed)
       end
 
       if missilTimer > 0 then

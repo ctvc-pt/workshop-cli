@@ -8,5 +8,5 @@ Dicas:
 	cima -> up
 	baixo -> down
 
-Não te esqueças de verifcar em que direção o jogador é movimentado, se for horizontal usa o posicaoX, se for vertical usa o posicaoY.
+Não te esqueças de verificar em que direção o jogador é movimentado, se for horizontal usa o posicaoX, se for vertical usa o posicaoY. E usa o código "love.graphics.getHeight()" para ter o limite para baixo.
 

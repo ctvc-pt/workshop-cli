@@ -52,15 +52,7 @@
     },
     {
         "Id": "013-jogador",
-        "Type": "information"
-    },
-    {
-        "Id": "014-Desafio-Nave",
         "Type": "challenge"
-    },
-    {
-        "Id": "015-update",
-        "Type": "information"
     },
     {
         "Id": "016-Movimentacao",
@@ -72,10 +64,6 @@
     },
     {
         "Id": "018-code-check",
-        "Type": "information"
-    },
-    {
-        "Id": "019-colisao-tela",
         "Type": "information"
     },
     {

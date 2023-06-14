@@ -1,15 +1,14 @@
 
-Já temos a nossa nave a desenhar, mas para facilitar o trabalho para mais tarde, vamos criar atributos para a nossa nave. Altera o teu código para o que está aqui:
+Já temos a nossa nave a desenhar, mas para facilitar o trabalho para mais tarde, vamos criar as coordanadas para a nossa nave.
 
-function love.load()
-  imagem = love.graphics.newImage("nave1.png")
+1. Adiciona na função "load()":
   posicaoX = 0
   posicaoY = 0
-end
 
-function love.draw()
-  love.graphics.draw(imagem, posicaoX, posicaoY, 0, 1, 1)
-end
+2. Na função "draw()" onde tem os números '100', altera o primeiro para "posicaoX" e o segundo para "posicaoY"
+
+DESAFIO: Desafio-te a mudares a imagem da nave por outras imagem que tens na pasta.
+Tens um desafio extra para mostrar que és um craque nisto, muda a posição da nave ao teu gosto.
 
 Volta a correr o jogo (alt+l) para verificar se esta tudo bem.
 
