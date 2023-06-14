@@ -21,3 +21,4 @@ Não te esqueças de alterar "nome-imagem" pelo nome da nave que tu escolheste a
    na função "draw()".
 
 Quando vires a imagem na tela de jogo, continua para o próximo passo (alt+L).
+
