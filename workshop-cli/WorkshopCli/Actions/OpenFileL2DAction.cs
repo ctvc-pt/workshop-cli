@@ -8,11 +8,15 @@ namespace workshopCli;
 
 public class OpenFileL2DAction : IAction
 {
-   string stepId;
-    public OpenFileL2DAction(string stepId)
+    string stepId;
+    public int Delay;
+   
+    public OpenFileL2DAction(string stepId, int delay)
     {
         this.stepId = stepId;
+        Delay = delay;
     }
+
     public void Execute()
     {
         var desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
@@ -136,6 +140,8 @@ public class OpenFileL2DAction : IAction
                 Console.WriteLine( fileContents );
             }
         }
+        
+        Thread.Sleep(Delay);
         Console.ForegroundColor = ConsoleColor.Yellow;
 
         ExerciseHelper.PromptAnswerAndConfirm( "Verifica o código e escreve 'proximo' ou 'p' para continuar (ou 'ajuda')\n" );
