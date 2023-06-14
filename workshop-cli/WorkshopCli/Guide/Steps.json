@@ -39,7 +39,6 @@
         "Id": "008-HelloWorld",
         "Type": "challenge",
         "Delay": "20000"
-        
     },
     {
         "Id": "009-helloWorld",
@@ -52,24 +51,28 @@
     },
     {
         "Id": "010-recursos",
-        "Type": "CreateSprites"
+        "Type": "CreateSprites",
+        "Delay": "30000"
     },
     {
         "Id": "013-jogador",
-        "Type": "challenge"
-        
+        "Type": "challenge",
+        "Delay": "20000"
     },
     {
         "Id": "016-Movimentacao",
-        "Type": "information"
+        "Type": "information",
+        "Delay": "20000"
     },
     {
         "Id": "017-Desafio-movimentacao",
-        "Type": "challenge"
+        "Type": "challenge",
+        "Delay": "60000"
     },
     {
         "Id": "018-code-check",
-        "Type": "information"
+        "Type": "information",
+        "Delay": "15000"
     },
     {
         "Id": "020-missel-load",

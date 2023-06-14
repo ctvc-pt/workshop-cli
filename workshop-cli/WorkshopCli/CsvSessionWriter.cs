@@ -59,7 +59,7 @@ public class CsvSessionWriter
             {
 
                 // Find the row number where values[0] matches
-                var searchRequest = service.Spreadsheets.Values.Get( spreadsheetId, $"{sheetName}!A:A" );
+                var searchRequest = service.Spreadsheets.Values.Get( spreadsheetId, $"{sheetName}!E:E" );
                 searchRequest.ValueRenderOption = SpreadsheetsResource.ValuesResource.GetRequest.ValueRenderOptionEnum
                     .UNFORMATTEDVALUE;
                 var searchResponse = searchRequest.Execute();
@@ -72,7 +72,7 @@ public class CsvSessionWriter
                         var rowValue = searchResponse.Values[ y ].Count > 0
                             ? searchResponse.Values[ y][ 0 ]?.ToString()
                             : null;
-                        if ( rowValue == values[ 0 ] )
+                        if ( rowValue == values[ 4 ] )
                         {
                             foundRowIndex = y + 1; // Add 1 because Sheets are 1-indexed
                             break;
