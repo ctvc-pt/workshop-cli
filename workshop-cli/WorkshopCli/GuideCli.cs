@@ -4,6 +4,7 @@ using System.IO;
 using System.Reflection;
 using System.Threading;
 using Newtonsoft.Json;
+using OfficeOpenXml.FormulaParsing.Excel.Functions.DateTime;
 using Sharprompt;
 
 namespace workshopCli;
@@ -64,9 +65,9 @@ public class GuideCli
             Console.ForegroundColor = ConsoleColor.DarkGray;
             Console.WriteLine(step.Id);
             Console.ForegroundColor = ConsoleColor.White;
-            Console.WriteLine( step.Message );
             session.StepId = step.Id;
             currentIndex = i;
+            
             
 
             if ( step.Type != "code" && step.Type != "open-file" && step.Type != "intro")
@@ -90,15 +91,25 @@ public class GuideCli
                     }
                 }
             }
+            Console.ForegroundColor = ConsoleColor.White;
+            if ( i > 4 )
+                Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine( step.Message );
+            Console.ForegroundColor = ConsoleColor.White;
 
+            var delay = 0;
+            delay = step.Delay;
+            if ( delay==0 )
+                delay = 2000;
+            
             var actions = new Dictionary<string, IAction>()
             {
-                { "information", new InformationAction(this) },
-                { "challenge", new ChallengeAction() },
+                { "information", new InformationAction(this,delay) },
+                { "challenge", new ChallengeAction(delay) },
                 { "intro", new CreateBranchAction() },
                 { "install", new InstallAction() },
-                { "open-file", new OpenFileL2DAction(step.Id) },
-                { "CreateSprites", new CreateSpritesAction() },
+                { "open-file", new OpenFileL2DAction(step.Id,delay) },
+                { "CreateSprites", new CreateSpritesAction(delay) },
                 { "code", new CodeAction( currentIndex ) },
                 { "ask-name", new AskNameAction( this ) },
                 { "ask-age", new AskAgeAction( this ) },

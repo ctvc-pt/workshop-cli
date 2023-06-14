@@ -6,10 +6,11 @@ namespace workshopCli;
 
 public class CreateSpritesAction: IAction
 {
-    public CreateSpritesAction()
+    public int Delay;
+    public CreateSpritesAction(int delay)
     {
+        Delay = delay;
     }
-
     public void Execute()
     {
         var sourceFolderPath = Path.Combine( GuideCli.ResourcesPath,"Images");
@@ -41,6 +42,8 @@ public class CreateSpritesAction: IAction
             File.Copy(file, destPath, true);
         }
         
+        
+        Thread.Sleep(Delay);
         Console.ForegroundColor = ConsoleColor.Yellow;
         ExerciseHelper.PromptAnswerAndConfirm( "Escreve 'proximo' ou 'p' para avançar (ou 'ajuda')" );
         //Prompt.Confirm("Quando completares o desafio avança para a frente\n", false);
