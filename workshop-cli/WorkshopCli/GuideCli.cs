@@ -65,7 +65,7 @@ public class GuideCli
             var step = guide.Steps[ i ];
             Console.ForegroundColor = ConsoleColor.DarkGray;
             Console.WriteLine(step.Id);
-            Console.ForegroundColor = ConsoleColor.White;
+            Console.ForegroundColor = ConsoleColor.Black;
             session.StepId = step.Id;
             currentIndex = i;
             
@@ -87,6 +87,7 @@ public class GuideCli
                             int currentLineLength = 0;
                             int windowWidth = 60;
                             string wrappedString = WrapString(fileContents, windowWidth);
+                            Console.ForegroundColor = ConsoleColor.White;
                             Console.WriteLine(wrappedString);
                         }
                         //repoManager.Commit( session.Name );

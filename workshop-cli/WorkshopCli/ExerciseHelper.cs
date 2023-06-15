@@ -98,6 +98,10 @@ public class ExerciseHelper
                 {
                     GuideCli.adminInput = Int32.Parse(inputs[1]);
                 }
+                else
+                {
+                    Console.WriteLine( "Resposta inválida.");
+                }
             }
             else
             { 
