@@ -11,5 +11,4 @@
 ██   ██ ██           ██ ██   ██ ██      ██ ██    ██
 ██████  ███████ ███████ ██   ██ ██      ██  ██████
 
-Agora quero que corras o teu jogo, usa a combinação 'alt+L', e 
-vê o que acontece.
+Agora quero que corras o teu jogo, usa a combinação 'alt+L', e vê o que acontece.

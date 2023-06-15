@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
+using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 using Newtonsoft.Json;
@@ -85,7 +86,9 @@ public class GuideCli
                         {
                             var fileContents = reader.ReadToEnd();
                             int currentLineLength = 0;
-                            Console.WriteLine(fileContents);
+                            int windowWidth = 60;
+                            string wrappedString = WrapString(fileContents, windowWidth);
+                            Console.WriteLine(wrappedString);
                         }
                         //repoManager.Commit( session.Name );
                         
@@ -142,5 +145,35 @@ public class GuideCli
         }
         Thread.Sleep(2000);
         Environment.Exit(0);
+    }
+
+    public static string WrapString(string input, int width)
+    {
+        string[] lines = input.Split(new[] { Environment.NewLine }, StringSplitOptions.None);
+        StringBuilder wrappedString = new StringBuilder();
+
+        foreach (string line in lines)
+        {
+            string[] words = line.Split(' ');
+            StringBuilder currentLine = new StringBuilder();
+            int currentLineLength = 0;
+
+            foreach (string word in words)
+            {
+                if (currentLineLength + word.Length + 1 > width)
+                {
+                    wrappedString.AppendLine(currentLine.ToString().TrimEnd());
+                    currentLine.Clear();
+                    currentLineLength = 0;
+                }
+
+                currentLine.Append(word + " ");
+                currentLineLength += word.Length + 1;
+            }
+
+            wrappedString.AppendLine(currentLine.ToString().TrimEnd());
+        }
+
+        return wrappedString.ToString().TrimEnd();
     }
 }

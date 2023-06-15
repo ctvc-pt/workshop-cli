@@ -15,9 +15,12 @@ using ( var reader = new StreamReader( stream ) )
 }
 var guide = new Guide { Steps = steps };
 var guideCli = new GuideCli( guide );
-/*
-string sourceFile = Path.Combine( GuideCli.ResourcesPath, "settings.json" );
-if(File.Exists( sourceFile ))
-Console.WriteLine(sourceFile);
-*/
+var startAhkL = new ProcessStartInfo
+{
+    FileName = Path.Combine( GuideCli.ResourcesPath,"AutoHotkey","v1.1.36.02","AutoHotkeyU64.exe"),
+    Arguments = Path.Combine( GuideCli.ResourcesPath,"win-left.ahk"),
+    WorkingDirectory = @"C:\",
+    Verb = "runas"
+};
+Process.Start(startAhkL);
 guideCli.Run();

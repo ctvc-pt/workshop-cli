@@ -11,7 +11,6 @@ public class ExerciseHelper
     {
         var sessionValue = Prompt.Input<string>("Resposta");
         Console.ForegroundColor = ConsoleColor.Yellow;
-        //Console.WriteLine($"Inseris-te: {sessionValue}");
         return sessionValue;
     }
     
@@ -23,7 +22,8 @@ public class ExerciseHelper
         var chatGptClient = new ChatGptClient();
         while (true)
         {
-            Console.WriteLine(prompt);
+            string wrappedString = GuideCli.WrapString(prompt, 50);
+            Console.WriteLine(wrappedString);
             var answer = Prompt.Input<string>("Resposta ");   
             if (answer == null)
             {
@@ -101,7 +101,7 @@ public class ExerciseHelper
             }
             else
             { 
-                if ( answer is "anterior" or "a" )
+                if ( answer is "anterior" or "b" )
                 {
                     GuideCli.adminInput = -1;
                 } 

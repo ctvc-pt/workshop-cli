@@ -9,5 +9,4 @@ Deves ter visto no teu programa a seguinte frase:
 | |_| | |___ ___) / ___ \|  _|  | | |_| |
 |____/|_____|____/_/   \_\_|   |___\___/
 
-Imprime o teu nome no ecra de jogo em vez de 'Ola mundo!', 
-não te esqueças de executar o jogo com o "alt+L"
+Imprime o teu nome no ecra de jogo em vez de 'Ola mundo!', não te esqueças de executar o jogo com o "alt+L"

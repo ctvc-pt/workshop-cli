@@ -19,6 +19,7 @@ public class OpenFileL2DAction : IAction
 
     public void Execute()
     {
+        Console.ForegroundColor = ConsoleColor.Black;
         var desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
         var txtFilePath = Path.Combine( GuideCli.ResourcesPath,"session.txt" );
         if ( !File.Exists( txtFilePath ) )
@@ -149,15 +150,16 @@ public class OpenFileL2DAction : IAction
         if ( resourceStream != null )
         {
             using ( var reader = new StreamReader( resourceStream ) )
-            {
+            {   
                 var fileContents = reader.ReadToEnd();
+                Console.ForegroundColor = ConsoleColor.White;
                 Console.WriteLine( fileContents );
+                Console.ForegroundColor = ConsoleColor.Black;
             }
         }
         
         Thread.Sleep(Delay);
         Console.ForegroundColor = ConsoleColor.Yellow;
-
         ExerciseHelper.PromptAnswerAndConfirm( "Verifica o código e escreve 'proximo' ou 'p' para continuar (ou 'ajuda')\n" );
     }
 }
