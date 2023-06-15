@@ -273,6 +273,8 @@
       <EmbeddedResource Include="Guide\032-collisions.md" />
       <None Remove="Guide\033-desafio.md" />
       <EmbeddedResource Include="Guide\033-desafio.md" />
+      <None Remove="Guide\018-speed.md" />
+      <EmbeddedResource Include="Guide\018-speed.md" />
     </ItemGroup>
 
 </Project>

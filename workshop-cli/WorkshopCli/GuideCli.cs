@@ -33,7 +33,6 @@ public class GuideCli
 
     public void Run()
     {
-        
         var repoManager = new GitHubManager();
         
         var assembly = Assembly.GetExecutingAssembly();
@@ -69,8 +68,6 @@ public class GuideCli
             session.StepId = step.Id;
             currentIndex = i;
             
-            
-
             if ( step.Type != "code" && step.Type != "open-file" && step.Type != "intro")
             {
                 if ( i > 8 )

@@ -18,10 +18,8 @@ primeiro para "posicaoX" e o segundo para "posicaoY"
 
 
 
-Desafio-te a mudares a imagem da nave por outras imagem 
-que tens na pasta.
-Tens um desafio extra para mostrar que és um craque nisto, muda 
-a posição da nave ao teu gosto.
+Desafio-te a mudares a imagem da nave por outras imagem que tens na pasta.
+Tens um desafio extra para mostrar que és um craque nisto, muda a posição da nave ao teu gosto.
 
 Volta a correr o jogo (alt+l) para verificar se esta tudo bem.
 

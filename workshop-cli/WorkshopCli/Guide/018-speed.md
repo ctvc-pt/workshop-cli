@@ -21,4 +21,4 @@ Não te esqueças de fazer para os lados todos e depois clica alt + l para corre
 
 
 Deves ter visto que não alterou nada em relação ao que tinhamos.
-Altera o valor da velocida para o valores que desejas e vê que acontece.
+Altera o valor da velocidade para o valores que desejas e vê que acontece.
