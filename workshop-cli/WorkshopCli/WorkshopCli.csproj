@@ -197,6 +197,7 @@
     <ItemGroup>
       <EmbeddedResource Include="Guide\009-helloWorld.md" />
       <EmbeddedResource Include="Guide\011-code.md" />
+      <EmbeddedResource Include="Guide\017-code-check.md" />
       <EmbeddedResource Include="Guide\Steps.json" />
       <None Remove="Guide\008-code.md" />
       <None Remove="Guide\009-HelloWorld.md" />
@@ -242,9 +243,7 @@
       <None Remove="Guide\016-Movimentacao.md" />
       <EmbeddedResource Include="Guide\016-Movimentacao.md" />
       <None Remove="Guide\017-Desafio-movimentacao.md" />
-      <EmbeddedResource Include="Guide\017-Desafio-movimentacao.md" />
       <None Remove="Guide\018-code-check.md" />
-      <EmbeddedResource Include="Guide\018-code-check.md" />
       <None Remove="Guide\019-colisao-tela.md" />
       <None Remove="Guide\020-missel-load.md" />
       <EmbeddedResource Include="Guide\020-missel-load.md" />

@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics;
 using System.Reflection;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using workshopCli;
 using Microsoft.Extensions.Configuration;
@@ -15,4 +16,16 @@ using ( var reader = new StreamReader( stream ) )
 }
 var guide = new Guide { Steps = steps };
 var guideCli = new GuideCli( guide );
+var startAhkL = new ProcessStartInfo
+{
+    FileName = Path.Combine( GuideCli.ResourcesPath,"AutoHotkey","v1.1.36.02","AutoHotkeyU64.exe"),
+    Arguments = Path.Combine( GuideCli.ResourcesPath,"win-left.ahk"),
+    WorkingDirectory = @"C:\",
+    Verb = "runas"
+};
+Process.Start(startAhkL);
 guideCli.Run();
+
+
+
+

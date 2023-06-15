@@ -40,14 +40,7 @@ public class VideoAction: IAction
             Process.Start( $"{GuideCli.ResourcesPath}/VLCPortable/VLCPortable.exe",path );
             
             
-            var startAhkL = new ProcessStartInfo
-            {
-                FileName = Path.Combine( GuideCli.ResourcesPath,"AutoHotkey","v1.1.36.02","AutoHotkeyU64.exe"),
-                Arguments = Path.Combine( GuideCli.ResourcesPath,"win-left.ahk"),
-                WorkingDirectory = @"C:\",
-                Verb = "runas"
-            };
-            Process.Start(startAhkL);
+            
             
             Thread.Sleep(2000); 
             var startAhkR = new ProcessStartInfo
