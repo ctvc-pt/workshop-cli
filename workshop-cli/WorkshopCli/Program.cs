@@ -15,4 +15,9 @@ using ( var reader = new StreamReader( stream ) )
 }
 var guide = new Guide { Steps = steps };
 var guideCli = new GuideCli( guide );
+/*
+string sourceFile = Path.Combine( GuideCli.ResourcesPath, "settings.json" );
+if(File.Exists( sourceFile ))
+Console.WriteLine(sourceFile);
+*/
 guideCli.Run();

@@ -89,10 +89,15 @@ public class OpenFileL2DAction : IAction
                 "User",
                 "settings.json" );
 
-            if (settingsPath == null)
+            if (!File.Exists( settingsPath ))
             {
                 string sourceFile = Path.Combine( GuideCli.ResourcesPath, "settings.json" );
-                File.Copy( sourceFile , settingsPath );
+                string destinationFolder = Path.Combine( 
+                    Environment.GetFolderPath( Environment.SpecialFolder.ApplicationData ),
+                    "Code",
+                    "User",
+                    "settings.json");
+                File.Copy( sourceFile , destinationFolder, true );
             }
 
             var jsonset = File.ReadAllText( settingsPath );
