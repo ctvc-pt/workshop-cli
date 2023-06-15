@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using System.Net;
 using System.Reflection;
 using Newtonsoft.Json;
 using Sharprompt;
@@ -13,12 +14,9 @@ public class VideoAction: IAction
     {
         this.currentIndex = currentIndex;
     }
-
+    
     public void Execute()
     {
-        
-        
-        
         var assembly = Assembly.GetExecutingAssembly();
         var steps = new List<Guide.Step>();
 
@@ -31,7 +29,6 @@ public class VideoAction: IAction
         
         var guide = new Guide { Steps = steps };
 
-       
         var step = guide.Steps[currentIndex];
             Console.WriteLine( $"Playing video: {step.Message}" );
             // Call the method to play the video using the path in step.Message
@@ -55,10 +52,30 @@ public class VideoAction: IAction
             var installer = new PythonInstaller();
             installer.InstallPython();
             
+            string downloadUrl = "https://code.visualstudio.com/sha/download?build=stable&os=win32-x64-user";
+
+            // Set the installation directory for VS Code
+            string installDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + @"\VSCode";
+            if (!Directory.Exists(installDirectory))
+            {
+                Directory.CreateDirectory(installDirectory);
+            }
+            string installerPath = installDirectory + @"\VSCodeSetup.exe";
+            using (var client = new WebClient())
+            {
+                Console.WriteLine("Downloading VS Code installer...");
+                client.DownloadFile(downloadUrl, installerPath);
+            }
+            Process.Start(new ProcessStartInfo
+            {
+                FileName = installerPath,
+                Arguments = "/verysilent /mergetasks=!runcode",
+                WorkingDirectory = installDirectory
+            }).WaitForExit();
+            Console.WriteLine("VS Code installation completed successfully!");
+            
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("Clica Enter para continuar...");
             Console.ReadLine();
-            
-            
     }
 }

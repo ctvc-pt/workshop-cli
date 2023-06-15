@@ -53,6 +53,8 @@ public class OpenFileL2DAction : IAction
                  */
         }
         try {
+            
+            //Open VS Code
             var startFolderInfo = new ProcessStartInfo {
                 FileName = $"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}/../Local/Programs/Microsoft VS Code/Code.exe",
                 Arguments = $"\"{ folderPath }\" --disable-workspace-trust",
@@ -60,7 +62,9 @@ public class OpenFileL2DAction : IAction
                 Verb = "runas"
             };
             Process.Start(startFolderInfo);
-            Thread.Sleep(1000); 
+            Thread.Sleep(1000);
+            
+            //Open CLI using AutoHotKey
             var startAhkR = new ProcessStartInfo
             {
                 FileName = Path.Combine( GuideCli.ResourcesPath,"AutoHotkey","v1.1.36.02","AutoHotkeyU64.exe"),
@@ -70,8 +74,7 @@ public class OpenFileL2DAction : IAction
             };
             Process.Start(startAhkR);
             
-
-            
+            //Install extension on VS Code
             var startCommandInfo = new ProcessStartInfo {
                 FileName = "cmd.exe",
                 Arguments = $"/C code --install-extension pixelbyte-studios.pixelbyte-love2d",
@@ -85,6 +88,17 @@ public class OpenFileL2DAction : IAction
                 "Code",
                 "User",
                 "settings.json" );
+
+            if (!File.Exists( settingsPath ))
+            {
+                string sourceFile = Path.Combine( GuideCli.ResourcesPath, "settings.json" );
+                string destinationFolder = Path.Combine( 
+                    Environment.GetFolderPath( Environment.SpecialFolder.ApplicationData ),
+                    "Code",
+                    "User",
+                    "settings.json");
+                File.Copy( sourceFile , destinationFolder, true );
+            }
 
             var jsonset = File.ReadAllText( settingsPath );
             

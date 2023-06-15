@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using System.Net;
 
 namespace workshopCli;
 
@@ -19,13 +20,9 @@ public class InstallAction : IAction
         loveProcess.StartInfo.Verb = "runas";
         loveProcess.Start();
         loveProcess.WaitForExit();
-
         if ( !File.Exists(exePath) )
         {
             Execute();
         }
-        
-       
-        
     }
 }
