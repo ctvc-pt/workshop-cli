@@ -29,7 +29,7 @@
     {
         "Id": "006-Criar-ficheiro",
         "Type": "open-file",
-        "Delay": "5000"
+        "Delay": "15000"
     },
     {
         "Id": "007-code",
@@ -38,12 +38,12 @@
     {
         "Id": "008-HelloWorld",
         "Type": "challenge",
-        "Delay": "20000"
+        "Delay": "30000"
     },
     {
         "Id": "009-helloWorld",
         "Type": "information",
-        "Delay": "20000"
+        "Delay": "30000"
     },
     {
         "Id": "011-code",
@@ -52,27 +52,27 @@
     {
         "Id": "010-recursos",
         "Type": "CreateSprites",
-        "Delay": "30000"
+        "Delay": "50000"
     },
     {
         "Id": "013-jogador",
         "Type": "challenge",
-        "Delay": "20000"
+        "Delay": "60000"
     },
     {
         "Id": "016-Movimentacao",
         "Type": "information",
-        "Delay": "20000"
+        "Delay": "120000"
     },
     {
-        "Id": "017-Desafio-movimentacao",
-        "Type": "challenge",
-        "Delay": "60000"
-    },
-    {
-        "Id": "018-code-check",
+        "Id": "017-code-check",
         "Type": "information",
-        "Delay": "15000"
+        "Delay": "10000"
+    },
+    {
+        "Id": "018-speed",
+        "Type": "information",
+        "Delay": "30000"
     },
     {
         "Id": "020-missel-load",

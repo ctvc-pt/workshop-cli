@@ -60,7 +60,6 @@ public class GuideCli
         }
 
         int currentIndex = 0;
-
         for ( var i = startIndex; i < guide.Steps.Count; i++ )
         {
             var step = guide.Steps[ i ];
@@ -99,12 +98,12 @@ public class GuideCli
             if ( i > 4 )
                 Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine( step.Message );
-            //Console.ForegroundColor = ConsoleColor.White;
+            Console.ForegroundColor = ConsoleColor.White;
 
-            var delay = 0;
-            delay = step.Delay;
-            if ( delay==0 )
-                delay = 2000;
+            
+            var delay = step.Delay;
+            if ( delay==0 && delay==null)
+                delay = 10000;
             
             var actions = new Dictionary<string, IAction>()
             {
@@ -142,7 +141,10 @@ public class GuideCli
             helpRequest.GetHelp(session.Name,session.StepId);
             File.WriteAllText( txtFilePath, JsonConvert.SerializeObject( session ) );
             Console.Clear();
+           
         }
+        
+
         Thread.Sleep(2000);
         Environment.Exit(0);
     }

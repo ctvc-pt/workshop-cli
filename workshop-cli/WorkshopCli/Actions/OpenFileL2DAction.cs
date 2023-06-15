@@ -141,7 +141,7 @@ public class OpenFileL2DAction : IAction
         
         Thread.Sleep(500); 
         
-        Console.Clear();
+        //Console.Clear();
         
         var MDPath = $"{stepId}.md";
         var assembly = Assembly.GetExecutingAssembly();

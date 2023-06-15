@@ -35,7 +35,9 @@ public class VideoAction: IAction
             var path = Path.Combine( GuideCli.ResourcesPath, step.Message );
            
             Process.Start( $"{GuideCli.ResourcesPath}/VLCPortable/VLCPortable.exe",path );
-        
+            
+            
+            
             
             Thread.Sleep(2000); 
             var startAhkR = new ProcessStartInfo

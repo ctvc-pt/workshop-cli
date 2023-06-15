@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics;
 using System.Reflection;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using workshopCli;
 using Microsoft.Extensions.Configuration;
@@ -24,3 +25,7 @@ var startAhkL = new ProcessStartInfo
 };
 Process.Start(startAhkL);
 guideCli.Run();
+
+
+
+
