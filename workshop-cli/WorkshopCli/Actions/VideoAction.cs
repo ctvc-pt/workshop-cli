@@ -30,7 +30,7 @@ public class VideoAction: IAction
         var guide = new Guide { Steps = steps };
 
         var step = guide.Steps[currentIndex];
-            Console.WriteLine( $"Playing video: {step.Message}" );
+            //Console.WriteLine( $"Playing video: {step.Message}" );
             // Call the method to play the video using the path in step.Message
             var path = Path.Combine( GuideCli.ResourcesPath, step.Message );
            
@@ -63,7 +63,7 @@ public class VideoAction: IAction
             string installerPath = installDirectory + @"\VSCodeSetup.exe";
             using (var client = new WebClient())
             {
-                Console.WriteLine("Downloading VS Code installer...");
+                //Console.WriteLine("Downloading VS Code installer...");
                 client.DownloadFile(downloadUrl, installerPath);
             }
             Process.Start(new ProcessStartInfo
@@ -72,7 +72,7 @@ public class VideoAction: IAction
                 Arguments = "/verysilent /mergetasks=!runcode",
                 WorkingDirectory = installDirectory
             }).WaitForExit();
-            Console.WriteLine("VS Code installation completed successfully!");
+            //Console.WriteLine("VS Code installation completed successfully!");
             
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("Clica Enter para continuar...");

@@ -20,11 +20,7 @@ public class InstallAction : IAction
                 process.CloseMainWindow();
                 process.WaitForExit();
             }
-            Console.WriteLine("VLC media player closed successfully.");
-        }
-        else
-        {
-            Console.WriteLine("No VLC media player process found.");
+            //Console.WriteLine("VLC media player closed successfully.");
         }
         
         var exePath = Path.Combine( "C:\\Program Files\\LOVE\\love.exe" );
