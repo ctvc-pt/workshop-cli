@@ -89,6 +89,12 @@ public class OpenFileL2DAction : IAction
                 "User",
                 "settings.json" );
 
+            if (settingsPath == null)
+            {
+                string sourceFile = Path.Combine( GuideCli.ResourcesPath, "settings.json" );
+                File.Copy( sourceFile , settingsPath );
+            }
+
             var jsonset = File.ReadAllText( settingsPath );
             
             // Check if the "files.autoSave" setting is already present in the JSON
@@ -121,7 +127,7 @@ public class OpenFileL2DAction : IAction
                 Verb = "runas"
             };
             
-            Process.Start(startFileInfo);
+            //Process.Start(startFileInfo);
         } catch (Exception ex) {
             Console.WriteLine("Error opening file: " + ex.Message);
         }
