@@ -96,7 +96,7 @@ public class GuideCli
             if ( i > 4 )
                 Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine( step.Message );
-            Console.ForegroundColor = ConsoleColor.White;
+            //Console.ForegroundColor = ConsoleColor.White;
 
             var delay = 0;
             delay = step.Delay;

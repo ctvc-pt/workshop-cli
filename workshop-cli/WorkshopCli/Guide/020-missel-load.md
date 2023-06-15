@@ -1,5 +1,7 @@
 
-1. O proximo passo é meter a nossa nave a disparar mísseis e tal como a nave o primeiro passo é indicar a imagem e os seus atributos na função "load()".
+1. O proximo passo é meter a nossa nave a disparar mísseis e tal como 
+a nave o primeiro passo é indicar a imagem e os seus atributos na 
+função "load()".
 
 Primeiro escolhe na pasta uma imagem para ser o míssel da tua nave.
 Implementa o seguinte código na função "load()"
