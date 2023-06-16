@@ -22,6 +22,7 @@ public class GuideCli
     public Guide guide;
     CsvSessionWriter sessionWriter = new CsvSessionWriter();
     CsvHelpRequest helpRequest = new CsvHelpRequest();
+   
 
     public static int adminInput;
 

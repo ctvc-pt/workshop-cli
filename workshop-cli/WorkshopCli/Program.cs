@@ -24,22 +24,9 @@ var startAhkL = new ProcessStartInfo
     Verb = "runas"
 };
 
-for ( var i = 0; i < guide.Steps.Count; i++ )
-{
-    if ( i > 7 )
-    {
-        
-        var startFileInfo = new ProcessStartInfo {
-            FileName = $"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}/../Local/Programs/Microsoft VS Code/Code.exe",
-            Arguments = "--disable-workspace-trust",
-            WorkingDirectory = @"C:\",
-            Verb = "runas"
-        };
-        Process.Start(startFileInfo);
-        break;
-    }
+
  
-}
+
 
 Process.Start(startAhkL);
 guideCli.Run();
