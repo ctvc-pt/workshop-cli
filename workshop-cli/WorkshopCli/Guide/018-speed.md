@@ -1,7 +1,7 @@
 
 Agora que já temos a nossa nave a movimentar-se para todos os lados vamos adicionar a velocidade.
 
-1. Dentro da função "load" adiciona:
+1. Dentro da função "load()" adiciona:
    velocidade = 1;
 
 2. Agora no codigo que fizemos á pouco altera o numero 1 por velocidade

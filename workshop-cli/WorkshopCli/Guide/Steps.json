@@ -75,6 +75,11 @@
         "Delay": "30000"
     },
     {
+        "Id": "019-video",
+        "Type": "video",
+        "Message": "mid.mp4"
+    },
+    {
         "Id": "020-missel-load",
         "Type": "information"
     },
