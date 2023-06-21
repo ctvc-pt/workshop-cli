@@ -10,10 +10,12 @@ namespace workshopCli;
 public class VideoAction: IAction
 {
     int currentIndex;
+    int Delay;
 
-    public VideoAction( int currentIndex )
+    public VideoAction( int currentIndex, int Delay )
     {
         this.currentIndex = currentIndex;
+        this.Delay = Delay;
     }
     
     public void Execute()
@@ -55,6 +57,8 @@ public class VideoAction: IAction
             {
                 InstallVSCode();
             }
+            
+            Thread.Sleep(Delay);
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("Clica Enter para continuar...");
 

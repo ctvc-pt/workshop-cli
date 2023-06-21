@@ -119,7 +119,7 @@ public class GuideCli
                 { "ask-name", new AskNameAction( this ) },
                 { "ask-age", new AskAgeAction( this ) },
                 { "ask-email", new AskEmailAction( this ) },
-                { "video", new VideoAction( currentIndex ) }
+                { "video", new VideoAction( currentIndex,delay ) }
             };
 
             if ( actions.TryGetValue( step.Type, out var action ) )
