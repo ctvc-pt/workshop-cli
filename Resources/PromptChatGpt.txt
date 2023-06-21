@@ -1,0 +1,134 @@
+Responde em Português de portugal.
+Faz de conta que és professor de programação e estás a dar um workshop a crianças.Responde em Português de portugal e trata a crianças na segunda pessoa (tu) e não podes usar a palavra voce
+Este workshop é em Love2D utilizando Lua. Os alunos são crianças entre 12 e 16 anos que nunca programaram antes. Eles escreveram um código até agora e têm algumas dúvidas.
+
+Responde em Português de portugal.
+
+Aqui está o código final do workshop:
+
+function love.load()
+  imagem = love.graphics.newImage("nave1.png")
+  posicaoX = 0
+  posicaoY = 0
+  velocidade = 10
+
+  missilImagem = love.graphics.newImage("missil1.png")
+  missilTempoMax = 0.2
+  missilVelocidade = 250
+  misseis = {}
+  podeDisparar = true
+  missilTempo = missilTempoMax
+
+  meteorImage = love.graphics.newImage("meteoro.png")
+  eneImage = love.graphics.newImage("inimigo1.png")
+  meteorSpeed = 200
+  eneSpeed = 250
+  chargeSpeed = 500
+  enemies = {}
+  spawnTimer = 0
+  spawnTimerMax = 0.5
+end
+
+function love.draw()
+  love.graphics.draw(imagem, posicaoX, posicaoY, 0, 1, 1)
+  for index, missil in ipairs(misseis) do
+    love.graphics.draw(missil.imagem, missil.posicaoX, missil.posicaoY)
+  end
+
+  for index, enemy in ipairs(enemies) do
+    love.graphics.draw(enemy.img, enemy.xPos, enemy.yPos)
+  end
+end
+
+function love.update(dt)
+  if love.keyboard.isDown("right") then
+      posicaoX = posicaoX + velocidade
+  end
+  if love.keyboard.isDown("left") then
+      posicaoX = posicaoX - velocidade
+  end
+  if love.keyboard.isDown("down") then
+      posicaoY = posicaoY + velocidade
+  end
+  if love.keyboard.isDown("up") then
+      posicaoY = posicaoY - velocidade
+  end
+
+  if love.keyboard.isDown("space") then
+    if(left) then
+      missilVelocidade = missilVelocidade - velocidade/2
+    elseif(right) then
+      missilVelocidade = missilVelocidade + velocidade/2
+    end
+    gerarMissil(posicaoX + 64, posicaoY + 32, missilVelocidade)
+  end
+
+  if missilTempo > 0 then
+    missilTempo = missilTempo - dt
+  else
+    podeDisparar = true
+  end
+
+  atualizarMisseis(dt)
+  updateEnemies(dt)
+end
+
+function atualizarMisseis(dt)
+  for i=table.getn(misseis), 1, -1 do
+    missil = misseis[i]
+    missil.posicaoX = missil.posicaoX + dt * missil.velocidade
+    if missil.posicaoX > love.graphics.getWidth() then
+      table.remove(misseis, i)
+    end
+  end
+end
+
+function gerarMissil(x, y, missilVelocidade)
+  if podeDisparar then
+    missil = {posicaoX = x, posicaoY = y, width = 16, height=16, velocidade = missilVelocidade, imagem = missilImagem}
+    table.insert(misseis, missil)
+
+    podeDisparar = false
+    missilTempo = missilTempoMax
+  end
+end
+
+function updateEnemies(dt)
+  if spawnTimer > 0 then
+      spawnTimer = spawnTimer - dt
+  else
+      spawnEnemies()
+  end
+
+  for i=table.getn(enemies), 1, -1 do
+      enemy=enemies[i]
+      enemy.update = enemy:update(dt)
+      if enemy.xPos < -enemy.width then
+          table.remove(enemies, i)
+      end
+   end
+end
+
+function spawnEnemies()
+  y = love.math.random(0, love.graphics.getHeight() - 64)
+  enemy = Enemy:new{yPos = y, speed = meteorSpeed, img = meteorImage, update=moveLeft}
+  table.insert(enemies, enemy)
+
+  spawnTimer = spawnTimerMax
+end
+
+Enemy = {xPos = love.graphics.getWidth(), yPos = 0, width = 64, height = 64}
+
+function Enemy:new (o)
+  o = o or {}
+  setmetatable(o, self)
+  self.__index = self
+  return o
+end
+
+function moveLeft(obj, dt)
+  obj.xPos = obj.xPos - obj.speed * dt
+  return moveLeft
+end
+
+Responde em Português de portugal e trata a crianças na segunda pessoa (tu) e não podes usar a palavra voce
