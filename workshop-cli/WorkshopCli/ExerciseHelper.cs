@@ -102,7 +102,7 @@ public class ExerciseHelper
             }
             else if (answer.ToLower() is "admin")
             {
-                Console.ForegroundColor = ConsoleColor.Black;
+                Console.ForegroundColor = ConsoleColor.DarkGray;
                 var input = Console.ReadLine().ToLower();
                 string[] inputs = new string[] { };
                 
