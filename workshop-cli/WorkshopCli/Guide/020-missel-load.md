@@ -17,12 +17,12 @@ end
 
 3. Insere no update(dt) o seguinte codigo:
 
-if love.keyboard.isDown("b") then
+if love.keyboard.isDown("space") then
     missil = {x = posicaoX, y = posicaoY, velocidade = 300, imagem = missilImagem}
     table.insert(misseis, missil)
 end
 
-Ao precionar a tecla 'b' cria e lança um míssil no jogo. 
+Ao precionar a tecla 'SPACEBAR' cria e lança um míssil no jogo. 
 
 4. Inicia o jogo (alt+L) e vê o que há de novo.
 

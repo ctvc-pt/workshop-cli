@@ -1,12 +1,11 @@
 
-Já temos a nossa nave a desenhar, agora vamos criar as coordanadas para a nossa nave.
+Já consegues ver a tua nave, agora vamos definir a posição dela no ecrã.
 
 1. Adiciona na função "load()":
   posicaoX = 0
   posicaoY = 0
 
-2. Na função "draw()" onde tem os números '100', altera o 
-primeiro para "posicaoX" e o segundo para "posicaoY"
+2. Na função "draw()" onde tem os números '100', altera o primeiro para "posicaoX" e o segundo para "posicaoY"
 
 
 
