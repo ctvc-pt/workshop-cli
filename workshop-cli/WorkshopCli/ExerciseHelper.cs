@@ -57,7 +57,7 @@ public class ExerciseHelper
                 Console.Write( $"{session.Name}: " ); //pergunta
                 var userMessage = Console.ReadLine();
                 var response = chatGptClient.AskGPT( userMessage ).Result; //resposta
-                var typewriter = new TypewriterEffect(100); // Create an instance of TypewriterEffect with a delay of 100ms
+                var typewriter = new TypewriterEffect(50); // Create an instance of TypewriterEffect with a delay of 100ms
                 typewriter.Type(response, ConsoleColor.Cyan);
                 //Console.WriteLine( $"Assistant: {response}" );
 
@@ -75,7 +75,7 @@ public class ExerciseHelper
                     {
                         CsvHelpRequest.printHelp( true, false );
                         Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine( "Fizeste um pedido de ajuda, espera um bocado que alguém vem ter contigo" );
+                        Console.WriteLine( "Fizeste um pedido de ajuda, espera por um professor." );
                         Console.WriteLine( "ATENÇÃO: se saires desta mensagem o teu pedido de ajuda desaparece" );
                         Console.WriteLine( "Escreve 'continuar' ou 'done' para continuar o workshop." );
                         Console.ResetColor();
@@ -125,10 +125,6 @@ public class ExerciseHelper
                 {
                     GuideCli.adminInput = -1;
                 } 
-                if (answer is "proximo" or "p" )
-                {
-                    return true;
-                }
                 else if (answer == "s")
                 {
                     return false;

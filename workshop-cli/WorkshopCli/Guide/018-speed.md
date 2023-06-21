@@ -1,16 +1,16 @@
 
-Agora que já temos a nossa nave a movimentar-se para todos os lados vamos adicionar a velocidade.
+Agora que já temos a nossa nave a movimentar-se para todos os lados, vamos adicionar a velocidade.
 
 1. Dentro da função "load()" adiciona:
    velocidade = 1
 
-2. Agora no codigo que fizemos á pouco altera o numero 1 por velocidade
+2. No codigo que fizemos à pouco, altera o número 1 por velocidade
 
    if love.keyboard.isDown("right") then
      posicaoX = posicaoX + velocidade
    end
 
-Não te esqueças de fazer para os lados todos e depois clica alt + l para correr o jogo.
+Não te esqueças de fazer para os lados todos e depois clica alt + L para correr o jogo.
 
 
      ____  _____ ____    _    _____ ___ ___  
