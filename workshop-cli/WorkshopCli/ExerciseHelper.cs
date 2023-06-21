@@ -125,6 +125,10 @@ public class ExerciseHelper
                 {
                     GuideCli.adminInput = -1;
                 } 
+                else if (answer is "proximo" or "p" )
+                {
+                    return true;
+                }
                 else if (answer == "s")
                 {
                     return false;
