@@ -22,8 +22,9 @@ namespace workshopCli
             var txtFilePath = Path.Combine( GuideCli.ResourcesPath,"session.txt" );
             var session = JsonConvert.DeserializeObject<Session>(File.ReadAllText( txtFilePath ));
             var username = session.Name;
-            var folderPath = Path.Combine(desktopPath, $"{username}_{DateTime.Now.ToString("dd-MM-yyyy")}", "mygame");
-            var filePath = Path.Combine(folderPath, "main.lua");
+            //var folderPath = Path.Combine(desktopPath, $"{username}_{DateTime.Now.ToString("dd-MM-yyyy")}", "mygame");
+            var filePath = Path.Combine(GuideCli.ResourcesPath, "PromptChatGpt.txt");
+            var fileContent = File.ReadAllText(filePath);
             //-----------------------
             
             var configuration = new ConfigurationBuilder()
@@ -38,7 +39,7 @@ namespace workshopCli
                 model = "gpt-3.5-turbo-0301",
                 messages = new[]
                 {
-                    new { role = "system", content = " Responde em Português de portugal, Este programa é um workshop em love2d em lua. Os alunos são crianças de 12 aos 16 que nunca programaram na vida. Eles vão-te escrever duvidas e tens de o ajudar este é o codigo que ele fizeram até agora:"+filePath+" Responde em Português de portugal"},
+                    new { role = "system", content = fileContent},
                     new { role = "user", content = userMessage }
                 }
             };
