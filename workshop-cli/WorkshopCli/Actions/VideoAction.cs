@@ -1,6 +1,7 @@
 using System.Diagnostics;
 using System.Net;
 using System.Reflection;
+using System.Runtime.InteropServices;
 using Newtonsoft.Json;
 using Sharprompt;
 
@@ -17,6 +18,7 @@ public class VideoAction: IAction
     
     public void Execute()
     {
+        Console.ForegroundColor = ConsoleColor.Black;
         var assembly = Assembly.GetExecutingAssembly();
         var steps = new List<Guide.Step>();
 
@@ -54,7 +56,16 @@ public class VideoAction: IAction
                 InstallVSCode();
             }
             Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine("Press Enter to continue...");
+            Console.WriteLine("Clica Enter para continuar...");
+
+            [DllImport( "user32.dll" )]
+            static extern bool SetForegroundWindow( IntPtr hWnd );
+            [DllImport( "kernel32.dll" )]
+            static extern IntPtr GetConsoleWindow();
+
+            IntPtr consoleWindowHandle = GetConsoleWindow();
+            SetForegroundWindow( consoleWindowHandle );
+            
             Console.ReadLine();
     }
 
