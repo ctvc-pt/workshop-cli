@@ -11,7 +11,7 @@ misseis = {}
 
 for index, missil in ipairs(misseis) do
     love.graphics.draw(missil.imagem, missil.x, missil.y)
-    end
+    
 end
 
 
