@@ -27,6 +27,8 @@ baixo -> down
 
 Não te esqueças de verificar em que direção o jogador é movimentado, se for horizontal usa o posicaoX, se for vertical usa o posicaoY.
 
+Testa o jogo(Alt+L).
+
 Desafio extra:
 Se reparares a nave sai fora do ecrã, para impedir que a nave saia usa o seguinte codigo:
 

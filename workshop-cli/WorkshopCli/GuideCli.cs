@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Reflection;
 using System.Text;
@@ -69,7 +70,17 @@ public class GuideCli
             Console.ForegroundColor = ConsoleColor.Black;
             session.StepId = step.Id;
             currentIndex = i;
-            
+            if ( step.Type == "information" || step.Type == "challenge" )
+            {
+                var startFolderInfo = new ProcessStartInfo
+                {
+                    FileName = $"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}/../Local/Programs/Microsoft VS Code/Code.exe",
+                    Arguments = "--disable-workspace-trust",
+                    WorkingDirectory = @"C:\",
+                    Verb = "runas"
+                };
+                Process.Start(startFolderInfo);
+            }
             if ( step.Type != "code" && step.Type != "open-file" && step.Type != "intro")
             {
                 if ( i > 6 )

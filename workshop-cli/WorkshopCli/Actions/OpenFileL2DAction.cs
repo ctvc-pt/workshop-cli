@@ -160,6 +160,6 @@ public class OpenFileL2DAction : IAction
         
         Thread.Sleep(Delay);
         Console.ForegroundColor = ConsoleColor.Yellow;
-        ExerciseHelper.PromptAnswerAndConfirm( "Verifica o código e escreve 'proximo' ou 'p' para continuar (ou 'ajuda')\n" );
+        ExerciseHelper.PromptAnswerAndConfirm( "Verifica o código e escreve 'proximo' ou 'p' para continuar ou para retroceder escreve 'anterior' (ou 'ajuda')\n" );
     }
 }
