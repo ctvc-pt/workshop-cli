@@ -1,17 +1,15 @@
 
-O proximo passo é meter a nossa nave a disparar mísseis e tal como 
-a nave o primeiro passo é indicar a imagem e os seus atributos na 
-função "load()".
+O proximo passo é meter a nossa nave a disparar mísseis e tal como a nave o primeiro passo é indicar a imagem e os seus atributos na função "load()".
 
 1. Primeiro escolhe na pasta uma imagem para ser o míssel da tua nave.
 Implementa o seguinte código na função "load()"
 
-    missilImagem = love.graphics.newImage("nome_imagem.png")
-    missilTempoMax = 0.2
-    missilVelocidade = 250
-    misseis = {}
-    podeDisparar = true
-    missilTempo = missilTempoMax
+missilImagem = love.graphics.newImage("nome_imagem.png")
+missilTempoMax = 0.2
+missilVelocidade = 250
+misseis = {}
+podeDisparar = true
+missilTempo = missilTempoMax
 
 2. Agora vamos desenhar os mísseis na função "draw()"
 

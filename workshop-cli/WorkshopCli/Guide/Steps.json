@@ -84,10 +84,6 @@
         "Type": "information"
     },
     {
-        "Id": "021-missel-draw",
-        "Type": "information"
-    },
-    {
         "Id": "022-missel-update-missel",
         "Type": "information"
     },
