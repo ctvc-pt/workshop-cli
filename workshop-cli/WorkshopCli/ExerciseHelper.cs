@@ -9,10 +9,26 @@ public class ExerciseHelper
    
     public static string PromptAnswerAndPrint()
     {
-        var sessionValue = Prompt.Input<string>("Resposta");
+        string sessionValue = null;
+    
+        while (sessionValue == null)
+        {
+            sessionValue = Prompt.Input<string>("Resposta");
+
+            if (sessionValue == null)
+            {
+                // Handle the case when the string is null
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Invalid input. The value cannot be null.");
+                Console.ResetColor();
+            }
+        }
+
         Console.ForegroundColor = ConsoleColor.Yellow;
         return sessionValue;
     }
+
+
     
     public static bool PromptAnswerAndConfirm(string prompt)
     {

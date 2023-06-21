@@ -29,7 +29,7 @@
     {
         "Id": "006-Criar-ficheiro",
         "Type": "open-file",
-        "Delay": "15000"
+        "Delay": "5000"
     },
     {
         "Id": "007-code",
@@ -77,26 +77,16 @@
     {
         "Id": "019-video",
         "Type": "video",
-        "Message": "mid.mp4"
+        "Message": "mid.mp4",
+        "Delay": "49000"
     },
     {
         "Id": "020-missel-load",
-        "Type": "information"
-    },
-    {
-        "Id": "021-missel-draw",
-        "Type": "information"
+        "Type": "information",
+        "Delay": "30000"
     },
     {
         "Id": "022-missel-update-missel",
-        "Type": "information"
-    },
-    {
-        "Id": "023-missel-spawn",
-        "Type": "information"
-    },
-    {
-        "Id": "024-missel-update",
         "Type": "information"
     },
     {
@@ -137,7 +127,7 @@
     },
     {
         "Id": "034-Fim",
-        "Type": "information",
-        "Message": "Fim"
+        "Type": "video",
+        "Message": "end.mp4"
     }
 ]

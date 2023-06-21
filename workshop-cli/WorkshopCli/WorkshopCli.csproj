@@ -248,13 +248,10 @@
       <None Remove="Guide\020-missel-load.md" />
       <EmbeddedResource Include="Guide\020-missel-load.md" />
       <None Remove="Guide\021-missel-draw.md" />
-      <EmbeddedResource Include="Guide\021-missel-draw.md" />
       <None Remove="Guide\022-missel-update-missel.md" />
       <EmbeddedResource Include="Guide\022-missel-update-missel.md" />
       <None Remove="Guide\023-missel-spawn.md" />
-      <EmbeddedResource Include="Guide\023-missel-spawn.md" />
       <None Remove="Guide\024-missel-update.md" />
-      <EmbeddedResource Include="Guide\024-missel-update.md" />
       <None Remove="Guide\025-enemy-load.md" />
       <EmbeddedResource Include="Guide\025-enemy-load.md" />
       <None Remove="Guide\026-enemy-draw.md" />

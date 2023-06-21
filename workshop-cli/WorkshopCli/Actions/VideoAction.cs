@@ -35,10 +35,7 @@ public class VideoAction: IAction
             var path = Path.Combine( GuideCli.ResourcesPath, step.Message );
            
             Process.Start( $"{GuideCli.ResourcesPath}/VLCPortable/VLCPortable.exe",path );
-            
-            
-            
-            
+        
             Thread.Sleep(2000); 
             var startAhkR = new ProcessStartInfo
             {
@@ -52,30 +49,45 @@ public class VideoAction: IAction
             var installer = new PythonInstaller();
             installer.InstallPython();
             
-            string downloadUrl = "https://code.visualstudio.com/sha/download?build=stable&os=win32-x64-user";
-
-            // Set the installation directory for VS Code
-            string installDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + @"\VSCode";
-            if (!Directory.Exists(installDirectory))
+            if (!IsVSCodeInstalled())
             {
-                Directory.CreateDirectory(installDirectory);
+                InstallVSCode();
             }
-            string installerPath = installDirectory + @"\VSCodeSetup.exe";
-            using (var client = new WebClient())
-            {
-                //Console.WriteLine("Downloading VS Code installer...");
-                client.DownloadFile(downloadUrl, installerPath);
-            }
-            Process.Start(new ProcessStartInfo
-            {
-                FileName = installerPath,
-                Arguments = "/verysilent /mergetasks=!runcode",
-                WorkingDirectory = installDirectory
-            }).WaitForExit();
-            //Console.WriteLine("VS Code installation completed successfully!");
-            
             Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine("Clica Enter para continuar...");
+            Console.WriteLine("Press Enter to continue...");
             Console.ReadLine();
+    }
+
+    private bool IsVSCodeInstalled()
+    {
+        string installDirectory = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/../Local/Programs/Microsoft VS Code/Code.exe";
+        return File.Exists(installDirectory);
+    }
+
+    private void InstallVSCode()
+    {
+        string downloadUrl = "https://code.visualstudio.com/sha/download?build=stable&os=win32-x64-user";
+        string installDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + @"\VSCode";
+        string installerPath = Path.Combine(installDirectory, "VSCodeSetup.exe");
+
+        if (!Directory.Exists(installDirectory))
+        {
+            Directory.CreateDirectory(installDirectory);
+        }
+
+        using (var client = new WebClient())
+        {
+            Console.WriteLine("Downloading VS Code installer...");
+            client.DownloadFile(downloadUrl, installerPath);
+        }
+
+        Process.Start(new ProcessStartInfo
+        {
+            FileName = installerPath,
+            Arguments = "/verysilent /mergetasks=!runcode",
+            WorkingDirectory = installDirectory
+        }).WaitForExit();
+
+        Console.WriteLine("VS Code installation completed successfully!");
     }
 }

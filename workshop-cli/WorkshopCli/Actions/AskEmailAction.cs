@@ -21,11 +21,11 @@ public class AskEmailAction : IAction
             email = ExerciseHelper.PromptAnswerAndPrint();
             isValidEmail = IsValidEmail(email);
 
-            if (!isValidEmail)
+            if (!isValidEmail || email == null)
             {
                 Console.WriteLine("o e-mail inserido não é valido, pff insere novamente o e-mail!");
             }
-        } while (!isValidEmail);
+        } while (!isValidEmail || email == null);
 
         Cli.session.Email = email;
     }

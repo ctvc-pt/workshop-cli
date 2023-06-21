@@ -20,6 +20,7 @@ public class GuideCli
 
     public Session session;
     public Guide guide;
+    public int verificaIndex = 0;
     CsvSessionWriter sessionWriter = new CsvSessionWriter();
     CsvHelpRequest helpRequest = new CsvHelpRequest();
    
@@ -71,9 +72,11 @@ public class GuideCli
             
             if ( step.Type != "code" && step.Type != "open-file" && step.Type != "intro")
             {
-                if ( i > 8 )
+                if ( i > 6 )
+                {
+                    verificaIndex = 5;
                     repoManager.Commit( session.Name );
-                
+                }
                 var filePath = $"{step.Id}.md";
                 var resourceStream = assembly.GetManifestResourceStream( $"workshop_cli.Guide.{filePath}" );
                 {

@@ -10,6 +10,12 @@ public class PythonInstaller
 
     public void InstallPython()
     {
+        if ( IsPythonInstalled() )
+        {
+            //Console.WriteLine("Python is already installed.");
+            return;
+        }
+
         //Console.WriteLine("Installing Python...");
         Process.Start(new ProcessStartInfo
         {
@@ -42,5 +48,26 @@ public class PythonInstaller
             RedirectStandardError = true,
             UseShellExecute = false
         })?.WaitForExit();
+        
+    }
+    private bool IsPythonInstalled()
+    {
+        // Check if Python is already installed by verifying the python executable
+        var pythonProcess = new Process
+        {
+            StartInfo = new ProcessStartInfo
+            {
+                FileName = "python",
+                Arguments = "--version",
+                RedirectStandardOutput = true,
+                RedirectStandardError = true,
+                UseShellExecute = false
+            }
+        };
+
+        pythonProcess.Start();
+        pythonProcess.WaitForExit();
+
+        return pythonProcess.ExitCode == 0;
     }
 }

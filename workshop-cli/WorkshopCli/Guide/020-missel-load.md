@@ -4,34 +4,27 @@ a nave o primeiro passo é indicar a imagem e os seus atributos na
 função "load()".
 
 1. Primeiro escolhe na pasta uma imagem para ser o míssel da tua nave.
-Implementa o seguinte código na função "load()"
+Adiciona o seguinte código na função "load()"
 
-    missilImagem = love.graphics.newImage("nome_imagem.png")
-    missilTempoMax = 0.2
-    missilVelocidade = 250
-    misseis = {}
-    podeDisparar = true
-    missilTempo = missilTempoMax
+   missilImagem = love.graphics.newImage("missil1.png")
+   misseis = {}
 
-2. Agora vamos desenhar os mísseis na função "draw()"
+   2. Agora vamos desenhar os mísseis na função "draw()"
 
-for index, missil in ipairs(misseis) do
-    love.graphics.draw(missil.imagem, missil.posicaoX, missil.posicaoY)
-  end
+   for index, missil in ipairs(misseis) do
+       love.graphics.draw(missil.imagem, missil.x, missil.y)
+       end
+   end
 
-3. Insere no final do código:
 
-function gerarMissil(x, y, missilVelocidade)
-  if podeDisparar then
-    missil = {posicaoX = x, posicaoY = y, width = 16, height=16, velocidade = missilVelocidade, imagem = missilImagem}
-    table.insert(misseis, missil)
+3. Insere no update(dt) o seguinte codigo:
 
-    podeDisparar = false
-    missilTempo = missilTempoMax
-  end
-end
+    if love.keyboard.isDown("b") then
+        missil = {x = posicaoX, y = posicaoY, velocidade = 300, imagem = missilImagem}
+        table.insert(misseis, missil)
+    end
 
-A função "gerarMissil(x, y, missilVelocidade)" cria e lança um míssil no jogo. Ela verifica se podemos disparar um míssil e, se sim, cria um novo míssil com uma posição inicial, tamanho, velocidade e imagem definidos. O míssil é adicionado ao jogo e impedimos que mais mísseis sejam disparados imediatamente. Depois de algum tempo, poderemos disparar outro míssil. Assim, a função controla o lançamento de mísseis no jogo.
+Ao precionar a tecla 'b' cria e lança um míssil no jogo. 
 
 4. Inicia o jogo (alt+L) e vê o que há de novo.
 

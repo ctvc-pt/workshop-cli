@@ -24,10 +24,18 @@ var startAhkL = new ProcessStartInfo
     Verb = "runas"
 };
 
-
+if ( guideCli.verificaIndex == 5  )
+{
+    //Open VS Code
+    var startFolderInfo = new ProcessStartInfo {
+        FileName = $"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}/../Local/Programs/Microsoft VS Code/Code.exe",
+        Arguments = "--disable-workspace-trust",
+        WorkingDirectory = @"C:\",
+        Verb = "runas"
+    };
+    Process.Start(startFolderInfo);
+}
  
-
-
 Process.Start(startAhkL);
 guideCli.Run();
 
