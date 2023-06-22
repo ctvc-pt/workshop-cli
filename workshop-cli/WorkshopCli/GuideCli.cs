@@ -70,16 +70,10 @@ public class GuideCli
             Console.ForegroundColor = ConsoleColor.Black;
             session.StepId = step.Id;
             currentIndex = i;
-            if ( step.Type == "information" || step.Type == "challenge" )
+
+            if ( step.Type == "information" || step.Type == "challenge"  )
             {
-                var startFolderInfo = new ProcessStartInfo
-                {
-                    FileName = $"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}/../Local/Programs/Microsoft VS Code/Code.exe",
-                    Arguments = "--disable-workspace-trust",
-                    WorkingDirectory = @"C:\",
-                    Verb = "runas"
-                };
-                Process.Start(startFolderInfo);
+                new OpenVSCode();
             }
             if ( step.Type != "code" && step.Type != "open-file" && step.Type != "intro")
             {
