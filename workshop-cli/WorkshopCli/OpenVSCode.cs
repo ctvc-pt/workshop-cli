@@ -4,7 +4,7 @@ namespace workshopCli;
 
 public class OpenVSCode
 {
-    static OpenVSCode(  )
+    public void Open()
     {
         string vsCodeExecutable = "code.exe";
             Process vsCodeProcess = GetProcessByName(vsCodeExecutable);
@@ -24,7 +24,7 @@ public class OpenVSCode
                 };
                 Process.Start(startFolderInfo);
                 
-                
+                Thread.Sleep( 2000 );
                 var startAhkR = new ProcessStartInfo
                 {
                     FileName = Path.Combine( GuideCli.ResourcesPath,"AutoHotkey","v1.1.36.02","AutoHotkeyU64.exe"),
