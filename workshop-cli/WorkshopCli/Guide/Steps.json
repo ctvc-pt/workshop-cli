@@ -88,15 +88,18 @@
     },
     {
         "Id": "022-missel-update-missel",
-        "Type": "information"
+        "Type": "information",
+        "Delay": "60000"
     },
     {
         "Id": "025-enemy-load",
-        "Type": "information"
+        "Type": "information",
+        "Delay": "30000"
     },
     {
         "Id": "026-enemy-draw",
-        "Type": "information"
+        "Type": "information",
+        "Delay": "30000"
     },
     {
         "Id": "027-enemy-update-enemy",
