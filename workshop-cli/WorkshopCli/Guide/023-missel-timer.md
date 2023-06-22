@@ -1,5 +1,5 @@
 
-Agora vamos tornar os misseis mais realistas, vamos criar um temporizador.
+Agora vamos tornar os misseis mais realistas, vamos criar um temporizador, que é utilizado para controlar o intervalo entre os disparos dos mísseis. Quando o temporizador termina, é possível disparar outro míssil..
 
 1. Na função "load()" adiciona:
 
