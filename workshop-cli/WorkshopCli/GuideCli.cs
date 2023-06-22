@@ -10,24 +10,19 @@ using Newtonsoft.Json;
 using OfficeOpenXml.FormulaParsing.Excel.Functions.DateTime;
 using Sharprompt;
 
+
 namespace workshopCli;
 
 public class GuideCli
 {
-    
-    
     public static string ResourcesPath =
-        Path.Combine( Environment.CurrentDirectory, "..", "..", "..", "..", "..", "Resources" );
-
+    Path.Combine( Environment.CurrentDirectory, "..", "..", "..", "..", "..", "Resources" );
     public Session session;
     public Guide guide;
     public int verificaIndex = 0;
     CsvSessionWriter sessionWriter = new CsvSessionWriter();
     CsvHelpRequest helpRequest = new CsvHelpRequest();
-   
-
     public static int adminInput;
-
     public GuideCli( Guide guide )
     {
         this.guide = guide;
@@ -114,7 +109,8 @@ public class GuideCli
             Console.ForegroundColor = ConsoleColor.White;
 
             
-            var delay = step.Delay;
+            //var delay = step.Delay;
+            var delay = 1000;
             if ( delay==0 && delay==null)
                 delay = 10000;
             

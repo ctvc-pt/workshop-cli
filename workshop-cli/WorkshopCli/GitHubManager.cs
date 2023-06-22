@@ -7,6 +7,7 @@ public class GitHubManager
 {
     public void CloneRepo()
     {
+        Console.WriteLine("");
         var pythonScriptPath = $"{GuideCli.ResourcesPath}/github_clone.py"; // Replace with the actual path to your Python script
         
         var processStartInfo = new ProcessStartInfo
@@ -25,6 +26,7 @@ public class GitHubManager
     }
     public void CreateBranch()
     {
+        Console.WriteLine("create branch");
         
         var pythonScriptPath = $"{GuideCli.ResourcesPath}/github_branch.py"; // Replace with the actual path to your Python script
         
@@ -45,6 +47,7 @@ public class GitHubManager
 
     public void Commit(string name)
     {
+        Console.WriteLine("commit");
         var username = name;
 
         if (username != null)
@@ -75,7 +78,7 @@ public class GitHubManager
             //Console.WriteLine($"Copied file: {relativePath}");
         }
         
-        var pythonScriptPath = $"{GuideCli.ResourcesPath}/github_commit.py"; // Replace with the actual path to your Python script
+        var pythonScriptPath = $"{GuideCli.ResourcesPath}/github_commit.py"; 
         
         var processStartInfo = new ProcessStartInfo
         {
