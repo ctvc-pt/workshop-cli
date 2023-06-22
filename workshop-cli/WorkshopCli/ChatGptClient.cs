@@ -22,9 +22,10 @@ namespace workshopCli
             var txtFilePath = Path.Combine( GuideCli.ResourcesPath,"session.txt" );
             var session = JsonConvert.DeserializeObject<Session>(File.ReadAllText( txtFilePath ));
             var username = session.Name;
-            //var folderPath = Path.Combine(desktopPath, $"{username}_{DateTime.Now.ToString("dd-MM-yyyy")}", "mygame");
+            var folderPath = Path.Combine(desktopPath, $"{username}_{DateTime.Now.ToString("dd-MM-yyyy")}", "mygame","main.lua");
             var filePath = Path.Combine(GuideCli.ResourcesPath, "PromptChatGpt.txt");
             var fileContent = File.ReadAllText(filePath);
+            var code = File.ReadAllText( folderPath );
             //-----------------------
             
             var configuration = new ConfigurationBuilder()
@@ -39,7 +40,7 @@ namespace workshopCli
                 model = "gpt-3.5-turbo-0301",
                 messages = new[]
                 {
-                    new { role = "system", content = fileContent},
+                    new { role = "system", content = fileContent+code},
                     new { role = "user", content = userMessage }
                 }
             };
