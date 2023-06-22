@@ -87,7 +87,12 @@
         "Delay": "30000"
     },
     {
-        "Id": "022-missel-update-missel",
+        "Id": "022-missel-update",
+        "Type": "information",
+        "Delay": "60000"
+    },
+    {
+        "Id": "023-missel-timer",
         "Type": "information",
         "Delay": "60000"
     },

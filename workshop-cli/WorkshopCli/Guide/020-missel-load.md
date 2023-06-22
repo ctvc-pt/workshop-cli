@@ -11,9 +11,9 @@ misseis = {}
 
 for index, missil in ipairs(misseis) do
     love.graphics.draw(missil.imagem, missil.x, missil.y)
-    
 end
 
+Isto vai armazenar os misseis todos para que depois podemos controlá-los.
 
 3. Insere no update(dt) o seguinte codigo:
 
@@ -22,7 +22,7 @@ if love.keyboard.isDown("space") then
     table.insert(misseis, missil)
 end
 
-Ao precionar a tecla 'SPACEBAR' cria e lança um míssil no jogo. 
+Ao pressionar a tecla 'SPACEBAR' cria e lança um míssil no jogo. 
 
 4. Inicia o jogo (alt+L) e vê o que há de novo.
 
