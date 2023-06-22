@@ -124,6 +124,7 @@ public class ExerciseHelper
                 if ( answer is "anterior" or "b" )
                 {
                     GuideCli.adminInput = -1;
+                    return true;
                 } 
                 else if (answer is "proximo" or "p" )
                 {

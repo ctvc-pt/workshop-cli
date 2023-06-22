@@ -32,26 +32,16 @@ class Program
             Verb = "runas"
         };
 
-        if (guideCli.verificaIndex == 5)
-        {
-            // Open VS Code
-            var startFolderInfo = new ProcessStartInfo
-            {
-                FileName = $"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}/../Local/Programs/Microsoft VS Code/Code.exe",
-                Arguments = "--disable-workspace-trust",
-                WorkingDirectory = @"C:\",
-                Verb = "runas"
-            };
-            Process.Start(startFolderInfo);
-        }
-
         Process.Start(startAhkL);
         guideCli.Run();
     }
 
     private static void Console_CancelKeyPress(object sender, ConsoleCancelEventArgs e)
     {
-        // Prevent the application from closing when Ctrl+C is pressed
-        e.Cancel = true;
+        if ( e.SpecialKey == ConsoleSpecialKey.ControlC )
+        {
+            // Prevent the application from closing when Ctrl+C is pressed
+            e.Cancel = true;
+        }
     }
 }
