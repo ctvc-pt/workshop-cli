@@ -27,4 +27,11 @@ var startAhkL = new ProcessStartInfo
 };
 
 Process.Start( startAhkL );
+var processes = Process.GetProcessesByName("Code");
+foreach (var process in processes)
+{
+    process.Kill();
+}
+
+
 guideCli.Run();

@@ -23,6 +23,8 @@ public class GuideCli
     CsvSessionWriter sessionWriter = new CsvSessionWriter();
     CsvHelpRequest helpRequest = new CsvHelpRequest();
     public static int adminInput;
+    
+
     public GuideCli( Guide guide )
     {
         this.guide = guide;
@@ -32,7 +34,7 @@ public class GuideCli
     public void Run()
     {
         var repoManager = new GitHubManager();
-        
+        var VsCode = new OpenVSCode();
         var assembly = Assembly.GetExecutingAssembly();
         var txtFilePath = Path.Combine( ResourcesPath,"session.txt" );
 
@@ -68,7 +70,7 @@ public class GuideCli
 
             if ( step.Type == "information" || step.Type == "challenge"  )
             {
-                new OpenVSCode();
+               VsCode.Open();
             }
             if ( step.Type != "code" && step.Type != "open-file" && step.Type != "intro")
             {
