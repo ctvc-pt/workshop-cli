@@ -11,7 +11,7 @@ geraInimigoTempoMax = 0.5
 2. Agora vamos desenhar na função "draw()", adiciona no fim da funçao o seguinte:
 
 for index, inimigo in ipairs(inimigos) do
-   love.graphics.draw(inimigo.img, inimigo.x, inimigo.y)
+   love.graphics.draw(inimigo.img, inimigo.posicaoX, inimigo.posicaoY)
 end
 
 3. No fim do teu codigo adiciona esta função:
@@ -21,12 +21,12 @@ function atualizarinimigos(dt)
  if geraInimigoTempo <= 0 then
   geraInimigoTempo = geraInimigoTempoMax
   y = love.math.random(0, love.graphics.getHeight() - 64)
-  inimigo = {x = love.graphics.getWidth(), y = y, width = 64, height = 64, velocidade = 100, img = ImagemInimigo}
+  inimigo = {posicaoX = love.graphics.getWidth(), posicaoY = y, width = 64, height = 64, velocidade = 100, img = ImagemInimigo}
   table.insert(inimigos, inimigo)
  end
  for i = #inimigos, 1, -1 do
   inimigo = inimigos[i]
-  inimigo.x = inimigo.x - inimigo.velocidade * dt
+  inimigo.posicaoX = inimigo.posicaoX - inimigo.velocidade * dt
  end
 end
 
