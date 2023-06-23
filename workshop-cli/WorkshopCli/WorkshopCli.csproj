@@ -252,25 +252,22 @@
       <None Remove="Guide\023-missel-spawn.md" />
       <None Remove="Guide\024-missel-update.md" />
       <None Remove="Guide\025-enemy-load.md" />
-      <EmbeddedResource Include="Guide\025-enemy-load.md" />
       <None Remove="Guide\026-enemy-draw.md" />
-      <EmbeddedResource Include="Guide\026-enemy-draw.md" />
       <None Remove="Guide\027-enemy-update-enemy.md" />
-      <EmbeddedResource Include="Guide\027-enemy-update-enemy.md" />
       <None Remove="Guide\028-enemy-spawn.md" />
-      <EmbeddedResource Include="Guide\028-enemy-spawn.md" />
       <None Remove="Guide\029-enemy.md" />
-      <EmbeddedResource Include="Guide\029-enemy.md" />
       <None Remove="Guide\030-moveLeft.md" />
-      <EmbeddedResource Include="Guide\030-moveLeft.md" />
       <None Remove="Guide\031-moveToPlayer.md" />
-      <EmbeddedResource Include="Guide\031-moveToPlayer.md" />
       <None Remove="Guide\032-collisions.md" />
       <EmbeddedResource Include="Guide\032-collisions.md" />
       <None Remove="Guide\033-desafio.md" />
       <EmbeddedResource Include="Guide\033-desafio.md" />
       <None Remove="Guide\018-speed.md" />
       <EmbeddedResource Include="Guide\018-speed.md" />
+      <None Remove="Guide\022-missel-update.md" />
+      <EmbeddedResource Include="Guide\022-missel-update.md" />
+      <None Remove="Guide\023-missel-timer.md" />
+      <EmbeddedResource Include="Guide\023-missel-timer.md" />
     </ItemGroup>
 
 </Project>

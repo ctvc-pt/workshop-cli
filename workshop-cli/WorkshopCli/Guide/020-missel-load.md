@@ -7,10 +7,10 @@ Adiciona o seguinte código na função "load()"
 missilImagem = love.graphics.newImage("missil1.png")
 misseis = {}
 
-   2. Agora vamos desenhar os mísseis na função "draw()"
+2. Agora vamos desenhar os mísseis na função "draw()"
 
 for index, missil in ipairs(misseis) do
-    love.graphics.draw(missil.imagem, missil.x, missil.y)
+    love.graphics.draw(missil.imagem, missil.posicaoX, missil.posicaoY)
 end
 
 Isto vai armazenar os misseis todos para que depois podemos controlá-los.
@@ -18,7 +18,7 @@ Isto vai armazenar os misseis todos para que depois podemos controlá-los.
 3. Insere no update(dt) o seguinte codigo:
 
 if love.keyboard.isDown("space") then
-    missil = {x = posicaoX, y = posicaoY, velocidade = 300, imagem = missilImagem}
+    missil = {posicaoX = posicaoX, posicaoY = posicaoY, velocidade = 300, imagem = missilImagem}
     table.insert(misseis, missil)
 end
 

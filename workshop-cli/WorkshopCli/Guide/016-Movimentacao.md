@@ -32,9 +32,9 @@ Testa o jogo(Alt+L).
 Desafio extra:
 Se reparares a nave sai fora do ecrã, para impedir que a nave saia usa o seguinte codigo:
 
-    "posicaoX < love.graphics.getWidth()" para ter o limite para a direita
+    "posicaoX < (love.graphics.getWidth()  - imagem:getWidth())" para ter o limite para a direita
     "posicaoX > 0" para ter o limite para a esquerda
-    "posicaoY <love.graphics.getHeight()" para ter o limite para baixo.
+    "posicaoY <(love.graphics.getHeight()- imagem:getHeight())" para ter o limite para baixo.
     "posicaoY > 0" para ter o limite para cima
 
 

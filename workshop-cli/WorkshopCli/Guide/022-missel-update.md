@@ -9,15 +9,15 @@ Agora vamos fazer com que os mísseis funcionem como deviam
 2. No fim do teu código mete esta função
 
 function atualizarMisseis(dt)
-  for i=table.getn(misseis), 1, -1 do
-    missil = misseis[i]
-    missil.posicaoX = missil.posicaoX + dt * missil.velocidade
-  end
+for i=table.getn(misseis), 1, -1 do
+  missil = misseis[i]
+  missil.posicaoX = missil.posicaoX + dt * missil.velocidade
+ end
 end
 
 A função "atualizarMisseis(dt)" cuida dos mísseis no jogo. Ela faz com que os mísseis se movam para a direita. É como se os mísseis estivessem a voar pelo jogo, mas desaparecendo quando vão muito longe. Assim, a função garante que os mísseis se comportem corretamente no jogo.
 
-3. Adiciona no fim da função "update(dt)":
+3. Agora vamos alterar o cidgo que adicionamos no ultimo paço na função "update(dt)":
 
 if love.keyboard.isDown("space") then
     if(left) then
@@ -34,7 +34,7 @@ if love.keyboard.isDown("space") then
             imagem = missilImagem}
         table.insert(misseis, missil)
     end
-
+end
 atualizarMisseis(dt)
 
 O código inserido agora faz o seguinte:
