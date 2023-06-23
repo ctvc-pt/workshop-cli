@@ -1,7 +1,7 @@
 
 O jogo está quase acabado, mas ainda falta uma coisa importante. Como podes ver, tu não consegues acertar nos inimigos, nem os inimigos conseguem acertar em ti.
 
-1. Para isso, precisamos de 3 funções para verificar colisões adiciona este codigo no fim: 
+1. Para isso, precisamos de 3 funções para verificar colisões. Adiciona este código no fim: 
 
 function verificaJogadorInimigoColisao()
     for index, inimigo in ipairs(inimigos) do
@@ -36,7 +36,7 @@ function intercepta(x1, y1, w1, h1, x2, y2, w2, h2)
     y1 + h1 > y2
 end
 
-2. Agora adiciona no fim da função "update(dt)" por baixo da linha "atualizarInimigos(dt)" o seguinte codigo:
+2. Agora, adiciona no fim da função "update(dt)" por baixo da linha "atualizarInimigos(dt)" o seguinte código:
 
 verificaJogadorInimigoColisao()
 verificaMissilInimigoColisao()
@@ -45,5 +45,5 @@ Estas funções verificam a posição do jogador, dos mísseis e dos inimigos.
 Caso os mísseis toquem nos inimigos, os inimigos desaparecem.
 Se os inimigos tocarem no jogador, recomeça.
 
-Agora corre o jogo (alt+l) e diverte-te com o teu novo jogo.
+Agora corre o jogo (alt+l) e diverte-te.
 

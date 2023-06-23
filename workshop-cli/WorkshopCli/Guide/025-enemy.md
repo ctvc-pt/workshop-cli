@@ -8,13 +8,13 @@ inimigos = {}
 geraInimigoTempo = 0
 geraInimigoTempoMax = 0.5
 
-2. Agora vamos desenhar na função "draw()", adiciona no fim da funçao o seguinte:
+2. Agora vamos desenhar na função "draw()", adiciona no fim da função o seguinte:
 
 for index, inimigo in ipairs(inimigos) do
    love.graphics.draw(inimigo.img, inimigo.posicaoX, inimigo.posicaoY)
 end
 
-3. No fim do teu codigo adiciona esta função:
+3. No fim do teu código adiciona esta função:
 
 function atualizarInimigos(dt)
  geraInimigoTempo = geraInimigoTempo - dt
@@ -34,6 +34,6 @@ end
 
    atualizarInimigos(dt) 
 
-Agora Deves ter um monte de inimigos a vir em direção da tua nave. Altera o valor de "geraInimigoTempoMax" para teres á tua escolha a quantidade de inimigos que vai aparecendo ao longo do tempo.
+Agora deves ter um monte de inimigos a vir em direção da tua nave. Altera o valor de "geraInimigoTempoMax" para teres à tua escolha a quantidade de inimigos que vai aparecendo ao longo do tempo.
 
     
