@@ -5,8 +5,8 @@ Agora temos tudo sobre o jogador feito, passaremos para os inimigos.
 
 ImagemInimigo = love.graphics.newImage("inimigo1.png")
 inimigos = {}
-spawnTimer = 0
-spawnTimerMax = 0.5
+geraInimigoTempo = 0
+geraInimigoTempoMax = 0.5
 
 2. Agora vamos desenhar na função "draw()", adiciona no fim da funçao o seguinte:
 
@@ -16,10 +16,10 @@ end
 
 3. No fim do teu codigo adiciona esta função:
 
-function updateinimigos(dt)
- spawnTimer = spawnTimer - dt
- if spawnTimer <= 0 then
-  spawnTimer = spawnTimerMax
+function atualizarinimigos(dt)
+ geraInimigoTempo = geraInimigoTempo - dt
+ if geraInimigoTempo <= 0 then
+  geraInimigoTempo = geraInimigoTempoMax
   y = love.math.random(0, love.graphics.getHeight() - 64)
   inimigo = {x = love.graphics.getWidth(), y = y, width = 64, height = 64, velocidade = 100, img = ImagemInimigo}
   table.insert(inimigos, inimigo)
@@ -32,7 +32,7 @@ end
 
 4. Por fim na função "update(dt)" depois da linha "atualizarMisseis(dt)" adiciona esta linha:
 
-   updateinimigos(dt) 
+   atualizarinimigos(dt) 
 
 Agora Deves ter um monte de inimigos a vir em direção da tua nave. Altera o valor de "spawnTimerMax" para teres á tua escolha a quantidade de inimigos que vai aparecendo ao longo do tempo.
 
