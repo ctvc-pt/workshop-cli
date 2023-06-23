@@ -1,43 +1,49 @@
 
 O jogo está quase acabado, mas ainda falta uma coisa importante. Como podes ver, tu não consegues acertar nos inimigos, nem os inimigos conseguem acertar em ti.
-Para isso, precisamos de 2 funções para verificar colisões, que são o seguinte: 
 
-  function checkCollisions()
-    for index, enemy in ipairs(enemies) do
-      if intersects(player, enemy) or intersects(enemy, player) then
-        player = {xPos = 0, yPos = 0, width = 32, height = 32, speed=200, img=shipImage}
-        missiles = {}
-        enemies = {}
-  
-        canFire = true
-        missilTimer = missilTimerMax
-        spawnTimer = 0
-      end
-  
-      for index2, missil in ipairs(missiles) do
-        if intersects(enemy, missil) then
-          table.remove(enemies, index)
-          table.remove(missiles, index2)
-          break
+1. Para isso, precisamos de 3 funções para verificar colisões adiciona este codigo no fim: 
+
+function verificaJogadorInimigoColisao()
+    for index, inimigo in ipairs(inimigos) do
+        if intercepta(posicaoX, posicaoX, imagem:getWidth(), imagem:getHeight(), inimigo.posicaoX, inimigo.posicaoY, inimigo.width, inimigo.height) then
+            posicaoX = 0
+            posicaoX = 0
+            misseis = {}
+            inimigos = {}
+            podeDisparar = true
+            missilTempo = missilTempoMax
+            geraInimigoTempo = 0
         end
-      end
     end
-  end
-  
-  function intersects(rect1, rect2)
-    if rect1.xPos < rect2.xPos and rect1.xPos + rect1.width > rect2.xPos and
-       rect1.yPos < rect2.yPos and rect1.yPos + rect1.height > rect2.yPos then
-      return true
-    else
-      return false
+end
+
+function verificaMissilInimigoColisao()
+    for index, inimigo in ipairs(inimigos) do
+        for index2, missil in ipairs(misseis) do
+            if intercepta(missil.posicaoX, missil.posicaoY, missil.width, missil.height, inimigo.posicaoX, inimigo.posicaoY, inimigo.width, inimigo.height) then
+                table.remove(inimigos, index)
+                table.remove(misseis, index2)
+                break
+            end
+        end
     end
-  end
+end
+
+function intercepta(x1, y1, w1, h1, x2, y2, w2, h2)
+    return x1 < x2 + w2 and
+    x1 + w1 > x2 and
+    y1 < y2 + h2 and
+    y1 + h1 > y2
+end
+
+2. Agora adiciona no fim da função "update(dt)" por baixo da linha "atualizarInimigos(dt)" o seguinte codigo:
+
+verificaJogadorInimigoColisao()
+verificaMissilInimigoColisao()
 
 Estas funções verificam a posição do jogador, dos mísseis e dos inimigos.
 Caso os mísseis toquem nos inimigos, os inimigos desaparecem.
 Se os inimigos tocarem no jogador, recomeça.
 
-Coloca a função "checkCollisions()" na função "load.update(dt)".
-
-E agora, o jogo está completo.
+Agora corre o jogo (alt+l) e diverte-te com o teu novo jogo.
 
