@@ -16,7 +16,7 @@ end
 
 3. No fim do teu codigo adiciona esta função:
 
-function atualizarinimigos(dt)
+function atualizarInimigos(dt)
  geraInimigoTempo = geraInimigoTempo - dt
  if geraInimigoTempo <= 0 then
   geraInimigoTempo = geraInimigoTempoMax
@@ -32,7 +32,7 @@ end
 
 4. Por fim na função "update(dt)" depois da linha "atualizarMisseis(dt)" adiciona esta linha:
 
-   atualizarinimigos(dt) 
+   atualizarInimigos(dt) 
 
 Agora Deves ter um monte de inimigos a vir em direção da tua nave. Altera o valor de "spawnTimerMax" para teres á tua escolha a quantidade de inimigos que vai aparecendo ao longo do tempo.
 
