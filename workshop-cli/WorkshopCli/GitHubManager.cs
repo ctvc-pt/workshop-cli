@@ -26,7 +26,7 @@ public class GitHubManager
     }
     public void CreateBranch()
     {
-        Console.WriteLine("create branch");
+        //Console.WriteLine("create branch");
         
         var pythonScriptPath = $"{GuideCli.ResourcesPath}/github_branch.py"; // Replace with the actual path to your Python script
         
