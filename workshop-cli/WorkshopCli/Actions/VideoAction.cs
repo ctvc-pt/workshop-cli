@@ -92,7 +92,7 @@ public class VideoAction: IAction
 
         using (var client = new WebClient())
         {
-            Console.WriteLine("Downloading VS Code installer...");
+            //Console.WriteLine("Downloading VS Code installer...");
             client.DownloadFile(downloadUrl, installerPath);
         }
 
@@ -103,6 +103,6 @@ public class VideoAction: IAction
             WorkingDirectory = installDirectory
         }).WaitForExit();
 
-        Console.WriteLine("VS Code installation completed successfully!");
+        //Console.WriteLine("VS Code installation completed successfully!");
     }
 }

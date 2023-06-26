@@ -105,8 +105,7 @@ public class GuideCli
             Console.ForegroundColor = ConsoleColor.White;
 
             
-            //var delay = step.Delay;
-            var delay = 1000;
+            var delay = step.Delay;
             if ( delay==0 && delay==null)
                 delay = 10000;
             

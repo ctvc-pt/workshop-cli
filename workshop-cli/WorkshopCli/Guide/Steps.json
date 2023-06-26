@@ -44,7 +44,7 @@
     {
         "Id": "009-helloWorld",
         "Type": "information",
-        "Delay": "30000"
+        "Delay": "20000"
     },
     {
         "Id": "011-code",
@@ -84,7 +84,7 @@
     {
         "Id": "020-missel-load",
         "Type": "information",
-        "Delay": "30000"
+        "Delay": "45000"
     },
     {
         "Id": "022-missel-update",
@@ -115,6 +115,7 @@
     {
         "Id": "034-Fim",
         "Type": "video",
-        "Message": "end.mp4"
+        "Message": "end.mp4",
+        "Delay": "54000"
     }
 ]
