@@ -268,6 +268,8 @@
       <EmbeddedResource Include="Guide\022-missel-update.md" />
       <None Remove="Guide\023-missel-timer.md" />
       <EmbeddedResource Include="Guide\023-missel-timer.md" />
+      <None Remove="Guide\025-enemy.md" />
+      <EmbeddedResource Include="Guide\025-enemy.md" />
     </ItemGroup>
 
 </Project>
