@@ -89,7 +89,7 @@
     {
         "Id": "022-missel-update",
         "Type": "information",
-        "Delay": "60000"
+        "Delay": "90000"
     },
     {
         "Id": "023-missel-timer",
@@ -104,11 +104,13 @@
     
     {
         "Id": "032-collisions",
-        "Type": "information"
+        "Type": "information",
+        "Delay": "30000"
     },
     {
         "Id": "033-desafio",
-        "Type": "challenge"
+        "Type": "challenge",
+        "Delay": "30000"
     },
     {
         "Id": "034-Fim",
