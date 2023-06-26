@@ -28,7 +28,7 @@ public class OpenVSCode
                 var startAhkR = new ProcessStartInfo
                 {
                     FileName = Path.Combine( GuideCli.ResourcesPath,"AutoHotkey","v1.1.36.02","AutoHotkeyU64.exe"),
-                    Arguments = Path.Combine( GuideCli.ResourcesPath,"win-rigth.ahk"),
+                    Arguments = Path.Combine( GuideCli.ResourcesPath,"vsc.ahk"),
                     WorkingDirectory = @"C:\",
                     Verb = "runas"
                 };

@@ -2,7 +2,7 @@
 SendMode Input
 SetWorkingDir %A_ScriptDir%
 
-targetProcessPath := "C:\Users\jrafa\Desktop\REPO\workshop-cli\Resources\VLCPortable\App\vlc\vlc.exe"
+targetProcessPath := "C:\Users\jrafa\AppData\Local\Programs\Microsoft VS Code\Code.exe"
 
 Loop
 {
