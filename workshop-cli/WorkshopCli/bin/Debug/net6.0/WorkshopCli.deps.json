@@ -15,7 +15,8 @@
           "NLua": "1.6.3",
           "Newtonsoft.Json": "13.0.3",
           "OfficeOpenXml.Extends": "1.0.6",
-          "Sharprompt": "3.0.0-preview2"
+          "Sharprompt": "3.0.0-preview2",
+          "Vlc.DotNet.Core": "3.1.0"
         },
         "runtime": {
           "WorkshopCli.dll": {}
@@ -1051,6 +1052,25 @@
           "System.Threading": "4.3.0",
           "System.Xml.ReaderWriter": "4.3.0"
         }
+      },
+      "Vlc.DotNet.Core/3.1.0": {
+        "dependencies": {
+          "Vlc.DotNet.Core.Interops": "3.1.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Vlc.DotNet.Core.dll": {
+            "assemblyVersion": "3.1.0.0",
+            "fileVersion": "3.1.0.0"
+          }
+        }
+      },
+      "Vlc.DotNet.Core.Interops/3.1.0": {
+        "runtime": {
+          "lib/netstandard2.0/Vlc.DotNet.Core.Interops.dll": {
+            "assemblyVersion": "3.1.0.0",
+            "fileVersion": "3.1.0.0"
+          }
+        }
       }
     }
   },
@@ -1745,6 +1765,20 @@
       "sha512": "sha512-5zJ0XDxAIg8iy+t4aMnQAu0MqVbqyvfoUVl1yDV61xdo3Vth45oA2FoY4pPkxYAH5f8ixpmTqXeEIya95x0aCQ==",
       "path": "system.xml.xdocument/4.3.0",
       "hashPath": "system.xml.xdocument.4.3.0.nupkg.sha512"
+    },
+    "Vlc.DotNet.Core/3.1.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-t9jinVlEEgS0PHyNeu+jGE06yKeqyQ4RG7Bpno1M1ghxAhogpc7rFkRg5/CMHINsZJw4nr88I3xrUecanlA5kA==",
+      "path": "vlc.dotnet.core/3.1.0",
+      "hashPath": "vlc.dotnet.core.3.1.0.nupkg.sha512"
+    },
+    "Vlc.DotNet.Core.Interops/3.1.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-22JkrxSBN9OVkxT3zMgwT67kUc+RQx35+NG5md9n9qM7vEI2EUEVqHeKiO8ssF7/mYi6Z8lJx4AgdWa5JAvONw==",
+      "path": "vlc.dotnet.core.interops/3.1.0",
+      "hashPath": "vlc.dotnet.core.interops.3.1.0.nupkg.sha512"
     }
   }
 }

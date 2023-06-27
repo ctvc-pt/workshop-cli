@@ -5,7 +5,7 @@ O jogo está quase acabado, mas ainda falta uma coisa importante. Como podes ver
 
 function verificaJogadorInimigoColisao()
     for index, inimigo in ipairs(inimigos) do
-        if intercepta(posicaoX, posicaoX, imagem:getWidth(), imagem:getHeight(), inimigo.posicaoX, inimigo.posicaoY, inimigo.width, inimigo.height) then
+        if intercepta(posicaoX, posicaoY, imagem:getWidth(), imagem:getHeight(), inimigo.posicaoX, inimigo.posicaoY, inimigo.width, inimigo.height) then
             posicaoX = 0
             posicaoX = 0
             misseis = {}
@@ -13,18 +13,6 @@ function verificaJogadorInimigoColisao()
             podeDisparar = true
             missilTempo = missilTempoMax
             geraInimigoTempo = 0
-        end
-    end
-end
-
-function verificaMissilInimigoColisao()
-    for index, inimigo in ipairs(inimigos) do
-        for index2, missil in ipairs(misseis) do
-            if intercepta(missil.posicaoX, missil.posicaoY, missil.width, missil.height, inimigo.posicaoX, inimigo.posicaoY, inimigo.width, inimigo.height) then
-                table.remove(inimigos, index)
-                table.remove(misseis, index2)
-                break
-            end
         end
     end
 end
@@ -38,12 +26,10 @@ end
 
 2. Agora, adiciona no fim da função "update(dt)" por baixo da linha "atualizarInimigos(dt)" o seguinte código:
 
-verificaJogadorInimigoColisao()
-verificaMissilInimigoColisao()
+    verificaJogadorInimigoColisao()
 
-Estas funções verificam a posição do jogador, dos mísseis e dos inimigos.
-Caso os mísseis toquem nos inimigos, os inimigos desaparecem.
+Estas funções verificam a posição do jogador e dos inimigos.
 Se os inimigos tocarem no jogador, recomeça.
 
-Agora corre o jogo (alt+l) e diverte-te.
+Agora corre o jogo (alt+l).
 

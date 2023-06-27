@@ -37,9 +37,9 @@ public class VideoAction: IAction
             //Console.WriteLine( $"Playing video: {step.Message}" );
             // Call the method to play the video using the path in step.Message
             var path = Path.Combine( GuideCli.ResourcesPath, step.Message );
-           
+
             Process.Start( $"{GuideCli.ResourcesPath}/VLCPortable/VLCPortable.exe",path );
-        
+
             Thread.Sleep(2000); 
             var startAhkR = new ProcessStartInfo
             {
@@ -106,3 +106,5 @@ public class VideoAction: IAction
         //Console.WriteLine("VS Code installation completed successfully!");
     }
 }
+
+

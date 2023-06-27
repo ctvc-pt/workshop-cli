@@ -33,5 +33,4 @@ foreach (var process in processes)
     process.Kill();
 }
 
-
 guideCli.Run();
