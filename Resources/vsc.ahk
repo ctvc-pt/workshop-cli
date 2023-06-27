@@ -2,11 +2,13 @@
 SendMode Input
 SetWorkingDir %A_ScriptDir%
 
-targetProcessPath := "C:\Users\jrafa\AppData\Local\Programs\Microsoft VS Code\Code.exe"
+targetProcessPath := "%USERPROFILE%\AppData\Local\Programs\Microsoft VS Code\Code.exe"
+EnvGet, targetFullPath, USERPROFILE
+targetFullPath := targetFullPath . "\AppData\Local\Programs\Microsoft VS Code\Code.exe"
 
 Loop
 {
-    WinGet, targetWindow, ID, ahk_exe %targetProcessPath%
+    WinGet, targetWindow, ID, ahk_exe %targetFullPath%
 
     if (targetWindow)
     {

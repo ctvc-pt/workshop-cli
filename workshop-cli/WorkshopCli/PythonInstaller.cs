@@ -16,7 +16,7 @@ public class PythonInstaller
             return;
         }
 
-        //Console.WriteLine("Installing Python...");
+        Console.WriteLine("A preparar tudo para o teu workshop....");
         Process.Start(new ProcessStartInfo
         {
             FileName = InstallerFilePath,
