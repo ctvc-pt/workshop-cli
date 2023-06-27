@@ -13,11 +13,12 @@ function verificaMissilInimigoColisao()
     end
 end
 
+Esta função verifica a posição do míssil e dos inimigos.
+Se os mísseis tocarem nos inimigos, os dois aparecem.
+
 4. Agora, adiciona no fim da função "update(dt)" por baixo da linha "verificaJogadorInimigoColisao()" o seguinte código:
 
     verificaMissilInimigoColisao()
 
-Esta função verifica a posição do míssil e dos inimigos.
-Se os mísseis tocarem nos inimigos, os dois aparecem.
-
 Agora corre o jogo (alt+l) e diverte-te.
+

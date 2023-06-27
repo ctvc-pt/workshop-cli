@@ -5,7 +5,7 @@ O jogo está quase acabado, mas ainda falta uma coisa importante. Como podes ver
 
 function verificaJogadorInimigoColisao()
     for index, inimigo in ipairs(inimigos) do
-        if intercepta(posicaoX, posicaoY, imagem:getWidth(), imagem:getHeight(), inimigo.posicaoX, inimigo.posicaoY, inimigo.width, inimigo.height) then
+        if intercepta(posicaoX, posicaoY, 47, 50, inimigo.posicaoX, inimigo.posicaoY, inimigo.width, inimigo.height) then
             posicaoX = 0
             posicaoX = 0
             misseis = {}
