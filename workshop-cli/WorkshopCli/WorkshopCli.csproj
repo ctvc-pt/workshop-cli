@@ -273,6 +273,8 @@
       <EmbeddedResource Include="Guide\025-enemy.md" />
       <None Remove="Guide\033-collisions-2.md" />
       <EmbeddedResource Include="Guide\033-collisions-2.md" />
+      <None Remove="Guide\034-end.md" />
+      <EmbeddedResource Include="Guide\035-end.md" />
     </ItemGroup>
 
 </Project>

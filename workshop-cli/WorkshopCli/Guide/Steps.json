@@ -121,5 +121,9 @@
         "Type": "video",
         "Message": "end.mp4",
         "Delay": "54000"
+    },
+    {
+        "Id": "035-end",
+        "Type": "end"        
     }
 ]
