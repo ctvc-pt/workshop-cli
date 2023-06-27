@@ -37,9 +37,14 @@ public class VideoAction: IAction
             //Console.WriteLine( $"Playing video: {step.Message}" );
             // Call the method to play the video using the path in step.Message
             var path = Path.Combine( GuideCli.ResourcesPath, step.Message );
+           
+            var vlcProcess = new Process();
+            vlcProcess.StartInfo.FileName = Path.Combine(GuideCli.ResourcesPath, "VLCPortable", "VLCPortable.exe");
+            vlcProcess.StartInfo.Arguments = path;
+            vlcProcess.EnableRaisingEvents = true;
+            vlcProcess.Start();
 
-            Process.Start( $"{GuideCli.ResourcesPath}/VLCPortable/VLCPortable.exe",path );
-
+        
             Thread.Sleep(2000); 
             var startAhkR = new ProcessStartInfo
             {
@@ -50,18 +55,22 @@ public class VideoAction: IAction
             };
             Process.Start(startAhkR);
             
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            
             var installer = new PythonInstaller();
             installer.InstallPython();
             
             if (!IsVSCodeInstalled())
             {
+                Console.WriteLine("--------50%-------");
                 InstallVSCode();
             }
             
-            Thread.Sleep(Delay);
-            Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine("Clica Enter para continuar...");
+            //Thread.Sleep(Delay);
+            
+            Console.WriteLine("Quando o video acabar, fecha-o para continuar...");
 
+            //dar focus na CLI
             [DllImport( "user32.dll" )]
             static extern bool SetForegroundWindow( IntPtr hWnd );
             [DllImport( "kernel32.dll" )]
@@ -69,8 +78,9 @@ public class VideoAction: IAction
 
             IntPtr consoleWindowHandle = GetConsoleWindow();
             SetForegroundWindow( consoleWindowHandle );
-            
-            Console.ReadLine();
+            //---------
+            // Wait for the VLC process to exit
+            vlcProcess.WaitForExit();
     }
 
     private bool IsVSCodeInstalled()
@@ -106,5 +116,3 @@ public class VideoAction: IAction
         //Console.WriteLine("VS Code installation completed successfully!");
     }
 }
-
-

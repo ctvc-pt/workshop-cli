@@ -2,11 +2,12 @@
 SendMode Input
 SetWorkingDir %A_ScriptDir%
 
-targetProcessPath := "C:\Users\jrafa\Desktop\REPO\workshop-cli\Resources\VLCPortable\App\vlc\vlc.exe"
+targetProcessPath := "VLCPortable\App\vlc\vlc.exe"
+targetFullPath := A_ScriptDir . "\" . targetProcessPath
 
 Loop
 {
-    WinGet, targetWindow, ID, ahk_exe %targetProcessPath%
+    WinGet, targetWindow, ID, ahk_exe %targetFullPath%
 
     if (targetWindow)
     {
