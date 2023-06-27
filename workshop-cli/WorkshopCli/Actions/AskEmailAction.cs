@@ -23,7 +23,7 @@ public class AskEmailAction : IAction
 
             if (!isValidEmail || email == null)
             {
-                Console.WriteLine("o e-mail inserido não é valido, pff insere novamente o e-mail!");
+                Console.WriteLine("O e-mail inserido não é valido, por favor insere novamente o e-mail!");
             }
         } while (!isValidEmail || email == null);
 

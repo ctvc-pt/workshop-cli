@@ -5,7 +5,7 @@ end
 
 
 function love.draw()
-    love.graphics.print("Ola mundo!", 100, 100);
+    love.graphics.print("Ola mundo!", 200, 200);
     --Escreve o código para desenhar a imagem na linha baixo
 
 end

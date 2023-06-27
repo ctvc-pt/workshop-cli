@@ -68,7 +68,7 @@ public class GuideCli
             session.StepId = step.Id;
             currentIndex = i;
 
-            if ( step.Type == "information" || step.Type == "challenge"  )
+            if ( step.Type == "information" || step.Type == "challenge" || step.Type == "CreateSprites" )
             {
                VsCode.Open();
             }
@@ -143,7 +143,7 @@ public class GuideCli
                 Console.WriteLine( $"Unknown action type: {step.Type}" );
             }
             sessionWriter.AddSession( session.Name, session.Age, session.Email, session.StepId, session.NameId );
-            helpRequest.GetHelp(session.Name,session.StepId);
+            helpRequest.GetHelp(session.NameId,session.StepId);
             File.WriteAllText( txtFilePath, JsonConvert.SerializeObject( session ) );
             Console.Clear();
            
