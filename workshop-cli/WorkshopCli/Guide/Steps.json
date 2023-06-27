@@ -101,9 +101,13 @@
         "Type": "information",
         "Delay": "30000"
     },
-    
     {
         "Id": "032-collisions",
+        "Type": "information",
+        "Delay": "30000"
+    },
+    {
+        "Id": "033-collisions-2",
         "Type": "information",
         "Delay": "30000"
     },
