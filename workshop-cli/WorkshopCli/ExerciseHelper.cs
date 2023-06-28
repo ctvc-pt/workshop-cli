@@ -71,7 +71,7 @@ public class ExerciseHelper
                         return PromptAnswerAndConfirm( prompt );
                     }
 
-                    if ( input is "não" or "nao" or "n" )
+                    if ( input is "não" or "nao" or "n" or "não" )
                     {
                         CsvHelpRequest.printHelp( true, false );
                         Console.ForegroundColor = ConsoleColor.Red;

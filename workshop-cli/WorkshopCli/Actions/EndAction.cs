@@ -6,14 +6,22 @@ public class EndAction : IAction
 {
     public void Execute()
     {
-        var ahkProcesses = Process.GetProcessesByName("AutoHotkey");
-        if (ahkProcesses.Length > 0)
+        Process.Start(new ProcessStartInfo
         {
-            // Kill all running AutoHotkey processes
-            foreach (var process in ahkProcesses)
-            {
-                process.Kill();
-            }
+            FileName = "cmd",
+            Arguments = $"/c start https://docs.google.com/forms/d/e/1FAIpQLSfvFGl453XXBXot80CdAKoo6yCp0JbwuS1qmlgiRC3p1ebnfw/viewform?usp=sf_link",
+            WindowStyle = ProcessWindowStyle.Hidden
+        });
+        
+        
+        var exePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Resources", "AutoHotkey", "v1.1.36.02", "AutoHotkeyU64.exe");
+        var processName = Path.GetFileNameWithoutExtension(exePath);
+        var processes = Process.GetProcessesByName(processName);
+
+        foreach (var process in processes)
+        {
+            process.Kill();
         }
+
     }
 }

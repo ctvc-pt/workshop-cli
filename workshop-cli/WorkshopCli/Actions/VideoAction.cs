@@ -91,26 +91,13 @@ public class VideoAction: IAction
 
     private void InstallVSCode()
     {
-        string downloadUrl = "https://code.visualstudio.com/sha/download?build=stable&os=win32-x64-user";
-        string installDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + @"\VSCode";
-        string installerPath = Path.Combine(installDirectory, "VSCodeSetup.exe");
-
-        if (!Directory.Exists(installDirectory))
-        {
-            Directory.CreateDirectory(installDirectory);
-        }
-
-        using (var client = new WebClient())
-        {
-            //Console.WriteLine("Downloading VS Code installer...");
-            client.DownloadFile(downloadUrl, installerPath);
-        }
+        string installerPath = Path.Combine(GuideCli.ResourcesPath, "VSCodeSetup.exe");
 
         Process.Start(new ProcessStartInfo
         {
             FileName = installerPath,
-            Arguments = "/verysilent /mergetasks=!runcode",
-            WorkingDirectory = installDirectory
+            Arguments = "/silent",
+            WorkingDirectory = GuideCli.ResourcesPath
         }).WaitForExit();
 
         //Console.WriteLine("VS Code installation completed successfully!");
