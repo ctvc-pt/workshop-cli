@@ -10,12 +10,12 @@ namespace workshopCli;
 public class VideoAction: IAction
 {
     int currentIndex;
-    int Delay;
+    
 
-    public VideoAction( int currentIndex, int Delay )
+    public VideoAction( int currentIndex )
     {
         this.currentIndex = currentIndex;
-        this.Delay = Delay;
+        
     }
     
     public void Execute()
@@ -78,9 +78,11 @@ public class VideoAction: IAction
 
             IntPtr consoleWindowHandle = GetConsoleWindow();
             SetForegroundWindow( consoleWindowHandle );
+            KeyPress.SimulateKeyPress();
             //---------
             // Wait for the VLC process to exit
             vlcProcess.WaitForExit();
+            KeyPress.SimulateKeyPress();
     }
 
     private bool IsVSCodeInstalled()
@@ -91,15 +93,21 @@ public class VideoAction: IAction
 
     private void InstallVSCode()
     {
+        
         string installerPath = Path.Combine(GuideCli.ResourcesPath, "VSCodeSetup.exe");
 
-        Process.Start(new ProcessStartInfo
+        ProcessStartInfo startInfo = new ProcessStartInfo
         {
             FileName = installerPath,
-            Arguments = "/silent",
-            WorkingDirectory = GuideCli.ResourcesPath
-        }).WaitForExit();
+            Arguments = "/verysilent /mergetasks=!runcode",
+            WorkingDirectory = GuideCli.ResourcesPath,
+            CreateNoWindow = true,
+            UseShellExecute = false
+        };
 
-        //Console.WriteLine("VS Code installation completed successfully!");
+        Process installProcess = Process.Start(startInfo);
+        installProcess.WaitForExit();
+
     }
+
 }

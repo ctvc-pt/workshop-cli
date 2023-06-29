@@ -19,7 +19,7 @@ public class ExerciseHelper
             {
                 // Handle the case when the string is null
                 Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("Invalid input. The value cannot be null.");
+                Console.WriteLine("A resposta não pode estar vazia");
                 Console.ResetColor();
             }
         }

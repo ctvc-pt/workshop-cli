@@ -27,7 +27,17 @@ public class InformationAction : IAction
             }
             //Console.WriteLine("VLC media player closed successfully.");
         }
-        Thread.Sleep(Delay);
+        
+        int totalSeconds = Delay;
+        for (int i = totalSeconds; i > 0; i--)
+        {
+            //Console.Write($"\rTime remaining: {i} seconds");
+            Console.Out.Flush();
+            Thread.Sleep(1000);
+            KeyPress.SimulateKeyPress();
+        }
+        KeyPress.SimulateKeyPress();
+        
         Console.ForegroundColor = ConsoleColor.Yellow;
         ExerciseHelper.PromptAnswerAndConfirm( "Escreve 'proximo' ou 'p' para avançar ou para retroceder escreve 'anterior' (ou 'ajuda')" );
     }

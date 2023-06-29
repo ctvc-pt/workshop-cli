@@ -121,7 +121,7 @@ public class GuideCli
                 { "ask-name", new AskNameAction( this ) },
                 { "ask-age", new AskAgeAction( this ) },
                 { "ask-email", new AskEmailAction( this ) },
-                { "video", new VideoAction( currentIndex,delay ) },
+                { "video", new VideoAction( currentIndex ) },
                 { "end", new EndAction() }
             };
 

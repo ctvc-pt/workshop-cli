@@ -158,7 +158,21 @@ public class OpenFileL2DAction : IAction
             }
         }
         
-        Thread.Sleep(Delay);
+        
+        int totalSeconds = Delay;
+        for (int i = totalSeconds; i > 0; i--)
+        {
+            //Console.Write($"\rTime remaining: {i} seconds");
+            Console.Out.Flush();
+            Thread.Sleep(1000);
+            KeyPress.SimulateKeyPress();
+        }
+        KeyPress.SimulateKeyPress();
+        
+        
+        //Thread.Sleep(Delay);
+        Console.ForegroundColor = ConsoleColor.Yellow;
+        Console.WriteLine();
         Console.ForegroundColor = ConsoleColor.Yellow;
         ExerciseHelper.PromptAnswerAndConfirm( "Verifica o código e escreve 'proximo' ou 'p' para continuar ou para retroceder escreve 'anterior' (ou 'ajuda')\n" );
     }
