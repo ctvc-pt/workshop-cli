@@ -50,6 +50,8 @@ For more information about the Cooperative, please visit [Cooperativa](https://c
 
 🇵🇹
 
+https://github.com/cpdscrl/workshop-cli/assets/61508566/2af4bc2b-414c-402b-9311-17153dba41df
+
 # Workshop CLI - O Futuro da Aprendizagem Interactiva
 
 Bem-vindo ao Workshop CLI, um projecto promovido pela Cooperativa, uma cooperativa de programadores sem fins lucrativos. Com sede em Viana do Castelo, somos um grupo de profissionais de software empenhados em promover a cultura e a aprendizagem de programação.
