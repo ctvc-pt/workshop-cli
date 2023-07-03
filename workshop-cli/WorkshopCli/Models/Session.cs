@@ -7,4 +7,6 @@ public struct Session
     public string Email; 
     public string StepId;
     public string NameId;
+    public string Mesa;
+
 }

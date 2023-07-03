@@ -19,6 +19,11 @@
         "Message": "Qual é o teu email?"
     },
     {
+        "Id": "003-mesa",
+        "Type": "ask-mesa",
+        "Message": "Qual é o teu numero da mesa?"
+    },
+    {
         "Id": "004-intro",
         "Type": "intro"
     },

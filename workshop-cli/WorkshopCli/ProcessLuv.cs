@@ -7,7 +7,7 @@ namespace workshopCli
     {
         public void CloseLovecProcess()
         {
-            Process[] processes = Process.GetProcessesByName("lovec");
+            Process[] processes = Process.GetProcessesByName("lovec,love");
 
             foreach (Process process in processes)
             {

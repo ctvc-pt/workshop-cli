@@ -121,6 +121,7 @@ public class GuideCli
                 { "ask-name", new AskNameAction( this ) },
                 { "ask-age", new AskAgeAction( this ) },
                 { "ask-email", new AskEmailAction( this ) },
+                { "ask-mesa", new AskTableAction( this ) },
                 { "video", new VideoAction( currentIndex ) },
                 { "end", new EndAction() }
             };
@@ -142,9 +143,18 @@ public class GuideCli
             {
                 Console.WriteLine( $"Unknown action type: {step.Type}" );
             }
-            sessionWriter.AddSession( session.Name, session.Age, session.Email, session.StepId, session.NameId );
-            helpRequest.GetHelp(session.NameId,session.StepId);
+
+            var NameId = session.Name + session.Mesa;
+            session.NameId = NameId;
+            if ( i >= 4 )
+            {
+                sessionWriter.AddSession( session.Name, session.Age, session.Email, session.StepId, NameId );
+                helpRequest.GetHelp( NameId, session.StepId );
+            }
+
             File.WriteAllText( txtFilePath, JsonConvert.SerializeObject( session ) );
+            
+
             Console.Clear();
            
         }

@@ -8,11 +8,11 @@ def create_branch(repo_owner, repo_name, name_file_path, token):
     g = Github(token)
     repo = g.get_repo(f"{repo_owner}/{repo_name}")
 
-    # Read the name from the name file
+   # Read the name from the name file
     with open(name_file_path, "r") as name_file:
         name_data = json.load(name_file)
-        name = name_data.get("Name", "")
-
+        name = name_data.get("NameId", "")
+    
     # Create a branch name with the format: {name}_{date}
     branch_name = f"{name.replace(' ', '-')}_{datetime.now().strftime('%d-%m-%Y')}"
 
