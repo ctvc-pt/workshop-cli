@@ -29,7 +29,7 @@
     {
         "Id": "006-Criar-ficheiro",
         "Type": "open-file",
-        "Delay": "5"
+        "Delay": "5000"
     },
     {
         "Id": "007-code",
@@ -38,91 +38,91 @@
     {
         "Id": "008-HelloWorld",
         "Type": "challenge",
-        "Delay": "5"
+        "Delay": "5000"
     },
     {
         "Id": "009-helloWorld",
         "Type": "information",
-        "Delay": "20"
+        "Delay": "20000"
     },
     {
-        "Id": "011-code",
+        "Id": "010-code",
         "Type": "code"
     },
     {
-        "Id": "010-recursos",
+        "Id": "011-recursos",
         "Type": "CreateSprites",
-        "Delay": "60"
+        "Delay": "60000"
     },
     {
-        "Id": "013-jogador",
+        "Id": "012-jogador",
         "Type": "challenge",
-        "Delay": "60"
+        "Delay": "60000"
     },
     {
-        "Id": "016-Movimentacao",
+        "Id": "013-Movimentacao",
         "Type": "information",
-        "Delay": "120"
+        "Delay": "120000"
     },
     {
-        "Id": "017-code-check",
+        "Id": "014-code-check",
         "Type": "information",
-        "Delay": "10"
+        "Delay": "10000"
     },
     {
-        "Id": "018-speed",
+        "Id": "015-speed",
         "Type": "information",
-        "Delay": "30"
+        "Delay": "30000"
     },
     {
-        "Id": "019-video",
+        "Id": "016-video",
         "Type": "video",
         "Message": "mid.mp4",
-        "Delay": "49"
+        "Delay": "49000"
     },
     {
-        "Id": "020-missel-load",
+        "Id": "017-missel-load",
         "Type": "information",
-        "Delay": "45"
+        "Delay": "45000"
     },
     {
-        "Id": "022-missel-update",
+        "Id": "018-missel-update",
         "Type": "information",
-        "Delay": "90"
+        "Delay": "90000"
     },
     {
-        "Id": "023-missel-timer",
+        "Id": "019-missel-timer",
         "Type": "information",
-        "Delay": "60"
+        "Delay": "60000"
     },
     {
-        "Id": "025-enemy",
+        "Id": "020-enemy",
         "Type": "information",
-        "Delay": "30"
+        "Delay": "30000"
     },
     {
-        "Id": "032-collisions",
+        "Id": "021-collisions",
         "Type": "information",
-        "Delay": "30"
+        "Delay": "30000"
     },
     {
-        "Id": "033-collisions-2",
+        "Id": "022-collisions-2",
         "Type": "information",
-        "Delay": "30"
+        "Delay": "30000"
     },
     {
-        "Id": "033-desafio",
+        "Id": "023-desafio",
         "Type": "challenge",
-        "Delay": "30"
+        "Delay": "30000"
     },
     {
-        "Id": "034-Fim",
+        "Id": "024-Fim",
         "Type": "video",
         "Message": "end.mp4",
-        "Delay": "54"
+        "Delay": "54000"
     },
     {
-        "Id": "035-end",
+        "Id": "025-end",
         "Type": "end"        
     }
 ]

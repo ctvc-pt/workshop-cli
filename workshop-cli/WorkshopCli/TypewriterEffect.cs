@@ -16,9 +16,11 @@ namespace workshopCli
         {
             Console.ForegroundColor = color;
 
-            foreach (char c in text)
+            string[] words = text.Split(' ');
+
+            foreach (string word in words)
             {
-                Console.Write(c);
+                Console.Write(word + " ");
                 Thread.Sleep(delay);
             }
 

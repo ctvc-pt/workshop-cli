@@ -197,13 +197,13 @@
 
     <ItemGroup>
       <EmbeddedResource Include="Guide\009-helloWorld.md" />
-      <EmbeddedResource Include="Guide\011-code.md" />
-      <EmbeddedResource Include="Guide\017-code-check.md" />
+      <EmbeddedResource Include="Guide\010-code.md" />
+      <EmbeddedResource Include="Guide\014-code-check.md" />
       <EmbeddedResource Include="Guide\Steps.json" />
       <None Remove="Guide\008-code.md" />
       <None Remove="Guide\009-HelloWorld.md" />
       <None Remove="Guide\011-recursos.md" />
-      <EmbeddedResource Include="Guide\010-recursos.md" />
+      <EmbeddedResource Include="Guide\011-recursos.md" />
       <None Remove="Guide\014-desenha-jogador.md" />
       <None Remove="Guide\015-jogador.md" />
       <None Remove="Guide\016-Desafio-Nave.md" />
@@ -238,16 +238,13 @@
       <EmbeddedResource Include="Guide\008-HelloWorld.md" />
       <None Remove="Guide\012-load.md" />
       <None Remove="Guide\013-jogador.md" />
-      <EmbeddedResource Include="Guide\013-jogador.md" />
       <None Remove="Guide\014-Desafio-Nave.md" />
       <None Remove="Guide\015-update.md" />
       <None Remove="Guide\016-Movimentacao.md" />
-      <EmbeddedResource Include="Guide\016-Movimentacao.md" />
       <None Remove="Guide\017-Desafio-movimentacao.md" />
       <None Remove="Guide\018-code-check.md" />
       <None Remove="Guide\019-colisao-tela.md" />
       <None Remove="Guide\020-missel-load.md" />
-      <EmbeddedResource Include="Guide\020-missel-load.md" />
       <None Remove="Guide\021-missel-draw.md" />
       <None Remove="Guide\022-missel-update-missel.md" />
       <None Remove="Guide\023-missel-spawn.md" />
@@ -260,21 +257,15 @@
       <None Remove="Guide\030-moveLeft.md" />
       <None Remove="Guide\031-moveToPlayer.md" />
       <None Remove="Guide\032-collisions.md" />
-      <EmbeddedResource Include="Guide\032-collisions.md" />
       <None Remove="Guide\033-desafio.md" />
-      <EmbeddedResource Include="Guide\033-desafio.md" />
+      <EmbeddedResource Include="Guide\023-desafio.md" />
       <None Remove="Guide\018-speed.md" />
-      <EmbeddedResource Include="Guide\018-speed.md" />
       <None Remove="Guide\022-missel-update.md" />
-      <EmbeddedResource Include="Guide\022-missel-update.md" />
       <None Remove="Guide\023-missel-timer.md" />
-      <EmbeddedResource Include="Guide\023-missel-timer.md" />
       <None Remove="Guide\025-enemy.md" />
-      <EmbeddedResource Include="Guide\025-enemy.md" />
       <None Remove="Guide\033-collisions-2.md" />
-      <EmbeddedResource Include="Guide\033-collisions-2.md" />
       <None Remove="Guide\034-end.md" />
-      <EmbeddedResource Include="Guide\035-end.md" />
+      <EmbeddedResource Include="Guide\025-end.md" />
     </ItemGroup>
 
 </Project>

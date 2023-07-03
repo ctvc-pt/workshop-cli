@@ -10,12 +10,13 @@ namespace workshopCli;
 public class VideoAction: IAction
 {
     int currentIndex;
+    private Timers timers;
     
-
+    
     public VideoAction( int currentIndex )
     {
         this.currentIndex = currentIndex;
-        
+        timers = new Timers();
     }
     
     public void Execute()
@@ -66,7 +67,7 @@ public class VideoAction: IAction
                 InstallVSCode();
             }
             
-            //Thread.Sleep(Delay);
+            
             
             Console.WriteLine("Quando o video acabar, fecha-o para continuar...");
 
@@ -75,14 +76,17 @@ public class VideoAction: IAction
             static extern bool SetForegroundWindow( IntPtr hWnd );
             [DllImport( "kernel32.dll" )]
             static extern IntPtr GetConsoleWindow();
-
             IntPtr consoleWindowHandle = GetConsoleWindow();
             SetForegroundWindow( consoleWindowHandle );
-            KeyPress.SimulateKeyPress();
+            
+            
+            timers.StartTimer();
             //---------
             // Wait for the VLC process to exit
             vlcProcess.WaitForExit();
-            KeyPress.SimulateKeyPress();
+            timers.CancelTimer();
+            
+
     }
 
     private bool IsVSCodeInstalled()

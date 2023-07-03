@@ -5,7 +5,7 @@ namespace workshopCli;
 
 public class ExerciseHelper
 {
-   
+    static ProcessLuv processLuv = new ProcessLuv();
    
     public static string PromptAnswerAndPrint()
     {
@@ -128,6 +128,7 @@ public class ExerciseHelper
                 } 
                 else if (answer is "proximo" or "p" )
                 {
+                    processLuv.CloseLovecProcess();
                     return true;
                 }
                 else if (answer == "s")

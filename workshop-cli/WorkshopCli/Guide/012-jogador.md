@@ -2,8 +2,8 @@
 Já consegues ver a tua nave, agora vamos definir a posição dela no ecrã.
 
 1. Adiciona na função "load()":
-  posicaoX = 0
-  posicaoY = 0
+  posicaoX = 300
+  posicaoY = 300
 
 2. Na função "draw()" onde tem os números '100', altera o primeiro para "posicaoX" e o segundo para "posicaoY"
 

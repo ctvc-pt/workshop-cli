@@ -7,9 +7,11 @@ namespace workshopCli;
 public class CreateSpritesAction: IAction
 {
     public int Delay;
+    private Timers timers;
     public CreateSpritesAction(int delay)
     {
         Delay = delay;
+        timers = new Timers();
     }
     public void Execute()
     {
@@ -41,18 +43,11 @@ public class CreateSpritesAction: IAction
             string destPath = Path.Combine(folderPath, fileName);
             File.Copy(file, destPath, true);
         }
-        Console.ForegroundColor = ConsoleColor.Yellow;
-        int totalSeconds = Delay;
-        for (int i = totalSeconds; i > 0; i--)
-        {
-            //Console.Write($"\rTime remaining: {i} seconds");
-            Thread.Sleep(1000);
-            KeyPress.SimulateKeyPress();
-        }
-        KeyPress.SimulateKeyPress();
-        //Thread.Sleep(Delay);
+        
+        Thread.Sleep(Delay);
+        timers.StartTimer();
         Console.ForegroundColor = ConsoleColor.Yellow;
         ExerciseHelper.PromptAnswerAndConfirm( "Escreve 'proximo' ou 'p' para avançar ou para retroceder escreve 'anterior' (ou 'ajuda')" );
-        //Prompt.Confirm("Quando completares o desafio avança para a frente\n", false);
+        timers.CancelTimer();
     }
 }
