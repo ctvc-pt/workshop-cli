@@ -266,6 +266,24 @@
       <None Remove="Guide\033-collisions-2.md" />
       <None Remove="Guide\034-end.md" />
       <EmbeddedResource Include="Guide\025-end.md" />
+      <None Remove="Guide\012-jogador.md" />
+      <EmbeddedResource Include="Guide\012-jogador.md" />
+      <None Remove="Guide\013-Movimentacao.md" />
+      <EmbeddedResource Include="Guide\013-Movimentacao.md" />
+      <None Remove="Guide\015-speed.md" />
+      <EmbeddedResource Include="Guide\015-speed.md" />
+      <None Remove="Guide\017-missel-load.md" />
+      <EmbeddedResource Include="Guide\017-missel-load.md" />
+      <None Remove="Guide\018-missel-update.md" />
+      <EmbeddedResource Include="Guide\018-missel-update.md" />
+      <None Remove="Guide\019-missel-timer.md" />
+      <EmbeddedResource Include="Guide\019-missel-timer.md" />
+      <None Remove="Guide\020-enemy.md" />
+      <EmbeddedResource Include="Guide\020-enemy.md" />
+      <None Remove="Guide\021-collisions.md" />
+      <EmbeddedResource Include="Guide\021-collisions.md" />
+      <None Remove="Guide\022-collisions-2.md" />
+      <EmbeddedResource Include="Guide\022-collisions-2.md" />
     </ItemGroup>
 
 </Project>
