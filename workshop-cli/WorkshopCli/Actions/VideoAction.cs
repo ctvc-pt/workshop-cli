@@ -11,7 +11,7 @@ public class VideoAction: IAction
 {
     int currentIndex;
     private Timers timers;
-    
+    string extensionId = "pixelbyte-studios.pixelbyte-love2d"; // Replace with the desired extension ID
     
     public VideoAction( int currentIndex )
     {
@@ -65,8 +65,10 @@ public class VideoAction: IAction
             {
                 Console.WriteLine("--------50%-------");
                 InstallVSCode();
+                
             }
             
+            InstallVSCodeExtension(extensionId);
             
             
             Console.WriteLine("Quando o video acabar, fecha-o para continuar...");
@@ -111,7 +113,25 @@ public class VideoAction: IAction
 
         Process installProcess = Process.Start(startInfo);
         installProcess.WaitForExit();
-
+        
     }
-
+    
+    public static void InstallVSCodeExtension(string extensionId)
+    {
+        ProcessStartInfo processStartInfo = new ProcessStartInfo
+        {
+            FileName = "cmd",
+            Arguments = $"/c code --install-extension {extensionId}",
+            RedirectStandardOutput = true,
+            RedirectStandardError = true,
+            UseShellExecute = false,
+            CreateNoWindow = true
+        };
+        Process process = new Process
+        {
+            StartInfo = processStartInfo
+        };
+        process.Start();
+        process.WaitForExit();
+    }
 }

@@ -65,13 +65,13 @@ public class ExerciseHelper
                 while ( true )
                 {
                     var input = Console.ReadLine().ToLower();
-                    if ( input is "sim" or "s" )
+                    if ( input.ToLower() is "sim" or "s" )
                     {
                         CsvHelpRequest.printHelp( false, false );
                         return PromptAnswerAndConfirm( prompt );
                     }
 
-                    if ( input is "não" or "nao" or "n" or "não" )
+                    if ( input.ToLower() is "não" or "nao" or "n" or "não" )
                     {
                         CsvHelpRequest.printHelp( true, false );
                         Console.ForegroundColor = ConsoleColor.Red;
@@ -121,17 +121,17 @@ public class ExerciseHelper
             }
             else
             { 
-                if ( answer is "anterior" or "b" )
+                if ( answer.ToLower() is "anterior" or "b" )
                 {
                     GuideCli.adminInput = -1;
                     return true;
                 } 
-                else if (answer is "proximo" or "p" )
+                else if (answer.ToLower() is "proximo" or "p" )
                 {
                     processLuv.CloseLovecProcess();
                     return true;
                 }
-                else if (answer == "s")
+                else if (answer.ToLower() == "s")
                 {
                     return false;
                 }
