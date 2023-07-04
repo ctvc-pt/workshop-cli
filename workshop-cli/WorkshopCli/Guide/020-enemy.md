@@ -3,10 +3,10 @@ Agora temos tudo sobre o jogador feito, passaremos para os inimigos.
 
 1. Vamos começar por indicar as imagens as suas variaveis na função "load()" (podes mudar a imagem a teu gosto):
 
- ImagemInimigo = love.graphics.newImage("inimigo1.png")
- inimigos = {}
- geraInimigoTempo = 0
- geraInimigoTempoMax = 0.5
+    ImagemInimigo = love.graphics.newImage("inimigo1.png")
+    inimigos = {}
+    geraInimigoTempo = 0
+    geraInimigoTempoMax = 0.5
 
 2. Agora vamos editar na função "draw()", adiciona no fim da função o seguinte:
 
