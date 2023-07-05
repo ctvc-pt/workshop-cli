@@ -9,12 +9,13 @@ public class OpenVSCode
         string vsCodeExecutable = "code.exe";
             Process vsCodeProcess = GetProcessByName(vsCodeExecutable);
                 
-                if (vsCodeProcess != null)
+            if (vsCodeProcess != null)
             {
                 Console.WriteLine("Visual Studio Code is open.");
             }
             else
-            {
+            {   
+                /*
                 var startFolderInfo = new ProcessStartInfo
                 {
                     FileName = $"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}/../Local/Programs/Microsoft VS Code/Code.exe",
@@ -23,6 +24,20 @@ public class OpenVSCode
                     Verb = "runas"
                 };
                 Process.Start(startFolderInfo);
+                */
+                var pythonScriptPath = $"{GuideCli.ResourcesPath}/open_vscode.py"; // Replace with the actual path to your Python script
+        
+                var processStartInfo = new ProcessStartInfo
+                {
+                    FileName = "python",
+                    Arguments = pythonScriptPath,
+                    RedirectStandardOutput = true,
+                    RedirectStandardError = true,
+                    UseShellExecute = false,
+                    CreateNoWindow = true
+                };
+                var process = new Process { StartInfo = processStartInfo };
+                process.Start();
                 
                 Thread.Sleep( 2000 );
                 var startAhkR = new ProcessStartInfo
