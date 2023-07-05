@@ -9,6 +9,7 @@ Já consegues ver a tua nave, agora vamos definir a posição dela no ecrã.
 
 
 
+
      ____  _____ ____    _    _____ ___ ___  
     |  _ \| ____/ ___|  / \  |  ___|_ _/ _ \
     | | | |  _| \___ \ / _ \ | |_   | | | | |
@@ -17,8 +18,7 @@ Já consegues ver a tua nave, agora vamos definir a posição dela no ecrã.
 
 
 
-Desafio-te a mudares a imagem da nave por outras imagem que tens na pasta.
-Tens um desafio extra para mostrar que és um craque nisto, muda a posição da nave ao teu gosto.
+Desafio-te a mudares a imagem da nave por outras imagem que tens na pasta e para posicionar a nave no canto inferior esquerdo esquerdo.
 
 Volta a correr o jogo (alt+l) para verificar se esta tudo bem.
 
