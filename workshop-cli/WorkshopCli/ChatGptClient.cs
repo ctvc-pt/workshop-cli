@@ -20,11 +20,6 @@ namespace workshopCli
         public async Task<string> AskGPT(string userMessage)
         {
             
-            // Check network status
-            bool isNetworkAvailable = NetworkInterface.GetIsNetworkAvailable();
-
-            if ( isNetworkAvailable )
-            {
                 //----------------------
                 var desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
                 var txtFilePath = Path.Combine( GuideCli.ResourcesPath,"session.txt" );
@@ -65,13 +60,7 @@ namespace workshopCli
 
                 var assistantMessage = responseData.choices[0].message.content;
                 return assistantMessage;
-                
-            }
-            else
-            {
-                Console.WriteLine("No network connection available. Unable to update Google Sheets.");
-                return string.Empty;
-            }
+              
         }
     }
 }
