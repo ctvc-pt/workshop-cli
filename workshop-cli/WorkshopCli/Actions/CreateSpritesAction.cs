@@ -7,11 +7,9 @@ namespace workshopCli;
 public class CreateSpritesAction: IAction
 {
     public int Delay;
-    private Timers timers;
     public CreateSpritesAction(int delay)
     {
         Delay = delay;
-        timers = new Timers();
     }
     public void Execute()
     {
@@ -45,9 +43,7 @@ public class CreateSpritesAction: IAction
         }
         
         Thread.Sleep(Delay);
-        timers.StartTimer();
         Console.ForegroundColor = ConsoleColor.Yellow;
         ExerciseHelper.PromptAnswerAndConfirm( "Escreve 'proximo' ou 'p' para avançar ou para retroceder escreve 'anterior' (ou 'ajuda')" );
-        timers.CancelTimer();
     }
 }

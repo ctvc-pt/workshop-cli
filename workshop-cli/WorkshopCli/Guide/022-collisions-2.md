@@ -6,7 +6,7 @@
             for index2, missil in ipairs(misseis) do
                 if intercepta(missil.posicaoX, missil.posicaoY, missil.width, missil.height, inimigo.posicaoX, inimigo.posicaoY, inimigo.width, inimigo.height) then
                     table.remove(inimigos, index)
-                    table.remove(misseis, index2)
+                    table.remove(missil, index2)
                     break
                 end
             end

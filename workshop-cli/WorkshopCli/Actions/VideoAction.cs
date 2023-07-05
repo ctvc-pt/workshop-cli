@@ -10,13 +10,11 @@ namespace workshopCli;
 public class VideoAction: IAction
 {
     int currentIndex;
-    private Timers timers;
     string extensionId = "pixelbyte-studios.pixelbyte-love2d"; // Replace with the desired extension ID
     
     public VideoAction( int currentIndex )
     {
         this.currentIndex = currentIndex;
-        timers = new Timers();
     }
     
     public void Execute()
@@ -81,13 +79,9 @@ public class VideoAction: IAction
             IntPtr consoleWindowHandle = GetConsoleWindow();
             SetForegroundWindow( consoleWindowHandle );
             
-            
-            timers.StartTimer();
             //---------
             // Wait for the VLC process to exit
             vlcProcess.WaitForExit();
-            timers.CancelTimer();
-            
 
     }
 

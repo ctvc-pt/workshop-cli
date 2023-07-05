@@ -10,13 +10,11 @@ public class OpenFileL2DAction : IAction
 {
     string stepId;
     public int Delay;
-    private Timers timers;
    
     public OpenFileL2DAction(string stepId, int delay)
     {
         this.stepId = stepId;
         Delay = delay;
-        timers = new Timers();
     }
 
     public void Execute()
@@ -161,11 +159,9 @@ public class OpenFileL2DAction : IAction
         }
         
         Thread.Sleep(Delay);
-        timers.StartTimer();
         Console.ForegroundColor = ConsoleColor.Yellow;
         Console.WriteLine();
         Console.ForegroundColor = ConsoleColor.Yellow;
         ExerciseHelper.PromptAnswerAndConfirm( "Verifica o código e escreve 'proximo' ou 'p' para continuar ou para retroceder escreve 'anterior' (ou 'ajuda')\n" );
-        timers.CancelTimer();
     }
 }
