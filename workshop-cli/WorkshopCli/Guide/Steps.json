@@ -70,11 +70,6 @@
         "Delay": "120000"
     },
     {
-        "Id": "014-code-check",
-        "Type": "information",
-        "Delay": "10000"
-    },
-    {
         "Id": "015-speed",
         "Type": "information",
         "Delay": "30000"
