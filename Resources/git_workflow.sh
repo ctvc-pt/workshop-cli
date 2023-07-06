@@ -4,6 +4,7 @@
 script_dir=$(dirname "$(readlink -f "$0")")
 json_file="session.txt"
 name=$(grep -o '"Name":"[^"]*' "$json_file" | cut -d '"' -f 4)
+echo "++++++++++++++++++ $name"
 # Construct the SSH key path
 ssh_key_path="$script_dir/my_repo_deploy_key"
 echo "-----------------------PATH: $ssh_key_path"
