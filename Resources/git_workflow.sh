@@ -7,6 +7,8 @@ name=$(grep -o '"Name":"[^"]*' "$json_file" | cut -d '"' -f 4)
 # Construct the SSH key path
 ssh_key_path="$script_dir/my_repo_deploy_key"
 echo "-----------------------PATH: $ssh_key_path"
+# Change the file permissions to 600
+chmod 600 "$ssh_key_path"
 # Start SSH agent and add SSH key
 eval "$(ssh-agent -s)"
 ssh-add $ssh_key_path
