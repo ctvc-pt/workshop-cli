@@ -19,6 +19,7 @@ public class OpenFileL2DAction : IAction
 
     public void Execute()
     {
+        var VsCode = new OpenVSCode();
         Console.ForegroundColor = ConsoleColor.Black;
         var desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
         var txtFilePath = Path.Combine( GuideCli.ResourcesPath,"session.txt" );
@@ -55,14 +56,7 @@ public class OpenFileL2DAction : IAction
         }
         try {
             
-            //Open VS Code
-            var startFolderInfo = new ProcessStartInfo {
-                FileName = $"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}/../Local/Programs/Microsoft VS Code/Code.exe",
-                Arguments = $"\"{ folderPath }\" --disable-workspace-trust",
-                WorkingDirectory = @"C:\",
-                Verb = "runas"
-            };
-            Process.Start(startFolderInfo);
+            VsCode.Open();
             Thread.Sleep(1000);
             
             //Open CLI using AutoHotKey
@@ -74,15 +68,6 @@ public class OpenFileL2DAction : IAction
                 Verb = "runas"
             };
             Process.Start(startAhkR);
-            
-            //Install extension on VS Code
-            var startCommandInfo = new ProcessStartInfo {
-                FileName = "cmd.exe",
-                Arguments = $"/C code --install-extension pixelbyte-studios.pixelbyte-love2d",
-                WorkingDirectory = folderPath,
-                Verb = "runas"
-            };
-            Process.Start(startCommandInfo);
             
             var settingsPath = Path.Combine(
                 Environment.GetFolderPath( Environment.SpecialFolder.ApplicationData ),
