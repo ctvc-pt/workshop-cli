@@ -18,7 +18,9 @@ ssh-add $ssh_key_path
 git clone git@github.com:cpdsWorkshop/workshop2023.git
 
 # Change to the cloned repository directory
-cd repoWorkshop
+cd workshop2023
+
+pwd
 
 # Checkout the main branch
 git checkout main
@@ -30,8 +32,10 @@ git pull
 git branch $name
 git checkout $name
 
+folder="$script_dir/worksop2023"
 # Add files to commit
 git add .
+
 
 # Create a commit
 git commit -m "Commit $name"

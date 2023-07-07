@@ -61,13 +61,17 @@ public class VideoAction: IAction
             
             if (!IsVSCodeInstalled())
             {
-                Console.WriteLine("--------50%-------");
+                Console.WriteLine("--------33%-------");
                 InstallVSCode();
-                
             }
             
             InstallVSCodeExtension(extensionId);
             
+            if (!IsGitInstalled())
+            {
+                Console.WriteLine("--------66%-------");
+                InstallGit();
+            }
             
             Console.WriteLine("Quando o video acabar, fecha-o para continuar...");
 
@@ -127,5 +131,42 @@ public class VideoAction: IAction
         };
         process.Start();
         process.WaitForExit();
+    }
+
+    public static void InstallGit()
+    {
+        string installerPath = Path.Combine(GuideCli.ResourcesPath, "Git-2.41.0-64-bit.exe");
+
+        Process gitInstaller = new Process();
+        gitInstaller.StartInfo.FileName = installerPath;
+        gitInstaller.StartInfo.Arguments = "/SILENT";
+        gitInstaller.Start();
+        gitInstaller.WaitForExit();
+    }
+
+    public static bool IsGitInstalled()
+    {
+        Process gitProcess = new Process();
+        gitProcess.StartInfo.FileName = "git";
+        gitProcess.StartInfo.Arguments = "--version";
+        gitProcess.StartInfo.RedirectStandardOutput = true;
+        gitProcess.StartInfo.RedirectStandardError = true;
+        gitProcess.StartInfo.UseShellExecute = false;
+        gitProcess.StartInfo.CreateNoWindow = true;
+
+        gitProcess.Start();
+        gitProcess.WaitForExit();
+
+        string output = gitProcess.StandardOutput.ReadToEnd();
+        string error = gitProcess.StandardError.ReadToEnd();
+
+        if (!string.IsNullOrEmpty(output))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 }
