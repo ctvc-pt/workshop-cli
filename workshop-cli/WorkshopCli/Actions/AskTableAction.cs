@@ -12,8 +12,6 @@ public class AskTableAction: IAction
     {
         Cli.session.Mesa = ExerciseHelper.PromptAnswerAndPrint();
         
-        var repoManager = new GitHubManager();
-        repoManager.CloneRepo();
         
     }
 }

@@ -5,30 +5,11 @@ namespace workshopCli;
 
 public class GitHubManager
 {
-    public void CloneRepo()
-    {
-        Console.WriteLine("");
-        var pythonScriptPath = $"{GuideCli.ResourcesPath}/github_clone.py"; // Replace with the actual path to your Python script
-        
-        var processStartInfo = new ProcessStartInfo
-        {
-            FileName = "python",
-            Arguments = pythonScriptPath,
-            RedirectStandardOutput = true,
-            RedirectStandardError = true,
-            UseShellExecute = false,
-            CreateNoWindow = true
-        };
-
-        var process = new Process { StartInfo = processStartInfo };
-        process.Start();
-        process.WaitForExit();
-    }
     public void CreateBranch()
     {
         //Console.WriteLine("create branch");
         
-        var pythonScriptPath = $"{GuideCli.ResourcesPath}/github_branch.py"; // Replace with the actual path to your Python script
+        var pythonScriptPath = $"{GuideCli.ResourcesPath}/git_workflow.py"; // Replace with the actual path to your Python script
         
         var processStartInfo = new ProcessStartInfo
         {

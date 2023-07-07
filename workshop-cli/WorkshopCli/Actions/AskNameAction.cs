@@ -13,9 +13,5 @@ public class AskNameAction: IAction
         Cli.session.Name = ExerciseHelper.PromptAnswerAndPrint();
         
         
-        //Console.WriteLine(Cli.session.NameId);
-        var repoManager = new GitHubManager();
-        repoManager.CloneRepo();
-        
     }
 }
