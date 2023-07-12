@@ -20,4 +20,4 @@ with open(name_file_path, "r") as name_file:
 
 desktop_folder = os.path.expanduser("~/Desktop")     
 folder_name = f"{name.replace(' ', '-')}_{datetime.now().strftime('%d-%m-%Y')}"
-open_vscode(os.path.join(desktop_folder, folder_name))
+open_vscode(os.path.join(desktop_folder, folder_name,"mygame"))

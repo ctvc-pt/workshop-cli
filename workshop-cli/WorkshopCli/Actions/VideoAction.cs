@@ -10,7 +10,7 @@ namespace workshopCli;
 public class VideoAction: IAction
 {
     int currentIndex;
-    string extensionId = "pixelbyte-studios.pixelbyte-love2d"; // Replace with the desired extension ID
+    string extensionId = "pixelbyte-studios.pixelbyte-love2d"; 
     
     public VideoAction( int currentIndex )
     {

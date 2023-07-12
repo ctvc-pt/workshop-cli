@@ -39,7 +39,7 @@ public class GitHubManager
         var desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
         var sourceFolderPath = Path.Combine(desktopPath, $"{username}_{DateTime.Now.ToString("dd-MM-yyyy")}");
 
-        var folderPath = Path.Combine(desktopPath,"repoWorkshop");
+        var folderPath = Path.Combine(GuideCli.ResourcesPath,"Workshop2023");
 
         var files = Directory.GetFiles(sourceFolderPath, "*", SearchOption.AllDirectories);
 
