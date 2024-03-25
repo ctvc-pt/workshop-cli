@@ -479,7 +479,6 @@ fabric.properties
 
 *.deps.json
 *.dll
-*.exe
 *.pdb
 *.cache
 *.packagespec.json
