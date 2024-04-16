@@ -489,6 +489,6 @@ fabric.properties
 # Resources/VLCPortable.zip
 # Resources/VLCPortable
 Resources/session.txt
-Resources/sessions.csv
+#Resources/sessions.csv
 
 Resources/token.json
