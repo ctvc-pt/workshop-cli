@@ -9,11 +9,12 @@
 
     <?define VerMajor = "3" ?>
     <?define VerMinor = "0" ?>
-    <?define VerPatch = "17" ?>
+    <?define VerPatch = "20" ?>
+    <?define VerExtra = "0" ?>
     <?define Version = "$(var.VerMajor).$(var.VerMinor).$(var.VerPatch)" ?>
-    <?define VersionLong = "$(var.Version).0" ?>
+    <?define VersionLong = "$(var.Version).$(var.VerExtra)" ?>
 
-    <?define SourceDir = "vlc-3.0.17.4" ?>
+    <?define SourceDir = "vlc-3.0.20" ?>
     <!--<?define PluginsPath = "$(var.BinPath)\plugins" ?>
     <?define LocalePath = "$(var.BinPath)\locale" ?>
     <?define SdkPath = "$(var.BinPath)\sdk" ?>-->
