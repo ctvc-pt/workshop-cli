@@ -21,7 +21,8 @@ public class OpenFileL2DAction : IAction
     {
         var VsCode = new OpenVSCode();
         Console.ForegroundColor = ConsoleColor.Black;
-        var desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
+        var desktopPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory), "repoWorkshop");
+
         var txtFilePath = Path.Combine( GuideCli.ResourcesPath,"session.txt" );
         if ( !File.Exists( txtFilePath ) )
         {

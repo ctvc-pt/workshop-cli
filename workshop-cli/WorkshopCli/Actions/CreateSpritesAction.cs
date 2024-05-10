@@ -14,7 +14,7 @@ public class CreateSpritesAction: IAction
     public void Execute()
     {
         var sourceFolderPath = Path.Combine( GuideCli.ResourcesPath,"Images");
-        var desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
+        var desktopPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory), "repoWorkshop");
         var txtFilePath =Path.Combine( GuideCli.ResourcesPath,"session.txt" );
         
         if ( !File.Exists( txtFilePath ) )

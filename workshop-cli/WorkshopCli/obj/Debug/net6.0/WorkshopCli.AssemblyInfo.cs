@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("WorkshopCli")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+364ec88a5e4217eb9b1ba44f7743b12b0876d779")]
 [assembly: System.Reflection.AssemblyProductAttribute("WorkshopCli")]
 [assembly: System.Reflection.AssemblyTitleAttribute("WorkshopCli")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

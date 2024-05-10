@@ -1,12 +1,19 @@
 @echo off
 
-set DOTNET_INSTALLER=%USERPROFILE%\Desktop\workshop-cli\Resources\dotnet-runtime-6.0.19-win-x64.exe
+set DOTNET_INSTALLER=%USERPROFILE%\Desktop\workshop-cli\Resources\dotnet-runtime-8.0.4-win-x64.exe
 set TARGET_PROGRAM=%USERPROFILE%\Desktop\workshop-cli\workshop-cli\WorkshopCli\bin\Debug\net6.0\WorkshopCli.exe
-set SHORTCUT_NAME=%USERPROFILE%\Desktop\workshop-cli\cli.lnk
+set SHORTCUT_NAME=%USERPROFILE%\Desktop\cli.lnk
+set SESSION_FILE=C:\Users\info\Desktop\workshop-cli\Resources\session.txt
 
-REM Install .NET 6
-echo Installing .NET 6...
-start /wait %DOTNET_INSTALLER% /quiet
+REM Install .NET 8
+echo Installing .NET 8...
+start /wait "" runas %DOTNET_INSTALLER% /quiet
+
+REM Delete session file if exists
+if exist "%SESSION_FILE%" (
+    echo Deleting session file...
+    del "%SESSION_FILE%"
+)
 
 REM Create the shortcut
 echo Creating shortcut...
@@ -20,9 +27,5 @@ REM Open the shortcut
 echo Opening shortcut...
 start "" "%SHORTCUT_NAME%"
 
-@REM REM Delete the batch script
-@REM echo Deleting script...
-@REM del "%~f0"
-
-echo .NET 6 (64-bit) installed successfully, shortcut created, shortcut opened, and script deleted.
+echo .NET 6 (64-bit) installed successfully, shortcut created, shortcut opened, and script completed.
 exit

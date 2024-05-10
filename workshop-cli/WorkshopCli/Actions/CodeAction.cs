@@ -40,7 +40,8 @@ public class CodeAction : IAction
         var guide = new Guide { Steps = steps };
 
         var step = guide.Steps[currentIndex];
-        var desktopPath = Environment.GetFolderPath( Environment.SpecialFolder.DesktopDirectory );
+        var desktopPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory), "repoWorkshop");
+
         var folderPath = Path.Combine(desktopPath, $"{username}_{DateTime.Now.ToString("dd-MM-yyyy")}", "mygame");
         
         var mdFilePath =$"{step.Id}.md";
