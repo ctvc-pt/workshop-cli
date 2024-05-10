@@ -34,12 +34,11 @@ public class GitHubManager
         }
     }
 
-
     public void Commit(string name)
         {
             //Console.WriteLine("commit");
             var username = name;
-
+            
             if (username != null)
             {
                 username = username.Replace(" ", "-");
@@ -48,7 +47,7 @@ public class GitHubManager
             var desktopPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory), "repoWorkshop");
 
             var sourceFolderPath = Path.Combine(desktopPath, $"{username}_{DateTime.Now.ToString("dd-MM-yyyy")}");
-
+            
             var folderPath = Path.Combine(GuideCli.ResourcesPath, "Workshop2023");
 
             var files = Directory.GetFiles(sourceFolderPath, "*", SearchOption.AllDirectories);
@@ -86,8 +85,8 @@ public class GitHubManager
                 var process = new Process { StartInfo = processStartInfo };
 
                 // Configure asynchronous event handlers for output and error data received
-                //process.OutputDataReceived += (sender, e) => Console.WriteLine(e.Data);
-                //process.ErrorDataReceived += (sender, e) => Console.WriteLine($"Error: {e.Data}");
+                process.OutputDataReceived += (sender, e) => Console.WriteLine();
+                process.ErrorDataReceived += (sender, e) => Console.WriteLine();
 
                 // Start the process
                 process.Start();

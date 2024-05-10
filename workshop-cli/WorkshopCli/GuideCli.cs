@@ -107,7 +107,7 @@ public class GuideCli
             
             var delay = step.Delay;
             //if ( delay==0 && delay==null)
-                delay = 1;
+            delay = 1;
             
             var actions = new Dictionary<string, IAction>()
             {
@@ -153,7 +153,7 @@ public class GuideCli
             }
 
             File.WriteAllText( txtFilePath, JsonConvert.SerializeObject( session ) );
-         
+            
 
             Console.Clear();
            

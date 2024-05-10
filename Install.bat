@@ -27,5 +27,9 @@ REM Open the shortcut
 echo Opening shortcut...
 start "" "%SHORTCUT_NAME%"
 
+@REM REM Delete the batch script
+@REM echo Deleting script...
+@REM del "%~f0"
+
 echo .NET 6 (64-bit) installed successfully, shortcut created, shortcut opened, and script completed.
 exit

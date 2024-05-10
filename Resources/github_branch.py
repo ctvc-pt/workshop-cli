@@ -55,5 +55,3 @@ clone_destination = os.path.join(os.path.expanduser("~"), "Desktop", "repoWorksh
 name_file_path = os.path.join(script_directory, "session.txt")  
 
 create_branch_and_clone(repo_owner, repo_name, name_file_path, clone_destination, token)
-
-#git fetch && git pull

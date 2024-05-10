@@ -30,7 +30,7 @@ Não te esqueças de verificar em que direção o jogador é movimentado, se for
 Testa o jogo(Alt+L).
 
 Desafio extra:
-Se reparares a nave sai fora do ecrã, para impedir que a nave saia usa o seguinte codigo:
+Se reparares a nave sai fora do ecrã, para impedir que a nave saia retira o codigo de cima e usa o seguinte codigo:
 
 Para ter o limite para a direita:
 
@@ -40,9 +40,16 @@ Para ter o limite para a direita:
         end
     end
 
-Para os outros lados usa este codigo:
+Para ter o limite para a direita:
 
-    "posicaoX > 0" para ter o limite para a esquerda
+    if posicaoX > 0 then 
+        if love.keyboard.isDown("left") then
+            posicaoX = posicaoX - 1
+        end
+    end
+
+Para os sentido vertical, descobre e usa este codigo:
+
 
     "posicaoY <(love.graphics.getHeight() - imagem:getHeight())" para ter o limite para baixo.
 

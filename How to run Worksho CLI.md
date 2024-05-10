@@ -11,4 +11,3 @@
      This will install all the necessary programs needed to run the CLI
 
 3- Run the shortcut with admin permissions
-
