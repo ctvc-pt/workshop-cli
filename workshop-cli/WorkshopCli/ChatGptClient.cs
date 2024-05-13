@@ -16,6 +16,14 @@ namespace workshopCli
         {
             httpClient = new HttpClient();
         }
+        
+        private string GetApiKey()
+        {
+            var configFilePath = Path.Combine(GuideCli.ResourcesPath, "config.json");
+            var configJson = File.ReadAllText(configFilePath);
+            dynamic config = JsonConvert.DeserializeObject(configJson);
+            return config.ApiKey;
+        }
 
         public async Task<string> AskGPT(string userMessage)
         {
@@ -31,16 +39,16 @@ namespace workshopCli
                 var code = File.ReadAllText( folderPath );
                 //-----------------------
             
-                var configuration = new ConfigurationBuilder()
-                    .AddJsonFile("appsettings.json")
-                    .Build();
-            
-                var request = new HttpRequestMessage(HttpMethod.Post, "https://api.openai.com/v1/chat/completions");
-                request.Headers.Add("Authorization", $"Bearer {configuration["MySettings:OpenAiKey"]}");
+                
+                var apiKey = GetApiKey();
 
+                var request = new HttpRequestMessage(HttpMethod.Post, "https://api.openai.com/v1/chat/completions");
+                request.Headers.Add("Authorization", $"Bearer {apiKey}");
+
+                // Update the model version here
                 var requestBody = new
                 {
-                    model = "gpt-3.5-turbo-0301",
+                    model = "gpt-4-turbo", // Update with the new version
                     messages = new[]
                     {
                         new { role = "system", content = fileContent+code},
