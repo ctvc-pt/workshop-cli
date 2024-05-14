@@ -1,32 +1,29 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
+using System.IO;
+using System.Threading;
 
-namespace workshopCli;
-
-public class OpenVSCode
+namespace workshopCli
 {
-    public void Open()
+    public class OpenVSCode
     {
-        string vsCodeExecutable = "code.exe";
-            Process vsCodeProcess = GetProcessByName(vsCodeExecutable);
-                
+        private Process vsCodeProcess;
+        private Process autoHotkeyProcess;
+
+        public void Open()
+        {
+            string vsCodeExecutable = "code.exe";
+            vsCodeProcess = GetProcessByName(vsCodeExecutable);
+
             if (vsCodeProcess != null)
             {
-                Console.WriteLine("Visual Studio Code is open.");
+                Console.WriteLine("Visual Studio Code is already open.");
             }
             else
-            {   
-                /*
-                var startFolderInfo = new ProcessStartInfo
-                {
-                    FileName = $"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}/../Local/Programs/Microsoft VS Code/Code.exe",
-                    Arguments = "--disable-workspace-trust",
-                    WorkingDirectory = @"C:\", 
-                    Verb = "runas"
-                };
-                Process.Start(startFolderInfo);
-                */
-                var pythonScriptPath = $"{GuideCli.ResourcesPath}/open_vscode.py"; // Replace with the actual path to your Python script
-        
+            {
+                // Iniciar o VS Code
+                var pythonScriptPath = $"{GuideCli.ResourcesPath}/open_vscode.py"; // Substitua pelo caminho real do seu script Python
+
                 var processStartInfo = new ProcessStartInfo
                 {
                     FileName = "python",
@@ -36,39 +33,55 @@ public class OpenVSCode
                     UseShellExecute = false,
                     CreateNoWindow = true
                 };
-                var process = new Process { StartInfo = processStartInfo };
-                process.Start();
-                
-                Thread.Sleep( 2000 );
-                var startAhkR = new ProcessStartInfo
+                vsCodeProcess = new Process { StartInfo = processStartInfo };
+                vsCodeProcess.Start();
+
+                // Esperar um pouco para o VS Code iniciar completamente
+                Thread.Sleep(2000);
+
+                // Iniciar o AutoHotkey
+                var ahkScriptPath = Path.Combine(GuideCli.ResourcesPath, "AutoHotkey", "v1.1.36.02", "vsc.ahk");
+                var ahkProcessStartInfo = new ProcessStartInfo
                 {
-                    FileName = Path.Combine( GuideCli.ResourcesPath,"AutoHotkey","v1.1.36.02","AutoHotkeyU64.exe"),
-                    Arguments = Path.Combine( GuideCli.ResourcesPath,"vsc.ahk"),
+                    FileName = Path.Combine(GuideCli.ResourcesPath, "AutoHotkey", "v1.1.36.02", "AutoHotkeyU64.exe"),
+                    Arguments = ahkScriptPath,
                     WorkingDirectory = @"C:\",
                     Verb = "runas"
                 };
-                Process.Start(startAhkR);
-            }
-    }
-    static Process GetProcessByName(string processName)
-    {
-        Process[] processes = Process.GetProcesses();
-        
-        foreach (Process process in processes)
-        {
-            try
-            {
-                if (process.MainModule.FileName.EndsWith(processName, StringComparison.OrdinalIgnoreCase))
+                autoHotkeyProcess = Process.Start(ahkProcessStartInfo);
+
+                // Adicionar manipulador de eventos para o encerramento do aplicativo
+                AppDomain.CurrentDomain.ProcessExit += (sender, e) =>
                 {
-                    return process;
-                }
-            }
-            catch (Exception)
-            {
-                // Ignore any process that throws an exception when accessing MainModule
+                    if (autoHotkeyProcess != null && !autoHotkeyProcess.HasExited)
+                    {
+                        Console.WriteLine("Closing AutoHotkey...");
+                        autoHotkeyProcess.Kill();
+                        autoHotkeyProcess.WaitForExit();
+                        Console.WriteLine("AutoHotkey has been closed.");
+                    }
+                };
             }
         }
 
-        return null;
+        private static Process GetProcessByName(string processName)
+        {
+            Process[] processes = Process.GetProcessesByName(processName);
+            foreach (Process process in processes)
+            {
+                try
+                {
+                    if (process.MainModule.FileName.EndsWith(processName, StringComparison.OrdinalIgnoreCase))
+                    {
+                        return process;
+                    }
+                }
+                catch (Exception)
+                {
+                    // Ignore any process that throws an exception when accessing MainModule
+                }
+            }
+            return null;
+        }
     }
 }
