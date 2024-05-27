@@ -44,7 +44,7 @@ namespace workshopCli
             vlcProcess.EnableRaisingEvents = true;
             vlcProcess.Start();
 
-            // Inicie o processo win-right.ahk
+            // Starts win-right.ahk process
             var startAhkR = new ProcessStartInfo
             {
                 FileName = Path.Combine(GuideCli.ResourcesPath, "AutoHotkey", "v1.1.36.02", "AutoHotkeyU64.exe"),
@@ -77,13 +77,13 @@ namespace workshopCli
 
             Console.WriteLine("Quando o vídeo acabar, feche-o para continuar...");
 
-            //dar focus na CLI
+            //Focus on CLI
             SetForegroundWindow(GetConsoleWindow());
 
-            // Aguarde o término do processo VLC
+            // Waits for VLC to close
             vlcProcess.WaitForExit();
 
-            // Ao detectar que o VLC terminou, encerre o processo win-right.ahk se estiver em execução
+            // If VLC closed,close win-right.ahk processes
             if (!ahkProcess.HasExited)
             {
                 ahkProcess.Kill();
