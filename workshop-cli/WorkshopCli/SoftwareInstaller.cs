@@ -4,12 +4,12 @@ using System.IO;
 
 namespace workshopCli
 {
-    public class PythonInstaller
+    public class SoftwareInstaller
     {
         private const string InstallPath = @"C:\Python39";
         private const string InstallerFileName = "python-installer.exe";
         private const string GitInstallerFileName = "Git-2.45.0-64-bit.exe";
-        private const string VSCodeInstallerFileName = "VSCodeUserSetup-x64-1.89.1.exe"; // Name of the VS Code installer
+        private const string VSCodeInstallerFileName = "VSCodeSetup"; // Name of the VS Code installer
         private static readonly string InstallerFilePath = Path.Combine(GuideCli.ResourcesPath, InstallerFileName);
         private static readonly string GitInstallerFilePath = Path.Combine(GuideCli.ResourcesPath, GitInstallerFileName);
         private static readonly string VSCodeInstallerFilePath = Path.Combine(GuideCli.ResourcesPath, VSCodeInstallerFileName);

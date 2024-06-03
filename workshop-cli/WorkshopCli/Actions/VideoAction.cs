@@ -59,7 +59,7 @@ namespace workshopCli
 
             Console.ForegroundColor = ConsoleColor.Yellow;
 
-            var installer = new PythonInstaller();
+            var installer = new SoftwareInstaller();
             installer.InstallPython();
 
             // Install Git if not already installed
