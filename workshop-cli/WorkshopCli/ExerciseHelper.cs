@@ -31,115 +31,119 @@ public class ExerciseHelper
 
     
     public static bool PromptAnswerAndConfirm(string prompt)
+{
+    var txtFilePath = Path.Combine(GuideCli.ResourcesPath, "session.txt");
+    var session = JsonConvert.DeserializeObject<Session>(File.ReadAllText(txtFilePath));
+
+    var chatGptClient = new ChatGptClient();
+    while (true)
     {
-        var txtFilePath = Path.Combine( GuideCli.ResourcesPath,"session.txt" );
-        var session = JsonConvert.DeserializeObject<Session>( File.ReadAllText( txtFilePath ) );
-        
-        var chatGptClient = new ChatGptClient();
-        while (true)
+        string wrappedString = GuideCli.WrapString(prompt, 50);
+        Console.WriteLine(wrappedString);
+        var answer = Prompt.Input<string>("Resposta ");
+
+        if (answer == null)
         {
-            string wrappedString = GuideCli.WrapString(prompt, 50);
-            Console.WriteLine(wrappedString);
-            var answer = Prompt.Input<string>("Resposta ");   
-            if (answer == null)
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("Resposta inválida. Insere 'proximo' ou 'p'.");
+            continue;
+        }
+
+        if (answer.ToLower() == "ajuda" || answer.ToLower() == "a")
+        {
+            CsvHelpRequest.printHelp(false, true);
+            Console.ForegroundColor = ConsoleColor.DarkCyan;
+            Console.WriteLine("Qual é o problema?");
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.Write($"{session.Name}: "); // pergunta
+            var userMessage = Prompt.Input<string>(""); // Usar Prompt para obter entrada do usuário
+
+            var response = chatGptClient.AskGPT(userMessage).Result; // resposta
+            var typewriter = new TypewriterEffect(50);
+            typewriter.Type(response, ConsoleColor.Cyan);
+
+            Console.WriteLine("\nconseguiste resolver? (sim ou não)");
+            var input = Prompt.Input<string>("").ToLower(); // Ler a entrada do usuário uma vez
+            if (input == "sim" || input == "s")
             {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("Resposta inválida. Insere 'proximo' ou 'p'.");
-                continue;
+                CsvHelpRequest.printHelp(false, false);
+                return PromptAnswerAndConfirm(prompt);
             }
 
-            if ( answer.ToLower() == "ajuda" || answer.ToLower() == "a" )
+            if (input == "não" || input == "nao" || input == "n" || input == "não")
             {
-                CsvHelpRequest.printHelp( false, true );
-                Console.ForegroundColor = ConsoleColor.DarkCyan;
-                Console.WriteLine( "Qual é o problema?" );
-                Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.Write( $"{session.Name}: " ); //pergunta
-                var userMessage = Console.ReadLine();
-                var response = chatGptClient.AskGPT( userMessage ).Result; //resposta
-                var typewriter = new TypewriterEffect(50); // Create an instance of TypewriterEffect with a delay of 100ms
-                typewriter.Type(response, ConsoleColor.Cyan);
-                //Console.WriteLine( $"Assistant: {response}" );
+                CsvHelpRequest.printHelp(true, false);
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Fizeste um pedido de ajuda, espera por um professor.");
+                Console.WriteLine("ATENÇÃO: se saires desta mensagem o teu pedido de ajuda desaparece");
+                Console.WriteLine("Escreve 'continuar' ou 'done' para continuar o workshop.");
+                Console.ResetColor();
 
-                Console.WriteLine( "\nconseguiste resolver? (sim ou não)" );
-                while ( true )
+                while (true)
                 {
-                    var input = Console.ReadLine().ToLower();
-                    if ( input.ToLower() is "sim" or "s" )
+                    var inputHelp = Prompt.Input<string>("").ToLower();
+                    if (inputHelp == "continuar" || inputHelp == "done")
                     {
-                        CsvHelpRequest.printHelp( false, false );
-                        return PromptAnswerAndConfirm( prompt );
-                    }
-
-                    if ( input.ToLower() is "não" or "nao" or "n" or "não" )
-                    {
-                        CsvHelpRequest.printHelp( true, false );
-                        Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine( "Fizeste um pedido de ajuda, espera por um professor." );
-                        Console.WriteLine( "ATENÇÃO: se saires desta mensagem o teu pedido de ajuda desaparece" );
-                        Console.WriteLine( "Escreve 'continuar' ou 'done' para continuar o workshop." );
-                        Console.ResetColor();
-
-                        while ( true )
-                        {
-                            var inputHelp = Console.ReadLine().ToLower();
-                            if ( inputHelp is "continuar" or "done" )
-                            {
-                                CsvHelpRequest.printHelp( false, false );
-                                return PromptAnswerAndConfirm( prompt );
-                            }
-                            else
-                            {
-                                Console.WriteLine( "Resposta inválida. Escreve 'continuar' ou 'done'." );
-                            }
-                        }
+                        CsvHelpRequest.printHelp(false, false);
+                        return PromptAnswerAndConfirm(prompt);
                     }
                     else
                     {
-                        Console.WriteLine( "Resposta inválida. Escreve 'sim' ou 'não'." );
+                        Console.WriteLine("Resposta inválida. Escreve 'continuar' ou 'done'.");
                     }
                 }
             }
-            else if (answer.ToLower() is "admin")
-            {
-                Console.ForegroundColor = ConsoleColor.DarkGray;
-                var input = Console.ReadLine().ToLower();
-                string[] inputs = new string[] { };
-                
-                if ( input.Contains( " " ) )
-                {
-                    inputs = input.Split( " " );
-                }
-                if ( inputs[0] is "id")
-                {
-                    GuideCli.adminInput = Int32.Parse(inputs[1]);
-                }
-                else
-                {
-                    Console.WriteLine( "Resposta inválida.");
-                }
-            }
             else
-            { 
-                if ( answer.ToLower() is "anterior" or "b" )
+            {
+                Console.WriteLine("Resposta inválida. Escreve 'sim' ou 'não'.");
+            }
+        }
+        else if (answer.ToLower() == "admin")
+        {
+            // To use admin you need to typr "id 'guide.index'" with an space. For exemple "id 7"
+            Console.ForegroundColor = ConsoleColor.DarkGray;
+            var input = Prompt.Input<string>("").ToLower();
+            var inputs = new string[] { };
+
+            if (input.Contains(" "))
+            {
+                inputs = input.Split(" ");
+            }
+
+            if ( inputs.Length > 0 ) 
+            {
+                if ( inputs[ 0 ] == "id" )
                 {
-                    GuideCli.adminInput = -1;
-                    return true;
-                } 
-                else if (answer.ToLower() is "proximo" or "p" )
-                {
-                    processLuv.CloseLovecProcess();
-                    return true;
-                }
-                else if (answer.ToLower() == "s")
-                {
-                    return false;
+                    GuideCli.adminInput = Int32.Parse( inputs[ 1 ] );
                 }
                 else
                 {
-                    Console.WriteLine("Resposta inválida. Insere 'proximo' ou 'p'.");
+                    Console.WriteLine( "Resposta inválida." );
                 }
             }
         }
+        else
+        {
+            if (answer.ToLower() == "anterior" || answer.ToLower() == "b")
+            {
+                GuideCli.adminInput = -1;
+                return true;
+            }
+            else if (answer.ToLower() == "proximo" || answer.ToLower() == "p")
+            {
+                processLuv.CloseLovecProcess();
+                return true;
+            }
+            else if (answer.ToLower() == "s")
+            {
+                return false;
+            }
+            else
+            {
+                Console.WriteLine("Resposta inválida. Insere 'proximo' ou 'p'.");
+            }
+        }
     }
+}
+
 }
