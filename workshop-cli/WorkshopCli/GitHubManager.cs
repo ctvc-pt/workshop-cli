@@ -7,11 +7,9 @@ public class GitHubManager
 {
     public void CreateBranch()
     {
-        //Console.WriteLine("1");
-    
+        
         var pythonScriptPath = $"{GuideCli.ResourcesPath}/github_branch.py"; // Replace with the actual path to your Python script
-    
-        //Console.WriteLine("2");
+        
         var processStartInfo = new ProcessStartInfo
         {
             FileName = "python",
@@ -21,7 +19,7 @@ public class GitHubManager
             UseShellExecute = false,
             CreateNoWindow = true
         };
-        //Console.WriteLine("3");
+        
         try
         {
             var process = new Process { StartInfo = processStartInfo };
@@ -30,7 +28,7 @@ public class GitHubManager
         }
         catch (Exception ex)
         {
-            //Console.WriteLine($"Error executing Python script: {ex.Message}");
+            Console.WriteLine($"Error executing Python script: {ex.Message}");
         }
     }
 
