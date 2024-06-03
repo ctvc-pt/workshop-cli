@@ -6,7 +6,7 @@ json_file="session.txt"
 name=$(grep -o '"NameId":"[^"]*' "$json_file" | cut -d '"' -f 4)
 echo "++++++++++++++++++ $name"
 # Construct the SSH key path
-ssh_key_path="$script_dir/my_repo_deploy_key"
+ssh_key_path="$script_dir/id_ed25519"
 echo "-----------------------PATH: $ssh_key_path"
 # Change the file permissions to 600
 chmod 600 "$ssh_key_path"
@@ -15,10 +15,10 @@ eval "$(ssh-agent -s)"
 ssh-add $ssh_key_path
 
 # Clone the repository
-git clone git@github.com:cpdsWorkshop/workshop2023.git
+git clone git@github.com:cpdscrl/workshop-progress.git
 
 # Change to the cloned repository directory
-cd workshop2023
+cd workshop-progress
 
 pwd
 
@@ -32,7 +32,7 @@ git pull
 git branch $name
 git checkout $name
 
-folder="$script_dir/worksop2023"
+folder="$script_dir/work-progress"
 # Add files to commit
 git add .
 

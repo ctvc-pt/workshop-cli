@@ -21,7 +21,7 @@ namespace workshopCli
         {
             
                 //----------------------
-                var desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
+                var desktopPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory), "repoWorkshop");
                 var txtFilePath = Path.Combine( GuideCli.ResourcesPath,"session.txt" );
                 var session = JsonConvert.DeserializeObject<Session>(File.ReadAllText( txtFilePath ));
                 var username = session.Name;

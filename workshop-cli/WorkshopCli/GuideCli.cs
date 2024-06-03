@@ -106,8 +106,8 @@ public class GuideCli
 
             
             var delay = step.Delay;
-            if ( delay==0 && delay==null)
-                delay = 10000;
+            //if ( delay==0 && delay==null)
+            delay = 1;
             
             var actions = new Dictionary<string, IAction>()
             {

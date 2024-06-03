@@ -18,6 +18,6 @@ with open(name_file_path, "r") as name_file:
     name_data = json.load(name_file)
     name = name_data.get("Name", "")
 
-desktop_folder = os.path.expanduser("~/Desktop")     
+desktop_folder = os.path.expanduser("~/Desktop/repoWorkshop")         
 folder_name = f"{name.replace(' ', '-')}_{datetime.now().strftime('%d-%m-%Y')}"
 open_vscode(os.path.join(desktop_folder, folder_name,"mygame"))
