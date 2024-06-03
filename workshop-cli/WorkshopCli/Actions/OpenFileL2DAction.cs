@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Diagnostics;
 using Newtonsoft.Json;
 using Sharprompt;
@@ -12,7 +12,6 @@ namespace workshopCli
         string stepId;
         public int Delay;
         private Process autoHotkeyProcess;
-
 
         public OpenFileL2DAction(string stepId, int delay)
         {

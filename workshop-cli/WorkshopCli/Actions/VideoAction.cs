@@ -5,6 +5,7 @@ using System.IO;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Threading;
+using Microsoft.Win32;
 using Newtonsoft.Json;
 using Sharprompt;
 
@@ -58,32 +59,42 @@ namespace workshopCli
 
             Console.ForegroundColor = ConsoleColor.Yellow;
 
-            var installer = new PythonInstaller();
+            var installer = new SoftwareInstaller();
             installer.InstallPython();
 
-            if (!IsVSCodeInstalled())
+            // Install Git if not already installed
+            if (!IsGitInstalled())
             {
                 Console.WriteLine("--------33%-------");
+                InstallGit();
+            }
+            else
+            {
+                Console.WriteLine("");
+            }
+
+            // Install VS Code if not already installed
+            if (!IsVSCodeInstalled())
+            {
+                Console.WriteLine("--------66%-------");
                 InstallVSCode();
+            }
+            else
+            {
+                Console.WriteLine("");
             }
 
             InstallVSCodeExtension(extensionId);
 
-            if (!IsGitInstalled())
-            {
-                Console.WriteLine("--------66%-------");
-                InstallGit();
-            }
-
             Console.WriteLine("Quando o vídeo acabar, feche-o para continuar...");
 
-            //Focus on CLI
+            //CLI FOcus
             SetForegroundWindow(GetConsoleWindow());
 
-            // Waits for VLC to close
+            // Wait VLC to close
             vlcProcess.WaitForExit();
 
-            // If VLC closed,close win-right.ahk processes
+            // If VLC closed,close win-right.ahk
             if (!ahkProcess.HasExited)
             {
                 ahkProcess.Kill();
@@ -134,38 +145,28 @@ namespace workshopCli
 
         public static void InstallGit()
         {
-            string installerPath = Path.Combine(GuideCli.ResourcesPath, "Git-2.41.0-64-bit.exe");
+            string installerPath = Path.Combine(GuideCli.ResourcesPath, "Git-2.45.0-64-bit.exe");
 
-            Process gitInstaller = new Process();
-            gitInstaller.StartInfo.FileName = installerPath;
-            gitInstaller.StartInfo.Arguments = "/SILENT";
-            gitInstaller.Start();
+            ProcessStartInfo startInfo = new ProcessStartInfo
+            {
+                FileName = installerPath,
+                Arguments = "/SILENT",
+                WorkingDirectory = GuideCli.ResourcesPath,
+                CreateNoWindow = true,
+                UseShellExecute = false
+            };
+
+            Process gitInstaller = Process.Start(startInfo);
             gitInstaller.WaitForExit();
         }
 
+
         public static bool IsGitInstalled()
         {
-            Process gitProcess = new Process();
-            gitProcess.StartInfo.FileName = "git";
-            gitProcess.StartInfo.Arguments = "--version";
-            gitProcess.StartInfo.RedirectStandardOutput = true;
-            gitProcess.StartInfo.RedirectStandardError = true;
-            gitProcess.StartInfo.UseShellExecute = false;
-            gitProcess.StartInfo.CreateNoWindow = true;
-
-            gitProcess.Start();
-            gitProcess.WaitForExit();
-
-            string output = gitProcess.StandardOutput.ReadToEnd();
-            string error = gitProcess.StandardError.ReadToEnd();
-
-            if (!string.IsNullOrEmpty(output))
+            const string gitKey = @"SOFTWARE\GitForWindows";
+            using (RegistryKey key = Registry.LocalMachine.OpenSubKey(gitKey))
             {
-                return true;
-            }
-            else
-            {
-                return false;
+                return key != null;
             }
         }
 
