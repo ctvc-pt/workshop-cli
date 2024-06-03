@@ -70,7 +70,7 @@ namespace workshopCli
             }
             else
             {
-                Console.WriteLine("Git is already installed.");
+                Console.WriteLine("");
             }
 
             // Install VS Code if not already installed
@@ -81,7 +81,7 @@ namespace workshopCli
             }
             else
             {
-                Console.WriteLine("Visual Studio Code is already installed.");
+                Console.WriteLine("");
             }
 
             InstallVSCodeExtension(extensionId);

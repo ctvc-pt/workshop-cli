@@ -18,30 +18,30 @@ namespace workshopCli
         {
             if (IsPythonInstalled())
             {
-                Console.WriteLine("Python is already installed.");
+                Console.WriteLine("O Python já esta instalado.");
             }
             else
             {
-                Console.WriteLine("Installing Python...");
+                Console.WriteLine("A instalar o Python...");
                 RunInstaller(InstallerFilePath, $"/quiet InstallAllUsers=1 TargetDir=\"{InstallPath}\" PrependPath=1");
                 Environment.SetEnvironmentVariable("PATH", $"{InstallPath};{Environment.GetEnvironmentVariable("PATH")}");
-                Console.WriteLine("Python installed successfully.");
+                Console.WriteLine("A instalação do Python foi un sucesso.");
             }
 
             // Install Git
-            Console.WriteLine("Installing Git...");
+            Console.WriteLine("A instalar o Git...");
             RunInstaller(GitInstallerFilePath, "/VERYSILENT /NORESTART");
-            Console.WriteLine("Git installed successfully.");
+            Console.WriteLine("A instalação do Git foi un sucesso.");
 
             // Install VS Code
-            Console.WriteLine("Installing Visual Studio Code...");
+            Console.WriteLine("A instalar o Visual Studio Code...");
             RunInstaller(VSCodeInstallerFilePath, "/verysilent /norestart");
-            Console.WriteLine("Visual Studio Code installed successfully.");
+            Console.WriteLine("A instalação do Visual Studio Code foi un sucesso.");
 
             // Install Lua Sumneko plugin
-            Console.WriteLine("Installing Lua Sumneko plugin for VS Code...");
+            Console.WriteLine("A instalar o Plugin Lua Sumneko para o VS Code...");
             InstallVSCodeExtension("sumneko.lua");
-            Console.WriteLine("Lua Sumneko plugin installed successfully.");
+            Console.WriteLine("A instalação do Plugin Lua Sumneko foi un sucesso.");
         }
 
         private void RunInstaller(string filePath, string arguments)
@@ -95,7 +95,7 @@ namespace workshopCli
 
             if (vscodeProcess.ExitCode == 0)
             {
-                Console.WriteLine($"VS Code extension {extensionName} installed successfully.");
+                Console.WriteLine("");
             }
             else
             {
