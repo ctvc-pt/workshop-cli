@@ -21,8 +21,8 @@ namespace workshopCli
             }
             else
             {
-                // Iniciar o VS Code
-                var pythonScriptPath = $"{GuideCli.ResourcesPath}/open_vscode.py"; // Substitua pelo caminho real do seu script Python
+                // Start VS Code
+                var pythonScriptPath = $"{GuideCli.ResourcesPath}/open_vscode.py"; // Script Path
 
                 var processStartInfo = new ProcessStartInfo
                 {
@@ -36,10 +36,10 @@ namespace workshopCli
                 vsCodeProcess = new Process { StartInfo = processStartInfo };
                 vsCodeProcess.Start();
 
-                // Esperar um pouco para o VS Code iniciar completamente
+                // Wait VS Code to open
                 Thread.Sleep(2000);
 
-                // Iniciar o AutoHotkey
+                // Start AutoHotKeys
                 var ahkScriptPath = Path.Combine(GuideCli.ResourcesPath, "AutoHotkey", "v1.1.36.02", "vsc.ahk");
                 var ahkProcessStartInfo = new ProcessStartInfo
                 {
@@ -50,7 +50,7 @@ namespace workshopCli
                 };
                 autoHotkeyProcess = Process.Start(ahkProcessStartInfo);
 
-                // Adicionar manipulador de eventos para o encerramento do aplicativo
+                // Add event to close AutoHotKeys
                 AppDomain.CurrentDomain.ProcessExit += (sender, e) =>
                 {
                     if (autoHotkeyProcess != null && !autoHotkeyProcess.HasExited)

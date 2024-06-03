@@ -1,4 +1,4 @@
-﻿﻿using System;
+using System;
 using System.Diagnostics;
 using Newtonsoft.Json;
 using Sharprompt;
@@ -11,7 +11,7 @@ namespace workshopCli
     {
         string stepId;
         public int Delay;
-        private Process autoHotkeyProcess; // Adicionando uma referência ao processo do AutoHotkey
+        private Process autoHotkeyProcess;
 
         public OpenFileL2DAction(string stepId, int delay)
         {
@@ -70,7 +70,7 @@ namespace workshopCli
                     WorkingDirectory = @"C:\",
                     Verb = "runas"
                 };
-                autoHotkeyProcess = Process.Start(startAhkR); // Armazenando a referência ao processo AutoHotkey
+                autoHotkeyProcess = Process.Start(startAhkR);
 
                 var settingsPath = Path.Combine(
                     Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
@@ -155,7 +155,7 @@ namespace workshopCli
             ExerciseHelper.PromptAnswerAndConfirm("Verifica o código e escreve 'proximo' ou 'p' para continuar ou para retroceder escreve 'anterior' (ou 'ajuda')\n");
         }
 
-        // Adicionando um manipulador de eventos para encerrar o processo AutoHotkey ao fechar o aplicativo
+        // Add event to close AutoHotKeys
         ~OpenFileL2DAction()
         {
             if (autoHotkeyProcess != null && !autoHotkeyProcess.HasExited)
