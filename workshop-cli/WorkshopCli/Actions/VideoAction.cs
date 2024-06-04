@@ -5,9 +5,7 @@ using System.IO;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Threading;
-using Microsoft.Win32;
 using Newtonsoft.Json;
-using Sharprompt;
 
 namespace workshopCli
 {
@@ -39,10 +37,15 @@ namespace workshopCli
             var step = guide.Steps[currentIndex];
             var path = Path.Combine(GuideCli.ResourcesPath, step.Message);
 
-            var vlcProcess = new Process();
-            vlcProcess.StartInfo.FileName = Path.Combine(GuideCli.ResourcesPath, "VLCPortable", "VLCPortable.exe");
-            vlcProcess.StartInfo.Arguments = path;
-            vlcProcess.EnableRaisingEvents = true;
+            var vlcProcess = new Process
+            {
+                StartInfo = new ProcessStartInfo
+                {
+                    FileName = Path.Combine(GuideCli.ResourcesPath, "VLCPortable", "VLCPortable.exe"),
+                    Arguments = path
+                },
+                EnableRaisingEvents = true
+            };
             vlcProcess.Start();
 
             // Starts win-right.ahk process
@@ -59,114 +62,24 @@ namespace workshopCli
 
             Console.ForegroundColor = ConsoleColor.Yellow;
 
-            var installer = new SoftwareInstaller();
-            installer.InstallPython();
-
-            // Install Git if not already installed
-            if (!IsGitInstalled())
+            if (currentIndex == 0) // Only install software during the first video
             {
-                Console.WriteLine("--------33%-------");
-                InstallGit();
+                var installer = new SoftwareInstaller();
+                installer.InstallSoftware();
             }
-            else
-            {
-                Console.WriteLine("");
-            }
-
-            // Install VS Code if not already installed
-            if (!IsVSCodeInstalled())
-            {
-                Console.WriteLine("--------66%-------");
-                InstallVSCode();
-            }
-            else
-            {
-                Console.WriteLine("");
-            }
-
-            InstallVSCodeExtension(extensionId);
 
             Console.WriteLine("Quando o vídeo acabar, feche-o para continuar...");
 
-            //CLI FOcus
+            //CLI Focus
             SetForegroundWindow(GetConsoleWindow());
 
-            // Wait VLC to close
+            // Wait for VLC to close
             vlcProcess.WaitForExit();
 
-            // If VLC closed,close win-right.ahk
+            // If VLC closed, close win-right.ahk
             if (!ahkProcess.HasExited)
             {
                 ahkProcess.Kill();
-            }
-        }
-
-        private bool IsVSCodeInstalled()
-        {
-            string installDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "../Local/Programs/Microsoft VS Code/Code.exe");
-            return File.Exists(installDirectory);
-        }
-
-        private void InstallVSCode()
-        {
-            string installerPath = Path.Combine(GuideCli.ResourcesPath, "VSCodeSetup.exe");
-
-            ProcessStartInfo startInfo = new ProcessStartInfo
-            {
-                FileName = installerPath,
-                Arguments = "/verysilent /mergetasks=!runcode",
-                WorkingDirectory = GuideCli.ResourcesPath,
-                CreateNoWindow = true,
-                UseShellExecute = false
-            };
-
-            Process installProcess = Process.Start(startInfo);
-            installProcess.WaitForExit();
-        }
-
-        public static void InstallVSCodeExtension(string extensionId)
-        {
-            ProcessStartInfo processStartInfo = new ProcessStartInfo
-            {
-                FileName = "cmd",
-                Arguments = $"/c code --install-extension {extensionId}",
-                RedirectStandardOutput = true,
-                RedirectStandardError = true,
-                UseShellExecute = false,
-                CreateNoWindow = true
-            };
-            Process process = new Process
-            {
-                StartInfo = processStartInfo
-            };
-            process.Start();
-            process.WaitForExit();
-        }
-
-        public static void InstallGit()
-        {
-            string installerPath = Path.Combine(GuideCli.ResourcesPath, "Git-2.45.0-64-bit.exe");
-
-            ProcessStartInfo startInfo = new ProcessStartInfo
-            {
-                FileName = installerPath,
-                Arguments = "/SILENT",
-                WorkingDirectory = GuideCli.ResourcesPath,
-                CreateNoWindow = true,
-                UseShellExecute = false
-            };
-
-            Process gitInstaller = Process.Start(startInfo);
-            gitInstaller.WaitForExit();
-        }
-
-
-        public static bool IsGitInstalled()
-        {
-            const string gitKey = @"SOFTWARE\GitForWindows";
-            using (RegistryKey key = Registry.LocalMachine.OpenSubKey(gitKey))
-            {
-                return key != null;
             }
         }
 

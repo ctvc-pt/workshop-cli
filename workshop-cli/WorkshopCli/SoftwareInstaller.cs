@@ -9,39 +9,82 @@ namespace workshopCli
         private const string InstallPath = @"C:\Python39";
         private const string InstallerFileName = "python-installer.exe";
         private const string GitInstallerFileName = "Git-2.45.0-64-bit.exe";
-        private const string VSCodeInstallerFileName = "VSCodeSetup"; // Name of the VS Code installer
+        private const string VSCodeInstallerFileName = "VSCodeSetup.exe"; // Corrected file name with extension
         private static readonly string InstallerFilePath = Path.Combine(GuideCli.ResourcesPath, InstallerFileName);
         private static readonly string GitInstallerFilePath = Path.Combine(GuideCli.ResourcesPath, GitInstallerFileName);
         private static readonly string VSCodeInstallerFilePath = Path.Combine(GuideCli.ResourcesPath, VSCodeInstallerFileName);
+        private static bool isInstalled = false;
+
+        public void InstallSoftware()
+        {
+            if (isInstalled)
+            {
+                Console.WriteLine("Software already installed.");
+                return;
+            }
+
+            InstallPython();
+            InstallGit();
+            InstallVSCode();
+            InstallVSCodeExtension("sumneko.lua");
+
+            isInstalled = true;
+        }
 
         public void InstallPython()
         {
             if (IsPythonInstalled())
             {
-                Console.WriteLine("O Python já esta instalado.");
+                Console.WriteLine("O Python já está instalado.");
             }
             else
             {
                 Console.WriteLine("A instalar o Python...");
                 RunInstaller(InstallerFilePath, $"/quiet InstallAllUsers=1 TargetDir=\"{InstallPath}\" PrependPath=1");
                 Environment.SetEnvironmentVariable("PATH", $"{InstallPath};{Environment.GetEnvironmentVariable("PATH")}");
-                Console.WriteLine("A instalação do Python foi un sucesso.");
+                Console.WriteLine("A instalação do Python foi um sucesso.");
             }
+        }
 
-            // Install Git
+        public void InstallGit()
+        {
             Console.WriteLine("A instalar o Git...");
             RunInstaller(GitInstallerFilePath, "/VERYSILENT /NORESTART");
-            Console.WriteLine("A instalação do Git foi un sucesso.");
+            Console.WriteLine("A instalação do Git foi um sucesso.");
+        }
 
-            // Install VS Code
+        public void InstallVSCode()
+        {
             Console.WriteLine("A instalar o Visual Studio Code...");
             RunInstaller(VSCodeInstallerFilePath, "/verysilent /norestart");
-            Console.WriteLine("A instalação do Visual Studio Code foi un sucesso.");
+            Console.WriteLine("A instalação do Visual Studio Code foi um sucesso.");
+        }
 
-            // Install Lua Sumneko plugin
-            Console.WriteLine("A instalar o Plugin Lua Sumneko para o VS Code...");
-            InstallVSCodeExtension("sumneko.lua");
-            Console.WriteLine("A instalação do Plugin Lua Sumneko foi un sucesso.");
+        public void InstallVSCodeExtension(string extensionName)
+        {
+            var vscodeProcess = new Process
+            {
+                StartInfo = new ProcessStartInfo
+                {
+                    FileName = "cmd.exe",
+                    Arguments = $"/c code --install-extension {extensionName}",
+                    RedirectStandardOutput = true,
+                    RedirectStandardError = true,
+                    UseShellExecute = false
+                }
+            };
+
+            vscodeProcess.Start();
+            vscodeProcess.WaitForExit();
+
+            if (vscodeProcess.ExitCode == 0)
+            {
+                Console.WriteLine($"VS Code extension {extensionName} installed successfully.");
+            }
+            else
+            {
+                Console.WriteLine($"Failed to install VS Code extension {extensionName}. Please check the logs for details.");
+            }
         }
 
         private void RunInstaller(string filePath, string arguments)
@@ -74,33 +117,6 @@ namespace workshopCli
             pythonProcess.WaitForExit();
 
             return pythonProcess.ExitCode == 0;
-        }
-
-        private void InstallVSCodeExtension(string extensionName)
-        {
-            var vscodeProcess = new Process
-            {
-                StartInfo = new ProcessStartInfo
-                {
-                    FileName = "cmd.exe",
-                    Arguments = $"/c code --install-extension {extensionName}",
-                    RedirectStandardOutput = true,
-                    RedirectStandardError = true,
-                    UseShellExecute = false
-                }
-            };
-
-            vscodeProcess.Start();
-            vscodeProcess.WaitForExit();
-
-            if (vscodeProcess.ExitCode == 0)
-            {
-                Console.WriteLine("");
-            }
-            else
-            {
-                Console.WriteLine($"Failed to install VS Code extension {extensionName}. Please check the logs for details.");
-            }
         }
     }
 }
