@@ -58,6 +58,7 @@ namespace workshopCli
                         Console.WriteLine("Closing AutoHotkey...");
                         autoHotkeyProcess.Kill();
                         autoHotkeyProcess.WaitForExit();
+                        autoHotkeyProcess.Dispose();
                         Console.WriteLine("AutoHotkey has been closed.");
                     }
                 };
