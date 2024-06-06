@@ -11,12 +11,13 @@ namespace workshopCli
     {
         string stepId;
         public int Delay;
-        private Process autoHotkeyProcess;
+        Process autoHotkeyProcess;
 
         public OpenFileL2DAction(string stepId, int delay)
         {
             this.stepId = stepId;
             Delay = delay;
+            CloseAHKProcess();
         }
 
         public void Execute()
@@ -102,6 +103,7 @@ namespace workshopCli
                     }
 
                     jsonset += ",\n  \"files.autoSave\": \"afterDelay\"\n}";
+                    CloseAHKProcess();
                 }
                 else
                 {
@@ -147,7 +149,7 @@ namespace workshopCli
                     Console.ForegroundColor = ConsoleColor.Black;
                 }
             }
-
+            
             Thread.Sleep(Delay);
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine();
@@ -156,12 +158,13 @@ namespace workshopCli
         }
 
         // Add event to close AutoHotKeys
-        ~OpenFileL2DAction()
+        public void CloseAHKProcess()
         {
             if (autoHotkeyProcess != null && !autoHotkeyProcess.HasExited)
             {
                 autoHotkeyProcess.Kill();
                 autoHotkeyProcess.WaitForExit();
+                autoHotkeyProcess.Dispose();
             }
         }
     }

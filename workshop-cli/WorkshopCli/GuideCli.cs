@@ -153,7 +153,6 @@ public class GuideCli
             }
 
             File.WriteAllText( txtFilePath, JsonConvert.SerializeObject( session ) );
-            
 
             Console.Clear();
            

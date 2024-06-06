@@ -26,11 +26,16 @@ var startAhkL = new ProcessStartInfo
     Verb = "runas"
 };
 
-Process.Start( startAhkL );
+Process ahkProcess = Process.Start( startAhkL );
+ahkProcess.WaitForExit();
+
 var processes = Process.GetProcessesByName("Code");
 foreach (var process in processes)
 {
     process.Kill();
 }
+
+ahkProcess.Kill();
+ahkProcess.Dispose();
 
 guideCli.Run();
