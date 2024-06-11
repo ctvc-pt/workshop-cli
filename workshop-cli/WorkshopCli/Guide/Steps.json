@@ -41,77 +41,81 @@
         "Type": "code"
     },
     {
-        "Id": "008-HelloWorld",
+        "Id": "008-codeExplanation",
+        "Type": "information"
+    },
+    {
+        "Id": "009-HelloWorld",
         "Type": "challenge",
         "Delay": "5000"
     },
     {
-        "Id": "009-helloWorld",
+        "Id": "010-helloWorld",
         "Type": "information",
         "Delay": "20000"
     },
     {
-        "Id": "010-code",
+        "Id": "011-code",
         "Type": "code"
     },
     {
-        "Id": "011-recursos",
+        "Id": "012-recursos",
         "Type": "CreateSprites",
         "Delay": "60000"
     },
     {
-        "Id": "012-jogador",
+        "Id": "013-jogador",
         "Type": "challenge",
         "Delay": "60000"
     },
     {
-        "Id": "013-Movimentacao",
+        "Id": "014-Movimentacao",
         "Type": "information",
         "Delay": "120000"
     },
     {
-        "Id": "015-speed",
+        "Id": "016-speed",
         "Type": "information",
         "Delay": "30000"
     },
     {
-        "Id": "016-video",
+        "Id": "017-video",
         "Type": "video",
         "Message": "mid.mp4",
         "Delay": "49000"
     },
     {
-        "Id": "017-missel-load",
+        "Id": "018-missel-load",
         "Type": "information",
         "Delay": "45000"
     },
     {
-        "Id": "018-missel-update",
+        "Id": "019-missel-update",
         "Type": "information",
         "Delay": "90000"
     },
     {
-        "Id": "019-missel-timer",
+        "Id": "020-missel-timer",
         "Type": "information",
         "Delay": "60000"
     },
     {
-        "Id": "020-enemy",
+        "Id": "021-enemy",
         "Type": "information",
         "Delay": "30000"
     },
     {
-        "Id": "021-collisions",
+        "Id": "022-collisions",
         "Type": "information",
         "Delay": "30000"
     },
     {
-        "Id": "022-collisions-2",
+        "Id": "023-collisions-2",
         "Type": "information",
         "Delay": "30000"
     },
     {
-        "Id": "023-desafio",
+        "Id": "024-desafio",
         "Type": "challenge",
         "Delay": "30000"
     },
@@ -122,7 +126,7 @@
         "Delay": "54000"
     },
     {
-        "Id": "025-end",
+        "Id": "026-end",
         "Type": "end"        
     }
 ]
