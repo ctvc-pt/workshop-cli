@@ -1,76 +1,112 @@
 ﻿using Newtonsoft.Json;
 using Sharprompt;
+using System;
+using System.Diagnostics;
+using System.IO;
 
-namespace workshopCli;
-
-public class ExerciseHelper
+namespace workshopCli
 {
-    static ProcessLuv processLuv = new ProcessLuv();
-   
-    public static string PromptAnswerAndPrint()
+    public class ExerciseHelper
     {
-        string sessionValue = null;
-    
-        while (sessionValue == null)
-        {
-            sessionValue = Prompt.Input<string>("Resposta");
+        static ProcessLuv processLuv = new ProcessLuv();
 
-            if (sessionValue == null)
+        public static string PromptAnswerAndPrint()
+        {
+            string sessionValue = null;
+
+            while (sessionValue == null)
             {
-                // Handle the case when the string is null
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("A resposta não pode estar vazia");
-                Console.ResetColor();
+                sessionValue = Prompt.Input<string>("Resposta");
+
+                if (string.IsNullOrWhiteSpace(sessionValue))
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("A resposta não pode estar vazia");
+                    Console.ResetColor();
+                    sessionValue = null;
+                }
+            }
+
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            return sessionValue;
+        }
+
+        public static bool PromptAnswerAndConfirm(string prompt)
+        {
+            var txtFilePath = Path.Combine(GuideCli.ResourcesPath, "session.txt");
+            var session = JsonConvert.DeserializeObject<Session>(File.ReadAllText(txtFilePath));
+
+            var chatGptClient = new ChatGptClient();
+            while (true)
+            {
+                string wrappedString = GuideCli.WrapString(prompt, 50);
+                Console.ForegroundColor = ConsoleColor.Yellow; // Set the text color to yellow for the entire prompt
+                Console.WriteLine(wrappedString);
+                Console.ResetColor(); // Reset text color to default
+
+                var answer = Prompt.Input<string>("Resposta ");
+
+                if (string.IsNullOrWhiteSpace(answer))
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Resposta inválida. Insere 'proximo' ou 'p'.");
+                    Console.ResetColor();
+                    continue;
+                }
+
+                switch (answer.ToLower())
+                {
+                    case "ajuda":
+                    case "a":
+                        HandleHelp(session, chatGptClient);
+                        break;
+                    case "admin":
+                        HandleAdmin();
+                        break;
+                    case "anterior":
+                    case "b":
+                        GuideCli.adminInput = -1;
+                        return true;
+                    case "proximo":
+                    case "p":
+                        processLuv.CloseLovecProcess();
+                        return true;
+                    case "reset":
+                        ResetToLastCommit();
+                        break;
+                    case "s":
+                        return false;
+                    default:
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("Resposta inválida. Insere 'proximo' ou 'p'.");
+                        Console.ResetColor();
+                        break;
+                }
             }
         }
 
-        Console.ForegroundColor = ConsoleColor.Yellow;
-        return sessionValue;
-    }
-
-
-    
-    public static bool PromptAnswerAndConfirm(string prompt)
-{
-    var txtFilePath = Path.Combine(GuideCli.ResourcesPath, "session.txt");
-    var session = JsonConvert.DeserializeObject<Session>(File.ReadAllText(txtFilePath));
-
-    var chatGptClient = new ChatGptClient();
-    while (true)
-    {
-        string wrappedString = GuideCli.WrapString(prompt, 50);
-        Console.WriteLine(wrappedString);
-        var answer = Prompt.Input<string>("Resposta ");
-
-        if (answer == null)
-        {
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("Resposta inválida. Insere 'proximo' ou 'p'.");
-            continue;
-        }
-
-        if (answer.ToLower() == "ajuda" || answer.ToLower() == "a")
+        private static void HandleHelp(Session session, ChatGptClient chatGptClient)
         {
             CsvHelpRequest.printHelp(false, true);
             Console.ForegroundColor = ConsoleColor.DarkCyan;
             Console.WriteLine("Qual é o problema?");
             Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.Write($"{session.Name}: "); // pergunta
-            var userMessage = Prompt.Input<string>(""); // Usar Prompt para obter entrada do usuário
+            Console.Write($"{session.Name}: ");
+            var userMessage = Prompt.Input<string>("");
 
-            var response = chatGptClient.AskGPT(userMessage).Result; // resposta
+            var response = chatGptClient.AskGPT(userMessage).Result;
             var typewriter = new TypewriterEffect(50);
             typewriter.Type(response, ConsoleColor.Cyan);
 
             Console.WriteLine("\nconseguiste resolver? (sim ou não)");
-            var input = Prompt.Input<string>("").ToLower(); // Ler a entrada do usuário uma vez
+            var input = Prompt.Input<string>("").ToLower();
+
             if (input == "sim" || input == "s")
             {
                 CsvHelpRequest.printHelp(false, false);
-                return PromptAnswerAndConfirm(prompt);
+                PromptAnswerAndConfirm(session.Name);
             }
-
-            if (input == "não" || input == "nao" || input == "n" || input == "não")
+            else if (input == "não" || input == "nao" || input == "n")
             {
                 CsvHelpRequest.printHelp(true, false);
                 Console.ForegroundColor = ConsoleColor.Red;
@@ -85,7 +121,7 @@ public class ExerciseHelper
                     if (inputHelp == "continuar" || inputHelp == "done")
                     {
                         CsvHelpRequest.printHelp(false, false);
-                        return PromptAnswerAndConfirm(prompt);
+                        PromptAnswerAndConfirm(session.Name);
                     }
                     else
                     {
@@ -98,52 +134,62 @@ public class ExerciseHelper
                 Console.WriteLine("Resposta inválida. Escreve 'sim' ou 'não'.");
             }
         }
-        else if (answer.ToLower() == "admin")
+
+        private static void HandleAdmin()
         {
-            // To use admin you need to typr "id 'guide.index'" with an space. For exemple "id 7"
             Console.ForegroundColor = ConsoleColor.DarkGray;
             var input = Prompt.Input<string>("").ToLower();
-            var inputs = new string[] { };
+            var inputs = input.Split(" ");
 
-            if (input.Contains(" "))
+            if (inputs.Length > 1 && inputs[0] == "id")
             {
-                inputs = input.Split(" ");
-            }
-
-            if ( inputs.Length > 0 ) 
-            {
-                if ( inputs[ 0 ] == "id" )
-                {
-                    GuideCli.adminInput = Int32.Parse( inputs[ 1 ] );
-                }
-                else
-                {
-                    Console.WriteLine( "Resposta inválida." );
-                }
-            }
-        }
-        else
-        {
-            if (answer.ToLower() == "anterior" || answer.ToLower() == "b")
-            {
-                GuideCli.adminInput = -1;
-                return true;
-            }
-            else if (answer.ToLower() == "proximo" || answer.ToLower() == "p")
-            {
-                processLuv.CloseLovecProcess();
-                return true;
-            }
-            else if (answer.ToLower() == "s")
-            {
-                return false;
+                GuideCli.adminInput = int.Parse(inputs[1]);
             }
             else
             {
-                Console.WriteLine("Resposta inválida. Insere 'proximo' ou 'p'.");
+                Console.WriteLine("Resposta inválida.");
             }
         }
-    }
-}
 
+        private static void ResetToLastCommit()
+        {
+            string pythonScriptPath = Path.Combine(GuideCli.ResourcesPath, "download_last_commit.py");
+
+            var processStartInfo = new ProcessStartInfo
+            {
+                FileName = "python",
+                Arguments = pythonScriptPath,
+                RedirectStandardOutput = true,
+                RedirectStandardError = true,
+                UseShellExecute = false,
+                CreateNoWindow = true
+            };
+
+            try
+            {
+                var process = new Process { StartInfo = processStartInfo };
+                process.Start();
+
+                string output = process.StandardOutput.ReadToEnd();
+                string error = process.StandardError.ReadToEnd();
+
+                process.WaitForExit();
+
+                if (process.ExitCode == 0)
+                {
+                    Console.WriteLine("Código restaurado com sucesso.");
+                }
+                else
+                {
+                    Console.WriteLine($"Erro ao restaurar o código: {error}");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erro ao executar o script Python: {ex.Message}");
+            }
+
+            Console.WriteLine("");
+        }
+    }
 }
