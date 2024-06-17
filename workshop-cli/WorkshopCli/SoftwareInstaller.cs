@@ -58,6 +58,10 @@ namespace workshopCli
             Console.WriteLine("A instalar o Visual Studio Code...");
             RunInstaller(VSCodeInstallerFilePath, "/verysilent /norestart");
             Console.WriteLine("A instalação do Visual Studio Code foi um sucesso.");
+            foreach (var process in Process.GetProcessesByName("Code"))
+            {
+                process.Kill();
+            }
         }
 
         public void InstallVSCodeExtension(string extensionName)
