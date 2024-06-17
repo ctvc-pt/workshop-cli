@@ -63,13 +63,21 @@ namespace workshopCli
 
         public void InstallVSCode()
         {
-            Console.WriteLine("A instalar o Visual Studio Code...");
-            RunInstaller(VSCodeInstallerFilePath, "/verysilent /norestart");
-            Console.WriteLine("A instalação do Visual Studio Code foi um sucesso.");
-            foreach (var process in Process.GetProcessesByName("Code"))
+            if ( IsVSCodeInstalled() )
             {
-                process.Kill();
+                Console.WriteLine("O VS Code já está instalado.");
             }
+            else
+            {
+                Console.WriteLine("A instalar o Visual Studio Code...");
+                RunInstaller(VSCodeInstallerFilePath, "/verysilent /norestart");
+                Console.WriteLine("A instalação do Visual Studio Code foi um sucesso.");
+                foreach (var process in Process.GetProcessesByName("Code")) 
+                { 
+                    process.Kill();
+                }
+            }
+            
         }
 
         public void InstallVSCodeExtension(string extensionName)
@@ -149,6 +157,12 @@ namespace workshopCli
             gitProcess.WaitForExit();
 
             return gitProcess.ExitCode == 0;
+        }
+
+        private bool IsVSCodeInstalled()
+        {
+            string variableValue = Environment.GetEnvironmentVariable("CODE");
+            return variableValue != null;
         }
     }
 }
