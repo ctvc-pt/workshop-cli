@@ -28,5 +28,5 @@ Ao pressionar a tecla 'SPACEBAR' cria e lança um míssil no jogo.
 
 4. Inicia o jogo (alt+L) e vê o que há de novo.
 
-Os mísseis não saiem do sítio, certo? É isso que vamos fazer a seguir.
+Os mísseis não saem do sítio, certo? É isso que vamos fazer a seguir.
 

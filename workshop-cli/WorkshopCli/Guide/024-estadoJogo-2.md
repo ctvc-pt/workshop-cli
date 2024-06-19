@@ -28,7 +28,7 @@ Vamos adicionar o que faz com que o jogador perca.
         end
     end
 
-E adiciona o tudo o que está dentro da função "draw(dt)" debaixo da linha "love.graphics.setBackgroundColor(0, 0, 0)".
+E adiciona tudo o que está dentro da função "draw(dt)" debaixo da linha "love.graphics.setBackgroundColor(0, 0, 0)".
 
 Agora quando 3 inimigos te acertarem, perdes.
 

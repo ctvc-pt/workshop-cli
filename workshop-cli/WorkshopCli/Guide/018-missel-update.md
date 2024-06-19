@@ -8,7 +8,7 @@ Agora vamos fazer com que os mísseis funcionem como deviam
 
    2. No fim do teu código todo, adiciona esta função
 
-   -- Função para atualizar os míssil
+   -- Função para atualizar os mísseis
    function atualizarMisseis(dt)
         for i=table.getn(misseis), 1, -1 do
             missil = misseis[i]
