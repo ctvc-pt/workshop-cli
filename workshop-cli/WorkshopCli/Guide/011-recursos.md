@@ -15,6 +15,7 @@ Agora vamos desenhar o jogador.
 Temos de primeiro carregar a imagem, e depois desenha-la.
 
 1. Para carregar a imagem, escreve dentro da função "load()":
+   -- Variáveis da Nave do Jogador
    imagem = love.graphics.newImage("nome-imagem.png")
 
 Não te esqueças de alterar "nome-imagem" pelo nome da nave que tu escolheste anteriormente.

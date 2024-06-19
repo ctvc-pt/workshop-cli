@@ -1,12 +1,13 @@
 ﻿
 3. Adiciona este código no fim: 
 
+    -- Função para verificar colisões entre mísseis e inimigos
     function verificaMissilInimigoColisao()
         for index, inimigo in ipairs(inimigos) do
             for index2, missil in ipairs(misseis) do
                 if intercepta(missil.posicaoX, missil.posicaoY, missil.width, missil.height, inimigo.posicaoX, inimigo.posicaoY, inimigo.width, inimigo.height) then
                     table.remove(inimigos, index)
-                    table.remove(missil, index2)
+                    table.remove(misseis, index2)
                     break
                 end
             end
@@ -14,7 +15,7 @@
     end
 
 Esta função verifica a posição do míssil e dos inimigos.
-Se os mísseis tocarem nos inimigos, os dois aparecem.
+Se os mísseis tocarem nos inimigos, os dois desaparecem.
 
 4. Agora, adiciona no fim da função "update(dt)" por baixo da linha "verificaJogadorInimigoColisao()" o seguinte código:
 

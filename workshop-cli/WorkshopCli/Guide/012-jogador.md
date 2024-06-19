@@ -1,7 +1,16 @@
 
 Já consegues ver a tua nave, agora vamos definir a posição dela no ecrã.
 
-1. Adiciona na função "load()":
+Aqui o gráfico cartesiano é um pouco diferente, o eixo do Y é ao contrário:
+
+  ___________>x
+  |
+  |
+  |
+  |
+  V Y
+
+1. Adiciona na função "load()" nas variáveis do jogador:
   posicaoX = 300
   posicaoY = 300
 
