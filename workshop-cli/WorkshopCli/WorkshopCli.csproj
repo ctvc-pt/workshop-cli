@@ -199,6 +199,13 @@
       <EmbeddedResource Include="Guide\009-helloWorld.md" />
       <EmbeddedResource Include="Guide\010-code.md" />
       <EmbeddedResource Include="Guide\014-code-check.md" />
+      <EmbeddedResource Include="Guide\024-estadoJogo-2.md" />
+      <EmbeddedResource Include="Guide\025-desafio-texto.md" />
+      <EmbeddedResource Include="Guide\026-end-1.md" />
+      <EmbeddedResource Include="Guide\027-end-2.md" />
+      <EmbeddedResource Include="Guide\028-end-3.md" />
+      <EmbeddedResource Include="Guide\029-end-4.md" />
+      <EmbeddedResource Include="Guide\030-end-5.md" />
       <EmbeddedResource Include="Guide\Steps.json" />
       <None Remove="Guide\008-code.md" />
       <None Remove="Guide\009-HelloWorld.md" />
@@ -258,7 +265,6 @@
       <None Remove="Guide\031-moveToPlayer.md" />
       <None Remove="Guide\032-collisions.md" />
       <None Remove="Guide\033-desafio.md" />
-      <EmbeddedResource Include="Guide\023-desafio.md" />
       <None Remove="Guide\018-speed.md" />
       <None Remove="Guide\022-missel-update.md" />
       <None Remove="Guide\023-missel-timer.md" />

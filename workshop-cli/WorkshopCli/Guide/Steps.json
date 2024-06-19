@@ -111,18 +111,48 @@
         "Delay": "30000"
     },
     {
-        "Id": "023-desafio",
+        "Id": "023-estadoJogo",
+        "Type": "information",
+        "Delay": "30000"
+    },
+    {
+        "Id": "024-estadoJogo-2",
+        "Type": "information",
+        "Delay": "30000"
+    },
+    {
+        "Id": "025-desafio-texto",
         "Type": "challenge",
         "Delay": "30000"
     },
     {
-        "Id": "024-Fim",
+        "Id": "026-end-1",
+        "Type": "information",
+        "Delay": "30000"
+    },
+    {
+        "Id": "027-end-2",
+        "Type": "information",
+        "Delay": "30000"
+    },
+    {
+        "Id": "028-end-3",
+        "Type": "information",
+        "Delay": "30000"
+    },
+    {
+        "Id": "029-end-4",
+        "Type": "information",
+        "Delay": "30000"
+    },
+    {
+        "Id": "031-Fim",
         "Type": "video",
         "Message": "end.mp4",
         "Delay": "54000"
     },
     {
-        "Id": "025-end",
+        "Id": "030-end-5",
         "Type": "end"        
     }
 ]

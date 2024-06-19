@@ -1,5 +1,5 @@
 
-O jogo está quase acabado, mas ainda falta uma coisa importante. Como podes ver, tu não consegues acertar nos inimigos, nem os inimigos conseguem acertar em ti.
+O jogo está a ganhar forma, mas ainda falta uma coisa importante. Como podes ver, tu não consegues acertar nos inimigos, nem os inimigos conseguem acertar em ti.
 
 1. Para isso, precisamos de 3 funções para verificar colisões. Adiciona este código no fim: 
 
