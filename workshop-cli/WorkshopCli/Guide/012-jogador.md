@@ -3,7 +3,7 @@ Já consegues ver a tua nave, agora vamos definir a posição dela no ecrã.
 
 Aqui o gráfico cartesiano é um pouco diferente, o eixo do Y é ao contrário:
 
-  ___________>x
+  -------------->x
   |
   |
   |
