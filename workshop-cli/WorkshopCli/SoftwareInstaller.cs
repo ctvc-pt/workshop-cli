@@ -48,16 +48,36 @@ namespace workshopCli
 
         public void InstallGit()
         {
-            Console.WriteLine("A instalar o Git...");
-            RunInstaller(GitInstallerFilePath, "/VERYSILENT /NORESTART");
-            Console.WriteLine("A instalação do Git foi um sucesso.");
+            if ( IsGitInstalled() )
+            {
+                Console.WriteLine("O Git já está instalado.");
+            }
+            else
+            {
+                Console.WriteLine("A instalar o Git...");
+                RunInstaller(GitInstallerFilePath, "/VERYSILENT /NORESTART");
+                Console.WriteLine("A instalação do Git foi um sucesso.");
+            }
+            
         }
 
         public void InstallVSCode()
         {
-            Console.WriteLine("A instalar o Visual Studio Code...");
-            RunInstaller(VSCodeInstallerFilePath, "/verysilent /norestart");
-            Console.WriteLine("A instalação do Visual Studio Code foi um sucesso.");
+            if ( IsVSCodeInstalled() )
+            {
+                Console.WriteLine("O VS Code já está instalado.");
+            }
+            else
+            {
+                Console.WriteLine("A instalar o Visual Studio Code...");
+                RunInstaller(VSCodeInstallerFilePath, "/verysilent /norestart");
+                Console.WriteLine("A instalação do Visual Studio Code foi um sucesso.");
+                foreach (var process in Process.GetProcessesByName("Code")) 
+                { 
+                    process.Kill();
+                }
+            }
+            
         }
 
         public void InstallVSCodeExtension(string extensionName)
@@ -117,6 +137,32 @@ namespace workshopCli
             pythonProcess.WaitForExit();
 
             return pythonProcess.ExitCode == 0;
+        }
+        
+        private bool IsGitInstalled()
+        {
+            var gitProcess = new Process
+            {
+                StartInfo = new ProcessStartInfo
+                {
+                    FileName = "git",
+                    Arguments = "--version",
+                    RedirectStandardOutput = true,
+                    RedirectStandardError = true,
+                    UseShellExecute = false
+                }
+            };
+
+            gitProcess.Start();
+            gitProcess.WaitForExit();
+
+            return gitProcess.ExitCode == 0;
+        }
+
+        private bool IsVSCodeInstalled()
+        {
+            string variableValue = Environment.GetEnvironmentVariable("CODE");
+            return variableValue != null;
         }
     }
 }
