@@ -1,9 +1,10 @@
-
-     ____              ___ _        _____ _         _ 
-    |    \ ___ ___ ___|  _|_|___   |   __|_|___ ___| |
-    |  |  | -_|_ -| .'|  _| | . |  |   __| |   | .'| |
-    |____/|___|___|__,|_| |_|___|  |__|  |_|_|_|__,|_|
-
+<pre style="color: red">
+.____  _____ ____    _    _____ ___ ___  _____ ___ _   _    _    _     
+|  _ \| ____/ ___|  / \  |  ___|_ _/ _ \|  ___|_ _| \ | |  / \  | |    
+| | | |  _| \___ \ / _ \ | |_   | | | | | |_   | ||  \| | / _ \ | |    
+| |_| | |___ ___) / ___ \|  _|  | | |_| |  _|  | || |\  |/ ___ \| |___
+|____/|_____|____/_/   \_\_|   |___\___/|_|   |___|_| \_/_/   \_\_____|
+</pre>
 
 Parabéns!
 
@@ -14,3 +15,4 @@ Também podes adicionar outros tipos de inimigos com as outras imagens de naves.
 Ou demonstra a tua imaginação implementando outras ideias!  
 
 Boa sorte, se precisares de ajuda, não hesites em pedir.
+

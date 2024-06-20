@@ -41,8 +41,13 @@
         "Type": "code"
     },
     {
+        "Id": "007.1-HelloWorld",
+        "Type": "information",
+        "Delay": "20000"
+    },
+    {
         "Id": "008-HelloWorld",
-        "Type": "challenge",
+        "Type": "information",
         "Delay": "5000"
     },
     {
