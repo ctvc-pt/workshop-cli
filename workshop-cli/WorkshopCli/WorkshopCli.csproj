@@ -11,6 +11,7 @@
     <ItemGroup>
       <PackageReference Include="DotNetEnv" Version="2.5.0" />
       <PackageReference Include="Google.Apis.Sheets.v4" Version="1.60.0.2979" />
+      <PackageReference Include="Markdig" Version="0.37.0" />
       <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="7.0.0" />
       <PackageReference Include="MoonSharp" Version="2.0.0" />
       <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
@@ -196,6 +197,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <EmbeddedResource Include="Guide\008-HelloWorld-1.md" />
       <EmbeddedResource Include="Guide\009-helloWorld.md" />
       <EmbeddedResource Include="Guide\010-code.md" />
       <EmbeddedResource Include="Guide\014-code-check.md" />
