@@ -56,13 +56,13 @@ namespace workshopCli
 
                 switch (answer.ToLower())
                 {
-                    case "ajuda" or "a":
+                    case "ajuda" or "h":
                         HandleHelp(session, chatGptClient);
                         break;
                     case "admin":
                         HandleAdmin();
                         break;
-                    case "anterior" or "b":
+                    case "anterior" or "a":
                         GuideCli.adminInput = -1;
                         return true;
                     case "proximo" or "p":
