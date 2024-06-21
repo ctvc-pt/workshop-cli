@@ -92,6 +92,27 @@ public class GitHubManager
         {
             Console.WriteLine($"Error executing Python script: {ex.Message}");
         }
-        
+        BackupScript(username);
+    }
+
+    public void BackupScript(string username)
+    {
+        var desktopPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory), "repoWorkshop");
+        var folderPath = Path.Combine(desktopPath, $"{username}_{DateTime.Now.ToString("dd-MM-yyyy")}", "mygame");
+        string sourceFilePath = Path.Combine(folderPath, "main.lua");
+        string destinationFilePath =  $"{GuideCli.ResourcesPath}/backup.lua";
+
+        try
+        {
+            string content = File.ReadAllText(sourceFilePath);
+
+            File.WriteAllText(destinationFilePath, content);
+
+            Console.WriteLine("Conteúdo copiado com sucesso.");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("Ocorreu um erro ao fazer backup: " + ex.Message);
+        }
     }
 }
