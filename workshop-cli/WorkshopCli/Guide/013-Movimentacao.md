@@ -3,6 +3,7 @@ Já tens o jogador criado e o próximo passo é fazer a movimentação da nossa 
 Vamos começar com a movimentação para a direita.
 Na nossa função "update()" adiciona o seguinte código:
 
+    -- Movimentação da nave
     if love.keyboard.isDown("right") then
         posicaoX = posicaoX + 1
     end
@@ -32,7 +33,7 @@ Testa o jogo(Alt+L).
 Desafio extra:
 Se reparares a nave sai fora do ecrã, para impedir que a nave saia retira o codigo de cima e usa o seguinte codigo:
 
-Para ter o limite para a direita:
+Para ter o limite para a direita (repara que só foram adicionadas 2 linhas):
 
     if posicaoX < (love.graphics.getWidth() - imagem:getWidth()) then 
         if love.keyboard.isDown("right") then
@@ -48,7 +49,7 @@ Para ter o limite para a direita:
         end
     end
 
-Para os sentido vertical, descobre e usa este codigo:
+Para os sentidos verticais, descobre e usa este codigo:
 
 
     "posicaoY <(love.graphics.getHeight() - imagem:getHeight())" para ter o limite para baixo.

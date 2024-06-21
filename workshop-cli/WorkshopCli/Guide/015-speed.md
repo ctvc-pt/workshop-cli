@@ -1,7 +1,7 @@
 
 Agora que já temos a nossa nave a movimentar-se para todos os lados, vamos adicionar a velocidade.
 
-1. Dentro da função "load()" adiciona:
+1. Dentro da função "load()" adiciona as variaveis do jogador:
    velocidade = 1
 
 2. No codigo que fizemos à pouco, altera o número 1 por velocidade

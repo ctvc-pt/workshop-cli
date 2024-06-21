@@ -1,22 +1,18 @@
 
-O jogo está quase acabado, mas ainda falta uma coisa importante. Como podes ver, tu não consegues acertar nos inimigos, nem os inimigos conseguem acertar em ti.
+O jogo está a ganhar forma, mas ainda falta uma coisa importante. Como podes ver, tu não consegues acertar nos inimigos, nem os inimigos conseguem acertar em ti.
 
 1. Para isso, precisamos de 3 funções para verificar colisões. Adiciona este código no fim: 
 
+    -- Função para verificar colisões entre o jogador e os inimigos
     function verificaJogadorInimigoColisao()
         for index, inimigo in ipairs(inimigos) do
-            if intercepta(posicaoX, posicaoY, 47, 50, inimigo.posicaoX, inimigo.posicaoY, inimigo.width, inimigo.height) then
-                posicaoX = 0
-                posicaoY = 0
-                misseis = {}
-                inimigos = {}
-                podeDisparar = true
-                missilTempo = missilTempoMax
-                geraInimigoTempo = 0
+            if intercepta(posicaoX, posicaoY, imagem:getWidth(), imagem:getHeight(), inimigo.posicaoX, inimigo.posicaoY, inimigo.width, inimigo.height) then
+                table.remove(inimigos, index)
             end
         end
     end
 
+    -- Função para verificar se dois objetos se interceptam (colidem)
     function intercepta(x1, y1, w1, h1, x2, y2, w2, h2)
         return x1 < x2 + w2 and
         x1 + w1 > x2 and
