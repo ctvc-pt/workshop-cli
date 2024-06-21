@@ -69,7 +69,7 @@ namespace workshopCli
                         processLuv.CloseLovecProcess();
                         return true;
                     case "reset":
-                        ResetToLastCommit();
+                        MakeResetOfCode(session.Name);
                         break;
                     case "s":
                         return false;
@@ -148,45 +148,25 @@ namespace workshopCli
             }
         }
 
-        private static void ResetToLastCommit()
+        private static void MakeResetOfCode(string username)
         {
-            string pythonScriptPath = Path.Combine(GuideCli.ResourcesPath, "download_last_commit.py");
-
-            var processStartInfo = new ProcessStartInfo
-            {
-                FileName = "python",
-                Arguments = pythonScriptPath,
-                RedirectStandardOutput = true,
-                RedirectStandardError = true,
-                UseShellExecute = false,
-                CreateNoWindow = true
-            };
+            var desktopPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory), "repoWorkshop");
+            var folderPath = Path.Combine(desktopPath, $"{username}_{DateTime.Now.ToString("dd-MM-yyyy")}", "mygame");
+            string destinationFilePath = Path.Combine(folderPath, "main.lua");
+            string sourceFilePath =  $"{GuideCli.ResourcesPath}/backup.lua";
 
             try
             {
-                var process = new Process { StartInfo = processStartInfo };
-                process.Start();
+                string content = File.ReadAllText(sourceFilePath);
 
-                string output = process.StandardOutput.ReadToEnd();
-                string error = process.StandardError.ReadToEnd();
+                File.WriteAllText(destinationFilePath, content);
 
-                process.WaitForExit();
-
-                if (process.ExitCode == 0)
-                {
-                    Console.WriteLine("Código restaurado com sucesso.");
-                }
-                else
-                {
-                    Console.WriteLine($"Erro ao restaurar o código: {error}");
-                }
+                Console.WriteLine("O código foi restaurado.");
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Erro ao executar o script Python: {ex.Message}");
+                Console.WriteLine("Ocorreu um erro ao fazer backup: " + ex.Message);
             }
-
-            Console.WriteLine("");
         }
     }
 }
