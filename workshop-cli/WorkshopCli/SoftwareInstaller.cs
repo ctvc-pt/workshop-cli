@@ -48,17 +48,9 @@ namespace workshopCli
 
         public void InstallGit()
         {
-            if ( IsGitInstalled() )
-            {
-                Console.WriteLine("O Git já está instalado.");
-            }
-            else
-            {
-                Console.WriteLine("A instalar o Git...");
-                RunInstaller(GitInstallerFilePath, "/VERYSILENT /NORESTART");
-                Console.WriteLine("A instalação do Git foi um sucesso.");
-            }
-            
+            Console.WriteLine("A instalar o Git...");
+            RunInstaller(GitInstallerFilePath, "/VERYSILENT");
+            Console.WriteLine("A instalação do Git foi um sucesso.");
         }
 
         public void InstallVSCode()
@@ -137,26 +129,6 @@ namespace workshopCli
             pythonProcess.WaitForExit();
 
             return pythonProcess.ExitCode == 0;
-        }
-        
-        private bool IsGitInstalled()
-        {
-            var gitProcess = new Process
-            {
-                StartInfo = new ProcessStartInfo
-                {
-                    FileName = "git",
-                    Arguments = "--version",
-                    RedirectStandardOutput = true,
-                    RedirectStandardError = true,
-                    UseShellExecute = false
-                }
-            };
-
-            gitProcess.Start();
-            gitProcess.WaitForExit();
-
-            return gitProcess.ExitCode == 0;
         }
 
         private bool IsVSCodeInstalled()
