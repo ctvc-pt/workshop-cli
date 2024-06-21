@@ -92,10 +92,10 @@ public class GitHubManager
         {
             Console.WriteLine($"Error executing Python script: {ex.Message}");
         }
-        MakeBackup(username);
+        BackupScript(username);
     }
 
-    public void MakeBackup(string username)
+    public void BackupScript(string username)
     {
         var desktopPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory), "repoWorkshop");
         var folderPath = Path.Combine(desktopPath, $"{username}_{DateTime.Now.ToString("dd-MM-yyyy")}", "mygame");

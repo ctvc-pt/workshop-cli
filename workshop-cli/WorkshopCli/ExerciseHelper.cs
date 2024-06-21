@@ -69,7 +69,7 @@ namespace workshopCli
                         processLuv.CloseLovecProcess();
                         return true;
                     case "reset":
-                        MakeResetOfCode(session.Name);
+                        ResetToLastStep(session.Name);
                         break;
                     case "s":
                         return false;
@@ -117,7 +117,7 @@ namespace workshopCli
                     var inputHelp = Prompt.Input<string>("").ToLower();
                     if (inputHelp == "continuar" || inputHelp == "done")
                     {
-                        CsvHelpRequest.printHelp(false, false);
+                        CsvHelpRequest.printHelp(false, false); 
                         PromptAnswerAndConfirm(session.Name);
                     }
                     else
@@ -148,7 +148,7 @@ namespace workshopCli
             }
         }
 
-        private static void MakeResetOfCode(string username)
+        private static void ResetToLastStep(string username)
         {
             var desktopPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory), "repoWorkshop");
             var folderPath = Path.Combine(desktopPath, $"{username}_{DateTime.Now.ToString("dd-MM-yyyy")}", "mygame");
