@@ -107,8 +107,6 @@ public class GitHubManager
             string content = File.ReadAllText(sourceFilePath);
 
             File.WriteAllText(destinationFilePath, content);
-
-            Console.WriteLine("Conteúdo copiado com sucesso.");
         }
         catch (Exception ex)
         {
