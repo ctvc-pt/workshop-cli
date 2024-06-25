@@ -95,7 +95,7 @@ public class GitHubManager
         BackupScript(username);
     }
 
-    public void BackupScript(string username)
+    public static void BackupScript(string username)
     {
         var desktopPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory), "repoWorkshop");
         var folderPath = Path.Combine(desktopPath, $"{username}_{DateTime.Now.ToString("dd-MM-yyyy")}", "mygame");
