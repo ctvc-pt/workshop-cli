@@ -133,7 +133,7 @@ namespace workshopCli
 
         private bool IsVSCodeInstalled()
         {
-            string variableValue = Environment.GetEnvironmentVariable("CODE");
+            string variableValue = Path.Combine( Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "..", "Local/Programs/Microsoft VS Code", "Code.exe" );
             return variableValue != null;
         }
     }
