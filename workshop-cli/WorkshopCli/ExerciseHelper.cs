@@ -94,6 +94,8 @@ namespace workshopCli
             Console.Write($"{session.Name}: ");
             var userMessage = Prompt.Input<string>("");
 
+            var urgent = false;
+
             var response = chatGptClient.AskGPT(userMessage, GuideCli.stepMessage).Result;
             var typewriter = new TypewriterEffect(50);
             typewriter.Type(response, ConsoleColor.Cyan);
@@ -113,13 +115,14 @@ namespace workshopCli
                 Console.WriteLine("ATENÇÃO: se saires desta mensagem o teu pedido de ajuda desaparece");
                 Console.WriteLine("Escreve 'continuar' ou 'done' para continuar o workshop.");
                 Console.ResetColor();
-
-                while (true)
+                urgent = true;
+                while (urgent)
                 {
                     var inputHelp = Prompt.Input<string>("").ToLower();
                     if (inputHelp == "continuar" || inputHelp == "done")
                     {
-                        CsvHelpRequest.printHelp(false, false); 
+                        CsvHelpRequest.printHelp(false, false);
+                        urgent = false;
                     }
                     else
                     {

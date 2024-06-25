@@ -134,6 +134,8 @@ namespace workshopCli
                     Console.WriteLine($"Unknown action type: {step.Type}");
                 }
 
+                GitHubManager.BackupScript(session.Name);
+
                 var NameId = session.Name + session.Mesa;
                 session.NameId = NameId;
                 if (i >= 4)
