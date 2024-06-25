@@ -21,6 +21,7 @@ namespace workshopCli
                 if (string.IsNullOrWhiteSpace(sessionValue))
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
+                    ClearLines(5);
                     Console.WriteLine("A resposta não pode estar vazia");
                     Console.ResetColor();
                     sessionValue = null;
@@ -49,6 +50,7 @@ namespace workshopCli
                 if (string.IsNullOrWhiteSpace(answer))
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
+                    ClearLines(6);
                     Console.WriteLine("Resposta inválida. Insere 'proximo' ou 'p'.");
                     Console.ResetColor();
                     continue;
@@ -75,6 +77,7 @@ namespace workshopCli
                         return false;
                     default:
                         Console.ForegroundColor = ConsoleColor.Red;
+                        ClearLines(6);
                         Console.WriteLine("Resposta inválida. Insere 'proximo' ou 'p'.");
                         Console.ResetColor();
                         break;
@@ -167,6 +170,20 @@ namespace workshopCli
             {
                 Console.WriteLine("Ocorreu um erro ao fazer backup: " + ex.Message);
             }
+        }
+        
+        static void ClearLines(int numberLines)
+        {
+            int currentLineCursor = Console.CursorTop;
+            int startLine = currentLineCursor - numberLines;
+
+            for (int i = 0; i < numberLines; i++)
+            {
+                Console.SetCursorPosition(0, startLine + i);
+                Console.Write(new string(' ', Console.WindowWidth));
+            }
+
+            Console.SetCursorPosition(0, startLine);
         }
     }
 }
