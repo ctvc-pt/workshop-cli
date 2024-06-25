@@ -48,7 +48,7 @@ namespace workshopCli
                 // Update the model version here
                 var requestBody = new
                 {
-                    model = "gpt-4-turbo", // Update with the new version
+                    model = "gpt-4o", // Update with the new version
                     messages = new[]
                     {
                         new
