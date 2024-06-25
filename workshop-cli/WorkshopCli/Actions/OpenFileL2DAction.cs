@@ -74,44 +74,96 @@ namespace workshopCli
                 autoHotkeyProcess = Process.Start(startAhkR);
 
                 var settingsPath = Path.Combine(
-                    Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
-                    "Code",
-                    "User",
-                    "settings.json");
+            Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
+            "Code",
+            "User",
+            "settings.json");
 
-                if (!File.Exists(settingsPath))
+        if (!File.Exists(settingsPath))
+        {
+            string sourceFile = Path.Combine(GuideCli.ResourcesPath, "settings.json");
+            string destinationFolder = Path.Combine(
+                Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
+                "Code",
+                "User",
+                "settings.json");
+            File.Copy(sourceFile, destinationFolder, true);
+        }
+
+        var jsonset = File.ReadAllText(settingsPath);
+
+        // Verifica se a configuração "files.autoSave" já está presente no JSON
+        if (!jsonset.Contains("\"files.autoSave\":"))
+        {
+            // Adiciona a configuração "files.autoSave" com o valor "afterDelay"
+            jsonset = jsonset.TrimEnd();
+            if (jsonset.EndsWith("}"))
+            {
+                jsonset = jsonset.Substring(0, jsonset.Length - 1);
+            }
+
+            jsonset += ",\n  \"files.autoSave\": \"afterDelay\"\n}";
+        }
+        else
+        {
+            // Substitui o valor de "files.autoSave" para "afterDelay" se já existir
+            jsonset = jsonset.Replace("\"files.autoSave\": \"off\"", "\"files.autoSave\": \"afterDelay\"");
+        }
+
+        // Adiciona ou atualiza a configuração para autoformatação e Lua
+        if (!jsonset.Contains("\"editor.formatOnSave\":"))
+        {
+            jsonset = jsonset.TrimEnd();
+            if (jsonset.EndsWith("}"))
+            {
+                jsonset = jsonset.Substring(0, jsonset.Length - 1);
+            }
+
+            jsonset += ",\n  \"editor.formatOnSave\": true\n}";
+        }
+        else
+        {
+            jsonset = jsonset.Replace("\"editor.formatOnSave\": false", "\"editor.formatOnSave\": true");
+        }
+
+        if (!jsonset.Contains("\"[lua]\":"))
+        {
+            jsonset = jsonset.TrimEnd();
+            if (jsonset.EndsWith("}"))
+            {
+                jsonset = jsonset.Substring(0, jsonset.Length - 1);
+            }
+
+            jsonset += ",\n  \"[lua]\": {\n    \"editor.defaultFormatter\": \"sumneko.lua\"\n  }\n}";
+        }
+        else
+        {
+            // Atualiza o formatador padrão para arquivos Lua se já existir
+            if (jsonset.Contains("\"[lua]\":"))
+            {
+                int luaIndex = jsonset.IndexOf("\"[lua]\":");
+                int luaEndIndex = jsonset.IndexOf("}", luaIndex);
+                string luaSettings = jsonset.Substring(luaIndex, luaEndIndex - luaIndex + 1);
+
+                if (!luaSettings.Contains("\"editor.defaultFormatter\": \"sumneko.lua\""))
                 {
-                    string sourceFile = Path.Combine(GuideCli.ResourcesPath, "settings.json");
-                    string destinationFolder = Path.Combine(
-                        Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
-                        "Code",
-                        "User",
-                        "settings.json");
-                    File.Copy(sourceFile, destinationFolder, true);
-                }
-
-                var jsonset = File.ReadAllText(settingsPath);
-
-                // Check if the "files.autoSave" setting is already present in the JSON
-                if (!jsonset.Contains("\"files.autoSave\":"))
-                {
-                    // Add the "files.autoSave" setting with the value "afterDelay"
-                    jsonset = jsonset.TrimEnd();
-                    if (jsonset.EndsWith("}"))
+                    luaSettings = luaSettings.TrimEnd();
+                    if (luaSettings.EndsWith("}"))
                     {
-                        jsonset = jsonset.Substring(0, jsonset.Length - 1);
+                        luaSettings = luaSettings.Substring(0, luaSettings.Length - 1);
                     }
 
-                    jsonset += ",\n  \"files.autoSave\": \"afterDelay\"\n}";
-                    CloseAHKProcess();
-                }
-                else
-                {
-                    // Replace the "files.autoSave" value with "afterDelay" if it exists
-                    jsonset = jsonset.Replace("\"files.autoSave\": \"off\"", "\"files.autoSave\": \"afterDelay\"");
-                }
+                    luaSettings += ",\n    \"editor.defaultFormatter\": \"sumneko.lua\"\n  }";
 
-                File.WriteAllText(settingsPath, jsonset);
+                    jsonset = jsonset.Substring(0, luaIndex) + luaSettings + jsonset.Substring(luaEndIndex + 1);
+                }
+            }
+        }
+
+        File.WriteAllText(settingsPath, jsonset);
+
+        Console.WriteLine("Configurações atualizadas com sucesso.");
+    
 
                 KeyboardShortcut.AddKeyboardShortcut();
 
