@@ -14,7 +14,6 @@ namespace workshopCli
         public static string ResourcesPath = Path.Combine(Environment.CurrentDirectory, "..", "..", "..", "..", "..", "Resources");
         public Session session;
         public Guide guide;
-        public int verificaIndex = 0;
         CsvSessionWriter sessionWriter = new CsvSessionWriter();
         CsvHelpRequest helpRequest = new CsvHelpRequest();
         public static int adminInput;
@@ -28,7 +27,6 @@ namespace workshopCli
 
         public void Run()
         {
-            var repoManager = new GitHubManager();
             var VsCode = new OpenVSCode();
             var assembly = Assembly.GetExecutingAssembly();
             var txtFilePath = Path.Combine(ResourcesPath, "session.txt");
@@ -69,11 +67,6 @@ namespace workshopCli
                 }
                 if (step.Type != "code" && step.Type != "open-file" && step.Type != "intro")
                 {
-                    if (i > 6)
-                    {
-                        verificaIndex = 5;
-                        repoManager.Commit(session.Name);
-                    }
                     var filePath = $"{step.Id}.md";
                     var resourceStream = assembly.GetManifestResourceStream($"workshop_cli.Guide.{filePath}");
                     if (resourceStream != null)
@@ -109,7 +102,7 @@ namespace workshopCli
                 var actions = new Dictionary<string, IAction>()
                 {
                     { "information", new InformationAction(this, delay) },
-                    { "challenge", new ChallengeAction(delay) },
+                    { "challenge", new ChallengeAction(delay, session.Name) },
                     { "intro", new CreateBranchAction() },
                     { "install", new InstallAction() },
                     { "open-file", new OpenFileL2DAction(step.Id, delay) },
