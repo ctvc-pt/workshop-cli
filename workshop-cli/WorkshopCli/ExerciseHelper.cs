@@ -23,6 +23,7 @@ namespace workshopCli
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("A resposta não pode estar vazia");
                     Console.ResetColor();
+                    Console.Clear();
                     sessionValue = null;
                 }
             }
@@ -51,6 +52,7 @@ namespace workshopCli
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Resposta inválida. Insere 'proximo' ou 'p'.");
                     Console.ResetColor();
+                    Console.Clear();
                     continue;
                 }
 
@@ -77,6 +79,7 @@ namespace workshopCli
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("Resposta inválida. Insere 'proximo' ou 'p'.");
                         Console.ResetColor();
+                        Console.Clear();
                         break;
                 }
             }
