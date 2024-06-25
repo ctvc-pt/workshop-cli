@@ -121,7 +121,6 @@ namespace workshopCli
                     if (inputHelp == "continuar" || inputHelp == "done")
                     {
                         CsvHelpRequest.printHelp(false, false); 
-                        PromptAnswerAndConfirm(session.Name);
                     }
                     else
                     {
