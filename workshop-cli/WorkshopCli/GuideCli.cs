@@ -18,6 +18,7 @@ namespace workshopCli
         CsvSessionWriter sessionWriter = new CsvSessionWriter();
         CsvHelpRequest helpRequest = new CsvHelpRequest();
         public static int adminInput;
+        public static string stepMessage;
 
         public GuideCli(Guide guide)
         {
@@ -100,7 +101,8 @@ namespace workshopCli
                 Console.WriteLine(step.Message);
                 Console.ForegroundColor = ConsoleColor.White;
 
-
+                stepMessage = step.Message;
+                
                 var delay = step.Delay;
                 delay = 1;
 
