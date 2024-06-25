@@ -94,7 +94,7 @@ namespace workshopCli
             Console.Write($"{session.Name}: ");
             var userMessage = Prompt.Input<string>("");
 
-            var response = chatGptClient.AskGPT(userMessage).Result;
+            var response = chatGptClient.AskGPT(userMessage, GuideCli.stepMessage).Result;
             var typewriter = new TypewriterEffect(50);
             typewriter.Type(response, ConsoleColor.Cyan);
 
@@ -104,7 +104,6 @@ namespace workshopCli
             if (input == "sim" || input == "s")
             {
                 CsvHelpRequest.printHelp(false, false);
-                PromptAnswerAndConfirm(session.Name);
             }
             else if (input == "não" || input == "nao" || input == "n")
             {

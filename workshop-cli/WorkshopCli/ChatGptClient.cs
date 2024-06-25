@@ -25,7 +25,7 @@ namespace workshopCli
             return config.ApiKey;
         }
 
-        public async Task<string> AskGPT(string userMessage)
+        public async Task<string> AskGPT(string userMessage, string stepMessage)
         {
             
                 //----------------------
@@ -48,10 +48,14 @@ namespace workshopCli
                 // Update the model version here
                 var requestBody = new
                 {
-                    model = "gpt-4-turbo", // Update with the new version
+                    model = "gpt-4o", // Update with the new version
                     messages = new[]
                     {
-                        new { role = "system", content = fileContent+code},
+                        new
+                        {
+                            role = "system", content = fileContent+code + "/n E aqui está o que é pedido como exercício:" +
+                                                       stepMessage
+                        },
                         new { role = "user", content = userMessage }
                     }
                 };
