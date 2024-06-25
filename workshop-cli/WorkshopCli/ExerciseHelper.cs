@@ -104,7 +104,6 @@ namespace workshopCli
             if (input == "sim" || input == "s")
             {
                 CsvHelpRequest.printHelp(false, false);
-                PromptAnswerAndConfirm(session.Name);
             }
             else if (input == "não" || input == "nao" || input == "n")
             {
