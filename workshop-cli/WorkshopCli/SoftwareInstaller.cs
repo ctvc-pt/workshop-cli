@@ -74,28 +74,31 @@ namespace workshopCli
 
         public void InstallVSCodeExtension(string extensionName)
         {
-            var vscodeProcess = new Process
-            {
-                StartInfo = new ProcessStartInfo
+            if(IsVSCodeInstalled()){
+                var vscodeProcess = new Process
                 {
-                    FileName = "cmd.exe",
-                    Arguments = $"/c code --install-extension {extensionName}",
-                    RedirectStandardOutput = true,
-                    RedirectStandardError = true,
-                    UseShellExecute = false
+                    StartInfo = new ProcessStartInfo
+                    {
+                        FileName = "cmd.exe",
+                        Arguments = $"/c code --install-extension {extensionName}",
+                        RedirectStandardOutput = true,
+                        RedirectStandardError = true,
+                        UseShellExecute = false
+                    }
+                };
+
+                vscodeProcess.Start();
+                vscodeProcess.WaitForExit();
+
+                if ( vscodeProcess.ExitCode == 0 )
+                {
+                    Console.WriteLine( $"VS Code extension {extensionName} installed successfully." );
                 }
-            };
-
-            vscodeProcess.Start();
-            vscodeProcess.WaitForExit();
-
-            if (vscodeProcess.ExitCode == 0)
-            {
-                Console.WriteLine($"VS Code extension {extensionName} installed successfully.");
-            }
-            else
-            {
-                Console.WriteLine($"Failed to install VS Code extension {extensionName}. Please check the logs for details.");
+                else
+                {
+                    Console.WriteLine(
+                        $"Failed to install VS Code extension {extensionName}. Please check the logs for details." );
+                }
             }
         }
 
@@ -133,8 +136,8 @@ namespace workshopCli
 
         private bool IsVSCodeInstalled()
         {
-            string variableValue = Path.Combine( Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "..", "Local/Programs/Microsoft VS Code", "Code.exe" );
-            return variableValue != null;
+            string path = Path.Combine( Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "..", "Local/Programs/Microsoft VS Code", "Code.exe" );
+            return File.Exists(path);
         }
     }
 }
