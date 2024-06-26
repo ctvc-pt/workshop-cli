@@ -1,31 +1,24 @@
 
-Agora vamos fazer com que os mísseis funcionem como deviam
+Agora vamos fazer com que os mísseis se movam e não fiquem parados quando disparas. 
 
-1. Na função "load()", adiciona nas variaveis do míssil:
+1. Na função "load()", adiciona nas variáveis do míssil:
 
    missilVelocidade = 250
    podeDisparar = true
 
-   2. No fim do teu código todo, adiciona esta função
+2. No fim do teu código todo, adiciona esta função:
 
    -- Função para atualizar os mísseis
    function atualizarMisseis(dt)
-        for i=table.getn(misseis), 1, -1 do
+        for i=#misseis, 1, -1 do
             missil = misseis[i]
             missil.posicaoX = missil.posicaoX + dt * missil.velocidade
         end
    end
 
-A função "atualizarMisseis(dt)" cuida dos mísseis no jogo. Ela faz com que os mísseis se movam para a direita. É como se os mísseis estivessem a voar pelo jogo, mas desaparecendo quando vão muito longe. Assim, a função garante que os mísseis se comportem corretamente no jogo.
-
-3. Agora vamos alterar o código que adicionamos no último passo na função "update(dt)"(substitui o código que faz disparar os misseis):
+3. Agora vamos alterar o código que adicionamos no último passo na função "update(dt)" (substitui o código que faz disparar os misseis):
 
     if love.keyboard.isDown("space") then
-        if(left) then
-            missilVelocidade = missilVelocidade - velocidade/2
-        elseif(right) then
-            missilVelocidade = missilVelocidade + velocidade/2
-        end
         if podeDisparar then
             missil = {
                 posicaoX = posicaoX + 64, 

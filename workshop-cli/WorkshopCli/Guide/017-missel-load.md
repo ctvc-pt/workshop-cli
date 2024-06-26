@@ -1,7 +1,8 @@
 
-O proximo passo é meter a nossa nave a disparar mísseis e tal como a nave o primeiro passo é indicar a imagem e os seus atributos na função "load()".
+O próximo passo é meter a nossa nave a disparar mísseis e, tal como fizemos para adicionar a nave ao jogo o primeiro passo é carregar e desenhar a imagem.
 
-1. Primeiro escolhe na pasta uma imagem para ser o míssel da tua nave.
+1. Primeiro escolhe dentro da pasta "mygame" uma imagem para ser o míssil da tua nave. 
+
 Adiciona o seguinte código na função "load()" antes da palavra "end":
 
    -- Variáveis do Míssil
@@ -14,9 +15,7 @@ Adiciona o seguinte código na função "load()" antes da palavra "end":
        love.graphics.draw(missil.imagem, missil.posicaoX, missil.posicaoY)
     end
 
-Isto vai armazenar os misseis todos para que depois podemos controlá-los.
-
-3. Insere no update(dt) o seguinte codigo:
+3. Insere na função update(dt) o seguinte código:
 
    -- Disparo do míssil
     if love.keyboard.isDown("space") then
@@ -24,9 +23,9 @@ Isto vai armazenar os misseis todos para que depois podemos controlá-los.
         table.insert(misseis, missil)
     end
 
-Ao pressionar a tecla 'SPACEBAR' cria e lança um míssil no jogo. 
+Ao pressionar a tecla 'SPACEBAR' a nave dispara um míssil. 
 
-4. Inicia o jogo (alt+L) e vê o que há de novo.
+4. Inicia o jogo e vê o que há de novo.
 
 Os mísseis não saem do sítio, certo? É isso que vamos fazer a seguir.
 

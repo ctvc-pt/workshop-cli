@@ -1,7 +1,9 @@
 
 O jogo está a ganhar forma, mas ainda falta uma coisa importante. Como podes ver, tu não consegues acertar nos inimigos, nem os inimigos conseguem acertar em ti.
 
-1. Para isso, precisamos de 3 funções para verificar colisões. Adiciona este código no fim: 
+Vamos adicionar 3 funções para verificar colisões entre o jogador e os inimigos.
+
+1. Adiciona este código no fim: 
 
     -- Função para verificar colisões entre o jogador e os inimigos
     function verificaJogadorInimigoColisao()
@@ -24,8 +26,4 @@ O jogo está a ganhar forma, mas ainda falta uma coisa importante. Como podes ve
 
     verificaJogadorInimigoColisao()
 
-Estas funções verificam a posição do jogador e dos inimigos.
-Se os inimigos tocarem no jogador, recomeça.
-
-Agora corre o jogo (alt+l).
-
+Com estas funções que adicionaste agora, se os inimigos tocarem no jogador, o jogo recomeça. Podes testar, executa o jogo com Alt + L. 

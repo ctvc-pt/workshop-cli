@@ -1,5 +1,5 @@
-﻿
-3. Adiciona este código no fim: 
+﻿3. 
+4. Adiciona este código no fim: 
 
     -- Função para verificar colisões entre mísseis e inimigos
     function verificaMissilInimigoColisao()
@@ -14,12 +14,10 @@
         end
     end
 
-Esta função verifica a posição do míssil e dos inimigos.
-Se os mísseis tocarem nos inimigos, os dois desaparecem.
+Com esta função quando os mísseis tocarem nos inimigos, os dois desaparecem. 
 
-4. Agora, adiciona no fim da função "update(dt)" por baixo da linha "verificaJogadorInimigoColisao()" o seguinte código:
+4. Como último passo, adiciona no fim da função "update(dt)" por baixo da linha "verificaJogadorInimigoColisao()" o seguinte código:
 
     verificaMissilInimigoColisao()
 
-Agora corre o jogo (alt+l) e diverte-te.
-
+Executa o jogo com Alt + L e diverte-te! 
