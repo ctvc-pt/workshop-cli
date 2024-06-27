@@ -123,7 +123,10 @@ namespace workshopCli
                     Console.WriteLine($"Unknown action type: {step.Type}");
                 }
 
-                GitHubManager.BackupScript(session.Name);
+                if ( i > 7 )
+                {
+                    GitHubManager.BackupScript(session.Name);
+                }
 
                 var NameId = session.Name + session.Mesa;
                 session.NameId = NameId;

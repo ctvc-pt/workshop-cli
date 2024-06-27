@@ -126,6 +126,38 @@ namespace workshopCli
             jsonset = jsonset.Replace("\"editor.formatOnSave\": false", "\"editor.formatOnSave\": true");
         }
 
+        // Adiciona ou atualiza a configuração para formatOnPaste
+        if (!jsonset.Contains("\"editor.formatOnPaste\":"))
+        {
+            jsonset = jsonset.TrimEnd();
+            if (jsonset.EndsWith("}"))
+            {
+                jsonset = jsonset.Substring(0, jsonset.Length - 1);
+            }
+
+            jsonset += ",\n  \"editor.formatOnPaste\": true\n}";
+        }
+        else
+        {
+            jsonset = jsonset.Replace("\"editor.formatOnPaste\": false", "\"editor.formatOnPaste\": true");
+        }
+
+        // Adiciona ou atualiza a configuração para formatOnType
+        if (!jsonset.Contains("\"editor.formatOnType\":"))
+        {
+            jsonset = jsonset.TrimEnd();
+            if (jsonset.EndsWith("}"))
+            {
+                jsonset = jsonset.Substring(0, jsonset.Length - 1);
+            }
+
+            jsonset += ",\n  \"editor.formatOnType\": true\n}";
+        }
+        else
+        {
+            jsonset = jsonset.Replace("\"editor.formatOnType\": false", "\"editor.formatOnType\": true");
+        }
+
         if (!jsonset.Contains("\"[lua]\":"))
         {
             jsonset = jsonset.TrimEnd();
