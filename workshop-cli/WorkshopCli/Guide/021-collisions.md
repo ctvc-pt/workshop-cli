@@ -1,10 +1,10 @@
-
+[color=white]
 O jogo está a ganhar forma, mas ainda falta uma coisa importante. Como podes ver, tu não consegues acertar nos inimigos, nem os inimigos conseguem acertar em ti.
 
 Vamos adicionar 3 funções para verificar colisões entre o jogador e os inimigos.
 
-1. Adiciona este código no fim: 
-
+1. Adiciona este código no fim:
+   [/color] [color=blue]
     -- Função para verificar colisões entre o jogador e os inimigos
     function verificaJogadorInimigoColisao()
         for index, inimigo in ipairs(inimigos) do
@@ -21,9 +21,10 @@ Vamos adicionar 3 funções para verificar colisões entre o jogador e os inimig
         y1 < y2 + h2 and
         y1 + h1 > y2
     end
-
+   [/color] [color=white]
 2. Agora, adiciona no fim da função "update(dt)" por baixo da linha "atualizarInimigos(dt)" o seguinte código:
-
+   [/color] [color=blue]
     verificaJogadorInimigoColisao()
-
-Com estas funções que adicionaste agora, se os inimigos tocarem no jogador, o jogo recomeça. Podes testar, executa o jogo com Alt + L. 
+   [/color] [color=white]
+Com estas funções que adicionaste agora, se os inimigos tocarem no jogador, o jogo recomeça. Podes testar, executa o jogo com Alt + L.
+   [/color]
