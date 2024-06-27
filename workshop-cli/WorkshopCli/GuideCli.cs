@@ -73,6 +73,7 @@ namespace workshopCli
                         using (var reader = new StreamReader(resourceStream))
                         {
                             var markdown = reader.ReadToEnd();
+                            WrapString( markdown, 100 );
                             HtmlConsoleRenderer.Render(markdown);
                         }
                     }

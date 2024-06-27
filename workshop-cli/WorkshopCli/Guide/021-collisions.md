@@ -5,7 +5,7 @@ Vamos adicionar 3 funções para verificar colisões entre o jogador e os inimig
 
 1. Adiciona este código no fim:
    [/color] [color=blue]
-    -- Função para verificar colisões entre o jogador e os inimigos
+    -- Função que verifica colisões entre o jogador e inimigos
     function verificaJogadorInimigoColisao()
         for index, inimigo in ipairs(inimigos) do
             if intercepta(posicaoX, posicaoY, imagem:getWidth(), imagem:getHeight(), inimigo.posicaoX, inimigo.posicaoY, inimigo.width, inimigo.height) then
@@ -14,7 +14,7 @@ Vamos adicionar 3 funções para verificar colisões entre o jogador e os inimig
         end
     end
 
-    -- Função para verificar se dois objetos se interceptam (colidem)
+    -- Função que verifica se os objetos se interceptam
     function intercepta(x1, y1, w1, h1, x2, y2, w2, h2)
         return x1 < x2 + w2 and
         x1 + w1 > x2 and
