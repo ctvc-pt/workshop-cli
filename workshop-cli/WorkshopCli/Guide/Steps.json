@@ -47,7 +47,7 @@
     },
     {
         "Id": "009-helloWorld",
-        "Type": "information",
+        "Type": "challenge",
         "Delay": "20000"
     },
     {
@@ -71,7 +71,7 @@
     },
     {
         "Id": "015-speed",
-        "Type": "information",
+        "Type": "challenge",
         "Delay": "30000"
     },
     {
@@ -147,7 +147,7 @@
     },
     {
         "Id": "029-end-4",
-        "Type": "information",
+        "Type": "challenge",
         "Delay": "30000"
     },
     {
