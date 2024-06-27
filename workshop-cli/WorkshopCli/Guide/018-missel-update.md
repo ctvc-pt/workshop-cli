@@ -1,31 +1,24 @@
+[color=white]
+Agora vamos fazer com que os mísseis se movam e não fiquem parados quando disparas. 
 
-Agora vamos fazer com que os mísseis funcionem como deviam
-
-1. Na função "load()", adiciona nas variaveis do míssil:
-
+1. Na função "load()", adiciona nas variáveis do míssil:
+   [/color] [color=blue]
    missilVelocidade = 250
    podeDisparar = true
-
-   2. No fim do teu código todo, adiciona esta função
-
+   [/color] [color=white]
+2. No fim do teu código todo, adiciona esta função:
+   [/color] [color=blue]
    -- Função para atualizar os mísseis
    function atualizarMisseis(dt)
-        for i=table.getn(misseis), 1, -1 do
+        for i=#misseis, 1, -1 do
             missil = misseis[i]
             missil.posicaoX = missil.posicaoX + dt * missil.velocidade
         end
    end
-
-A função "atualizarMisseis(dt)" cuida dos mísseis no jogo. Ela faz com que os mísseis se movam para a direita. É como se os mísseis estivessem a voar pelo jogo, mas desaparecendo quando vão muito longe. Assim, a função garante que os mísseis se comportem corretamente no jogo.
-
-3. Agora vamos alterar o código que adicionamos no último passo na função "update(dt)"(substitui o código que faz disparar os misseis):
-
+   [/color] [color=white]
+3. Agora vamos alterar o código que adicionamos no último passo na função "update(dt)" (substitui o código que faz disparar os misseis):
+   [/color] [color=blue]
     if love.keyboard.isDown("space") then
-        if(left) then
-            missilVelocidade = missilVelocidade - velocidade/2
-        elseif(right) then
-            missilVelocidade = missilVelocidade + velocidade/2
-        end
         if podeDisparar then
             missil = {
                 posicaoX = posicaoX + 64, 
@@ -37,9 +30,10 @@ A função "atualizarMisseis(dt)" cuida dos mísseis no jogo. Ela faz com que os
         end
     end
     atualizarMisseis(dt)
-
+   [/color] [color=white]
 O código inserido agora faz o seguinte:
  - Se a tecla "espaço" for pressionada, um míssil é disparado com base na velocidade do jogador. A velocidade do míssil é ajustada se o jogador estiver a mover-se para a esquerda ou direita. O missil também é definido aqui.
  - A função "atualizarMisseis(dt)" é chamada para atualizar o movimento dos mísseis existentes no jogo.
 
 Agora podes iniciar o teu jogo e divertir-te um pouco.
+[/color]

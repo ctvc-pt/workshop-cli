@@ -1,27 +1,28 @@
+[color=white]
+Para criar um jogo precisamos da função "load()" que é usada para iniciar e configurar o jogo, carregando recursos como imagens, sons e fontes.
 
-Para criar um jogo, precisamos de recursos como imagens, sons e fontes.
-Vamos começar por carregar as imagens.
+Adicionei várias imagens que usarás no jogo à pasta "mygame", com os nomes:
+- nave;
+- inimigos;
+- mísseis;
 
-1. Adicionei várias imagens dentro da pasta "mygame", com os nomes de: 
- - nave;
- - inimigos;
- - mísseis;
-que usarás no jogo.
-Podes clicar nas imagens para as ver.
+Clique nas imagens para visualizá-las e depois escolheres para o teu jogo aquelas que mais gostaste.
 
-
-Agora vamos desenhar o jogador.
+Agora, o objetivo é desenhar o jogador (nave) do teu jogo.
 
 Temos de primeiro carregar a imagem, e depois desenha-la.
 
 1. Para carregar a imagem, escreve dentro da função "load()":
+[/color] [color=blue]
    -- Variáveis da Nave do Jogador
    imagem = love.graphics.newImage("nome-imagem.png")
+[/color] [color=white]
 
-Não te esqueças de alterar "nome-imagem" pelo nome da nave que tu escolheste anteriormente.
+Substitui o "nome-imagen.png" pelo nome da nave que queres usar no teu jogo.
 
-2. Depois, escreve na função "draw()":
+2. Depois, adiciona na função "draw()":
+[/color] [color=blue]
    love.graphics.draw(imagem, 100, 100, 0, 1, 1)
-
-Quando vires a imagem na tela de jogo, continua para o próximo passo (alt+L).
-
+[/color] [color=white]
+Executa o jogo (Alt+L) e se estiver tudo correto, verás a nave desenhada no jogo.
+[/color]

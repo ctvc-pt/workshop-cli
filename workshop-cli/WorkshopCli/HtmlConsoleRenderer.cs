@@ -5,138 +5,105 @@ namespace workshopCli
 {
     public class HtmlConsoleRenderer
     {
-        public static void Render(string html)
+        public static void Render(string text)
         {
             int position = 0;
-            while (position < html.Length)
+            while (position < text.Length)
             {
-                int startTagIndex = html.IndexOf('<', position);
+                int startTagIndex = text.IndexOf('[', position);
                 if (startTagIndex == -1)
                 {
-                    WriteLineWithoutWrapping(html.Substring(position));
+                    WriteWithoutWrapping(text.Substring(position));
                     break;
                 }
 
-                WriteLineWithoutWrapping(html.Substring(position, startTagIndex - position));
+                WriteWithoutWrapping(text.Substring(position, startTagIndex - position));
 
-                int endTagIndex = html.IndexOf('>', startTagIndex);
+                int endTagIndex = text.IndexOf(']', startTagIndex);
                 if (endTagIndex == -1)
                 {
-                    WriteLineWithoutWrapping(html.Substring(startTagIndex));
+                    WriteWithoutWrapping(text.Substring(startTagIndex));
                     break;
                 }
 
-                string tagContent = html.Substring(startTagIndex + 1, endTagIndex - startTagIndex - 1);
+                string tagContent = text.Substring(startTagIndex + 1, endTagIndex - startTagIndex - 1);
 
-                if (IsTag(tagContent))
+                if (IsColorTag(tagContent))
                 {
-                    string tag = html.Substring(startTagIndex, endTagIndex - startTagIndex + 1);
-                    ProcessTag(tag);
+                    ProcessTag(tagContent);
                 }
                 else
                 {
-                    WriteLineWithoutWrapping(html.Substring(startTagIndex, endTagIndex - startTagIndex + 1));
+                    WriteWithoutWrapping(text.Substring(startTagIndex, endTagIndex - startTagIndex + 1));
                 }
 
                 position = endTagIndex + 1;
             }
+
+            // Reset color at the end of rendering
+            Console.ResetColor();
         }
 
-        private static bool IsTag(string tagContent)
+        private static bool IsColorTag(string tagContent)
         {
-            return Regex.IsMatch(tagContent, @"^\s*/?\s*\w+.*$");
+            return Regex.IsMatch(tagContent, @"^(color=|/color)");
         }
 
-        private static void WriteLineWithoutWrapping(string text)
+        private static void WriteWithoutWrapping(string text)
         {
-            string[] lines = text.Split('\n');
-
-            if (string.IsNullOrWhiteSpace(text))
-            {
-                Console.WriteLine();
-                return;
-            }
-
-            foreach (string line in lines)
-            {
-                PrintWithoutWrapping(line);
-            }
+            Console.Write(text);
         }
 
-        private static void PrintWithoutWrapping(string line)
+        private static void ProcessTag(string tagContent)
         {
-            string[] words = line.Split(' ');
-            int consoleWidth = Console.WindowWidth;
-            int currentLineLength = 0;
-
-            foreach (string word in words)
+            if (tagContent.StartsWith("color=", StringComparison.OrdinalIgnoreCase))
             {
-                if (currentLineLength + word.Length + 1 > consoleWidth)
-                {
-                    Console.WriteLine();
-                    Console.Write(word + " ");
-                    currentLineLength = word.Length + 1;
-                }
-                else
-                {
-                    Console.Write(word + " ");
-                    currentLineLength += word.Length + 1;
-                }
+                var color = tagContent.Substring(6).Trim().ToLower();
+                SetConsoleColor(color);
             }
-            Console.WriteLine();
-        }
-
-        private static void ProcessTag(string tag)
-        {
-            if (tag.StartsWith("<span") && tag.Contains("style=") || tag.StartsWith("<pre") && tag.Contains("style="))
-            {
-                var match = Regex.Match(tag, @"style\s*=\s*""([^""]*)""");
-                if (match.Success)
-                {
-                    var style = match.Groups[1].Value;
-                    var colorMatch = Regex.Match(style, @"color\s*:\s*([^;]*)");
-                    if (colorMatch.Success)
-                    {
-                        var color = colorMatch.Groups[1].Value;
-                        switch (color.ToLower())
-                        {
-                            case "white":
-                                Console.ForegroundColor = ConsoleColor.White;
-                                break;
-                            case "black":
-                                Console.ForegroundColor = ConsoleColor.Black;
-                                break;
-                            case "purple":
-                                Console.ForegroundColor = ConsoleColor.Magenta;
-                                break;
-                            case "green":
-                                Console.ForegroundColor = ConsoleColor.Green;
-                                break;
-                            case "yellow":
-                                Console.ForegroundColor = ConsoleColor.Yellow;
-                                break;
-                            case "red":
-                                Console.ForegroundColor = ConsoleColor.Red;
-                                break;
-                            case "blue":
-                                Console.ForegroundColor = ConsoleColor.Blue;
-                                break;
-                            case "cyan":
-                                Console.ForegroundColor = ConsoleColor.Cyan;
-                                break;
-                            case "darkcyan":
-                                Console.ForegroundColor = ConsoleColor.DarkCyan;
-                                break;
-                            case "orange":
-                                Console.ForegroundColor = ConsoleColor.DarkYellow;
-                                break;
-                        }
-                    }
-                }
-            }
-            else
+            else if (tagContent.Equals("/color", StringComparison.OrdinalIgnoreCase))
             {
                 Console.ResetColor();
+            }
+        }
+
+        private static void SetConsoleColor(string color)
+        {
+            switch (color)
+            {
+                case "white":
+                    Console.ForegroundColor = ConsoleColor.White;
+                    break;
+                case "black":
+                    Console.ForegroundColor = ConsoleColor.Black;
+                    break;
+                case "purple":
+                    Console.ForegroundColor = ConsoleColor.Magenta;
+                    break;
+                case "green":
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    break;
+                case "yellow":
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    break;
+                case "red":
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    break;
+                case "blue":
+                    Console.ForegroundColor = ConsoleColor.Blue;
+                    break;
+                case "cyan":
+                    Console.ForegroundColor = ConsoleColor.Cyan;
+                    break;
+                case "darkcyan":
+                    Console.ForegroundColor = ConsoleColor.DarkCyan;
+                    break;
+                case "orange":
+                    Console.ForegroundColor = ConsoleColor.DarkYellow;
+                    break;
+                default:
+                    Console.ResetColor();
+                    break;
             }
         }
     }

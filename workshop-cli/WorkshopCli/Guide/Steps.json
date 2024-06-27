@@ -41,18 +41,13 @@
         "Type": "code"
     },
     {
-        "Id": "008-HelloWorld",
-        "Type": "information",
-        "Delay": "5000"
-    },
-    {
         "Id": "008-HelloWorld-1",
         "Type": "challenge",
         "Delay": "5000"
     },
     {
         "Id": "009-helloWorld",
-        "Type": "information",
+        "Type": "challenge",
         "Delay": "20000"
     },
     {
@@ -76,7 +71,7 @@
     },
     {
         "Id": "015-speed",
-        "Type": "information",
+        "Type": "challenge",
         "Delay": "30000"
     },
     {
@@ -102,6 +97,11 @@
     },
     {
         "Id": "020-enemy",
+        "Type": "information",
+        "Delay": "30000"
+    },
+    {
+        "Id": "020-enemy-1",
         "Type": "information",
         "Delay": "30000"
     },
@@ -147,7 +147,7 @@
     },
     {
         "Id": "029-end-4",
-        "Type": "information",
+        "Type": "challenge",
         "Delay": "30000"
     },
     {

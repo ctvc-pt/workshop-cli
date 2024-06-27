@@ -5,7 +5,6 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 using Newtonsoft.Json;
-using Markdig;
 
 namespace workshopCli
 {
@@ -74,17 +73,8 @@ namespace workshopCli
                         using (var reader = new StreamReader(resourceStream))
                         {
                             var markdown = reader.ReadToEnd();
-                            // Convert Markdown to HTML without modifying special characters
-                            var pipeline = new MarkdownPipelineBuilder().UseAdvancedExtensions().Build();
-                            var html = Markdown.ToHtml(markdown, pipeline);
-                            // Replace &quot; with "
-                            html = html.Replace("&quot;", "\"");
-                            html = html.Replace("&gt;", ">");
-                            html = html.Replace("&lt;", "<");
-                            html = html.Replace("</p>", "");
-                            html = html.Replace("</span>", "");
-                            
-                            HtmlConsoleRenderer.Render(html);
+                            WrapString( markdown, 100 );
+                            HtmlConsoleRenderer.Render(markdown);
                         }
                     }
                 }
@@ -97,7 +87,6 @@ namespace workshopCli
                 stepMessage = step.Message;
                 
                 var delay = step.Delay;
-                delay = 1;
 
                 var actions = new Dictionary<string, IAction>()
                 {
