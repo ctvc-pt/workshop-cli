@@ -1,5 +1,5 @@
 [color=white]
-Vamos fazer com que os inimigos movam-se.
+Falta fazer com que os inimigos se movam, é o passo seguinte.
 
 5. Adiciona este código à função "atualizarInimigos(dt)":
    [/color] [color=blue]
@@ -13,5 +13,5 @@ Vamos fazer com que os inimigos movam-se.
         end
     end
    [/color] [color=white]
-Agora deves ter um monte de inimigos a vir em direção da tua nave(alt+L).
+Agora deves ter um monte de inimigos a vir em direção da tua nave.
    [/color]

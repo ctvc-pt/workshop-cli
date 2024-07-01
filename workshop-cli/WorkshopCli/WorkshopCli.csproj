@@ -290,6 +290,8 @@
       <EmbeddedResource Include="Guide\021-collisions.md" />
       <None Remove="Guide\022-collisions-2.md" />
       <EmbeddedResource Include="Guide\022-collisions-2.md" />
+      <None Remove="Guide\023-estadoJogo.md" />
+      <EmbeddedResource Include="Guide\023-estadoJogo.md" />
     </ItemGroup>
 
 </Project>

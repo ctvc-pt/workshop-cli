@@ -1,6 +1,8 @@
 [color=white]
-O jogo está quase acabado, mas falta o jogo tornar-se num JOGO. Como podes ver, o jogador é invencível, o que é engraçado, mas qual é a piada?.
-Vamos criar o Game Over.
+O jogo está quase acabado, mas falta o jogo tornar-se num verdadeiro JOGO. 
+Como podes ver, o jogador é invencível, o que é engraçado, 
+mas qual é a piada?
+Vamos criar o Game Over!
 
 1. Para isso, adiciona no fim da função "load()":
    [/color] [color=blue]
@@ -12,7 +14,7 @@ Vamos criar o Game Over.
 2. Agora, adiciona no fim da função "update(dt)" o seguinte código:
    [/color] [color=blue]
     if estadoJogo == "a jogar" then
-
+	-- Adiciona o código do update(dt) aqui
     end
    [/color] [color=white]
 E adiciona tudo o que está dentro da função "update(dt)" dentro disto
@@ -32,7 +34,9 @@ E adiciona tudo o que está dentro da função "update(dt)" dentro disto
    
    end
    [/color] [color=white]
-E adiciona o tudo o que está dentro da função "draw(dt)" debaixo da linha "love.graphics.setBackgroundColor(0, 0, 0)".
+E adiciona o tudo o que está dentro da função "draw(dt)" debaixo da linha 
+"love.graphics.setBackgroundColor(0, 0, 0)".
 
-Este código vai saber se estás a jogar, se ganhaste ou perdeste, mas ainda não faz nada.
+Este código vai saber se estás a jogar, se ganhaste ou perdeste, mas ainda 
+não faz nada.
 [/color]

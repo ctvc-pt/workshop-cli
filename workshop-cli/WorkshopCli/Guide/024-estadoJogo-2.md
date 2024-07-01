@@ -1,7 +1,8 @@
 [color=white]
 Vamos adicionar o que faz com que o jogador perca.
 
-4. Adiciona na função "verificaJogadorInimigoColisao()", debaixo da linha "table.remove(inimigos, index)":
+4. Adiciona na função "verificaJogadorInimigoColisao()", debaixo da linha 
+"table.remove(inimigos, index)":
    [/color] [color=blue]
    if vidas <= 0 then
         estadoJogo = "perder"

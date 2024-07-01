@@ -1,5 +1,6 @@
 [color=white]
-Agora, vamos adicionar um temporizador para controlar o intervalo entre os disparos dos mísseis, assim os disparos ficam mais realistas!
+Agora, vamos adicionar um temporizador para controlar o intervalo
+entre os disparos dos mísseis, assim os ficam mais realistas!
 
 1. Na função "load()" adiciona as variáveis do míssil:
    [/color] [color=blue]
@@ -11,7 +12,8 @@ Agora, vamos adicionar um temporizador para controlar o intervalo entre os dispa
      podeDisparar = false
      missilTempo = missilTempoMax
    [/color] [color=white]
-3. Também na função "update(dt)", e antes da linha "atualizarMisseis(dt)", adiciona:
+3. Também na função "update(dt)", e antes da linha "atualizarMisseis(dt)", 
+adiciona:
    [/color] [color=blue]
    if missilTempo > 0 then
      missilTempo = missilTempo - dt
