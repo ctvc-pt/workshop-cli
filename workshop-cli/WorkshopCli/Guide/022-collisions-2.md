@@ -1,4 +1,4 @@
-﻿[color=white]
+[color=white]
 3. Adiciona este código no fim:
    [/color] [color=blue]
     -- Função para verificar colisões entre mísseis e inimigos
@@ -16,7 +16,8 @@
    [/color] [color=white]
 Com esta função quando os mísseis tocarem nos inimigos, os dois desaparecem. 
 
-5. Como último passo, adiciona no fim da função "update(dt)" por baixo da linha "verificaJogadorInimigoColisao()" o seguinte código:
+5. Como último passo, adiciona no fim da função "update(dt)" por baixo da linha 
+"verificaJogadorInimigoColisao()" o seguinte código:
    [/color] [color=blue]
     verificaMissilInimigoColisao()
    [/color] [color=white]

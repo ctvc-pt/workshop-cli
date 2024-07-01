@@ -1,5 +1,6 @@
 [color=white]
-O próximo passo é meter a nossa nave a disparar mísseis e, tal como fizemos para adicionar a nave ao jogo o primeiro passo é carregar e desenhar a imagem.
+O próximo passo é meter a nossa nave a disparar mísseis e, tal como fizemos para 
+adicionar a nave ao jogo, o primeiro passo é carregar e desenhar a imagem.
 
 1. Primeiro escolhe dentro da pasta "mygame" uma imagem para ser o míssil da tua nave. 
 
@@ -23,7 +24,9 @@ Adiciona o seguinte código na função "load()" antes da palavra "end":
         table.insert(misseis, missil)
     end
    [/color] [color=white]
-Ao pressionar a tecla 'SPACEBAR' a nave dispara um míssil. 
+Fantástico! Aquilo que fizeste agora foi configurar a tecla 'SPACEBAR', quando
+pressionares esta tecla a nave dispara um míssil.
+
 
 4. Inicia o jogo e vê o que há de novo.
 

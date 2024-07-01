@@ -1,5 +1,6 @@
 [color=white]
-O jogo está a ganhar forma, mas ainda falta uma coisa importante. Como podes ver, tu não consegues acertar nos inimigos, nem os inimigos conseguem acertar em ti.
+O jogo está a ganhar forma, mas ainda falta uma coisa importante: tu não 
+consegues acertar nos inimigos, nem os inimigos conseguem acertar em ti.
 
 Vamos adicionar 3 funções para verificar colisões entre o jogador e os inimigos.
 
@@ -22,7 +23,7 @@ Vamos adicionar 3 funções para verificar colisões entre o jogador e os inimig
         y1 + h1 > y2
     end
    [/color] [color=white]
-2. Agora, adiciona no fim da função "update(dt)" por baixo da linha "atualizarInimigos(dt)" o seguinte código:
+2. Adiciona no fim da função "update(dt)" por baixo da linha "atualizarInimigos(dt)":
    [/color] [color=blue]
     verificaJogadorInimigoColisao()
    [/color] [color=white]

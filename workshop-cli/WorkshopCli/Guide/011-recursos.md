@@ -1,16 +1,17 @@
 [color=white]
-Para criar um jogo precisamos da função "load()" que é usada para iniciar e configurar o jogo, carregando recursos como imagens, sons e fontes.
+Para criar um jogo precisamos da função "load()" que é usada para iniciar e 
+configurar o jogo, carregando recursos como imagens, sons e fontes.
 
 Adicionei várias imagens que usarás no jogo à pasta "mygame", com os nomes:
 - nave;
 - inimigos;
 - mísseis;
 
-Clique nas imagens para visualizá-las e depois escolheres para o teu jogo aquelas que mais gostaste.
+Clica nas imagens para visualizá-las e depois escolheres para o teu jogo as que mais gostaste.
 
 Agora, o objetivo é desenhar o jogador (nave) do teu jogo.
 
-Temos de primeiro carregar a imagem, e depois desenha-la.
+Primeiro temos de carregar a imagem, e depois desenha-la:
 
 1. Para carregar a imagem, escreve dentro da função "load()":
 [/color] [color=blue]
