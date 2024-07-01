@@ -38,14 +38,16 @@ Já tens tudo programado para tua nave, agora falta criar os inimigos.
        end
    end
    [/color] [color=white]
-Esta função faz com que o inimigo apareça de certo em certo tempo (não precisas de saber mais que isto, mas se quiseres explorar estás à vontade).
+Esta função faz com que o inimigo apareça de certo em certo tempo
+(não precisas de saber mais que isto, mas se quiseres explorar 
+estás à vontade).
 
 4. Por último, na função "update(dt)" depois da linha "atualizarMisseis(dt)" 
 adiciona esta linha:
    [/color] [color=blue]
     atualizarInimigos(dt)
    [/color] [color=white]
-Se executares o jogo (Alt + L) vais reparar que tens um monte de inimigos em 
-direção à tua nave. Podes ajustar a quantidade de inimigos basta alterares o valor 
-de "geraInimigoTempoMax".
+Se executares o jogo (Alt + L) vais reparar que tens um monte de 
+inimigos em direção à tua nave. Podes ajustar a quantidade de 
+inimigos basta alterares o valor de "geraInimigoTempoMax".
    [/color]

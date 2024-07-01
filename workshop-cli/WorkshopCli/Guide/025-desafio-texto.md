@@ -1,6 +1,7 @@
 [color=white]
-Por enquanto não consegues ver a tua vida nem pontuação no jogo, mas estou confiante
-que tens essa informação e o conhecimento para o fazeres. 
+Por enquanto não consegues ver a tua vida nem pontuação no jogo, 
+mas estou confiante que tens essa informação e o conhecimento
+para o fazeres. 
 [/color] [color=red]
      ____  _____ ____    _    _____ ___ ___  
     |  _ \| ____/ ___|  / \  |  ___|_ _/ _ \
