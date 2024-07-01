@@ -12,7 +12,8 @@ entre os disparos dos mísseis, assim os ficam mais realistas!
      podeDisparar = false
      missilTempo = missilTempoMax
    [/color] [color=white]
-3. Também na função "update(dt)", e antes da linha "atualizarMisseis(dt)", adiciona:
+3. Também na função "update(dt)", e antes da linha "atualizarMisseis(dt)", 
+adiciona:
    [/color] [color=blue]
    if missilTempo > 0 then
      missilTempo = missilTempo - dt
