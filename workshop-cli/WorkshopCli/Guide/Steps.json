@@ -147,6 +147,11 @@
     },
     {
         "Id": "029-end-4",
+        "Type": "information",
+        "Delay": "30000"
+    },
+    {
+        "Id": "030-end-5",
         "Type": "challenge",
         "Delay": "30000"
     },
@@ -157,7 +162,7 @@
         "Delay": "54000"
     },
     {
-        "Id": "030-end-5",
+        "Id": "031-end",
         "Type": "end"        
     }
 ]
