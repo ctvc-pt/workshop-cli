@@ -132,8 +132,16 @@ namespace workshopCli
                 session.NameId = NameId;
                 if (i >= 4)
                 {
-                    sessionWriter.AddSession(session.Name, session.Age, session.Email, session.StepId, NameId);
-                    helpRequest.GetHelp(NameId, session.StepId);
+                    try
+                    {
+                        sessionWriter.AddSession(session.Name, session.Age, session.Email, session.StepId, NameId);
+                        helpRequest.GetHelp(NameId, session.StepId);
+                    }
+                    catch ( Exception e )
+                    {
+                        Console.WriteLine( $"Não deu para guardar a sua sessão, mas continue." );
+                        throw;
+                    }
                 }
 
                 File.WriteAllText(txtFilePath, JsonConvert.SerializeObject(session));
