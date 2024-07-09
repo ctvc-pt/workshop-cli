@@ -4,10 +4,11 @@ uma variável de velocidade.
 
 1. Dentro da função "load()" adiciona as variáveis do jogador:
    [/color] [color=blue]
-    velocidade = 1
+    velocidade = 2
    [/color] [color=white]
 2. No código que escrevemos para movimentar a nave, substitui 
-o número 1 por "velocidade". Deverá ficar com o seguinte aspeto:
+o número 1 nas direções por "velocidade". Deverá ficar com o 
+seguinte aspeto:
    [/color] [color=blue]
    if love.keyboard.isDown("right") then
         posicaoX = posicaoX + velocidade
@@ -23,7 +24,6 @@ Alt + L para executar o jogo.
     |____/|_____|____/_/   \_\_|   |___\___/
 
 [/color] [color=white]
-Deves ter visto que não alterou nada em relação ao que tínhamos.
 
 No código dentro da função love.load(), altera o valor de 
 velocidade para um valor maior ou menor e vê como isso afeta a 

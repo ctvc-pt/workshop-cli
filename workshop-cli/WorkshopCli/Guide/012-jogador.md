@@ -20,7 +20,8 @@ V Y
    posicaoY = 300
 [/color] [color=white]
 2. Na função "draw()" onde tem os números '100', altera o 
-primeiro para "posicaoX" e o segundo para "posicaoY"
+primeiro número para a palavra "posicaoX" e o segundo para 
+"posicaoY"
 [/color] [color=red]
      ____  _____ ____    _    _____ ___ ___  
     |  _ \| ____/ ___|  / \  |  ___|_ _/ _ \
