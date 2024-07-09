@@ -1,8 +1,8 @@
 [color=white]
-O jogo está quase acabado, mas falta o jogo tornar-se num verdadeiro JOGO. 
-Como podes ver, o jogador é invencível, o que é engraçado, 
-mas qual é a piada?
-Vamos criar o Game Over!
+O jogo está quase completo, mas ainda não possui elementos cruciais que o 
+definam como um verdadeiro jogo. Por exemplo, atualmente o jogador é invencível, 
+o que pode ser divertido inicialmente, mas rapidamente perde a graça. Para 
+adicionar mais desafio e interação, vamos implementar um sistema de Game Over!
 
 1. Para isso, adiciona no fim da função "load()":
    [/color] [color=blue]
@@ -17,8 +17,9 @@ Vamos criar o Game Over!
 	-- Adiciona o código do update(dt) aqui
     end
    [/color] [color=white]
-E adiciona tudo o que tinhas dentro da função "update(dt)" debaixo da 
-linha "-- Adiciona o código do update(dt) aqui".
+Coloca todo o código que tinhas anteriormente dentro desse bloco if. 
+Isso garante que o código só será executado se o jogo estiver no 
+estado "a jogar".
 
 3. Adiciona à função "draw(dt)" o seguinte:
    [/color] [color=blue]

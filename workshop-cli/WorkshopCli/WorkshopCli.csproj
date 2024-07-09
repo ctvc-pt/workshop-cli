@@ -208,6 +208,7 @@
       <EmbeddedResource Include="Guide\028-end-3.md" />
       <EmbeddedResource Include="Guide\029-end-4.md" />
       <EmbeddedResource Include="Guide\030-end-5.md" />
+      <EmbeddedResource Include="Guide\031-end.md" />
       <EmbeddedResource Include="Guide\Steps.json" />
       <None Remove="Guide\008-code.md" />
       <None Remove="Guide\009-HelloWorld.md" />

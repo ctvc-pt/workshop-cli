@@ -14,7 +14,7 @@ jogo as que mais gostaste.
 
 Agora, o objetivo é desenhar o jogador (nave) do teu jogo.
 
-Primeiro temos de carregar a imagem, e depois desenha-la:
+Primeiro temos de carregar a imagem, e depois desenhá-la:
 
 1. Para carregar a imagem, escreve dentro da função "load()":
 [/color] [color=blue]
@@ -22,7 +22,7 @@ Primeiro temos de carregar a imagem, e depois desenha-la:
    imagem = love.graphics.newImage("nome-imagem.png")
 [/color] [color=white]
 
-Substitui o "nome-imagen.png" pelo nome da nave que queres usar 
+Substitui o "nome-imagem.png" pelo nome da nave que queres usar 
 no teu jogo.
 
 2. Depois, adiciona na função "draw()":

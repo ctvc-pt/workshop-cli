@@ -19,6 +19,10 @@ permite desenhar coisas na ecrã:
 function love.draw()
     love.graphics.print("Ola mundo!", 100, 100);
 end
+[/color] [color=white]
+Tudo o que aparecer a azul é o que deves copiar ou como deve aparecer 
+no teu código
+
 [/color] [color=red]
 
 .____  _____ ____    _    _____ ___ ___  
