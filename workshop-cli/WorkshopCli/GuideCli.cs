@@ -123,7 +123,7 @@ namespace workshopCli
                     Console.WriteLine($"Unknown action type: {step.Type}");
                 }
 
-                if ( i > 7 )
+                if ( i >= 8 )
                 {
                     GitHubManager.BackupScript(session.Name);
                 }
