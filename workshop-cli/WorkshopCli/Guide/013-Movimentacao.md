@@ -34,34 +34,4 @@ esquerda-> left
 baixo -> down
 cima -> up
 
-Desafio extra:
-
-Se reparares a nave sai fora do ecrã. Vamos ajustar o código 
-do desafio anterior para que a nave não se mova além dos limites 
-do ecrã.
-
-1. Elimina o código anterior de movimentação e adiciona os seguintes:
-
-- Adicionar o limite para a direita:
-  [/color] [color=blue]
-  if posicaoX < (love.graphics.getWidth() - imagem:getWidth()) then
-    if love.keyboard.isDown("right") then
-      posicaoX = posicaoX + 1
-    end
-  end
-  [/color] [color=white]
-- Adicionar o limite para a esquerda:
-  [/color] [color=blue]
-  if posicaoX > 0 then
-      if love.keyboard.isDown("left") then
-          posicaoX = posicaoX - 1
-      end
-  end
-  [/color] [color=white]
-- Para os sentidos verticais, descobre através deste código:
-
-    "posicaoY <(love.graphics.getHeight() - imagem:getHeight())" 
-para ter o limite para baixo.
-
-    "posicaoY > 0" para ter o limite para cima
-  [/color]
+[/color] 

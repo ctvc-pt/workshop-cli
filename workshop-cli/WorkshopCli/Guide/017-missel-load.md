@@ -26,7 +26,7 @@ Adiciona o seguinte código na função "load()" antes da palavra "end":
         table.insert(misseis, missil)
     end
    [/color] [color=white]
-Fantástico! Aquilo que fizeste agora foi configurar a tecla 'SPACEBAR', 
+Fantástico! Aquilo que fizeste agora foi configurar a tecla 'ESPAÇO', 
 quando pressionares esta tecla a nave dispara um míssil.
 
 
