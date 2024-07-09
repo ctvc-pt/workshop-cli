@@ -11,7 +11,7 @@ Dentro dessa pasta tens o ficheiro "main.lua" que vamos usar.
 2. Clica duas vezes no ficheiro "main.lua", na janela do lado 
 direito do ecrã.
 
-3. Repara que no lado esquerdo aparece uma frase a verde. É onde vais 
+3. Repara que no lado direito aparece uma frase a verde. É onde vais 
 escrever o teu código. Não te esqueças que o que está a verde são 
 comentários, não vão interferir no teu código, mas vai servir para 
 organizá-lo e saber onde está o que queres
