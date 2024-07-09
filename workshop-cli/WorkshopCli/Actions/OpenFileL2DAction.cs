@@ -26,36 +26,25 @@ namespace workshopCli
             Console.ForegroundColor = ConsoleColor.Black;
             var desktopPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory), "repoWorkshop");
             var txtFilePath = Path.Combine(GuideCli.ResourcesPath, "session.txt");
-            if (!File.Exists(txtFilePath))
-            {
-                return;
-            }
+            var sessionData = File.ReadAllText(txtFilePath);
+            var session = JsonConvert.DeserializeObject<Session>(sessionData);
 
-            var session = JsonConvert.DeserializeObject<Session>(File.ReadAllText(txtFilePath));
-
-            var username = session.Name;
-            if (username != null)
-            {
-                username = username.Replace(" ", "-");
-            }
-            var folderPath = Path.Combine(desktopPath, $"{username}_{DateTime.Now.ToString("dd-MM-yyyy")}", "mygame");
+            var username = session.Name?.Replace(" ", "-") ?? "default-user";
+            var dateStamp = DateTime.Now.ToString("dd-MM-yyyy");
+            var folderPath = Path.Combine(desktopPath, $"{username}_{dateStamp}", "mygame");
             var filePath = Path.Combine(folderPath, "main.lua");
 
             if (!Directory.Exists(folderPath))
             {
                 Directory.CreateDirectory(folderPath);
             }
+
             if (!File.Exists(filePath))
             {
-                File.Create(filePath).Close();
-                using var sw = File.CreateText(filePath);
-                sw.WriteLine("--É aqui onde começa a tua aventura");
-
-                /*
-                 * NOTE:
-                 * we need to call '.Close()' on the returned stream from 'File.Create'
-                 * to ensure that the file is closed properly before we try to open it with Visual Studio Code.
-                 */
+                using (var sw = File.CreateText(filePath))
+                {
+                    sw.WriteLine("--É aqui onde começa a tua aventura");
+                }
             }
             try
             {
