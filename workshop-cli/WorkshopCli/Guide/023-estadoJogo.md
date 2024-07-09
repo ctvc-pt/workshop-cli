@@ -17,7 +17,8 @@ Vamos criar o Game Over!
 	-- Adiciona o código do update(dt) aqui
     end
    [/color] [color=white]
-E adiciona tudo o que está dentro da função "update(dt)" dentro disto
+E adiciona tudo o que tinhas dentro da função "update(dt)" debaixo da 
+linha "-- Adiciona o código do update(dt) aqui".
 
 3. Adiciona à função "draw(dt)" o seguinte:
    [/color] [color=blue]

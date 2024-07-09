@@ -31,5 +31,6 @@ e os inimigos.
     verificaJogadorInimigoColisao()
    [/color] [color=white]
 Com estas funções que adicionaste agora, se os inimigos tocarem 
-no jogador, o jogo recomeça. Podes testar, executa o jogo com Alt + L.
+no jogador, os inimigos desaparecem, como se perdesses uma vida. 
+Podes testar, executa o jogo com Alt + L.
    [/color]
