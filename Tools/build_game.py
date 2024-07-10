@@ -1,6 +1,7 @@
 import os
 import shutil
 import zipfile
+import sys
 
 def create_love_file(folder_path):
     love_file_path = f"{folder_path}.love"
@@ -38,8 +39,7 @@ def zip_directory(folder_path, zip_name):
                 arcname = os.path.relpath(file_path, folder_path)
                 zipf.write(file_path, arcname)
 
-def main():
-    workshops_dir = "Workshops"
+def main(workshops_dir):
     love_exe_path = "C:\\Program Files\\LOVE\\love.exe"  # Mude para o caminho correto do executável Love2D
     dll_paths = [
         "C:\\Program Files\\LOVE\\SDL2.dll",
@@ -68,4 +68,7 @@ def main():
                 break  # Evita descer mais um nível no os.walk
 
 if __name__ == "__main__":
-    main()
+    if len(sys.argv) != 2:
+        print("Usage: python script.py <workshops_path>")
+    else:
+        main(sys.argv[1])
