@@ -1,13 +1,20 @@
 # How to run Workshop CLI
 
-1 - Copy this 2 folders into the desktop
+1 - Clone the repo
 
-![alt text](./Resources/image.png)
+2 - Download the Resources folder from the CPDS Drive and put it inside project folder
 
-3 - Delete session.txt from Resources folder
+3 - Install .NET 8.0 - Resources/dotnet-runtime-8.0.4-win-x64.exe
 
-2 - Run Install.bat
-    
-     This will install all the necessary programs needed to run the CLI
+4 - Run Install.bat with admin permissions in the project folder
 
-3- Run the shortcut with admin permissions
+PS: if it doesn't work, try to install each installer in the Resources folder
+PS2: if you want to restart the CLI, don't forget the delete session.txt from Resources folder or run the script delete_session.bat
+
+# How to create game builds
+
+1 - Create a folder and put all game folders on it
+
+2 - Run the script "tools/build_game.py" and give the folder with all games as an argument
+
+3 - It creates a zip file with the game code and a exe file inside this folder
