@@ -13,8 +13,8 @@ PS2: if you want to restart the CLI, don't forget the delete session.txt from Re
 
 # How to create game builds
 
-1 - Create a folder called "Workshops" with all game folders
+1 - Create a folder and put all game folders on it
 
-2 - Run the script "tools/build_game.py"
+2 - Run the script "tools/build_game.py" and give the folder with all games as an argument
 
-3 - It creates a zip file with the game code and a exe file 
+3 - It creates a zip file with the game code and a exe file inside this folder
