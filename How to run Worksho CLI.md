@@ -1,13 +1,19 @@
 # How to run Workshop CLI
 
-1 - Copy this 2 folders into the desktop
+1 - Clone the repo
 
-![alt text](./Resources/image.png)
+2 - Install .NET 8.0
 
 3 - Delete session.txt from Resources folder
 
-2 - Run Install.bat
-    
-     This will install all the necessary programs needed to run the CLI
+4 - Run Install.bat with admin permissions
 
-3- Run the shortcut with admin permissions
+PS: if it doesn't work, try to install each installer in the Resources folder
+
+# How to create game builds
+
+1 - Create a folder called "Workshops" with all game folders
+
+2 - Run the script "tools/build_game.py"
+
+3 - It creates a zip file with the game code and a exe file 
