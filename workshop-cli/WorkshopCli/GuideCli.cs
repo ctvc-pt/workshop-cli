@@ -139,8 +139,7 @@ namespace workshopCli
                     }
                     catch ( Exception e )
                     {
-                        Console.WriteLine( $"Não deu para guardar a sua sessão, mas continue." );
-                        throw;
+                        Console.WriteLine( $"Os dados não foram guardados" );
                     }
                 }
 
