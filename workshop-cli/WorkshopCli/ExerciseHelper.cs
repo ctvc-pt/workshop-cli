@@ -85,7 +85,7 @@ namespace workshopCli
             }
         }
 
-        private static void HandleHelp(Session session, ChatGptClient chatGptClient)
+        static void HandleHelp(Session session, ChatGptClient chatGptClient)
         {
             CsvHelpRequest.printHelp(false, true);
             Console.ForegroundColor = ConsoleColor.DarkCyan;
@@ -93,57 +93,75 @@ namespace workshopCli
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.Write($"{session.Name}: ");
             var userMessage = Prompt.Input<string>("");
-
             var urgent = false;
+            var GPTfailed = false;
 
             try
             {
-                var response = chatGptClient.AskGPT( userMessage, GuideCli.stepMessage ).Result;
-                var typewriter = new TypewriterEffect( 50 );
-                typewriter.Type( response, ConsoleColor.Cyan );
+                var response = chatGptClient.AskGPT(userMessage, GuideCli.stepMessage).Result;
+                var typewriter = new TypewriterEffect(50);
+                typewriter.Type(response, ConsoleColor.Cyan);
             }
-            catch ( Exception ex )
+            catch (Exception ex)
             {
-                Console.WriteLine( $"An error occurred: {ex.Message}" );
-            }
-            
-            Console.WriteLine("\nconseguiste resolver? (sim ou não)");
-            var input = Prompt.Input<string>("").ToLower();
-
-            if (input == "sim" || input == "s")
-            {
-                CsvHelpRequest.printHelp(false, false);
-            }
-            else if (input == "não" || input == "nao" || input == "n")
-            {
-                CsvHelpRequest.printHelp(true, false);
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("Fizeste um pedido de ajuda, espera por um professor.");
-                Console.WriteLine("ATENÇÃO: se saires desta mensagem o teu pedido de ajuda desaparece");
-                Console.WriteLine("Escreve 'continuar' ou 'done' para continuar o workshop.");
+                Console.ForegroundColor = ConsoleColor.Black;
+                Console.WriteLine("Não foi possível pedir ajuda");
                 Console.ResetColor();
-                urgent = true;
-                while (urgent)
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                GPTfailed = true;
+            }
+
+            if (!GPTfailed)
+            {
+                Console.WriteLine("\nConseguiste resolver? (sim ou não)");
+                var input = Prompt.Input<string>("").ToLower();
+
+                if (input == "sim" || input == "s")
                 {
-                    var inputHelp = Prompt.Input<string>("").ToLower();
-                    if (inputHelp == "continuar" || inputHelp == "done")
-                    {
-                        CsvHelpRequest.printHelp(false, false);
-                        urgent = false;
-                    }
-                    else
-                    {
-                        Console.WriteLine("Resposta inválida. Escreve 'continuar' ou 'done'.");
-                    }
+                    CsvHelpRequest.printHelp(false, false);
+                }
+                else if (input == "não" || input == "nao" || input == "n")
+                {
+                    HandleHelpRequest();
+                }
+                else
+                {
+                    Console.WriteLine("Resposta inválida. Escreve 'sim' ou 'não'.");
                 }
             }
             else
             {
-                Console.WriteLine("Resposta inválida. Escreve 'sim' ou 'não'.");
+                HandleHelpRequest();
             }
+
         }
 
-        private static void HandleAdmin()
+        static void HandleHelpRequest()
+        {
+            CsvHelpRequest.printHelp(true, false);
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("Fizeste um pedido de ajuda, espera por um professor.");
+            Console.WriteLine("ATENÇÃO: se saires desta mensagem o teu pedido de ajuda desaparece");
+            Console.WriteLine("Escreve 'continuar' ou 'done' para continuar o workshop.");
+            Console.ResetColor();
+            var urgent = true;
+
+            while (urgent)
+            {
+                var inputHelp = Prompt.Input<string>("").ToLower();
+                if (inputHelp == "continuar" || inputHelp == "done")
+                {
+                    CsvHelpRequest.printHelp(false, false);
+                    urgent = false;
+                }
+                else
+                {
+                    Console.WriteLine("Resposta inválida. Escreve 'continuar' ou 'done'.");
+                }
+            }
+        }
+        
+         static void HandleAdmin()
         {
             Console.ForegroundColor = ConsoleColor.DarkGray;
             var input = Prompt.Input<string>("").ToLower();
@@ -159,7 +177,7 @@ namespace workshopCli
             }
         }
 
-        private static void ResetToLastStep(string username)
+        static void ResetToLastStep(string username)
         {
             var desktopPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory), "repoWorkshop");
             var folderPath = Path.Combine(desktopPath, $"{username}_{DateTime.Now.ToString("dd-MM-yyyy")}", "mygame");
