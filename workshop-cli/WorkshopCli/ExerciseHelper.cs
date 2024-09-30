@@ -96,10 +96,17 @@ namespace workshopCli
 
             var urgent = false;
 
-            var response = chatGptClient.AskGPT(userMessage, GuideCli.stepMessage).Result;
-            var typewriter = new TypewriterEffect(50);
-            typewriter.Type(response, ConsoleColor.Cyan);
-
+            try
+            {
+                var response = chatGptClient.AskGPT( userMessage, GuideCli.stepMessage ).Result;
+                var typewriter = new TypewriterEffect( 50 );
+                typewriter.Type( response, ConsoleColor.Cyan );
+            }
+            catch ( Exception ex )
+            {
+                Console.WriteLine( $"An error occurred: {ex.Message}" );
+            }
+            
             Console.WriteLine("\nconseguiste resolver? (sim ou não)");
             var input = Prompt.Input<string>("").ToLower();
 
