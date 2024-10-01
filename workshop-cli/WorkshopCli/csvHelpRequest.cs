@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 using System.Net.NetworkInformation;
 using System.Reflection;
 using Google.Apis.Auth.OAuth2;
@@ -14,11 +10,11 @@ namespace workshopCli
 {
     public class CsvHelpRequest
     {
-        private readonly string csvFilePath;
+        readonly string csvFilePath;
 
         public CsvHelpRequest()
         {
-            this.csvFilePath = Path.Combine( GuideCli.ResourcesPath, "sessions.csv" );
+            csvFilePath = Path.Combine( GuideCli.ResourcesPath, "sessions.csv" );
         }
 
         public void GetHelp( string name, string stepId )
@@ -38,9 +34,9 @@ namespace workshopCli
 
                 if ( isNetworkAvailable )
                 {
-                    string credentialsPath = Path.Combine( GuideCli.ResourcesPath, "client_secrets.json" );
-                    string spreadsheetId = "1dctnni6FLGz4OVmFI47y6bK7Vzl0SZ1G-v2N2hivWIs";
-                    string sheetName = "Ajudas";
+                    var credentialsPath = Path.Combine( GuideCli.ResourcesPath, "client_secrets.json" );
+                    var spreadsheetId = "1t3i31uzqSklK0R57V2AI38vWLoZPhhwADmbDtqJSKb4";
+                    var sheetName = "Ajudas";        
 
                     GoogleCredential credential;
                     using ( var stream = new FileStream( credentialsPath, FileMode.Open, FileAccess.Read ) )
@@ -98,7 +94,6 @@ namespace workshopCli
                             // Execute the update request
                             updateRequest.Execute();
 
-                            //Console.WriteLine( $"Updated row {foundRowIndex} in Google Sheets." );
                         }
                         else
                         {
@@ -126,8 +121,6 @@ namespace workshopCli
                 return;
             }
 
-
-            //Console.WriteLine($"Name in current session {name}");
             lines.Add( $"{name};{stepId}" );
             File.WriteAllLines( csvFilePath, lines );
         }
@@ -147,16 +140,11 @@ namespace workshopCli
         public static void printHelp(bool needsHelp,bool orange)
         {
             string message;
-            
             string backgroundColor;
             var assembly = Assembly.GetExecutingAssembly();
             var txtFilePath = Path.Combine( GuideCli.ResourcesPath,"session.txt" );
-            
             var session = JsonConvert.DeserializeObject<Session>(File.ReadAllText( txtFilePath ));
-
-
             var name = session.NameId;
-
             
             // Check network status
             bool isNetworkAvailable = NetworkInterface.GetIsNetworkAvailable();
@@ -167,7 +155,7 @@ namespace workshopCli
                 message = needsHelp ? "needs help" : "";
 
                 var credentialsPath = Path.Combine(GuideCli.ResourcesPath, "client_secrets.json");
-                var spreadsheetId = "1dctnni6FLGz4OVmFI47y6bK7Vzl0SZ1G-v2N2hivWIs";
+                var spreadsheetId = "1t3i31uzqSklK0R57V2AI38vWLoZPhhwADmbDtqJSKb4";
                 var sheetName = "Ajudas";
 
                 GoogleCredential credential;
@@ -267,7 +255,6 @@ namespace workshopCli
                         var batchUpdateRequest = new BatchUpdateSpreadsheetRequest { Requests = requests };
                         service.Spreadsheets.BatchUpdate(batchUpdateRequest, spreadsheetId).Execute();
 
-                        //Console.WriteLine($"Updated row {foundRowIndex} in Google Sheets with '{message}'.");
                     }
                     else
                     {

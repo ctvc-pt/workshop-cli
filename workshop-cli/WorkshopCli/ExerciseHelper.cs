@@ -14,15 +14,15 @@ namespace workshopCli
         {
             string sessionValue = null;
 
-            while (sessionValue == null)
+            while ( sessionValue == null )
             {
-                sessionValue = Prompt.Input<string>("Resposta");
+                sessionValue = Prompt.Input<string>( "Resposta" );
 
-                if (string.IsNullOrWhiteSpace(sessionValue))
+                if ( string.IsNullOrWhiteSpace( sessionValue ) )
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
-                    ClearLines(5);
-                    Console.WriteLine("A resposta não pode estar vazia");
+                    ClearLines( 5 );
+                    Console.WriteLine( "A resposta não pode estar vazia" );
                     Console.ResetColor();
                     sessionValue = null;
                 }
@@ -32,34 +32,34 @@ namespace workshopCli
             return sessionValue;
         }
 
-        public static bool PromptAnswerAndConfirm(string prompt)
+        public static bool PromptAnswerAndConfirm( string prompt )
         {
-            var txtFilePath = Path.Combine(GuideCli.ResourcesPath, "session.txt");
-            var session = JsonConvert.DeserializeObject<Session>(File.ReadAllText(txtFilePath));
+            var txtFilePath = Path.Combine( GuideCli.ResourcesPath, "session.txt" );
+            var session = JsonConvert.DeserializeObject<Session>( File.ReadAllText( txtFilePath ) );
 
             var chatGptClient = new ChatGptClient();
-            while (true)
+            while ( true )
             {
-                string wrappedString = GuideCli.WrapString(prompt, 50);
+                var wrappedString = GuideCli.WrapString( prompt, 50 );
                 Console.ForegroundColor = ConsoleColor.Yellow; // Set the text color to yellow for the entire prompt
-                Console.WriteLine(wrappedString);
+                Console.WriteLine( wrappedString );
                 Console.ResetColor(); // Reset text color to default
 
-                var answer = Prompt.Input<string>("Resposta ");
+                var answer = Prompt.Input<string>( "Resposta " );
 
-                if (string.IsNullOrWhiteSpace(answer))
+                if ( string.IsNullOrWhiteSpace( answer ) )
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
-                    ClearLines(6);
-                    Console.WriteLine("Resposta inválida. Insere 'proximo' ou 'p'.");
+                    ClearLines( 6 );
+                    Console.WriteLine( "Resposta inválida. Insere 'proximo' ou 'p'." );
                     Console.ResetColor();
                     continue;
                 }
 
-                switch (answer.ToLower())
+                switch ( answer.ToLower() )
                 {
                     case "ajuda" or "h":
-                        HandleHelp(session, chatGptClient);
+                        HandleHelp( session, chatGptClient );
                         break;
                     case "admin":
                         HandleAdmin();
@@ -71,145 +71,181 @@ namespace workshopCli
                         processLuv.CloseLovecProcess();
                         return true;
                     case "reset":
-                        ResetToLastStep(session.Name);
+                        ResetToLastStep( session.Name );
                         break;
                     case "s":
                         return false;
                     default:
                         Console.ForegroundColor = ConsoleColor.Red;
-                        ClearLines(6);
-                        Console.WriteLine("Resposta inválida. Insere 'proximo' ou 'p'.");
+                        ClearLines( 6 );
+                        Console.WriteLine( "Resposta inválida. Insere 'proximo' ou 'p'." );
                         Console.ResetColor();
                         break;
                 }
             }
         }
 
-        static void HandleHelp(Session session, ChatGptClient chatGptClient)
+        static void HandleHelp( Session session, ChatGptClient chatGptClient )
         {
-            CsvHelpRequest.printHelp(false, true);
+            try
+            {
+                CsvHelpRequest.printHelp( false, true );
+            }
+            catch ( Exception e )
+            {
+                Console.ForegroundColor = ConsoleColor.Black;
+                Console.WriteLine( e );
+            }
+
             Console.ForegroundColor = ConsoleColor.DarkCyan;
-            Console.WriteLine("Qual é o problema?");
+            Console.WriteLine( "Qual é o problema?" );
             Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.Write($"{session.Name}: ");
-            var userMessage = Prompt.Input<string>("");
+            Console.Write( $"{session.Name}: " );
+            var userMessage = Prompt.Input<string>( "" );
             var urgent = false;
             var GPTfailed = false;
 
             try
             {
-                var response = chatGptClient.AskGPT(userMessage, GuideCli.stepMessage).Result;
-                var typewriter = new TypewriterEffect(50);
-                typewriter.Type(response, ConsoleColor.Cyan);
+                var response = chatGptClient.AskGPT( userMessage, GuideCli.stepMessage ).Result;
+                var typewriter = new TypewriterEffect( 50 );
+                typewriter.Type( response, ConsoleColor.Cyan );
             }
-            catch (Exception ex)
+            catch ( Exception ex )
             {
                 Console.ForegroundColor = ConsoleColor.Black;
-                Console.WriteLine("Não foi possível pedir ajuda");
+                Console.WriteLine( "Não foi possível pedir ajuda" );
                 Console.ResetColor();
                 Console.ForegroundColor = ConsoleColor.Yellow;
                 GPTfailed = true;
             }
 
-            if (!GPTfailed)
+            if ( !GPTfailed )
             {
-                Console.WriteLine("\nConseguiste resolver? (sim ou não)");
-                var input = Prompt.Input<string>("").ToLower();
+                Console.WriteLine( "\nConseguiste resolver? (sim ou não)" );
+                var input = Prompt.Input<string>( "" ).ToLower();
 
-                if (input == "sim" || input == "s")
+                if ( input == "sim" || input == "s" )
                 {
-                    CsvHelpRequest.printHelp(false, false);
+                    try
+                    {
+                        CsvHelpRequest.printHelp( true, false );
+                    }
+                    catch ( Exception e )
+                    {
+                        Console.ForegroundColor = ConsoleColor.Black;
+                        Console.WriteLine( e );
+                    }
                 }
-                else if (input == "não" || input == "nao" || input == "n")
+                else if ( input == "não" || input == "nao" || input == "n" )
                 {
                     HandleHelpRequest();
                 }
                 else
                 {
-                    Console.WriteLine("Resposta inválida. Escreve 'sim' ou 'não'.");
+                    Console.WriteLine( "Resposta inválida. Escreve 'sim' ou 'não'." );
                 }
             }
             else
             {
                 HandleHelpRequest();
             }
-
         }
 
         static void HandleHelpRequest()
         {
-            CsvHelpRequest.printHelp(true, false);
+            try
+            {
+                CsvHelpRequest.printHelp( true, false );
+            }
+            catch ( Exception e )
+            {
+                Console.ForegroundColor = ConsoleColor.Black;
+                Console.WriteLine( e );
+            }
+
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("Fizeste um pedido de ajuda, espera por um professor.");
-            Console.WriteLine("ATENÇÃO: se saires desta mensagem o teu pedido de ajuda desaparece");
-            Console.WriteLine("Escreve 'continuar' ou 'done' para continuar o workshop.");
+            Console.WriteLine( "Fizeste um pedido de ajuda, espera por um professor." );
+            Console.WriteLine( "ATENÇÃO: se saires desta mensagem o teu pedido de ajuda desaparece" );
+            Console.WriteLine( "Escreve 'continuar' ou 'done' para continuar o workshop." );
             Console.ResetColor();
             var urgent = true;
 
-            while (urgent)
+            while ( urgent )
             {
-                var inputHelp = Prompt.Input<string>("").ToLower();
-                if (inputHelp == "continuar" || inputHelp == "done")
+                var inputHelp = Prompt.Input<string>( "" ).ToLower();
+                if ( inputHelp == "continuar" || inputHelp == "done" )
                 {
-                    CsvHelpRequest.printHelp(false, false);
+                    try
+                    {
+                        CsvHelpRequest.printHelp( true, false );
+                    }
+                    catch ( Exception e )
+                    {
+                        Console.ForegroundColor = ConsoleColor.Black;
+                        Console.WriteLine( e );
+                    }
+
                     urgent = false;
                 }
                 else
                 {
-                    Console.WriteLine("Resposta inválida. Escreve 'continuar' ou 'done'.");
+                    Console.WriteLine( "Resposta inválida. Escreve 'continuar' ou 'done'." );
                 }
             }
         }
-        
-         static void HandleAdmin()
+
+        static void HandleAdmin()
         {
             Console.ForegroundColor = ConsoleColor.DarkGray;
-            var input = Prompt.Input<string>("").ToLower();
-            var inputs = input.Split(" ");
+            var input = Prompt.Input<string>( "" ).ToLower();
+            var inputs = input.Split( " " );
 
-            if (inputs.Length > 1 && inputs[0] == "id")
+            if ( inputs.Length > 1 && inputs[ 0 ] == "id" )
             {
-                GuideCli.adminInput = int.Parse(inputs[1]);
+                GuideCli.adminInput = int.Parse( inputs[ 1 ] );
             }
             else
             {
-                Console.WriteLine("Resposta inválida.");
+                Console.WriteLine( "Resposta inválida." );
             }
         }
 
-        static void ResetToLastStep(string username)
+        static void ResetToLastStep( string username )
         {
-            var desktopPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory), "repoWorkshop");
-            var folderPath = Path.Combine(desktopPath, $"{username}_{DateTime.Now.ToString("dd-MM-yyyy")}", "mygame");
-            string destinationFilePath = Path.Combine(folderPath, "main.lua");
-            string sourceFilePath =  $"{GuideCli.ResourcesPath}/backup.lua";
+            var desktopPath = Path.Combine( Environment.GetFolderPath( Environment.SpecialFolder.DesktopDirectory ),
+                "repoWorkshop" );
+            var folderPath = Path.Combine( desktopPath, $"{username}_{DateTime.Now.ToString( "dd-MM-yyyy" )}",
+                "mygame" );
+            string destinationFilePath = Path.Combine( folderPath, "main.lua" );
+            string sourceFilePath = $"{GuideCli.ResourcesPath}/backup.lua";
 
             try
             {
-                string content = File.ReadAllText(sourceFilePath);
+                string content = File.ReadAllText( sourceFilePath );
 
-                File.WriteAllText(destinationFilePath, content);
+                File.WriteAllText( destinationFilePath, content );
 
-                Console.WriteLine("O código foi restaurado.");
+                Console.WriteLine( "O código foi restaurado." );
             }
-            catch (Exception ex)
+            catch ( Exception ex )
             {
-                Console.WriteLine("Ocorreu um erro ao fazer backup: " + ex.Message);
+                Console.WriteLine( "Ocorreu um erro ao fazer backup: " + ex.Message );
             }
         }
-        
-        static void ClearLines(int numberLines)
+
+        static void ClearLines( int numberLines )
         {
             int currentLineCursor = Console.CursorTop;
             int startLine = currentLineCursor - numberLines;
 
-            for (int i = 0; i < numberLines; i++)
+            for ( int i = 0; i < numberLines; i++ )
             {
-                Console.SetCursorPosition(0, startLine + i);
-                Console.Write(new string(' ', Console.WindowWidth));
+                Console.SetCursorPosition( 0, startLine + i );
+                Console.Write( new string( ' ', Console.WindowWidth ) );
             }
 
-            Console.SetCursorPosition(0, startLine);
+            Console.SetCursorPosition( 0, startLine );
         }
     }
 }

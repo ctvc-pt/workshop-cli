@@ -41,9 +41,9 @@ namespace workshopCli
                     lines[i] = string.Join(";", values);
                     File.WriteAllLines(csvFilePath, lines);
 
-                    string credentialsPath = Path.Combine(GuideCli.ResourcesPath, "client_secrets.json");
-                    string spreadsheetId = "1dctnni6FLGz4OVmFI47y6bK7Vzl0SZ1G-v2N2hivWIs";
-                    string sheetName = "Sessions";
+                    var credentialsPath = Path.Combine(GuideCli.ResourcesPath, "client_secrets.json");
+                    var spreadsheetId = "1t3i31uzqSklK0R57V2AI38vWLoZPhhwADmbDtqJSKb4";
+                    var sheetName = "Sessions";
 
                     GoogleCredential credential;
                     using (var stream = new FileStream(credentialsPath, FileMode.Open, FileAccess.Read))
