@@ -62,11 +62,11 @@ namespace workshopCli
 
             Console.ForegroundColor = ConsoleColor.Yellow;
 
-            if (currentIndex == 0) // Only install software during the first video
-            {
-                var installer = new SoftwareInstaller();
-                installer.InstallSoftware();
-            }
+            // if (currentIndex == 0) // Only install software during the first video
+            // {
+            //     var installer = new SoftwareInstaller();
+            //     installer.InstallSoftware();
+            // }
 
             Console.WriteLine("Quando o vídeo acabar, feche-o para continuar...");
 

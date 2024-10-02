@@ -1,13 +1,28 @@
 @echo off
 
 set DOTNET_INSTALLER=%USERPROFILE%\Desktop\workshop-cli\Resources\dotnet-runtime-8.0.4-win-x64.exe
+set PYTHON_INSTALLER=%USERPROFILE%\Desktop\workshop-cli\Resources\python-installer.exe
+set GIT_INSTALLER=%USERPROFILE%\Desktop\workshop-cli\Resources\Git-2.46.2-64-bit.exe
+set VSCODE_INSTALLER=%USERPROFILE%\Desktop\workshop-cli\Resources\VSCodeSetup.exe
 set TARGET_PROGRAM=%USERPROFILE%\Desktop\workshop-cli\workshop-cli\WorkshopCli\bin\Debug\net6.0\WorkshopCli.exe
 set SHORTCUT_NAME=%USERPROFILE%\Desktop\cli.lnk
-set SESSION_FILE=C:\Users\info\Desktop\workshop-cli\Resources\session.txt
+set SESSION_FILE=%USERPROFILE%\Desktop\workshop-cli\Resources\session.txt
 
 REM Install .NET 8
 echo Installing .NET 8...
-start /wait "" runas %DOTNET_INSTALLER% /quiet
+start /wait "" %DOTNET_INSTALLER% /quiet
+
+REM Install Python
+echo Installing Python...
+start /wait "" %PYTHON_INSTALLER% /quiet
+
+REM Install Git
+echo Installing Git...
+start /wait "" %GIT_INSTALLER% /SILENT
+
+REM Install Visual Studio Code
+echo Installing Visual Studio Code...
+start /wait "" %VSCODE_INSTALLER% /SILENT
 
 REM Delete session file if exists
 if exist "%SESSION_FILE%" (
@@ -31,5 +46,5 @@ start "" "%SHORTCUT_NAME%"
 @REM echo Deleting script...
 @REM del "%~f0"
 
-echo .NET 6 (64-bit) installed successfully, shortcut created, shortcut opened, and script completed.
+echo Installations completed successfully, shortcut created, and script finished.
 exit
