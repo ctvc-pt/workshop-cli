@@ -3,8 +3,8 @@
 
 #define MyAppName "WorkshopCLI"
 #define MyAppVersion "1"
-#define MyAppPublisher "My Company, Inc."
-#define MyAppURL "https://www.example.com/"
+#define MyAppPublisher "CPDS, CRL"
+#define MyAppURL "https://cpds.pt/"
 #define MyAppExeName "WorkshopCli.exe"
 
 [Setup]
@@ -43,14 +43,17 @@ Name: "english"; MessagesFile: "compiler:Default.isl"
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 
 [Files]
-Source: "C:\Users\CPDS\Desktop\workshop-cli\workshop-cli\WorkshopCli\bin\Debug\net6.0\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Users\CPDS\Desktop\workshop-cli\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "C:\Users\CPDS\Desktop\workshop-cli\Resources\dotnet-sdk-6.0.425-win-x64.exe"; DestDir: "{tmp}"; Flags: ignoreversion
-Source: "C:\Users\CPDS\Desktop\workshop-cli\Resources\python-installer.exe"; DestDir: "{tmp}"; Flags: ignoreversion
-Source: "C:\Users\CPDS\Desktop\workshop-cli\Resources\Git-2.46.2-64-bit.exe"; DestDir: "{tmp}"; Flags: ignoreversion
-Source: "C:\Users\CPDS\Desktop\workshop-cli\Resources\VSCodeSetup.exe"; DestDir: "{tmp}"; Flags: ignoreversion
-Source: "C:\Users\CPDS\Desktop\workshop-cli\Resources\session.txt"; DestDir: "{app}\Resources"; Flags: ignoreversion
-
+; This installs the executable and maintains the path structure
+Source: "..\workshop-cli\WorkshopCli\bin\Debug\net6.0\{#MyAppExeName}"; DestDir: "{app}\workshop-cli\WorkshopCli\bin\Debug\net6.0"; Flags: ignoreversion
+; This copies all files inside the workshop-cli folder, keeping the directory structure
+Source: "..\workshop-cli\*"; DestDir: "{app}\workshop-cli"; Flags: ignoreversion recursesubdirs createallsubdirs
+; This keeps the Resources folder structure inside the installation directory
+Source: "..\Resources\*"; DestDir: "{app}\Resources"; Flags: ignoreversion recursesubdirs createallsubdirs; Excludes: "session.txt"
+; Individual installers in the tmp folder (no need to maintain a folder structure for these)
+Source: "..\Resources\dotnet-sdk-6.0.425-win-x64.exe"; DestDir: "{tmp}"; Flags: ignoreversion
+Source: "..\Resources\python-installer.exe"; DestDir: "{tmp}"; Flags: ignoreversion
+Source: "..\Resources\Git-2.46.2-64-bit.exe"; DestDir: "{tmp}"; Flags: ignoreversion
+Source: "..\Resources\VSCodeSetup.exe"; DestDir: "{tmp}"; Flags: ignoreversion
 
 [Icons]
 Name: "{group}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"
