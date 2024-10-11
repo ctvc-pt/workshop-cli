@@ -178,7 +178,7 @@ namespace workshopCli
                 {
                     try
                     {
-                        CsvHelpRequest.printHelp( true, false );
+                        CsvHelpRequest.printHelp( false, false );
                     }
                     catch ( Exception e )
                     {

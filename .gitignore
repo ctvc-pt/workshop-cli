@@ -498,3 +498,4 @@ Resources/session.txt
 Resources/token.json
 Resources/config.json
 Resources/client_secrets.json
+Installer/Output/*
