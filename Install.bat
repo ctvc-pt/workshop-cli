@@ -1,6 +1,6 @@
 @echo off
 
-set DOTNET_INSTALLER=%USERPROFILE%\Desktop\workshop-cli\Resources\dotnet-runtime-8.0.4-win-x64.exe
+set DOTNET_INSTALLER=%USERPROFILE%\Desktop\workshop-cli\Resources\dotnet-sdk-6.0.425-win-x64.exe
 set PYTHON_INSTALLER=%USERPROFILE%\Desktop\workshop-cli\Resources\python-installer.exe
 set GIT_INSTALLER=%USERPROFILE%\Desktop\workshop-cli\Resources\Git-2.46.2-64-bit.exe
 set VSCODE_INSTALLER=%USERPROFILE%\Desktop\workshop-cli\Resources\VSCodeSetup.exe
@@ -8,21 +8,25 @@ set TARGET_PROGRAM=%USERPROFILE%\Desktop\workshop-cli\workshop-cli\WorkshopCli\b
 set SHORTCUT_NAME=%USERPROFILE%\Desktop\cli.lnk
 set SESSION_FILE=%USERPROFILE%\Desktop\workshop-cli\Resources\session.txt
 
-REM Install .NET 8
-echo Installing .NET 8...
+REM Install .NET 6
+echo Installing .NET 6...
 start /wait "" %DOTNET_INSTALLER% /quiet
 
 REM Install Python
 echo Installing Python...
 start /wait "" %PYTHON_INSTALLER% /quiet
 
+REM Install PyGithub
+echo Installing PyGithub...
+python -m pip install PyGithub
+
 REM Install Git
 echo Installing Git...
-start /wait "" %GIT_INSTALLER% /SILENT
+start /wait "" %GIT_INSTALLER% /VERYSILENT /NORESTART
 
 REM Install Visual Studio Code
 echo Installing Visual Studio Code...
-start /wait "" %VSCODE_INSTALLER% /SILENT
+start /wait "" %VSCODE_INSTALLER% /VERYSILENT /NORESTART
 
 REM Delete session file if exists
 if exist "%SESSION_FILE%" (

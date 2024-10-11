@@ -48,7 +48,7 @@
     {
         "Id": "009-helloWorld",
         "Type": "challenge",
-        "Delay": "20000"
+        "Delay": "0"
     },
     {
         "Id": "010-code",
@@ -57,109 +57,84 @@
     {
         "Id": "011-recursos",
         "Type": "CreateSprites",
-        "Delay": "60000"
+        "Delay": "0"
     },
     {
         "Id": "012-jogador",
         "Type": "challenge",
-        "Delay": "60000"
+        "Delay": "0"
     },
     {
         "Id": "013-Movimentacao",
         "Type": "information",
-        "Delay": "120000"
+        "Delay": "0"
     },
     {
         "Id": "015-speed",
         "Type": "challenge",
-        "Delay": "30000"
+        "Delay": "0"
     },
     {
         "Id": "016-video",
         "Type": "video",
         "Message": "mid.mp4",
-        "Delay": "49000"
+        "Delay": "0"
     },
     {
         "Id": "017-missel-load",
         "Type": "information",
-        "Delay": "45000"
+        "Delay": "0"
     },
     {
         "Id": "018-missel-update",
         "Type": "information",
-        "Delay": "90000"
+        "Delay": "0"
     },
     {
         "Id": "019-missel-timer",
         "Type": "information",
-        "Delay": "60000"
+        "Delay": "0"
     },
     {
         "Id": "020-enemy",
         "Type": "information",
-        "Delay": "30000"
+        "Delay": "0"
     },
     {
         "Id": "020-enemy-1",
         "Type": "information",
-        "Delay": "30000"
+        "Delay": "0"
     },
     {
         "Id": "021-collisions",
         "Type": "information",
-        "Delay": "30000"
+        "Delay": "0"
     },
     {
         "Id": "022-collisions-2",
         "Type": "information",
-        "Delay": "30000"
+        "Delay": "0"
     },
     {
         "Id": "023-estadoJogo",
         "Type": "information",
-        "Delay": "30000"
+        "Delay": "0"
     },
     {
         "Id": "024-estadoJogo-2",
         "Type": "information",
-        "Delay": "30000"
+        "Delay": "0"
     },
     {
         "Id": "025-desafio-texto",
         "Type": "challenge",
-        "Delay": "30000"
-    },
-    {
-        "Id": "026-end-1",
-        "Type": "information",
-        "Delay": "30000"
-    },
-    {
-        "Id": "027-end-2",
-        "Type": "information",
-        "Delay": "30000"
-    },
-    {
-        "Id": "028-end-3",
-        "Type": "information",
-        "Delay": "30000"
-    },
-    {
-        "Id": "029-end-4",
-        "Type": "information",
-        "Delay": "30000"
-    },
-    {
-        "Id": "030-end-5",
-        "Type": "challenge",
-        "Delay": "30000"
+        "Delay": "0"
     },
     {
         "Id": "031-Fim",
         "Type": "video",
         "Message": "end.mp4",
-        "Delay": "54000"
+        "Delay": "0"
     },
     {
         "Id": "031-end",
