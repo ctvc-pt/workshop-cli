@@ -1,6 +1,6 @@
 [color=white]
 Agora, vamos adicionar um temporizador para controlar o intervalo
-entre os disparos dos mísseis, assim os ficam mais realistas!
+entre os disparos dos mísseis, assim ficam mais realistas!
 
 1. Na função "load()" adiciona as variáveis do míssil:
    [/color] [color=blue]

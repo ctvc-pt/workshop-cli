@@ -14,4 +14,4 @@ direito do ecrã.
 3. Repara que no lado direito aparece uma frase a verde. É onde vais 
 escrever o teu código. Não te esqueças que o que está a verde são 
 comentários, não vão interferir no teu código, mas vai servir para 
-organizá-lo e saber onde está o que queres
+organizá-lo e saber onde está o que queres.
