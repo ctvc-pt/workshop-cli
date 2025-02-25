@@ -20,7 +20,7 @@ namespace workshopCli
             csvFilePath = Path.Combine(GuideCli.ResourcesPath, "sessions.csv");
         }
 
-        public void AddSession(string name, string age, string email, string stepId, string nameId)
+        public void UpdateSession(string name, string age, string email, string stepId, string nameId)
         {
             var lines = File.ReadAllLines(csvFilePath).ToList();
 

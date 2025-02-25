@@ -10,7 +10,7 @@ namespace workshopCli
 {
     public class GuideCli
     {
-        public static string ResourcesPath = Path.Combine(Environment.CurrentDirectory, "..", "..", "..", "..", "..", "Resources");
+        public static string ResourcesPath = Path.Combine(Environment.CurrentDirectory, "..", "..", "..", "..", "..", "..", "Resources");
         public Session session;
         public Guide guide;
         CsvSessionWriter sessionWriter = new CsvSessionWriter();
@@ -134,7 +134,7 @@ namespace workshopCli
                 {
                     try
                     {
-                        sessionWriter.AddSession(session.Name, session.Age, session.Email, session.StepId, NameId);
+                        sessionWriter.UpdateSession(session.Name, session.Age, session.Email, session.StepId, NameId);
                         helpRequest.GetHelp(NameId, session.StepId);
                     }
                     catch ( Exception e )
