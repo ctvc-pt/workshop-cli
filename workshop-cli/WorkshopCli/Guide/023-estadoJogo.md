@@ -36,7 +36,7 @@ estado "a jogar".
    
    end
    [/color] [color=white]
-E adiciona o tudo o que está dentro da função "draw(dt)" debaixo da linha 
+E adiciona tudo o que está dentro da função "draw(dt)" debaixo da linha 
 "love.graphics.setBackgroundColor(0, 0, 0)".
 
 Este código vai saber se estás a jogar, se ganhaste ou perdeste, mas ainda 

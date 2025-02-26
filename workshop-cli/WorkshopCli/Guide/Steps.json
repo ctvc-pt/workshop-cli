@@ -131,6 +131,31 @@
         "Delay": "0"
     },
     {
+        "Id": "026-end-1",
+        "Type": "information",
+        "Delay": "0"
+    },
+    {
+        "Id": "027-end-2",
+        "Type": "information",
+        "Delay": "0"
+    },
+    {
+        "Id": "028-end-3",
+        "Type": "information",
+        "Delay": "0"
+    },
+    {
+        "Id": "029-end-4",
+        "Type": "information",
+        "Delay": "0"
+    },
+    {
+        "Id": "030-end-5",
+        "Type": "information",
+        "Delay": "0"
+    },
+    {
         "Id": "031-Fim",
         "Type": "video",
         "Message": "end.mp4",
