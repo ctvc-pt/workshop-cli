@@ -74,6 +74,22 @@ public class SpreadsheetTests
     }
     
     [Test]
+    public void TestSimultaneousSpreadsheetUpdates()
+    {
+        for ( int i = 0; i < 1000; i++ )
+        {
+            UpdateSpreadsheet( "Teste", "10", "test@test.com", "10", i.ToString() );
+        }
+    }
+
+    async Task UpdateSpreadsheet(string name, string age, string email, string stepId, string nameId)
+    {
+        Console.WriteLine(DateTime.Now.ToString("HH:mm:ss.fff") + " - Starting update");
+        var csvController = new CsvController();
+        csvController.UpdateSession( name, age, email, stepId, nameId, true );
+    }
+    
+    [Test]
 public void TestUpdateSpreadsheet()
 {
     // Arrange: Read the CSV and get the last line
