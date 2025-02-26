@@ -89,7 +89,7 @@ namespace workshopCli
         {
             try
             {
-                CsvHelpRequest.printHelp( false, true );
+                CsvController.PrintHelp( false, true );
             }
             catch ( Exception e )
             {
@@ -129,7 +129,7 @@ namespace workshopCli
                 {
                     try
                     {
-                        CsvHelpRequest.printHelp( true, false );
+                        CsvController.PrintHelp( true, false );
                     }
                     catch ( Exception e )
                     {
@@ -156,7 +156,7 @@ namespace workshopCli
         {
             try
             {
-                CsvHelpRequest.printHelp( true, false );
+                CsvController.PrintHelp( true, false );
             }
             catch ( Exception e )
             {
@@ -178,7 +178,7 @@ namespace workshopCli
                 {
                     try
                     {
-                        CsvHelpRequest.printHelp( false, false );
+                        CsvController.PrintHelp( false, false );
                     }
                     catch ( Exception e )
                     {

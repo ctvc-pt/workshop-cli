@@ -13,8 +13,7 @@ namespace workshopCli
         public static string ResourcesPath = Path.Combine(Environment.CurrentDirectory, "..", "..", "..", "..", "..", "..", "Resources");
         public Session session;
         public Guide guide;
-        CsvSessionWriter sessionWriter = new CsvSessionWriter();
-        CsvHelpRequest helpRequest = new CsvHelpRequest();
+        CsvController csvController = new CsvController();
         public static int adminInput;
         public static string stepMessage;
 
@@ -134,12 +133,14 @@ namespace workshopCli
                 {
                     try
                     {
-                        sessionWriter.UpdateSession(session.Name, session.Age, session.Email, session.StepId, NameId);
-                        helpRequest.GetHelp(NameId, session.StepId);
+                        // Verificar se o passo atual é um "challenge"
+                        bool isChallenge = step.Type == "challenge";
+                        csvController.UpdateSession(session.Name, session.Age, session.Email, session.StepId, NameId, isChallenge);
+                        csvController.GetHelp(NameId, session.StepId, isChallenge);
                     }
                     catch ( Exception e )
                     {
-                        Console.WriteLine( $"Os dados não foram guardados" );
+                        Console.WriteLine( $"Os dados não foram guardados: {{e.Message}}" );
                     }
                 }
 

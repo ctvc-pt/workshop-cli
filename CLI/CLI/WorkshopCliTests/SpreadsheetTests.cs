@@ -74,85 +74,101 @@ public class SpreadsheetTests
     }
     
     [Test]
-    public void TestUpdateSpreadsheet()
+public void TestUpdateSpreadsheet()
+{
+    // Arrange: Read the CSV and get the last line
+    var lines = File.ReadAllLines(csvFilePath).ToList();
+    if (lines.Count == 0)
     {
-        // Arrange: Read the CSV and get the last line
-        var lines = File.ReadAllLines(csvFilePath).ToList();
-        if (lines.Count == 0)
-        {
-            Assert.Fail("CSV file is empty. Please ensure it has at least one line for testing.");
-            return;
-        }
+        Assert.Fail("CSV file is empty. Please ensure it has at least one line for testing.");
+        return;
+    }
 
-        // Get the values from the last line
-        var lastLine = lines[lines.Count - 1];
-        var values = lastLine.Split(';');
-        if (values.Length < 5)
-        {
-            Assert.Fail("Last line in CSV does not have enough values (expected 5).");
-            return;
-        }
-
-        // Google Sheets setup
-        var credentialsPath = Path.Combine(GuideCli.ResourcesPath, "client_secrets.json");
-        var spreadsheetId = "1t3i31uzqSklK0R57V2AI38vWLoZPhhwADmbDtqJSKb4";
-        var sheetName = "Sessions";
-
-        GoogleCredential credential;
-        using (var stream = new FileStream(credentialsPath, FileMode.Open, FileAccess.Read))
-        {
-            credential = GoogleCredential.FromStream(stream)
-                .CreateScoped(SheetsService.Scope.Spreadsheets);
-        }
-
-        var service = new SheetsService(new BaseClientService.Initializer()
-        {
-            HttpClientInitializer = credential,
-            ApplicationName = "WorkshopCli"
-        });
-
-        // Act: Update the last row in Google Sheets
-        var valuesCell = new List<IList<object>>
-        {
-            new List<object> { values[0], values[1], values[2], values[3], values[4] }
-        };
-        var valueRange = new ValueRange { Values = valuesCell };
-        var rowToUpdate = lines.Count; // Assuming row count matches CSV line count
-        var range = $"{sheetName}!A{rowToUpdate}:E{rowToUpdate}";
-        
-        var updateRequest = service.Spreadsheets.Values.Update(valueRange, spreadsheetId, range);
-        updateRequest.ValueInputOption = SpreadsheetsResource.ValuesResource.UpdateRequest.ValueInputOptionEnum.RAW;
-        updateRequest.Execute();
-
-        Console.WriteLine($"Updated row {rowToUpdate} in Google Sheets with values: {string.Join(", ", values)}");
-
-        // Assert: Verify the update by reading the updated row
-        var searchRequest = service.Spreadsheets.Values.Get(spreadsheetId, $"{sheetName}!A{rowToUpdate}:E{rowToUpdate}");
-        searchRequest.ValueRenderOption = SpreadsheetsResource.ValuesResource.GetRequest.ValueRenderOptionEnum.UNFORMATTEDVALUE;
-        var searchResponse = searchRequest.Execute();
-
-        if (searchResponse.Values != null && searchResponse.Values.Count > 0)
-        {
-            var updatedRow = searchResponse.Values[0];
-            Console.WriteLine($"Retrieved row {rowToUpdate}: {string.Join(", ", updatedRow)}");
-
-            // Verify the values match what we sent
-            Assert.AreEqual(values[0], updatedRow[0]?.ToString(), "Name mismatch");
-            Assert.AreEqual(values[1], updatedRow[1]?.ToString(), "Age mismatch");
-            Assert.AreEqual(values[2], updatedRow[2]?.ToString(), "Email mismatch");
-            Assert.AreEqual(values[3], updatedRow[3]?.ToString(), "StepId mismatch");
-            Assert.AreEqual(values[4], updatedRow[4]?.ToString(), "NameId mismatch");
-        }
-        else
-        {
-            Assert.Fail($"Failed to retrieve updated row {rowToUpdate} from Google Sheets.");
-        }
+    // Get the values from the last line
+    var lastLine = lines[lines.Count - 1];
+    var values = lastLine.Split(';');
+    if (values.Length < 5)
+    {
+        Assert.Fail("Last line in CSV does not have enough values (expected 5).");
+        return;
     }
     
-    [Test]
-    public void TestWriteSpreadsheet()
+    // Google Sheets setup
+    var credentialsPath = Path.Combine(GuideCli.ResourcesPath, "client_secrets.json");
+    var spreadsheetId = "1t3i31uzqSklK0R57V2AI38vWLoZPhhwADmbDtqJSKb4";
+    var sheetName = "Sessions";
+
+    GoogleCredential credential;
+    using (var stream = new FileStream(credentialsPath, FileMode.Open, FileAccess.Read))
     {
-        CsvSessionWriter writer = new CsvSessionWriter();
-        writer.UpdateSession("Luis", "22", "qewq@hgfh.com", "1", "1");
+        credential = GoogleCredential.FromStream(stream)
+            .CreateScoped(SheetsService.Scope.Spreadsheets);
     }
+
+    var service = new SheetsService(new BaseClientService.Initializer()
+    {
+        HttpClientInitializer = credential,
+        ApplicationName = "WorkshopCli"
+    });
+
+    // Obter todos os dados da spreadsheet primeiro
+    var fullRange = $"{sheetName}!A:E";
+    var getRequest = service.Spreadsheets.Values.Get(spreadsheetId, fullRange);
+    getRequest.ValueRenderOption = SpreadsheetsResource.ValuesResource.GetRequest.ValueRenderOptionEnum.UNFORMATTEDVALUE;
+    var getResponse = getRequest.Execute();
+
+    int rowToUpdate;
+    if (getResponse.Values != null && getResponse.Values.Count > 0)
+    {
+        Console.WriteLine($"Retrieved {getResponse.Values.Count} rows from Google Sheets:");
+        foreach (var row in getResponse.Values)
+        {
+            Console.WriteLine(string.Join(", ", row));
+        }
+        // Última linha ocupada + 1 será a próxima linha disponível
+        rowToUpdate = getResponse.Values.Count + 1;
+    }
+    else
+    {
+        Console.WriteLine("No data found in the spreadsheet.");
+        // Se não há dados, começamos na linha 1
+        rowToUpdate = 1;
+    }
+
+    // Act: Inserir os dados do CSV na próxima linha disponível
+    var valuesCell = new List<IList<object>>
+    {
+        new List<object> { values[0], values[1], values[2], values[3], values[4] }
+    };
+    var valueRange = new ValueRange { Values = valuesCell };
+    var range = $"{sheetName}!A{rowToUpdate}:E{rowToUpdate}";
+
+    var updateRequest = service.Spreadsheets.Values.Update(valueRange, spreadsheetId, range);
+    updateRequest.ValueInputOption = SpreadsheetsResource.ValuesResource.UpdateRequest.ValueInputOptionEnum.RAW;
+    updateRequest.Execute();
+
+    Console.WriteLine($"Inserted row {rowToUpdate} in Google Sheets with values: {string.Join(", ", values)}");
+
+    // Assert: Verify the insertion by reading the new row
+    var searchRequest = service.Spreadsheets.Values.Get(spreadsheetId, $"{sheetName}!A{rowToUpdate}:E{rowToUpdate}");
+    searchRequest.ValueRenderOption = SpreadsheetsResource.ValuesResource.GetRequest.ValueRenderOptionEnum.UNFORMATTEDVALUE;
+    var searchResponse = searchRequest.Execute();
+
+    if (searchResponse.Values != null && searchResponse.Values.Count > 0)
+    {
+        var insertedRow = searchResponse.Values[0];
+        Console.WriteLine($"Retrieved row {rowToUpdate}: {string.Join(", ", insertedRow)}");
+
+        // Verify the values match what we sent from the CSV
+        Assert.AreEqual(values[0], insertedRow[0]?.ToString(), "Name mismatch");
+        Assert.AreEqual(values[1], insertedRow[1]?.ToString(), "Age mismatch");
+        Assert.AreEqual(values[2], insertedRow[2]?.ToString(), "Email mismatch");
+        Assert.AreEqual(values[3], insertedRow[3]?.ToString(), "StepId mismatch");
+        Assert.AreEqual(values[4], insertedRow[4]?.ToString(), "NameId mismatch");
+    }
+    else
+    {
+        Assert.Fail($"Failed to retrieve inserted row {rowToUpdate} from Google Sheets.");
+    }
+}
 }
