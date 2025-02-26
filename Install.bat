@@ -1,12 +1,12 @@
 @echo off
 
-set DOTNET_INSTALLER=C:\Projects\workshop-cli\Resources\dotnet-sdk-6.0.425-win-x64.exe
-set PYTHON_INSTALLER=C:\Projects\workshop-cli\Resources\python-installer.exe
-set GIT_INSTALLER=C:\Projects\workshop-cli\Resources\Git-2.46.2-64-bit.exe
-set VSCODE_INSTALLER=C:\Projects\workshop-cli\Resources\VSCodeSetup.exe
-set TARGET_PROGRAM=C:\Projects\workshop-cli\workshop-cli\WorkshopCli\bin\Debug\net6.0\WorkshopCli.exe
-set SHORTCUT_NAME=C:\Projects\cli.lnk
-set SESSION_FILE=C:\Projects\workshop-cli\Resources\session.txt
+set DOTNET_INSTALLER=%USERPROFILE%\Desktop\workshop-cli\Resources\dotnet-sdk-6.0.425-win-x64.exe
+set PYTHON_INSTALLER=%USERPROFILE%\Desktop\workshop-cli\Resources\python-installer.exe
+set GIT_INSTALLER=%USERPROFILE%\Desktop\workshop-cli\Resources\Git-2.46.2-64-bit.exe
+set VSCODE_INSTALLER=%USERPROFILE%\Desktop\workshop-cli\Resources\VSCodeSetup.exe
+set TARGET_PROGRAM=%USERPROFILE%\Desktop\workshop-cli\workshop-cli\WorkshopCli\bin\Debug\net6.0\WorkshopCli.exe
+set SHORTCUT_NAME=%USERPROFILE%\Desktop\cli.lnk
+set SESSION_FILE=%USERPROFILE%\Desktop\workshop-cli\Resources\session.txt
 
 REM Install .NET 6
 echo Installing .NET 6...
