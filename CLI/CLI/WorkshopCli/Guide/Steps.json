@@ -1,0 +1,168 @@
+[
+    {
+        "Id": "000-video",
+        "Type": "video",
+        "Message": "intro.mp4"
+    },{
+        "Id": "001-nome",
+        "Type": "ask-name",
+        "Message": "Qual é o teu nome?"
+    },
+    {
+        "Id": "002-idade",
+        "Type": "ask-age",
+        "Message": "Qual é a tua idade?"
+    },
+    {
+        "Id": "003-email",
+        "Type": "ask-email",
+        "Message": "Qual é o teu email?"
+    },
+    {
+        "Id": "003-mesa",
+        "Type": "ask-mesa",
+        "Message": "Qual é o teu numero da mesa?"
+    },
+    {
+        "Id": "004-intro",
+        "Type": "intro"
+    },
+    {
+        "Id": "005-love2D-install",
+        "Type": "install"
+    },
+    {
+        "Id": "006-Criar-ficheiro",
+        "Type": "open-file",
+        "Delay": "5000"
+    },
+    {
+        "Id": "007-code",
+        "Type": "code"
+    },
+    {
+        "Id": "008-HelloWorld-1",
+        "Type": "challenge",
+        "Delay": "5000"
+    },
+    {
+        "Id": "009-helloWorld",
+        "Type": "challenge",
+        "Delay": "0"
+    },
+    {
+        "Id": "010-code",
+        "Type": "code"
+    },
+    {
+        "Id": "011-recursos",
+        "Type": "CreateSprites",
+        "Delay": "0"
+    },
+    {
+        "Id": "012-jogador",
+        "Type": "challenge",
+        "Delay": "0"
+    },
+    {
+        "Id": "013-Movimentacao",
+        "Type": "information",
+        "Delay": "0"
+    },
+    {
+        "Id": "015-speed",
+        "Type": "challenge",
+        "Delay": "0"
+    },
+    {
+        "Id": "016-video",
+        "Type": "video",
+        "Message": "mid.mp4",
+        "Delay": "0"
+    },
+    {
+        "Id": "017-missel-load",
+        "Type": "information",
+        "Delay": "0"
+    },
+    {
+        "Id": "018-missel-update",
+        "Type": "information",
+        "Delay": "0"
+    },
+    {
+        "Id": "019-missel-timer",
+        "Type": "information",
+        "Delay": "0"
+    },
+    {
+        "Id": "020-enemy",
+        "Type": "information",
+        "Delay": "0"
+    },
+    {
+        "Id": "020-enemy-1",
+        "Type": "information",
+        "Delay": "0"
+    },
+    {
+        "Id": "021-collisions",
+        "Type": "information",
+        "Delay": "0"
+    },
+    {
+        "Id": "022-collisions-2",
+        "Type": "information",
+        "Delay": "0"
+    },
+    {
+        "Id": "023-estadoJogo",
+        "Type": "information",
+        "Delay": "0"
+    },
+    {
+        "Id": "024-estadoJogo-2",
+        "Type": "information",
+        "Delay": "0"
+    },
+    {
+        "Id": "025-desafio-texto",
+        "Type": "challenge",
+        "Delay": "0"
+    },
+    {
+        "Id": "026-end-1",
+        "Type": "information",
+        "Delay": "0"
+    },
+    {
+        "Id": "027-end-2",
+        "Type": "information",
+        "Delay": "0"
+    },
+    {
+        "Id": "028-end-3",
+        "Type": "information",
+        "Delay": "0"
+    },
+    {
+        "Id": "029-end-4",
+        "Type": "information",
+        "Delay": "0"
+    },
+    {
+        "Id": "030-end-5",
+        "Type": "information",
+        "Delay": "0"
+    },
+    {
+        "Id": "031-Fim",
+        "Type": "video",
+        "Message": "end.mp4",
+        "Delay": "0"
+    },
+    {
+        "Id": "031-end",
+        "Type": "end"        
+    }
+]

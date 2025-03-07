@@ -10,3 +10,7 @@
 5. If `python` gives an error when running the project, check if the python installation is on the environment variables.
 
 <img src="image4.png" alt="alt text" width="300">
+
+6. If `Install.bat` gets stuck checking the Llama model, as shown in the image, just close the window and run `Install.bat` again.
+![alt text](image5.png)
+

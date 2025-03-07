@@ -1,0 +1,299 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>net6.0</TargetFramework>
+        <RootNamespace>workshop_cli</RootNamespace>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="DotNetEnv" Version="2.5.0" />
+      <PackageReference Include="EPPlus" Version="6.2.0" />
+      <PackageReference Include="Google.Apis.Sheets.v4" Version="1.60.0.2979" />
+      <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="7.0.0" />
+      <PackageReference Include="MoonSharp" Version="2.0.0" />
+      <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+      <PackageReference Include="NLua" Version="1.6.3" />
+      <PackageReference Include="OfficeOpenXml.Extends" Version="1.0.6" />
+      <PackageReference Include="Sharprompt" Version="3.0.0-preview2" />
+      <PackageReference Include="Vlc.DotNet.Core" Version="3.1.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="Steps.json" />
+      <None Remove="Guide\3.md" />
+      <None Remove="Guide\5.md" />
+      <None Remove="Guide\6.md" />
+      <None Remove="Guide\7.md" />
+      <None Remove="Guide\8.md" />
+      <None Remove="Guide\9.md" />
+      <None Remove="Guide\10.md" />
+      <None Remove="Guide\11.md" />
+      <None Remove="Guide\12.md" />
+      <None Remove="Guide\13.md" />
+      <None Remove="Guide\14.md" />
+      <None Remove="Guide\15.md" />
+      <None Remove="Guide\16.md" />
+      <None Remove="Guide\17.md" />
+      <None Remove="Guide\18.md" />
+      <None Remove="Guide\19.md" />
+      <None Remove="Guide\20.md" />
+      <None Remove="Guide\21.md" />
+      <None Remove="Guide\22.md" />
+      <None Remove="Guide\23.md" />
+      <None Remove="Guide\24.md" />
+      <None Remove="Guide\25.md" />
+      <None Remove="Guide\26.md" />
+      <None Remove="Guide\27.md" />
+      <None Remove="Guide\28.md" />
+      <None Remove="Guide\29.md" />
+      <None Remove="Guide\30.md" />
+      <None Remove="Guide\31.md" />
+      <None Remove="Guide\32.md" />
+      <None Remove="Guide\Steps.json" />
+      <None Remove="Guide\Steps1.json" />
+      <None Remove="Guide\023-desafio.md" />
+      <None Remove="Guide\021-Movimenta-Jogador.md" />
+      <None Remove="Guide\020-Movimenta-Jogador.md" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="Guide\022-Revisao-codigo.md" />
+      <None Remove="Guide\024-codigo-desafio.md" />
+      <None Remove="Guide\025-Velocidade-Jogador.md" />
+      <None Remove="Guide\026-Velocidade-Jogador.md" />
+      <None Remove="Guide\027-player-scale.md" />
+      <None Remove="Guide\028-player-scale.md" />
+      <None Remove="Guide\029-mousepressed.md" />
+      <None Remove="Guide\030-mousepressed.md" />
+      <None Remove="Guide\031-mousepressed.md" />
+      <None Remove="Guide\032-Codigo-Final.md" />
+      <None Remove="Guide\012-Teste-Lua.md" />
+      <None Remove="Guide\011-code.md" />
+      <None Remove="Guide\013-code.md" />
+      <None Remove="Guide\015-code.md" />
+      <None Remove="Guide\018-code.md" />
+      <None Remove="Guide\017-code.md" />
+      <None Remove="Guide\019-code.md" />
+      <None Remove="Guide\021-code.md" />
+      <None Remove="Guide\023-code.md" />
+      <None Remove="Guide\025-code.md" />
+      <None Remove="Guide\027-code.md" />
+      <None Remove="Guide\030-code.md" />
+      <None Remove="Guide\032-code.md" />
+      <None Remove="Guide\034-code.md" />
+      <None Remove="Guide\036-code.md" />
+      <None Remove="Guide\038-code.md" />
+      <None Remove="Guide\040-code.md" />
+      <None Remove="Guide\042-code.md" />
+      <None Remove="Guide\044-code.md" />
+      <None Remove="Guide\046-code.md" />
+      <None Remove="Guide\007.md" />
+      <None Remove="Guide\008-Criar-Pasta.md" />
+      <None Remove="Guide\009-recursos.md" />
+      <None Remove="Guide\010-load.md" />
+      <None Remove="Guide\012-carrega-imagem.md" />
+      <None Remove="Guide\014-Criar-Jogador.md" />
+      <None Remove="Guide\018-Print-hello-world.md" />
+      <None Remove="Guide\020-Desenha-Jogador.md" />
+      <None Remove="Guide\022-Movimenta-Jogador.md" />
+      <None Remove="Guide\024-Movimenta-Jogador.md" />
+      <None Remove="Guide\026-Movimenta-Jogador.md" />
+      <None Remove="Guide\028-desafio.md" />
+      <None Remove="Guide\029-codigo-desafio.md" />
+      <None Remove="Guide\031-Velocidade-Jogador.md" />
+      <None Remove="Guide\033-Velocidade-Jogador.md" />
+      <None Remove="Guide\035-player-scale.md" />
+      <None Remove="Guide\037-player-scale.md" />
+      <None Remove="Guide\039-mousepressed.md" />
+      <None Remove="Guide\041-mousepressed.md" />
+      <None Remove="Guide\043-mousepressed.md" />
+      <None Remove="Guide\045-Codigo-Final.md" />
+      <None Remove="Guide\007-Criar-ficheiro.md" />
+      <None Remove="Guide\010-code.md" />
+      <None Remove="Guide\011-load.md" />
+      <None Remove="Guide\012-code.md" />
+      <None Remove="Guide\013-carrega-imagem.md" />
+      <None Remove="Guide\014-code.md" />
+      <None Remove="Guide\016-code.md" />
+      <None Remove="Guide\017-draw.md" />
+      <None Remove="Guide\019-Print-hello-world.md" />
+      <None Remove="Guide\020-code.md" />
+      <None Remove="Guide\021-Desenha-Jogador.md" />
+      <None Remove="Guide\022-code.md" />
+      <None Remove="Guide\023-Movimenta-Jogador.md" />
+      <None Remove="Guide\024-code.md" />
+      <None Remove="Guide\025-Movimenta-Jogador.md" />
+      <None Remove="Guide\026-code.md" />
+      <None Remove="Guide\027-Movimenta-Jogador.md" />
+      <None Remove="Guide\029-code.md" />
+      <None Remove="Guide\030-codigo-desafio.md" />
+      <None Remove="Guide\031-code.md" />
+      <None Remove="Guide\032-Velocidade-Jogador.md" />
+      <None Remove="Guide\033-code.md" />
+      <None Remove="Guide\034-Velocidade-Jogador.md" />
+      <None Remove="Guide\035-code.md" />
+      <None Remove="Guide\036-player-scale.md" />
+      <None Remove="Guide\037-code.md" />
+      <None Remove="Guide\038-player-scale.md" />
+      <None Remove="Guide\039-code.md" />
+      <None Remove="Guide\040-mousepressed.md" />
+      <None Remove="Guide\041-code.md" />
+      <None Remove="Guide\042-mousepressed.md" />
+      <None Remove="Guide\043-code.md" />
+      <None Remove="Guide\044-mousepressed.md" />
+      <None Remove="Guide\045-code.md" />
+      <None Remove="Guide\046-Codigo-Final.md" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="Guide\005-intro.md" />
+      <None Remove="Guide\006-love2D-install.md" />
+      <None Remove="Guide\007-Criar-Pasta.md" />
+      <None Remove="Guide\008-Abrir-Pasta.md" />
+      <None Remove="Guide\009-Criar-Main.lua.md" />
+      <None Remove="Guide\010-recursos.md" />
+      <None Remove="Guide\011-imagens.md" />
+      <None Remove="Guide\012-Abrir-Lua.md" />
+      <None Remove="Guide\013-load.md" />
+      <None Remove="Guide\014-carrega-imagem.md" />
+      <None Remove="Guide\015-Criar-Jogador.md" />
+      <None Remove="Guide\016-draw.md" />
+      <None Remove="Guide\017-Print-hello-world.md" />
+      <None Remove="Guide\018-Desenha-Jogador.md" />
+      <None Remove="Guide\019-Movimenta-Jogador.md" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove=".env" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="Guide\009-code.md" />
+      <None Remove="Guide\010-helloWorld.md" />
+      <None Remove="Guide\011-helloWorld.md" />
+      <None Remove="Guide\012-helloWorld .md" />
+      <None Remove="Guide\013-recursos.md" />
+      <None Remove="Guide\015-load.md" />
+      <None Remove="Guide\016-imagem.md" />
+      <None Remove="Guide\017-imagem.md" />
+      <None Remove="Guide\018-jogador.md" />
+      <None Remove="Guide\019-desenha-jogador.md" />
+      <None Remove="Guide\020-Desafio-Nave.md" />
+      <None Remove="Guide\021-update.md" />
+      <None Remove="Guide\022-Movimentacao.md" />
+      <None Remove="Guide\023-Desaafio-movimentacao.md" />
+      <None Remove="Guide\024-code-check.md" />
+      <None Remove="Guide\025-colisao-tela.md" />
+      <None Remove="Guide\026-colisao-tela.md" />
+      <None Remove="Guide\027-missel-load.md" />
+      <None Remove="Guide\028-missel-draw.md" />
+      <None Remove="Guide\029-missel-update-missel.md" />
+      <None Remove="Guide\030-missel-spawn.md" />
+      <None Remove="Guide\031-missel-update.md" />
+      <None Remove="Guide\023-Desafio-movimentacao.md" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Include="Guide\008-HelloWorld-1.md" />
+      <EmbeddedResource Include="Guide\009-helloWorld.md" />
+      <EmbeddedResource Include="Guide\010-code.md" />
+      <EmbeddedResource Include="Guide\014-code-check.md" />
+      <EmbeddedResource Include="Guide\020-enemy-1.md" />
+      <EmbeddedResource Include="Guide\024-estadoJogo-2.md" />
+      <EmbeddedResource Include="Guide\025-desafio-texto.md" />
+      <EmbeddedResource Include="Guide\026-end-1.md" />
+      <EmbeddedResource Include="Guide\027-end-2.md" />
+      <EmbeddedResource Include="Guide\028-end-3.md" />
+      <EmbeddedResource Include="Guide\029-end-4.md" />
+      <EmbeddedResource Include="Guide\030-end-5.md" />
+      <EmbeddedResource Include="Guide\031-end.md" />
+      <EmbeddedResource Include="Guide\Steps.json" />
+      <None Remove="Guide\008-code.md" />
+      <None Remove="Guide\009-HelloWorld.md" />
+      <None Remove="Guide\011-recursos.md" />
+      <EmbeddedResource Include="Guide\011-recursos.md" />
+      <None Remove="Guide\014-desenha-jogador.md" />
+      <None Remove="Guide\015-jogador.md" />
+      <None Remove="Guide\016-Desafio-Nave.md" />
+      <None Remove="Guide\017-update.md" />
+      <None Remove="Guide\018-Movimentacao.md" />
+      <None Remove="Guide\019-Desafio-movimentacao.md" />
+      <None Remove="Guide\020-code-check.md" />
+      <None Remove="Guide\021-colisao-tela.md" />
+      <None Remove="Guide\022-missel-load.md" />
+      <None Remove="Guide\023-missel-draw.md" />
+      <None Remove="Guide\024-missel-update-missel.md" />
+      <None Remove="Guide\025-missel-spawn.md" />
+      <None Remove="Guide\026-missel-update.md" />
+      <None Remove="Guide\027-enemy-load.md" />
+      <None Remove="Guide\028-enemy-draw.md" />
+      <None Remove="Guide\029-enemy-update-enemy.md" />
+      <None Remove="Guide\030-enemy-spawn.md" />
+      <None Remove="Guide\031-enemy.md" />
+      <None Remove="Guide\032-moveLeft.md" />
+      <None Remove="Guide\033-moveToPlayer.md" />
+      <None Remove="Guide\034-collisions.md" />
+      <None Remove="Guide\035-desafio.md" />
+      <None Remove="Guide\004-intro.md" />
+      <EmbeddedResource Include="Guide\004-intro.md" />
+      <None Remove="Guide\005-love2D-install.md" />
+      <EmbeddedResource Include="Guide\005-love2D-install.md" />
+      <None Remove="Guide\006-Criar-ficheiro.md" />
+      <EmbeddedResource Include="Guide\006-Criar-ficheiro.md" />
+      <None Remove="Guide\007-code.md" />
+      <EmbeddedResource Include="Guide\007-code.md" />
+      <None Remove="Guide\008-HelloWorld.md" />
+      <None Remove="Guide\012-load.md" />
+      <None Remove="Guide\013-jogador.md" />
+      <None Remove="Guide\014-Desafio-Nave.md" />
+      <None Remove="Guide\015-update.md" />
+      <None Remove="Guide\016-Movimentacao.md" />
+      <None Remove="Guide\017-Desafio-movimentacao.md" />
+      <None Remove="Guide\018-code-check.md" />
+      <None Remove="Guide\019-colisao-tela.md" />
+      <None Remove="Guide\020-missel-load.md" />
+      <None Remove="Guide\021-missel-draw.md" />
+      <None Remove="Guide\022-missel-update-missel.md" />
+      <None Remove="Guide\023-missel-spawn.md" />
+      <None Remove="Guide\024-missel-update.md" />
+      <None Remove="Guide\025-enemy-load.md" />
+      <None Remove="Guide\026-enemy-draw.md" />
+      <None Remove="Guide\027-enemy-update-enemy.md" />
+      <None Remove="Guide\028-enemy-spawn.md" />
+      <None Remove="Guide\029-enemy.md" />
+      <None Remove="Guide\030-moveLeft.md" />
+      <None Remove="Guide\031-moveToPlayer.md" />
+      <None Remove="Guide\032-collisions.md" />
+      <None Remove="Guide\033-desafio.md" />
+      <None Remove="Guide\018-speed.md" />
+      <None Remove="Guide\022-missel-update.md" />
+      <None Remove="Guide\023-missel-timer.md" />
+      <None Remove="Guide\025-enemy.md" />
+      <None Remove="Guide\033-collisions-2.md" />
+      <None Remove="Guide\034-end.md" />
+      <None Remove="Guide\012-jogador.md" />
+      <EmbeddedResource Include="Guide\012-jogador.md" />
+      <None Remove="Guide\013-Movimentacao.md" />
+      <EmbeddedResource Include="Guide\013-Movimentacao.md" />
+      <None Remove="Guide\015-speed.md" />
+      <EmbeddedResource Include="Guide\015-speed.md" />
+      <None Remove="Guide\017-missel-load.md" />
+      <EmbeddedResource Include="Guide\017-missel-load.md" />
+      <None Remove="Guide\018-missel-update.md" />
+      <EmbeddedResource Include="Guide\018-missel-update.md" />
+      <None Remove="Guide\019-missel-timer.md" />
+      <EmbeddedResource Include="Guide\019-missel-timer.md" />
+      <None Remove="Guide\020-enemy.md" />
+      <EmbeddedResource Include="Guide\020-enemy.md" />
+      <None Remove="Guide\021-collisions.md" />
+      <EmbeddedResource Include="Guide\021-collisions.md" />
+      <None Remove="Guide\022-collisions-2.md" />
+      <EmbeddedResource Include="Guide\022-collisions-2.md" />
+      <None Remove="Guide\023-estadoJogo.md" />
+      <EmbeddedResource Include="Guide\023-estadoJogo.md" />
+    </ItemGroup>
+
+</Project>
