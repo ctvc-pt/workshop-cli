@@ -150,7 +150,7 @@ def main():
                     continue
 
                 # Enviar e-mail
-                subject = f"Seu arquivo mygame - {name}"
+                subject = f"Oficinas de Programação - 2025"
                 if send_email(email, subject, email_body, zip_file):
                     print(f"E-mail enviado para {email} com sucesso!")
                 else:
