@@ -11,6 +11,7 @@ Adiciona o seguinte código na função "load()" antes da palavra "end":
    -- Variáveis do Míssil
     missilImagem = love.graphics.newImage("missil1.png")
     misseis = {}
+    podeDisparar = true
 [/color] [color=white]
 2. Agora vamos desenhar os mísseis na função "draw()"
    [/color] [color=blue]
@@ -22,8 +23,16 @@ Adiciona o seguinte código na função "load()" antes da palavra "end":
    [/color] [color=blue]
    -- Disparo do míssil
     if love.keyboard.isDown("space") then
-        missil = {posicaoX = posicaoX, posicaoY = posicaoY, velocidade = 300, imagem = missilImagem}
+      if podeDisparar then
+        missil = {
+           posicaoX = posicaoX + 64, 
+           posicaoY = posicaoY + 32,
+           width = 16, height=16,
+           velocidade = missilVelocidade, 
+           imagem = missilImagem 
+        }
         table.insert(misseis, missil)
+      end
     end
    [/color] [color=white]
 Fantástico! Aquilo que fizeste agora foi configurar a tecla 'ESPAÇO', 

@@ -7,3 +7,5 @@
 5. Follow the on-screen instructions and complete the process.
 
 This will create a folder on your usb drive named `backupWorkshop-(table number)`.
+
+`Note:` If `copy_to_usb.bat` doesn't work and returns a Python error, it is likely because Python is not added to the environment variables.

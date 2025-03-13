@@ -10,4 +10,3 @@ Before running the CLI, you need to install the following manually:
 ## No Issues
 
 If the person closes the CLI prompt, just run the CLI shortcut that is created on the desktop.
-
