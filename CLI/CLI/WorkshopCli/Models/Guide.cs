@@ -11,4 +11,11 @@ public class Guide
     }
 
     public List<Step> Steps;
+    public Dictionary<int, List<Step>> StepsByVersion;
+
+    public void SetSteps( bool hasParticipatedBefore )
+    {
+        var guideIndex = hasParticipatedBefore ? 2 : 1;
+        Steps = StepsByVersion[ guideIndex ];
+    }
 }

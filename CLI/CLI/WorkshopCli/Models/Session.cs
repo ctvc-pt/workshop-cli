@@ -8,5 +8,4 @@ public struct Session
     public string StepId;
     public string NameId;
     public string Mesa;
-
 }

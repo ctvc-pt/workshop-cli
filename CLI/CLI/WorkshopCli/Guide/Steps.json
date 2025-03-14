@@ -3,7 +3,8 @@
         "Id": "000-video",
         "Type": "video",
         "Message": "intro.mp4"
-    },{
+    }, 
+    {
         "Id": "001-nome",
         "Type": "ask-name",
         "Message": "Qual é o teu primeiro nome e o teu apelido?"
