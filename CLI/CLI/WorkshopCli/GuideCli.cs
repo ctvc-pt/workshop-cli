@@ -91,7 +91,6 @@ namespace workshopCli
                 {
                     { "information", new InformationAction(this, delay) },
                     { "challenge", new ChallengeAction(delay, session.Name) },
-                    /*{ "intro", new CreateBranchAction() },*/
                     { "install", new InstallAction() },
                     { "open-file", new OpenFileL2DAction(step.Id, delay) },
                     { "CreateSprites", new CreateSpritesAction(delay) },
