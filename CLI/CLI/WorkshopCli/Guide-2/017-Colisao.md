@@ -5,20 +5,17 @@ A colisão ocorre quando o pássaro ultrapassa a área dos canos.
 1. Na função "load()", adiciona as seguintes linhas de código que vão ser os sons quando o 
 passaro tocar no cano:
    [/color] [color=blue]
-   hitSound = love.audio.newSource("hit.wav", "static") 
-   gameOverSound = love.audio.newSource("die.wav", "static")
+   somColisao = love.audio.newSource("hit.wav", "static")
+   somGameOver = love.audio.newSource("die.wav", "static")
    [/color] [color=white]
 2. Na função "update(dt)", adiciona o seguinte código para verificar a colisão:
    [/color] [color=blue]
-   for i, pipe in ipairs(pipes) do
-       -- Verifica se o pássaro está dentro da área horizontal dos canos
-       if bird.x + bird.width > pipe.x and bird.x < pipe.x + pipeWidth then
-           -- Verifica colisão com o cano superior ou inferior
-           if bird.y < pipe.y or bird.y + bird.height > pipe.y + pipeGap then
-               -- Colisão com o cano
+   for i, cano in ipairs(canos) do
+     if passaro.x + passaro.largura > cano.x and passaro.x < cano.x + larguraCano then
+         if passaro.y < cano.y or passaro.y + passaro.altura > cano.y + espacoCano then
                gameOver = true
-               hitSound:play() 
-               gameOverSound:play()  
+               somColisao:play()
+               somGameOver:play()
            end
        end
    end

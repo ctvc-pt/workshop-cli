@@ -99,6 +99,7 @@ namespace workshopCli
                     { "ask-age", new AskAgeAction(this) },
                     { "ask-email", new AskEmailAction(this) },
                     { "ask-mesa", new AskTableAction(this) },
+                    { "ask-participation", new AskParticipationAction( this ) },
                     { "video", new VideoAction(currentIndex) },
                     { "end", new EndAction() }
                 };
@@ -181,6 +182,8 @@ namespace workshopCli
 
             return wrappedString.ToString().TrimEnd();
         }
+        
+        
     }
 }
 

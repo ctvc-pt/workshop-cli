@@ -16,35 +16,35 @@ principal do jogo: o pássaro!
 
 1. Adiciona na função "load()" as variáveis do pássaro:
 [/color] [color=blue]
-   -- Variáveis do Pássaro
-   birdImage = love.graphics.newImage("bird.png")
-    bird = {
-        x = 100,
-        y = 200,
-        width = 40,
-        height = 30,
-        speed = 0,
-        gravity = 0.25,
-        lift = -4
-    }
+
+   imagemPassaro = love.graphics.newImage("passaro.png")
+   passaro = {
+       x = 100,
+       y = 150,
+       largura = 40,
+       altura = 30,
+       velocidade = 0,
+       gravidade = 0.5,
+       salto = -6,
+   }
 [/color] [color=white]
-Aqui definimos o tamanho do pássaro (width = 40, height = 30) 
+Aqui definimos o tamanho do pássaro (largura = 40, altura = 30) 
 e que ele será afetado pela gravidade!
 
 2. Agora, na função "love.draw()", desenha o pássaro no 
 tamanho correto:
 [/color] [color=blue]
    love.graphics.draw(
-   birdImage,
-   bird.x,
-   bird.y,
+   imagemPassaro,
+   passaro.x,
+   passaro.y,
    0,
-   bird.width / birdImage:getWidth(),
-   bird.height / birdImage:getHeight()
+   passaro.largura / imagemPassaro:getWidth(),
+   passaro.altura / imagemPassaro:getHeight()
    )
 
 [/color] [color=white]
-Executa o jogo (Alt+L) e verás o pássaro no ecrã!
+Executa o jogo (Alt+L) e vais ver o pássaro no ecrã!
 [/color] [color=red]
      ____  _____ ____    _    _____ ___ ___  
     |  _ \| ____/ ___|  / \  |  ___|_ _/ _ \
@@ -53,8 +53,7 @@ Executa o jogo (Alt+L) e verás o pássaro no ecrã!
     |____/|_____|____/_/   \_\_|   |___\___/
 [/color] [color=white]
 
-Muda a posição inicial do pássaro na variavel bird (y = 200) para 150 e vê 
-onde ele começa na tela!
+Exprerimenta mudar a posição inicial do pássaro e vê onde ele começa na tela!
 
 Volta a executar o jogo (Alt+L) para verificar se está tudo bem.
 [/color]

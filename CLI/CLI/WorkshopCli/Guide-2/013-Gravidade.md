@@ -1,11 +1,11 @@
 [color=white]
-Já tens o personagem do jogo, o próximo passo é permitir que ela 
+Já tens o personagem do jogo, o próximo passo é permitir que ele
 possa cair.
 
 3. Na nossa função "update()" adiciona o seguinte código:
 [/color] [color=blue]
-    bird.speed = bird.speed + bird.gravity
-    bird.y = bird.y + bird.speed
+   passaro.velocidade = passaro.velocidade + passaro.gravidade
+   passaro.y = passaro.y + passaro.velocidade
 [/color] [color=white]
 Executa o jogo (Alt + L), O pássaro começa a cair sozinho? 
 Isso acontece porque ele está a ser puxado para baixo pela gravidade!
@@ -17,7 +17,7 @@ Isso acontece porque ele está a ser puxado para baixo pela gravidade!
     |____/|_____|____/_/   \_\_|   |___\___/
 [/color] [color=white]
 
-Boa! Aumenta o valor da gravidade (gravity = 0.25) para 0.5. O que acontece?.
+Aumenta o valor da gravidade.
 
 Agora no proximo passo vamos fazer com que o pássaro possa voar.
 [/color] 

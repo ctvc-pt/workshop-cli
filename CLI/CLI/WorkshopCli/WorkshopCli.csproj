@@ -197,6 +197,25 @@
     </ItemGroup>
 
     <ItemGroup>
+      <EmbeddedResource Include="Guide-2\005-love2D-install.md" />
+      <EmbeddedResource Include="Guide-2\006-Criar-ficheiro.md" />
+      <EmbeddedResource Include="Guide-2\007-code.md" />
+      <EmbeddedResource Include="Guide-2\008-HelloWorld-1.md" />
+      <EmbeddedResource Include="Guide-2\009-helloWorld.md" />
+      <EmbeddedResource Include="Guide-2\010-code.md" />
+      <EmbeddedResource Include="Guide-2\011-background.md" />
+      <EmbeddedResource Include="Guide-2\012-jogador.md" />
+      <EmbeddedResource Include="Guide-2\013-Gravidade.md" />
+      <EmbeddedResource Include="Guide-2\014-Voar.md" />
+      <EmbeddedResource Include="Guide-2\015-Canos.md" />
+      <EmbeddedResource Include="Guide-2\017-Colisao.md" />
+      <EmbeddedResource Include="Guide-2\018-Reiniciar.md" />
+      <EmbeddedResource Include="Guide-2\019-pontuacao.md" />
+      <EmbeddedResource Include="Guide-2\020-highScore.md" />
+      <EmbeddedResource Include="Guide-2\021-Colisao2.md" />
+      <EmbeddedResource Include="Guide-2\022-SomVoar.md" />
+      <EmbeddedResource Include="Guide-2\023-end.md" />
+      <EmbeddedResource Include="Guide-2\Steps.json" />
       <EmbeddedResource Include="Guide\008-HelloWorld-1.md" />
       <EmbeddedResource Include="Guide\009-helloWorld.md" />
       <EmbeddedResource Include="Guide\010-code.md" />
@@ -210,19 +229,6 @@
       <EmbeddedResource Include="Guide\029-end-4.md" />
       <EmbeddedResource Include="Guide\030-end-5.md" />
       <EmbeddedResource Include="Guide\031-end.md" />
-      <EmbeddedResource Include="Guide\Guide-2\005-love2D-install.md" />
-      <EmbeddedResource Include="Guide\Guide-2\006-Criar-ficheiro.md" />
-      <EmbeddedResource Include="Guide\Guide-2\007-code.md" />
-      <EmbeddedResource Include="Guide\Guide-2\008-HelloWorld-1.md" />
-      <EmbeddedResource Include="Guide\Guide-2\009-helloWorld.md" />
-      <EmbeddedResource Include="Guide\Guide-2\010-code.md" />
-      <EmbeddedResource Include="Guide\Guide-2\011-background.md" />
-      <EmbeddedResource Include="Guide\Guide-2\012-jogador.md" />
-      <EmbeddedResource Include="Guide\Guide-2\013-Gravidade.md" />
-      <EmbeddedResource Include="Guide\Guide-2\014-Voar.md" />
-      <EmbeddedResource Include="Guide\Guide-2\015-Canos.md" />
-      <EmbeddedResource Include="Guide\Guide-2\016-Colisao.md" />
-      <EmbeddedResource Include="Guide\Guide-2\017-Reiniciar.md" />
       <EmbeddedResource Include="Guide\Steps.json" />
       <None Remove="Guide\008-code.md" />
       <None Remove="Guide\009-HelloWorld.md" />
