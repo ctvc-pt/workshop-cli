@@ -14,7 +14,7 @@ Para dar mais dificuldade vamos criar os obstáculos do jogo.
 Aqui definimos a largura dos canos (larguraCano = 50), o espaço 
 entre eles (espacoCano = 150) e a velocidade (velocidadeCano = 2).
 
-2. Dentor da função "update(dt)" faz os canos moverem-se para a esquerda:
+2. Dentro da função "update(dt)" faz os canos moverem-se para a esquerda:
 [/color] [color=blue]
    for i, cano in ipairs(canos) do
        cano.x = cano.x - velocidadeCano
@@ -29,7 +29,7 @@ entre eles (espacoCano = 150) e a velocidade (velocidadeCano = 2).
 
 Ainda não vês os canos? Não te preocupes, agora vamos desenhá-los!
 
-3. Dentor da função "draw()" adiciona:
+3. Dentro da função "draw()" adiciona:
 [/color] [color=blue]
    love.graphics.setColor(0, 0.5, 0)
    for i, cano in ipairs(canos) do

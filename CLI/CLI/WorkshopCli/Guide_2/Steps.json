@@ -61,7 +61,7 @@
         "Delay": "0"
     },
     {
-        "Id": "012-jogador",
+        "Id": "012-passaro",
         "Type": "challenge",
         "Delay": "0"
     },
@@ -76,14 +76,13 @@
         "Delay": "0"
     },
     {
-        "Id": "015-Canos",
-        "Type": "challenge",
-        "Delay": "0"
+        "Id": "015-video",
+        "Type": "video",
+        "Message": "mid.mp4"
     },
     {
-        "Id": "016-video",
-        "Type": "video",
-        "Message": "mid.mp4",
+        "Id": "016-Canos",
+        "Type": "challenge",
         "Delay": "0"
     },
     {
@@ -117,13 +116,13 @@
         "Delay": "0"
     },
     {
-        "Id": "023-Fim",
+        "Id": "023-video",
         "Type": "video",
         "Message": "end.mp4",
         "Delay": "0"
     },
     {
-        "Id": "023-end",
+        "Id": "024-end",
         "Type": "end"
     }
 ]
