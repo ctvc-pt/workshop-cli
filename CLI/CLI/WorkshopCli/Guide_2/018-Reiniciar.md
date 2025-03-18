@@ -1,5 +1,5 @@
 [color=white]
-De seguida vamos adicionar a lógica para reiniciar o jogo quando 
+Agora vamos adicionar a lógica para reiniciar o jogo quando 
 o jogador pressionar a tecla 'R' após o game over.
 
 1. Na função "update(dt)", em baixo da linha "if gameOver then" que adicionamos anteriormente 
@@ -10,7 +10,7 @@ adiciona o seguinte:
    end
    [/color] [color=white]
 
-2. Agora vamos adicionar a função que vai ser responsável por reiniciar o jogo
+2. Agora vamos adicionar a função que vai ser responsável por reiniciar o jogo,
 para isso adiciona no fim do teu código:
    [/color] [color=blue]
    function reiniciarJogo()
@@ -33,6 +33,6 @@ adiciona esta linha de código:
    )
    [/color] [color=white]
 
-Agora, o jogo vai reiniciar quando o jogador pressionar a tecla R após o game over, 
+Agora, o jogo vai reiniciar quando o jogador pressionar a tecla "R" após o game over, 
 e a tela de "Game Over" será mostrada.
 [/color] 

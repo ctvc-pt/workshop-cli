@@ -1,12 +1,14 @@
 [color=white]
-Agora vamos adicionar uma variável para armazenar a pontuação máxima do jogador.
+Neste momento o jogo já parece estar pronto, mas agora vamos adicionar uma variável para armazenar 
+a pontuação máxima do jogador, para deixar o jogo mais desafiador e para o jogador ver até onde ele
+consegue chegar.
 
 1. Dentro da função "load()", coloca a seguinte linha: 
    [/color] [color=blue]
       melhorPontuacao = 0
    [/color] [color=white]
 
-2. Dentro da função "update(dt)" em cima deste código:
+2. Dentro da função "update(dt)" em cima deste pedaço de código:
 
 gameOver = true
 somColisao:play()

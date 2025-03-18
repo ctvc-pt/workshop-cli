@@ -11,7 +11,7 @@ Para dar mais dificuldade vamos criar os obstáculos do jogo.
    temporizadorCanos = 0
 [/color] [color=white]
 
-Aqui definimos a largura dos canos (larguraCano = 50), o espaço 
+Aqui definimos a largura dos canos, (larguraCano = 50), o espaço 
 entre eles (espacoCano = 150) e a velocidade (velocidadeCano = 2).
 
 2. Dentro da função "update(dt)" faz os canos moverem-se para a esquerda:
@@ -26,8 +26,6 @@ entre eles (espacoCano = 150) e a velocidade (velocidadeCano = 2).
        temporizadorCanos = 0
    end
 [/color] [color=white]
-
-Ainda não vês os canos? Não te preocupes, agora vamos desenhá-los!
 
 3. Dentro da função "draw()" adiciona:
 [/color] [color=blue]
@@ -46,7 +44,8 @@ Ainda não vês os canos? Não te preocupes, agora vamos desenhá-los!
 
 [/color] [color=white]
 
-Agora os canos aparecem e movem-se pela tela!
+Agora os canos já vão aparecer dentro do jogo, e também vão andar para o lado 
+esquerdo da tela, Executa o jogo com "Alt + L", e diverte-te um pouco.
 
 [/color] [color=red]
      ____  _____ ____    _    _____ ___ ___  

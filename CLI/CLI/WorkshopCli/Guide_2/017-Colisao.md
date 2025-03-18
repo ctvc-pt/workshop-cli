@@ -1,6 +1,9 @@
 [color=white]
-Agora, vamos adicionar a lógica para verificar se o pássaro colidiu com os canos. 
-A colisão ocorre quando o pássaro ultrapassa a área dos canos.
+O jogo está a ganhar forma, mas ainda falta uma coisa importante:  
+Caso não tenhas reparado tu consegues atravessar os canos.
+
+Vamos adicionar algumas linhas de código para verificar colisões entre o pássaro
+e os canos.
 
 1. Na função "load()", adiciona as seguintes linhas de código que vão ser os sons quando o 
 passaro tocar no cano:
@@ -21,8 +24,8 @@ passaro tocar no cano:
    end
 
    [/color] [color=white]
-Este código vai verificar se o pássaro está dentro da área dos canos e, 
-se estiver, verificar se há colisão com os canos superior ou inferior e vai tocar 
+Este código verifica se o pássaro está dentro da área dos canos e, 
+se estiver, vai verificar se ele bateu nos canos superior ou inferior e vai tocar 
 o som da colisão com os canos.
 
 Para que o jogo acabe temos que adicionar a tela de "Game Over".

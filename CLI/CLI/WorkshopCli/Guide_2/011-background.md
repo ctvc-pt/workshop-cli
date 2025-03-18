@@ -8,7 +8,7 @@ com os nomes:
 - fundo;
 - passaro;
 
-Vamos começar por criar o cenário, onde o jogo vai acontecer.
+Vamos começar por criar o fundo, onde o jogo vai acontecer.
 
 1. Para carregar a imagem de fundo, escreve dentro da função "load()":
    [/color]

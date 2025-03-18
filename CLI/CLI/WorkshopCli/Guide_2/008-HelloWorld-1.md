@@ -12,7 +12,7 @@ Uma variável é como uma mochila onde podes guardar algo importante para
 o teu jogo, pode ser um número, um texto ou até uma característica. 
 Depois, podes usar ou mudar ao longo do código.
 
-Por exemplo, o código abaixo representa a  função "love.draw" que nos 
+Por exemplo, o código abaixo representa a função "love.draw" que nos 
 permite desenhar coisas na ecrã:
 
 [/color] [color=blue]

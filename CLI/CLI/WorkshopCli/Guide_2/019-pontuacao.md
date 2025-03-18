@@ -1,6 +1,6 @@
 [color=white]
-Agora vamos adicionar a pontuação ao jogo e um som que será tocado todas 
-as vezes que o jogador passar por um cano.
+Agora vamos adicionar a pontuação ao jogo e um som que será tocado sempre 
+que o jogador passar por um cano.
 
 1. Dentro da função "load()" e na função "reiniciarJogo()", coloca a seguinte linha: 
    [/color] [color=blue]
@@ -17,7 +17,7 @@ as vezes que o jogador passar por um cano.
       end
    end
    [/color] [color=white]
-Este código vai fazer com que, sempre um cano sair da tela do lado esquerdo, ele 
+Este código vai fazer com que, sempre que um cano sair da tela do lado esquerdo, ele 
 vai aumentar a pontuação em 1.
 
 3. Para ver a pontuação vamos colocar na função "draw()" o seguinte:

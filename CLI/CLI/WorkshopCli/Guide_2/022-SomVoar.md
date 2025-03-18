@@ -1,5 +1,5 @@
 [color=white]
-Para melhorar o jogo vamos adicionar um som, para quando o pássaro bater as asas. 
+O jogo está quase completo, para melhorar o jogo vamos adicionar um som, para quando o pássaro voar. 
 
 1. Dentro da função "load()", adiciona o seguinte:
 
@@ -15,5 +15,5 @@ o seguinte:
     somAsa:play()
 [/color] [color=white]
 
-Agora quando tocares no chão o jogo acaba, e também já não podes subir infinitamente.
+Agora sempre que pressionares a tecla "espaço", ele vai tocar um som.
 [/color] 

@@ -1,6 +1,6 @@
 [color=white]
-O pássaro precisa de bater as asas! Vamos permitir que ele 
-suba quando pressionarmos a tecla "espaço".
+Agora que já temos gravidade, vamos fazer com que o pássaro possa voar, 
+para tal, fazemos com que ele suba quando pressionares a tecla "espaço".
 
 4. Dentro da função "update()" adiciona o seguinte código:
 [/color] [color=blue]
@@ -9,8 +9,8 @@ suba quando pressionarmos a tecla "espaço".
    end
 [/color] [color=white]
 
-Agora, quando pressionares espaço, o pássaro sobe!
-Executa o jogo (Alt + L), Experimenta carregar espaço várias 
+Agora, quando pressionares a tecla "espaço", o pássaro sobe!
+Executa o jogo (Alt + L), e experimenta carregar espaço várias 
 vezes e vê como o pássaro sobe e desce.
 [/color] [color=red]
      ____  _____ ____    _    _____ ___ ___  

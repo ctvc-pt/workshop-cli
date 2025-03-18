@@ -28,8 +28,8 @@ principal do jogo: o pássaro!
        salto = -6,
    }
 [/color] [color=white]
-Aqui definimos o tamanho do pássaro (largura = 40, altura = 30) 
-e que ele será afetado pela gravidade!
+Aqui definimos o tamanho do pássaro (largura = 40, altura = 30), bem como a sua posição
+no ecrã.
 
 2. Agora, na função "love.draw()", desenha o pássaro no 
 tamanho correto:

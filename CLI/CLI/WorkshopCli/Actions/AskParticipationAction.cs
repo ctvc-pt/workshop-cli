@@ -24,7 +24,7 @@ namespace workshopCli
             }
 
             // Apenas exibe a pergunta se não houver StepId ou sessão
-            Console.WriteLine("Já participaste em um Workshop (sim ou nao)?");
+            Console.WriteLine("Já participaste em um Workshop (sim ou nao)?\n");
             while (true)
             {
                 Cli.session.Participation = Console.ReadLine();
