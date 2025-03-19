@@ -5,7 +5,7 @@ consegue chegar.
 
 1. Dentro da função "load()", coloca a seguinte linha: 
    [/color] [color=blue]
-      melhorPontuacao = 0
+   melhorPontuacao = 0
    [/color] [color=white]
 
 2. Dentro da função "update(dt)" em cima deste pedaço de código:

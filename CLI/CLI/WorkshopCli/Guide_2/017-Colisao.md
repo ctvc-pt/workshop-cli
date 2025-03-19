@@ -28,14 +28,16 @@ Este código verifica se o pássaro está dentro da área dos canos e,
 se estiver, vai verificar se ele bateu nos canos superior ou inferior e vai tocar 
 o som da colisão com os canos.
 
-Para que o jogo acabe temos que adicionar a tela de "Game Over".
+Agora, para que o jogo acabe temos que adicionar a tela de "Game Over".
 
 3. No fim da função "draw()" adiciona:
    [/color] [color=blue]
-       if gameOver then
-           love.graphics.printf("Game Over!", 0, love.graphics.getHeight() / 2 - 20, 
-            love.graphics.getWidth(), "center")
-        end
+    if gameOver then
+        love.graphics.setColor(0, 0, 0)
+        love.graphics.printf("Game Over!", 0, love.graphics.getHeight() / 2 - 20, 
+        love.graphics.getWidth(), "center") 
+        love.graphics.setColor(1, 1, 1)
+    end
     [/color] [color=white]
 
 4. Agora dentro da função "update(dt)", no inicio, adiciona esta linha:
@@ -47,4 +49,15 @@ Para que o jogo acabe temos que adicionar a tela de "Game Over".
    [/color] [color=white]
 
 Agora quando tocares em um cano vai dar a tela de "Game Over" e o jogo acaba.
+
+[/color] [color=red]
+     ____  _____ ____    _    _____ ___ ___  
+    |  _ \| ____/ ___|  / \  |  ___|_ _/ _ \
+    | | | |  _| \___ \ / _ \ | |_   | | | | |
+    | |_| | |___ ___) / ___ \|  _|  | | |_| |
+    |____/|_____|____/_/   \_\_|   |___\___/
+[/color] [color=white]
+
+Boa, agora o obstáculo do jogo já tem colisão. Desfio-te a diminuir o espaço entre 
+o canos para aumentar a dificuldade do jogo.
 [/color] 

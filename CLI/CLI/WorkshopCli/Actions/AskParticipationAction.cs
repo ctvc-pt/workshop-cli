@@ -16,34 +16,46 @@ namespace workshopCli
         public void Execute()
         {
             var txtFilePath = Path.Combine(GuideCli.ResourcesPath, "session.txt");
-
-            // Verificar se há uma sessão salva com StepId
+            
             if (Cli.session != null && Cli.session.StepId != null && !string.IsNullOrEmpty(Cli.session.StepId))
             {
                 return; 
             }
+            
+            int cursorTop = Console.CursorTop;
 
-            // Apenas exibe a pergunta se não houver StepId ou sessão
-            Console.WriteLine("Já participaste em um Workshop (sim ou nao)?\n");
-            while (true)
+            Console.WriteLine("Já participaste em algum dos nossos Workshops (sim ou nao)?\n");
+
+            string resposta;
+            bool respostaValida;
+
+            do
             {
-                Cli.session.Participation = Console.ReadLine();
+                resposta = ExerciseHelper.PromptAnswerAndPrint()?.Trim().ToLower()
+                    .Replace("ã", "a")
+                    .Replace("á", "a")
+                    .Replace("õ", "o");
 
-                string resposta = Cli.session.Participation?.Trim().ToLower().Replace("ã", "a").Replace("á", "a").Replace("õ", "o");
+                respostaValida = resposta == "sim" || resposta == "nao";
 
-                if (resposta == "sim")
-                {
-                    break; 
-                }
-                else if (resposta == "nao")
-                {
-                    break; 
-                }
-                else
+                if (!respostaValida)
                 {
                     Console.WriteLine("Resposta inválida. Por favor, responda 'sim' ou 'nao'.");
                 }
+            } while (!respostaValida);
+            
+            Console.SetCursorPosition(0, cursorTop);
+
+            for (int i = 0; i < 3; i++) 
+            {
+                Console.Write(new string(' ', Console.WindowWidth)); 
+                Console.SetCursorPosition(0, Console.CursorTop + 1); 
             }
+
+            Console.SetCursorPosition(0, cursorTop); 
+
+            Cli.session.Participation = resposta;
         }
+
     }
 }

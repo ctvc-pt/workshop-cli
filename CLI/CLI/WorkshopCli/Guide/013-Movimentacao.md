@@ -6,7 +6,6 @@ adicionaremos movimentação para os outros lados.
 
 Na nossa função "update()" adiciona o seguinte código:
 [/color] [color=blue]
-    -- Movimentação da nave
     if love.keyboard.isDown("right") then
         posicaoX = posicaoX + 1
     end

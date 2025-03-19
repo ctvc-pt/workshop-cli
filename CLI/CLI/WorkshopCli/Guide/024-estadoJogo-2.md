@@ -14,10 +14,8 @@ Vamos adicionar o que faz com que o jogador perca.
    [/color] [color=white]
 6. Adiciona no final do código todo:
    [/color] [color=blue]
-   -- Função para reiniciar o jogo
     function love.keypressed(key)
         if key == 'r' and (estadoJogo == "perder" or estadoJogo == "vitoria") then
-            -- Reinicia o jogo
             estadoJogo = "a jogar"
             pontuacao = 0
             vidas = 3

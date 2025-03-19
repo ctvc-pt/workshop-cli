@@ -18,7 +18,6 @@ Primeiro temos de carregar a imagem, e depois desenhá-la:
 
 1. Para carregar a imagem, escreve dentro da função "load()":
 [/color] [color=blue]
-   -- Variáveis da Nave do Jogador
    imagem = love.graphics.newImage("nome-imagem.png")
 [/color] [color=white]
 

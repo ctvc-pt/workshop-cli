@@ -87,7 +87,7 @@
     },
     {
         "Id": "017-Colisao",
-        "Type": "information",
+        "Type": "challenge",
         "Delay": "0"
     },
     {

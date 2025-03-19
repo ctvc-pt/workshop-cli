@@ -17,7 +17,6 @@ Isso acontece porque ele está a ser puxado para baixo pela gravidade!
     |____/|_____|____/_/   \_\_|   |___\___/
 [/color] [color=white]
 
-Aumenta o valor da gravidade.
-
-Agora no proximo passo vamos fazer com que o pássaro possa voar.
+Desafio-te a aumentar a gravidade do pássaro. Quanto maior for a gravidade,
+o pássaro vai cair mais rápido.
 [/color] 

@@ -12,9 +12,9 @@ Para dar mais dificuldade vamos criar os obstáculos do jogo.
 [/color] [color=white]
 
 Aqui definimos a largura dos canos, (larguraCano = 50), o espaço 
-entre eles (espacoCano = 150) e a velocidade (velocidadeCano = 2).
+entre o cano superior e o inferior (espacoCano = 150) e a velocidade (velocidadeCano = 2).
 
-2. Dentro da função "update(dt)" faz os canos moverem-se para a esquerda:
+2. Dentro da função "update(dt)", adiciona o que faz os canos moverem-se para a esquerda:
 [/color] [color=blue]
    for i, cano in ipairs(canos) do
        cano.x = cano.x - velocidadeCano
@@ -55,5 +55,5 @@ esquerdo da tela, Executa o jogo com "Alt + L", e diverte-te um pouco.
     |____/|_____|____/_/   \_\_|   |___\___/
 [/color] [color=white]
 
-Aumenta a largura do cano para 80 e vê o que acontece.
+Desfio-te a aumentares a largura do cano.
 [/color] 

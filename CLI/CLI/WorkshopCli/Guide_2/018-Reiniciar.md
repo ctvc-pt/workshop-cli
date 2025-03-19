@@ -20,8 +20,7 @@ para isso adiciona no fim do teu código:
       gameOver = false
    end
    [/color] [color=white]
-3. Na função "draw()" em baixo da linha "love.graphics.printf("Game Over!", 0, 
-love.graphics.getHeight() / 2 - 20, love.graphics.getWidth(), "center")
+3. Na função "draw()" em baixo da linha "love.graphics.getWidth(), "center")"
 adiciona esta linha de código:
    [/color] [color=blue]
    love.graphics.printf(
@@ -33,6 +32,5 @@ adiciona esta linha de código:
    )
    [/color] [color=white]
 
-Agora, o jogo vai reiniciar quando o jogador pressionar a tecla "R" após o game over, 
-e a tela de "Game Over" será mostrada.
+Agora, o jogo vai reiniciar quando o jogador pressionar a tecla "R" após o game over.
 [/color] 

@@ -3,7 +3,6 @@ Já tens tudo programado para tua nave, agora falta criar os inimigos.
 
 1. Primeiro, vamos indicar as imagens na função "load()" :
    [/color] [color=blue]
-    -- Variáveis do Inimigo
     ImagemInimigo = love.graphics.newImage("meteoro.png")
     inimigos = {}
     geraInimigoTempo = 0
@@ -17,7 +16,6 @@ Já tens tudo programado para tua nave, agora falta criar os inimigos.
    [/color] [color=white]
 3. No fim do teu código adiciona esta função:
    [/color] [color=blue]
-   -- Função para atualizar os inimigos
    function atualizarInimigos(dt)
        geraInimigoTempo = geraInimigoTempo - dt
        if geraInimigoTempo <= 0 then
@@ -30,8 +28,8 @@ Já tens tudo programado para tua nave, agora falta criar os inimigos.
                height = ImagemInimigo:getHeight(),
                velocidade = 100,
                img = ImagemInimigo,
-               dirX = -1, -- Move-se para a esquerda
-               dirY = 0,  -- Sem movimento vertical
+               dirX = -1, 
+               dirY = 0,  
                angulo = 0
            }
            table.insert(inimigos, inimigo)
