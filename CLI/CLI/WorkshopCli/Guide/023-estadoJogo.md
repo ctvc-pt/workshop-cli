@@ -17,9 +17,9 @@ adicionar mais desafio e interação, vamos implementar um sistema de Game Over!
 	-- Adiciona o código do update(dt) aqui
     end
    [/color] [color=white]
-Coloca todo o código que tinhas anteriormente dentro desse bloco if. 
-Isso garante que o código só será executado se o jogo estiver no 
-estado "a jogar".
+Coloca todo o código que tinhas anteriormente na função 
+update(dt) dentro desse bloco if. Isso garante que o código só será executado 
+se o jogo estiver no estado "a jogar".
 
 3. Adiciona à função "draw(dt)" o seguinte:
    [/color] [color=blue]

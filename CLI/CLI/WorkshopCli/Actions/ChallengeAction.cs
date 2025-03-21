@@ -18,7 +18,7 @@ public class ChallengeAction : IAction
         Console.ForegroundColor = ConsoleColor.Yellow;
         ExerciseHelper.PromptAnswerAndConfirm("Quando completares o desafio, escreve 'proximo' ou 'p' para avançar ou para retroceder escreve 'anterior' (ou 'ajuda')\n");
         
-        var repoManager = new GitHubManager();
-        repoManager.Commit(SessionName);
+        /*var repoManager = new GitHubManager();
+        repoManager.Commit(SessionName);*/
     }
 }

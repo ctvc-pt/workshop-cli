@@ -31,12 +31,26 @@ namespace workshopCli
 
             var username = session.Name?.Replace(" ", "-") ?? "default-user";
             var dateStamp = DateTime.Now.ToString("dd-MM-yyyy");
-            var folderPath = Path.Combine(desktopPath, $"{username}_{dateStamp}", "mygame");
-            var filePath = Path.Combine(folderPath, "main.lua");
+            var userFolderPath = Path.Combine(desktopPath, $"{username}_{dateStamp}");
+            var folderPath = Path.Combine(userFolderPath, "mygame"); 
+            var filePath = Path.Combine(folderPath, "main.lua"); 
+            var userDataFilePath = Path.Combine(userFolderPath, "user_data.txt"); 
 
             if (!Directory.Exists(folderPath))
             {
-                Directory.CreateDirectory(folderPath);
+                Directory.CreateDirectory(folderPath); 
+            }
+
+            
+            if (!File.Exists(userDataFilePath))
+            {
+                using (var sw = File.CreateText(userDataFilePath))
+                {
+                    sw.WriteLine($"Dados do Usuário:");
+                    sw.WriteLine($"Nome: {session.Name ?? "N/A"}");
+                    sw.WriteLine($"Idade: {session.Age ?? "N/A"}");
+                    sw.WriteLine($"Email: {session.Email ?? "N/A"}");
+                }
             }
 
             if (!File.Exists(filePath))

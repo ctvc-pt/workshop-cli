@@ -34,57 +34,57 @@ namespace workshopCli
         }
 
         public static bool PromptAnswerAndConfirm(string prompt)
-{
-    var txtFilePath = Path.Combine(GuideCli.ResourcesPath, "session.txt");
-    var session = JsonConvert.DeserializeObject<Session>(File.ReadAllText(txtFilePath));
-
-    var chatGptClient = new OllamaClient();
-    while (true)
-    {
-        var wrappedString = GuideCli.WrapString(prompt, 50);
-        Console.ForegroundColor = ConsoleColor.Yellow;
-        Console.WriteLine(wrappedString);
-        Console.ResetColor();
-
-        var answer = Prompt.Input<string>("Resposta ");
-
-        if (string.IsNullOrWhiteSpace(answer))
         {
-            Console.ForegroundColor = ConsoleColor.Red;
-            ClearLines(6);
-            Console.WriteLine("Resposta inválida. Insere 'proximo' ou 'p'.");
-            Console.ResetColor();
-            continue;
-        }
+            var txtFilePath = Path.Combine(GuideCli.ResourcesPath, "session.txt");
+            var session = JsonConvert.DeserializeObject<Session>(File.ReadAllText(txtFilePath));
 
-        switch ( answer.ToLower() )
-        {
-            case "ajuda" or "h":
-                HandleHelp( session, chatGptClient );
-                break;
-            case "admin":
-                HandleAdmin();
-                break;
-            case "anterior" or "a":
-                GuideCli.adminInput = -1;
-                return true;
-            case "proximo" or "p":
-                processLuv.CloseLovecProcess();
-                return true;
-            case "reset":
-                ResetToLastStep( session.Name );
-                break;
-            case "s":
-                return false;
-            default:
-                Console.ForegroundColor = ConsoleColor.Red;
-                ClearLines( 6 );
-                Console.WriteLine( "Resposta inválida. Insere 'proximo' ou 'p'." );
+            var chatGptClient = new OllamaClient();
+            while (true)
+            {
+                var wrappedString = GuideCli.WrapString(prompt, 50);
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine(wrappedString);
                 Console.ResetColor();
-                break;
+
+                var answer = Prompt.Input<string>("Resposta ");
+
+                if (string.IsNullOrWhiteSpace(answer))
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    ClearLines(-1);
+                    Console.WriteLine("Resposta inválida. Insere 'proximo' ou 'p'.");
+                    Console.ResetColor();
+                    continue;
+                }
+
+                switch ( answer.ToLower() )
+                {
+                    case "ajuda" or "h":
+                        HandleHelp( session, chatGptClient );
+                        break;
+                    case "admin":
+                        HandleAdmin();
+                        break;
+                    case "anterior" or "a":
+                        GuideCli.adminInput = -1;
+                        return true;
+                    case "proximo" or "p":
+                        processLuv.CloseLovecProcess();
+                        return true;
+                    case "reset":
+                        ResetToLastStep( session.Name );
+                        break;
+                    case "s":
+                        return false;
+                    default:
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        ClearLines( -1 );
+                        Console.WriteLine( "Resposta inválida. Insere 'proximo' ou 'p'." );
+                        Console.ResetColor();
+                        break;
+                }
+            }
         }
-    }
-}
 
         static void HandleHelp( Session session, OllamaClient ollamaClient )
         {

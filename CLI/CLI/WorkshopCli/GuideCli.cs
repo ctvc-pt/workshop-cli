@@ -91,7 +91,6 @@ namespace workshopCli
                 {
                     { "information", new InformationAction(this, delay) },
                     { "challenge", new ChallengeAction(delay, session.Name) },
-                    { "intro", new CreateBranchAction() },
                     { "install", new InstallAction() },
                     { "open-file", new OpenFileL2DAction(step.Id, delay) },
                     { "CreateSprites", new CreateSpritesAction(delay) },
@@ -122,10 +121,10 @@ namespace workshopCli
                     Console.WriteLine($"Unknown action type: {step.Type}");
                 }
 
-                if ( i >= 8 )
+                /*if ( i >= 8 )
                 {
                     GitHubManager.BackupScript(session.Name);
-                }
+                }*/
 
                 var NameId = session.Name + session.Mesa;
                 session.NameId = NameId;

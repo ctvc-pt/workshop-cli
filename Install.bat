@@ -3,8 +3,6 @@
 set DOTNET_INSTALLER=C:\Projects\workshop-cli\Resources\dotnet-sdk-6.0.425-win-x64.exe
 set PYTHON_INSTALLER=C:\Projects\workshop-cli\Resources\python-installer.exe
 set GIT_INSTALLER=C:\Projects\workshop-cli\Resources\Git-2.46.2-64-bit.exe
-set VSCODE_INSTALLER=C:\Projects\workshop-cli\Resources\VSCodeUserSetup-x64-1.97.2.exe
-set OLLAMA_INSTALLER=C:\Projects\workshop-cli\Resources\OllamaSetup.exe
 set TARGET_PROGRAM=C:\Projects\workshop-cli\CLI\CLI\WorkshopCli\bin\Debug\net6.0\WorkshopCli.exe
 set SHORTCUT_NAME=C:\Projects\cli.lnk
 set SESSION_FILE=C:\Projects\workshop-cli\Resources\session.txt
@@ -49,12 +47,11 @@ if %ERRORLEVEL% NEQ 0 (
     echo Git already installed.
 )
 
-REM Check and install Ollama
+REM Check Ollama
 echo Checking Ollama...
 ollama --version >nul 2>&1
 if %ERRORLEVEL% NEQ 0 (
-    echo Ollama not found. Installing Ollama...
-    start /wait "" %OLLAMA_INSTALLER% /VERYSILENT /NORESTART
+    echo Ollama not found. Please install Ollama manually if needed.
 ) else (
     echo Ollama already installed.
 )
@@ -80,12 +77,11 @@ if %ERRORLEVEL% NEQ 0 (
     echo Ollama server already running.
 )
 
-REM Check and install Visual Studio Code
+REM Check Visual Studio Code
 echo Checking Visual Studio Code...
 where code >nul 2>&1
 if %ERRORLEVEL% NEQ 0 (
-    echo Visual Studio Code not found. Installing VS Code...
-    start /wait "" %VSCODE_INSTALLER% /VERYSILENT /NORESTART
+    echo Visual Studio Code not found. Please install VS Code manually if needed.
 ) else (
     echo Visual Studio Code already installed.
 )

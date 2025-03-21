@@ -5,7 +5,6 @@ disparas.
 1. Na função "load()", adiciona dentro das variáveis do míssil:
    [/color] [color=blue]
    missilVelocidade = 250
-   podeDisparar = true
    [/color] [color=white]
 2. No fim do teu código todo, adiciona esta função:
    [/color] [color=blue]
@@ -17,24 +16,12 @@ disparas.
         end
    end
    [/color] [color=white]
-3. Agora vamos alterar o código que adicionamos no último passo 
-na função "update(dt)" (substitui o código que faz disparar os
-mísseis):
+3. Agora dentro da função "update(dt)" adiciona por cima do ultimo 
+"end" a seguinte linha:
    [/color] [color=blue]
-    if love.keyboard.isDown("space") then
-        if podeDisparar then
-            missil = {
-                posicaoX = posicaoX + 64, 
-                posicaoY = posicaoY + 32, 
-                width = 16, height=16, 
-                velocidade = missilVelocidade, 
-                imagem = missilImagem}
-            table.insert(misseis, missil)
-        end
-    end
     atualizarMisseis(dt)
    [/color] [color=white]
-O código inserido agora faz o seguinte:
+O código agora faz o seguinte:
  - Se a tecla "espaço" for pressionada, um míssil é disparado com 
 base na velocidade do jogador. A velocidade do míssil é ajustada 
 se o jogador estiver a mover-se para a esquerda ou direita. 

@@ -1,0 +1,6 @@
+Olá {NOME},
+
+Segue em anexo a pasta 'mygame' zipada.
+
+Atenciosamente,  
+Sua Equipe

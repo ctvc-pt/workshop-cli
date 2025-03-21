@@ -8,9 +8,9 @@ o teu jogo.
 O código é composto por funções, ou seja, um conjunto de instruções que 
 executam uma tarefa específica.
 
-Uma variável é como um recipiente onde guardamos um valor (pode ser um 
-número, texto ou uma característica) que podemos usar e modificar ao 
-longo do código.
+Uma variável é como uma mochila onde podes guardar algo importante para
+o teu jogo, pode ser um número, um texto ou até uma característica. 
+Depois, podes usar ou mudar ao longo do código.
 
 Por exemplo, o código abaixo representa a  função "love.draw" que nos 
 permite desenhar coisas na ecrã:
