@@ -2,7 +2,6 @@
 Depois do desafio, o teu código da função "load()" deve estar assim:
 
   function love.update(dt)
-    -- Movimentação da nave
     if love.keyboard.isDown("right") then
         posicaoX = posicaoX + 1
     end

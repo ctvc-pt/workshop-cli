@@ -56,114 +56,73 @@
         "Type": "code"
     },
     {
-        "Id": "011-recursos",
+        "Id": "011-background",
         "Type": "CreateSprites",
         "Delay": "0"
     },
     {
-        "Id": "012-jogador",
+        "Id": "012-passaro",
         "Type": "challenge",
         "Delay": "0"
     },
     {
-        "Id": "013-Movimentacao",
-        "Type": "information",
-        "Delay": "0"
-    },
-    {
-        "Id": "015-speed",
+        "Id": "013-Gravidade",
         "Type": "challenge",
         "Delay": "0"
     },
     {
-        "Id": "016-video",
+        "Id": "014-Voar",
+        "Type": "challenge",
+        "Delay": "0"
+    },
+    {
+        "Id": "015-video",
         "Type": "video",
-        "Message": "mid.mp4",
-        "Delay": "0"
+        "Message": "mid.mp4"
     },
     {
-        "Id": "017-missel-load",
-        "Type": "information",
-        "Delay": "0"
-    },
-    {
-        "Id": "018-missel-update",
-        "Type": "information",
-        "Delay": "0"
-    },
-    {
-        "Id": "019-missel-timer",
-        "Type": "information",
-        "Delay": "0"
-    },
-    {
-        "Id": "020-enemy",
-        "Type": "information",
-        "Delay": "0"
-    },
-    {
-        "Id": "020-enemy-1",
-        "Type": "information",
-        "Delay": "0"
-    },
-    {
-        "Id": "021-collisions",
-        "Type": "information",
-        "Delay": "0"
-    },
-    {
-        "Id": "022-collisions-2",
-        "Type": "information",
-        "Delay": "0"
-    },
-    {
-        "Id": "023-estadoJogo",
-        "Type": "information",
-        "Delay": "0"
-    },
-    {
-        "Id": "024-estadoJogo-2",
-        "Type": "information",
-        "Delay": "0"
-    },
-    {
-        "Id": "025-desafio-texto",
+        "Id": "016-Canos",
         "Type": "challenge",
         "Delay": "0"
     },
     {
-        "Id": "026-end-1",
+        "Id": "017-Colisao",
+        "Type": "challenge",
+        "Delay": "0"
+    },
+    {
+        "Id": "018-Reiniciar",
         "Type": "information",
         "Delay": "0"
     },
     {
-        "Id": "027-end-2",
+        "Id": "019-pontuacao",
         "Type": "information",
         "Delay": "0"
     },
     {
-        "Id": "028-end-3",
+        "Id": "020-highScore",
         "Type": "information",
         "Delay": "0"
     },
     {
-        "Id": "029-end-4",
+        "Id": "021-Colisao2",
         "Type": "information",
         "Delay": "0"
     },
     {
-        "Id": "030-end-5",
+        "Id": "022-SomVoar",
         "Type": "information",
         "Delay": "0"
     },
     {
-        "Id": "031-Fim",
+        "Id": "023-video",
         "Type": "video",
         "Message": "end.mp4",
         "Delay": "0"
     },
     {
-        "Id": "031-end",
-        "Type": "end"        
+        "Id": "024-end",
+        "Type": "end"
     }
 ]

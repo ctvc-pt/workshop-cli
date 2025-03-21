@@ -8,7 +8,6 @@ o míssil da tua nave.
 
 Adiciona o seguinte código na função "load()" antes da palavra "end":
 [/color] [color=blue]
-   -- Variáveis do Míssil
     missilImagem = love.graphics.newImage("missil1.png")
     misseis = {}
     podeDisparar = true
@@ -21,7 +20,6 @@ Adiciona o seguinte código na função "load()" antes da palavra "end":
    [/color] [color=white]
 3. Insere na função update(dt) o seguinte código:
    [/color] [color=blue]
-   -- Disparo do míssil
     if love.keyboard.isDown("space") then
       if podeDisparar then
         missil = {

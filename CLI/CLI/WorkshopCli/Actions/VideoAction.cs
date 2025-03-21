@@ -1,11 +1,8 @@
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Threading;
-using Newtonsoft.Json;
 
 namespace workshopCli
 {
@@ -13,73 +10,82 @@ namespace workshopCli
     {
         private int currentIndex;
         private string extensionId = "pixelbyte-studios.pixelbyte-love2d";
+        private GuideCli cli; 
 
-        public VideoAction(int currentIndex)
+        public VideoAction(int currentIndex, GuideCli cli)
         {
             this.currentIndex = currentIndex;
+            this.cli = cli; 
         }
 
         public void Execute()
         {
             Console.ForegroundColor = ConsoleColor.Black;
-            var assembly = Assembly.GetExecutingAssembly();
-            var steps = new List<Guide.Step>();
-
-            using (var stream = assembly.GetManifestResourceStream("workshop_cli.Guide.Steps.json"))
-            using (var reader = new StreamReader(stream))
-            {
-                var json = reader.ReadToEnd();
-                steps = JsonConvert.DeserializeObject<List<Guide.Step>>(json);
-            }
-
-            var guide = new Guide { Steps = steps };
-
-            var step = guide.Steps[currentIndex];
+            var step = cli.guide.Steps[currentIndex]; 
             var path = Path.Combine(GuideCli.ResourcesPath, step.Message);
 
-            var vlcProcess = new Process
+            try
             {
-                StartInfo = new ProcessStartInfo
+                // Verificar se o arquivo de vídeo existe
+                if (!File.Exists(path))
                 {
-                    FileName = Path.Combine(GuideCli.ResourcesPath, "VLCPortable", "VLCPortable.exe"),
-                    Arguments = path
-                },
-                EnableRaisingEvents = true
-            };
-            vlcProcess.Start();
+                    throw new FileNotFoundException($"Vídeo não encontrado em: {path}");
+                }
 
-            // Starts win-right.ahk process
-            var startAhkR = new ProcessStartInfo
+                var vlcProcess = new Process
+                {
+                    StartInfo = new ProcessStartInfo
+                    {
+                        FileName = Path.Combine(GuideCli.ResourcesPath, "VLCPortable", "VLCPortable.exe"),
+                        Arguments = $"\"{path}\"", 
+                        UseShellExecute = false,
+                        RedirectStandardError = true 
+                    },
+                    EnableRaisingEvents = true
+                };
+                vlcProcess.Start();
+
+                // Inicia o processo AutoHotkey
+                var startAhkR = new ProcessStartInfo
+                {
+                    FileName = Path.Combine(GuideCli.ResourcesPath, "AutoHotkey", "v1.1.36.02", "AutoHotkeyU64.exe"),
+                    Arguments = Path.Combine(GuideCli.ResourcesPath, "win-rigth.ahk"),
+                    WorkingDirectory = @"C:\",
+                    Verb = "runas",
+                    UseShellExecute = false
+                };
+                Process ahkProcess = Process.Start(startAhkR);
+
+                Thread.Sleep(2000); 
+
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine("Quando o vídeo acabar, feche-o para continuar...");
+                
+                SetForegroundWindow(GetConsoleWindow());
+                
+                vlcProcess.WaitForExit();
+                
+                string error = vlcProcess.StandardError.ReadToEnd();
+                if (!string.IsNullOrEmpty(error))
+                {
+                    Console.WriteLine($"Erro do VLC: {error}");
+                }
+
+                
+                if (!ahkProcess.HasExited)
+                {
+                    ahkProcess.Kill();
+                }
+            }
+            catch (Exception ex)
             {
-                FileName = Path.Combine(GuideCli.ResourcesPath, "AutoHotkey", "v1.1.36.02", "AutoHotkeyU64.exe"),
-                Arguments = Path.Combine(GuideCli.ResourcesPath, "win-rigth.ahk"),
-                WorkingDirectory = @"C:\",
-                Verb = "runas"
-            };
-            Process ahkProcess = Process.Start(startAhkR);
-
-            Thread.Sleep(2000);
-
-            Console.ForegroundColor = ConsoleColor.Yellow;
-
-            // if (currentIndex == 0) // Only install software during the first video
-            // {
-            //     var installer = new SoftwareInstaller();
-            //     installer.InstallSoftware();
-            // }
-
-            Console.WriteLine("Quando o vídeo acabar, feche-o para continuar...");
-
-            //CLI Focus
-            SetForegroundWindow(GetConsoleWindow());
-
-            // Wait for VLC to close
-            vlcProcess.WaitForExit();
-
-            // If VLC closed, close win-right.ahk
-            if (!ahkProcess.HasExited)
-            {
-                ahkProcess.Kill();
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine($"Erro ao reproduzir o vídeo: {ex.Message}");
+                if (ex is FileNotFoundException)
+                {
+                    Console.WriteLine("Verifique se o arquivo .mp4 está na pasta Resources.");
+                }
+                Console.ForegroundColor = ConsoleColor.White;
             }
         }
 

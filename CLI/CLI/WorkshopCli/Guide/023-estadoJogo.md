@@ -6,15 +6,14 @@ adicionar mais desafio e interação, vamos implementar um sistema de Game Over!
 
 1. Para isso, adiciona no fim da função "load()":
    [/color] [color=blue]
-   -- Variáveis do Jogo
    vidas = 3
    pontuacao = 0
-   estadoJogo = "a jogar" -- outros estados: "perder", "vitoria"
+   estadoJogo = "a jogar" 
    [/color] [color=white]
 2. Agora, adiciona no fim da função "update(dt)" o seguinte código:
    [/color] [color=blue]
     if estadoJogo == "a jogar" then
-	-- Adiciona o código do update(dt) aqui
+	
     end
    [/color] [color=white]
 Coloca todo o código que tinhas anteriormente na função 
@@ -32,7 +31,7 @@ se o jogo estiver no estado "a jogar".
         love.graphics.print("Você venceu! Pressione R para reiniciar.", love.graphics.getWidth() / 2 - 150,
         love.graphics.getHeight() / 2, 0, 1.5, 1.5)
     else
-      love.graphics.setBackgroundColor(0, 0, 0) -- fundo preto para o jogo
+      love.graphics.setBackgroundColor(0, 0, 0)
    
    end
    [/color] [color=white]

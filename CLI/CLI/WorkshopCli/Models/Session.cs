@@ -1,12 +1,12 @@
 ﻿namespace workshopCli;
 
-public struct Session
+public class Session
 {
-    public string Name; 
-    public string Age; 
-    public string Email; 
-    public string StepId;
-    public string NameId;
-    public string Mesa;
-
+    public string Name { get; set; }
+    public string Age { get; set; }
+    public string Email { get; set; }
+    public string StepId { get; set; }
+    public string NameId { get; set; }
+    public string Mesa { get; set; }
+    public string Participation { get; set; }
 }

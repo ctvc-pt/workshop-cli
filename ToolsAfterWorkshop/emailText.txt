@@ -1,6 +1,7 @@
 Olá {NOME},
 
-Segue em anexo a pasta 'mygame' zipada.
+Segue em anexo a pasta zipada.
 
-Atenciosamente,  
-Sua Equipe
+{LINK}
+
+

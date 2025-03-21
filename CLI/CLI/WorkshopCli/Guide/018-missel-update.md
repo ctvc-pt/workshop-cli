@@ -8,7 +8,6 @@ disparas.
    [/color] [color=white]
 2. No fim do teu código todo, adiciona esta função:
    [/color] [color=blue]
-   -- Função para atualizar os mísseis
    function atualizarMisseis(dt)
         for i=#misseis, 1, -1 do
             missil = misseis[i]

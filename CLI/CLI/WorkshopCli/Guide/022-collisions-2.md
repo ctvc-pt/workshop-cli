@@ -1,7 +1,6 @@
 [color=white]
 3. Adiciona este código no fim:
    [/color] [color=blue]
-    -- Função para verificar colisões entre mísseis e inimigos
     function verificaMissilInimigoColisao()
         for index, inimigo in ipairs(inimigos) do
             for index2, missil in ipairs(misseis) do
