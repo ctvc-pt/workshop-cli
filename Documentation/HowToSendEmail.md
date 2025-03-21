@@ -9,9 +9,9 @@ Before proceeding, make sure to follow the steps in [this file](./HowToCopyRepoW
 3. Open the `ToolsAfterWorkshop` folder.
 4. Locate the file named `send_email.bat` and double click on it.
 
-This will zip the `mygame` folder for each participant and send an email with their respective `mygame.zip` file.
+This will zip the folder for each participant and send an email with Google Drive Link containing their respective `.zip` file.
 
-`Note:` This script does not send emails to `@hotmail` domains.
+`Note:` Emails may end up in the Spam folder.
 
 ## How to Edit the Email Text
 
@@ -22,4 +22,4 @@ If you want to modify the email content:
 3. Locate the file named `emailText.txt` and open it.
 4. Edit the text as needed.
 
-`Note:` Do not change or remove the `{NOME}` paramater,as it the name of the participant in the workshop.
+`Note:` Do not change or remove the `{NOME}` and `{LINK}` paramater,as it the name of the participant in the workshop, and the Link to google drive folder.
