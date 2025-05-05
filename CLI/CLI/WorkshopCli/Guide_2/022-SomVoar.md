@@ -8,8 +8,8 @@ O jogo está quase completo, para melhorar o jogo vamos adicionar um som, para q
 [/color] [color=white]
 
 2. Agora para tocar o som, na função "update(dt)",na parte onde verificamos se a tecla 
-que faz o pássaro voar foi pressionada, adiciona em baixo desta linha 
-"passaro.velocidade = passaro.salto" o seguinte:
+que faz o pássaro voar foi pressionada, dentro do bloco "if" em baixo desta linha 
+"passaro.velocidade = passaro.salto" adiciona o seguinte:
 
 [/color] [color=blue]
     somAsa:play()

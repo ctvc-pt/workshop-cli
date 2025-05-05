@@ -24,8 +24,8 @@ principal do jogo: o pássaro!
        largura = 40,
        altura = 30,
        velocidade = 0,
-       gravidade = 0.5,
-       salto = -6,
+       gravidade = 0.1,
+       salto = -2.5,
    }
 [/color] [color=white]
 Aqui definimos o tamanho do pássaro (largura = 40, altura = 30), bem como a sua posição

@@ -6,7 +6,9 @@ A janela do lado direito é onde vamos escrever o código para programar
 o teu jogo.
 
 O código é composto por funções, ou seja, um conjunto de instruções que 
-executam uma tarefa específica.
+executam uma tarefa específica. Uma função começa com a palavra "function"
+e termina com "end". O "end" marca o fim da função, para o código saber onde
+termina.
 
 Uma variável é como uma mochila onde podes guardar algo importante para
 o teu jogo, pode ser um número, um texto ou até uma característica. 

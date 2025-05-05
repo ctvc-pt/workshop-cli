@@ -70,6 +70,8 @@ namespace workshopCli
                         return true;
                     case "proximo" or "p":
                         processLuv.CloseLovecProcess();
+                        Task.Run(() => ShowSpinnerAnimation().GetAwaiter().GetResult());
+                        Task.Delay(50).GetAwaiter().GetResult();
                         return true;
                     case "reset":
                         ResetToLastStep( session.Name );
@@ -247,6 +249,30 @@ namespace workshopCli
             }
 
             Console.SetCursorPosition( 0, startLine );
+        }
+        
+        static async Task ShowSpinnerAnimation(int durationMs = 2000)
+        {
+            string[] frames = { "[ *   ]", "[  *  ]", "[   * ]", "[  *  ]" };
+            int frameCount = frames.Length;
+            int delay = 100;
+            int iterations = durationMs / delay;
+
+            Console.Clear();
+            Console.CursorVisible = false;
+            Console.SetCursorPosition(0, 0);
+
+            for (int i = 0; i < iterations; i++)
+            {
+                string frame = $"Loading {frames[i % frameCount]}";
+                Console.SetCursorPosition(0, 0);
+                Console.Write(frame.PadRight(Console.WindowWidth));
+                await Task.Delay(delay);
+            }
+
+            Console.SetCursorPosition(0, 0);
+            Console.Write(new string(' ', Console.WindowWidth));
+            Console.CursorVisible = true;
         }
     }
 }

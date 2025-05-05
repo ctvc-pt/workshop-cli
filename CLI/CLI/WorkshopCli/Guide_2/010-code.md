@@ -1,16 +1,16 @@
-function love.load()
+function love.load() -- Inicio da função "load()"
     love.window.setMode(1200, 960) 
    
 
-end
+end -- Fim da função "load()"
 
 
-function love.draw()
+function love.draw() -- Inicio da função "draw()"
     love.graphics.print("Ola mundo!", 200, 200);
     
 
-end
+end -- Fim da função "draw()"
 
-function love.update(dt)
+function love.update(dt) -- Inicio da função "update()"
 
-end
+end -- Fim da função "update()"
