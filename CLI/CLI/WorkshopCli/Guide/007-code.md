@@ -1,4 +1,6 @@
-function love.draw()
+function love.draw() -- Inicio da função "draw()"
         love.graphics.print("Ola mundo!", 100, 100);
-end
+end -- Fim da função "draw()"
+
+
 

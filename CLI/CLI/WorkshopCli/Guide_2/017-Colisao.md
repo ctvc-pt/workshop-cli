@@ -59,5 +59,5 @@ Agora quando tocares em um cano vai dar a tela de "Game Over" e o jogo acaba.
 [/color] [color=white]
 
 Boa, agora o obstáculo do jogo já tem colisão. Desfio-te a diminuir o espaço entre 
-o canos para aumentar a dificuldade do jogo.
+os canos de cima e de baixo para aumentar a dificuldade do jogo.
 [/color] 

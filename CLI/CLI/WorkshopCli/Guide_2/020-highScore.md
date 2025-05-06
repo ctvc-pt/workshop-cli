@@ -21,7 +21,7 @@ Adiciona o seguinte:
    end
    [/color] [color=white]
 
-3. Por fim para ver a pontuação máxima vamos colocar na função "draw()", em baixo de 
+3. Por fim para ver a pontuação máxima vamos colocar na função "draw()", em baixo da linha 
 onde escrevemos o "Score" adiciona esta linha:
    [/color] [color=blue]
    love.graphics.printf("High Score: " .. melhorPontuacao, 10, 10, 

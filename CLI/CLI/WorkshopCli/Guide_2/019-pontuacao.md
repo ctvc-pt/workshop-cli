@@ -2,7 +2,7 @@
 Agora vamos adicionar a pontuação ao jogo e um som que será tocado sempre 
 que o jogador passar por um cano.
 
-1. Dentro da função "load()" e na função "reiniciarJogo()", coloca a seguinte linha: 
+1. Dentro da função "load()" e dentro da função "reiniciarJogo()", coloca a seguinte linha: 
    [/color] [color=blue]
       pontuacao = 0  
    [/color] [color=white]
@@ -20,13 +20,14 @@ que o jogador passar por um cano.
 Este código vai fazer com que, sempre que um cano sair da tela do lado esquerdo, ele 
 vai aumentar a pontuação em 1.
 
-3. Para ver a pontuação vamos colocar na função "draw()" o seguinte:
+3. Para ver a pontuação vamos colocar dentro da função "draw()" o seguinte:
    [/color] [color=blue]
       love.graphics.setFont(fonte)
       love.graphics.setColor(1, 1, 1)
       love.graphics.printf("Score: " .. pontuacao, 10, 10, love.graphics.getWidth(), "left")
    [/color] [color=white]
-4. Agora vamos adicionar na função "load()" a linha que vai carregar o som da pontuação:
+4. Agora vamos adicionar o som da pontuação, para isso dentro da função "load()" adiciona a 
+linha que vai carregar o som:
    [/color] [color=blue]
       somPontuacao = love.audio.newSource("point.wav", "static")
    [/color] [color=white]
