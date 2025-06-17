@@ -23,7 +23,7 @@ namespace workshopCli
             session = new Session();
         }
 
-        public void Run()
+       public void Run()
 {
     var VsCode = new OpenVSCode();
     var assembly = Assembly.GetExecutingAssembly();
@@ -58,21 +58,10 @@ namespace workshopCli
         session = new Session(); // Inicializa se não houver arquivo
     }
 
-    // Executa a ação de participação (pulará se StepId existir)
-    var askParticipation = new AskParticipationAction(this);
-    askParticipation.Execute();
-
-    // Determinar o guia com base na resposta (ou manter o salvo)
-    bool isGuide2 = session.Participation?.Trim().ToLower().Replace("ã", "a").Replace("á", "a").Replace("õ", "o") == "sim";
-    if (isGuide2)
-    {
-        guide.SetSteps(true); // Carrega Guide-2
-        // Não reseta StepId aqui, pois queremos manter o salvo
-    }
-    else
-    {
-        guide.SetSteps(false); // Mantém Guide-1
-    }
+    // Configurar diretamente para Guide_2
+    guide.SetSteps(true); // Carrega Guide-2
+    session.Participation = "sim"; // Define participação como "sim" para consistência
+    bool isGuide2 = true; // Define isGuide2 para uso no loop
 
     // Iniciar o loop a partir do StepId salvo ou do início
     var startIndex = guide.Steps.FindIndex(step => step.Id == session.StepId);

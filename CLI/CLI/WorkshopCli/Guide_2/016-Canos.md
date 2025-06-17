@@ -1,5 +1,3 @@
-
--+
 [color=white]
 Para dar mais dificuldade vamos criar os obstáculos do jogo.
 
