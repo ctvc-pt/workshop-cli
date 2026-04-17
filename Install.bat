@@ -3,6 +3,7 @@
 set DOTNET_INSTALLER=%USERPROFILE%\Desktop\workshop-cli\Resources\dotnet-sdk-6.0.425-win-x64.exe
 set PYTHON_INSTALLER=%USERPROFILE%\Desktop\workshop-cli\Resources\python-installer.exe
 set GIT_INSTALLER=%USERPROFILE%\Desktop\workshop-cli\Resources\Git-2.46.2-64-bit.exe
+set VSCODE_INSTALLER=%USERPROFILE%\Desktop\workshop-cli\Resources\VSCodeSetup.exe
 set TARGET_PROGRAM=%USERPROFILE%\Desktop\workshop-cli\CLI\CLI\WorkshopCli\bin\Debug\net6.0\WorkshopCli.exe
 set SHORTCUT_NAME=%USERPROFILE%\Desktop\cli.lnk
 set SESSION_FILE=%USERPROFILE%\Desktop\workshop-cli\Resources\session.txt
@@ -77,13 +78,42 @@ if %ERRORLEVEL% NEQ 0 (
     echo Ollama server already running.
 )
 
-REM Check Visual Studio Code
+REM Check and install Visual Studio Code
 echo Checking Visual Studio Code...
 where code >nul 2>&1
 if %ERRORLEVEL% NEQ 0 (
-    echo Visual Studio Code not found. Please install VS Code manually if needed.
+    if exist "%VSCODE_INSTALLER%" (
+        echo Visual Studio Code not found. Installing...
+        start /wait "" "%VSCODE_INSTALLER%" /VERYSILENT /NORESTART /MERGETASKS=!runcode,addcontextmenufiles,addcontextmenufolders,addtopath
+    ) else (
+        echo Visual Studio Code not found and installer missing at %VSCODE_INSTALLER%. Please install VS Code manually.
+    )
 ) else (
     echo Visual Studio Code already installed.
+)
+
+REM Install VS Code extensions (re-check `code` command in case VS Code was just installed)
+where code >nul 2>&1
+if %ERRORLEVEL% EQU 0 (
+    REM sumneko.lua - Lua language support
+    echo Checking VS Code extension sumneko.lua...
+    call code --list-extensions | findstr /I "sumneko.lua" >nul
+    if %ERRORLEVEL% NEQ 0 (
+        echo Extension not found. Installing sumneko.lua...
+        call code --install-extension sumneko.lua
+    ) else (
+        echo Extension sumneko.lua already installed.
+    )
+
+    REM pixelbyte-studios.pixelbyte-love2d - Love2D run command (Alt+L)
+    echo Checking VS Code extension pixelbyte-studios.pixelbyte-love2d...
+    call code --list-extensions | findstr /I "pixelbyte-studios.pixelbyte-love2d" >nul
+    if %ERRORLEVEL% NEQ 0 (
+        echo Extension not found. Installing pixelbyte-studios.pixelbyte-love2d...
+        call code --install-extension pixelbyte-studios.pixelbyte-love2d
+    ) else (
+        echo Extension pixelbyte-studios.pixelbyte-love2d already installed.
+    )
 )
 
 REM Delete session file if it exists
