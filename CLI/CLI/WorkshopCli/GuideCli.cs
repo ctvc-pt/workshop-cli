@@ -63,16 +63,38 @@ namespace workshopCli
     askParticipation.Execute();
 
     // Determinar o guia com base na resposta (ou manter o salvo)
-    bool isGuide2 = session.Participation?.Trim().ToLower().Replace("ã", "a").Replace("á", "a").Replace("õ", "o") == "sim";
-    if (isGuide2)
+    var participation = session.Participation?.Trim().ToLower();
+
+    // Se disse "sim", pergunta qual guia quer seguir (Flappy Bird ou Endless Skater)
+    if (participation == "sim" && string.IsNullOrEmpty(session.StepId))
     {
-        guide.SetSteps(true); // Carrega Guide-2
-        // Não reseta StepId aqui, pois queremos manter o salvo
+        int cursorTop = Console.CursorTop;
+        Console.WriteLine("Qual jogo queres fazer?");
+        Console.WriteLine("  1 - Flappy Bird");
+        Console.WriteLine("  2 - Endless Skater\n");
+
+        string escolha;
+        do
+        {
+            escolha = ExerciseHelper.PromptAnswerAndPrint()?.Trim();
+            if (escolha != "1" && escolha != "2")
+            {
+                Console.WriteLine("Resposta invalida. Por favor, responde '1' ou '2'.");
+            }
+        } while (escolha != "1" && escolha != "2");
+
+        participation = escolha == "1" ? "2" : "3";
+        session.Participation = participation;
     }
-    else
+
+    int guideNumber = participation switch
     {
-        guide.SetSteps(false); // Mantém Guide-1
-    }
+        "2" or "sim" => 2,
+        "3" => 3,
+        _ => 1
+    };
+    bool isGuide2 = guideNumber >= 2;
+    guide.SetSteps(guideNumber);
 
     // Iniciar o loop a partir do StepId salvo ou do início
     var startIndex = guide.Steps.FindIndex(step => step.Id == session.StepId);
