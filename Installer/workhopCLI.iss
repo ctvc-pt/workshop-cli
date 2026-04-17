@@ -44,13 +44,13 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 
 [Files]
 ; This installs the executable and maintains the path structure
-Source: "..\workshop-cli\WorkshopCli\bin\Debug\net6.0\{#MyAppExeName}"; DestDir: "{app}\workshop-cli\WorkshopCli\bin\Debug\net6.0"; Flags: ignoreversion
+Source: "..\workshop-cli\WorkshopCli\bin\Debug\net8.0\{#MyAppExeName}"; DestDir: "{app}\workshop-cli\WorkshopCli\bin\Debug\net8.0"; Flags: ignoreversion
 ; This copies all files inside the workshop-cli folder, keeping the directory structure
 Source: "..\workshop-cli\*"; DestDir: "{app}\workshop-cli"; Flags: ignoreversion recursesubdirs createallsubdirs
 ; This keeps the Resources folder structure inside the installation directory
 Source: "..\Resources\*"; DestDir: "{app}\Resources"; Flags: ignoreversion recursesubdirs createallsubdirs; Excludes: "session.txt"
 ; Individual installers in the tmp folder (no need to maintain a folder structure for these)
-Source: "..\Resources\dotnet-sdk-6.0.425-win-x64.exe"; DestDir: "{tmp}"; Flags: ignoreversion
+Source: "..\Resources\dotnet-sdk-8.0.420-win-x64.exe"; DestDir: "{tmp}"; Flags: ignoreversion
 Source: "..\Resources\python-installer.exe"; DestDir: "{tmp}"; Flags: ignoreversion
 Source: "..\Resources\Git-2.46.2-64-bit.exe"; DestDir: "{tmp}"; Flags: ignoreversion
 Source: "..\Resources\VSCodeSetup.exe"; DestDir: "{tmp}"; Flags: ignoreversion
@@ -61,7 +61,7 @@ Name: "{autodesktop}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; Tasks: de
 
 [Run]
 ; Install .NET SDK
-Filename: "{tmp}\dotnet-sdk-6.0.425-win-x64.exe"; Parameters: "/quiet /norestart"; Flags: waituntilterminated
+Filename: "{tmp}\dotnet-sdk-8.0.420-win-x64.exe"; Parameters: "/quiet /norestart"; Flags: waituntilterminated
 ; Install Python
 Filename: "{tmp}\python-installer.exe"; Parameters: "/quiet"; Flags: waituntilterminated
 ; Install PyGithub using pip

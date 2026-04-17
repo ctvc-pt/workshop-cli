@@ -1,6 +1,6 @@
 @echo off
 :: Define the target executable and shortcut path
-set TARGET_PROGRAM=%~dp0..\workshop-cli\WorkshopCli\bin\Debug\net6.0\WorkshopCli.exe
+set TARGET_PROGRAM=%~dp0..\workshop-cli\WorkshopCli\bin\Debug\net8.0\WorkshopCli.exe
 set SHORTCUT_NAME=%USERPROFILE%\Desktop\WorkshopCli.lnk
 
 :: Create the shortcut

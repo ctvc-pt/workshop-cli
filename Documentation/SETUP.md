@@ -26,7 +26,7 @@ The script is idempotent: each step checks whether the component is already pres
 
 | Component                              | Source in `Resources/`                     | Purpose                                  |
 |----------------------------------------|--------------------------------------------|------------------------------------------|
-| .NET SDK                               | `dotnet-sdk-6.0.425-win-x64.exe`           | Required to run the CLI executable       |
+| .NET SDK                               | `dotnet-sdk-8.0.420-win-x64.exe`           | Required to run the CLI executable       |
 | Python 3                               | `python-installer.exe`                     | Used by helper scripts (e.g. `open_vscode.py`) |
 | PyGithub                               | installed via `pip`                        | Git operations from Python helpers       |
 | Git                                    | `Git-2.46.2-64-bit.exe`                    | Used by the Git-based workshop workflow  |
@@ -41,7 +41,7 @@ The script also deletes any pre-existing `Resources\session.txt` (so the first l
 ## After installation
 
 - Students launch the workshop via the `cli.lnk` Desktop shortcut.
-- The shortcut targets `CLI\CLI\WorkshopCli\bin\Debug\net6.0\WorkshopCli.exe` and runs it as administrator.
+- The shortcut targets `CLI\CLI\WorkshopCli\bin\Debug\net8.0\WorkshopCli.exe` and runs it as administrator.
 - Inside the editor, **Alt + L** runs the current Love2D game (provided by the `pixelbyte-love2d` extension).
 
 ## Building a distributable installer

@@ -1,29 +1,65 @@
 @echo off
 
-set DOTNET_INSTALLER=%USERPROFILE%\Desktop\workshop-cli\Resources\dotnet-sdk-6.0.425-win-x64.exe
-set PYTHON_INSTALLER=%USERPROFILE%\Desktop\workshop-cli\Resources\python-installer.exe
-set GIT_INSTALLER=%USERPROFILE%\Desktop\workshop-cli\Resources\Git-2.46.2-64-bit.exe
-set VSCODE_INSTALLER=%USERPROFILE%\Desktop\workshop-cli\Resources\VSCodeSetup.exe
-set TARGET_PROGRAM=%USERPROFILE%\Desktop\workshop-cli\CLI\CLI\WorkshopCli\bin\Debug\net6.0\WorkshopCli.exe
-set SHORTCUT_NAME=%USERPROFILE%\Desktop\cli.lnk
-set SESSION_FILE=%USERPROFILE%\Desktop\workshop-cli\Resources\session.txt
-
-REM Check and install .NET 6
-echo Checking .NET 6...
-dotnet --version 2>nul | findstr "6.0" >nul
+REM Require admin — otherwise the silent installers fail in silence and the user has no idea why.
+net session >nul 2>&1
 if %ERRORLEVEL% NEQ 0 (
-    echo .NET 6 not found. Installing .NET 6...
-    start /wait "" %DOTNET_INSTALLER% /quiet
-) else (
-    echo .NET 6 already installed.
+    echo.
+    echo *** This script must be run as Administrator. ***
+    echo Right-click Install.bat and choose "Run as administrator".
+    echo.
+    pause
+    exit /b 1
 )
+
+set DOTNET_INSTALLER=%~dp0Resources\dotnet-sdk-8.0.420-win-x64.exe
+set PYTHON_INSTALLER=%~dp0Resources\python-installer.exe
+set GIT_INSTALLER=%~dp0Resources\Git-2.46.2-64-bit.exe
+set VSCODE_INSTALLER=%~dp0Resources\VSCodeSetup.exe
+set TARGET_PROGRAM=%~dp0CLI\CLI\WorkshopCli\bin\Debug\net8.0\WorkshopCli.exe
+set "DESKTOP_DIR="
+for /f "usebackq delims=" %%i in (`powershell -NoProfile -ExecutionPolicy Bypass -Command "[Environment]::GetFolderPath('Desktop')"`) do set "DESKTOP_DIR=%%i"
+if not defined DESKTOP_DIR set "DESKTOP_DIR=%USERPROFILE%\Desktop"
+set "SHORTCUT_NAME=%DESKTOP_DIR%\cli.lnk"
+set SESSION_FILE=%~dp0Resources\session.txt
+
+REM Check and install .NET 8 SDK (a .NET 6 SDK alone is not enough)
+echo Checking .NET 8 SDK...
+where dotnet >nul 2>&1
+if %ERRORLEVEL% NEQ 0 goto install_dotnet8
+dotnet --list-sdks > "%TEMP%\dotnet_sdks.txt" 2>&1
+findstr /B /C:"8." "%TEMP%\dotnet_sdks.txt" >nul 2>&1
+set "HAS_DOTNET8=%ERRORLEVEL%"
+del "%TEMP%\dotnet_sdks.txt" 2>nul
+if "%HAS_DOTNET8%"=="0" (
+    echo .NET 8 SDK already installed.
+    goto dotnet8_done
+)
+:install_dotnet8
+echo .NET 8 SDK not found. Installing .NET 8 (this may take 1-2 min)...
+"%DOTNET_INSTALLER%" /install /quiet /norestart
+set "DOTNET_INSTALL_EXITCODE=%ERRORLEVEL%"
+set "PATH=%PATH%;C:\Program Files\dotnet"
+dotnet --list-sdks > "%TEMP%\dotnet_sdks.txt" 2>&1
+findstr /B /C:"8." "%TEMP%\dotnet_sdks.txt" >nul 2>&1
+set "DOTNET8_VERIFY=%ERRORLEVEL%"
+del "%TEMP%\dotnet_sdks.txt" 2>nul
+if not "%DOTNET8_VERIFY%"=="0" (
+    echo.
+    echo *** ERROR: .NET 8 SDK install did not succeed ^(installer exit code %DOTNET_INSTALL_EXITCODE%^).
+    echo *** Try running "%DOTNET_INSTALLER%" manually to see the error.
+    echo.
+    pause
+    exit /b 1
+)
+echo .NET 8 SDK installed successfully.
+:dotnet8_done
 
 REM Check and install Python
 echo Checking Python...
-python --version 2>nul | findstr "3." >nul
+where python >nul 2>&1
 if %ERRORLEVEL% NEQ 0 (
     echo Python not found. Installing Python...
-    start /wait "" %PYTHON_INSTALLER% /quiet
+    start /wait "" "%PYTHON_INSTALLER%" /quiet
 ) else (
     echo Python already installed.
 )
@@ -43,39 +79,39 @@ echo Checking Git...
 git --version >nul 2>&1
 if %ERRORLEVEL% NEQ 0 (
     echo Git not found. Installing Git...
-    start /wait "" %GIT_INSTALLER% /VERYSILENT /NORESTART
+    start /wait "" "%GIT_INSTALLER%" /VERYSILENT /NORESTART
 ) else (
     echo Git already installed.
 )
 
-REM Check Ollama
+REM Check Ollama (and only run ollama-dependent steps if it's actually installed)
 echo Checking Ollama...
-ollama --version >nul 2>&1
+where ollama >nul 2>&1
 if %ERRORLEVEL% NEQ 0 (
-    echo Ollama not found. Please install Ollama manually if needed.
+    echo Ollama not found. Please install Ollama manually if needed. Skipping model pull and server start.
 ) else (
     echo Ollama already installed.
-)
 
-REM Check and pull the Llama 3.2 1B model
-echo Checking Llama 3.2 1B model...
-ollama list | findstr "llama3.2:1b" >nul 2>&1
-if %ERRORLEVEL% NEQ 0 (
-    echo Llama 3.2 1B model not found. Pulling the model...
-    start /wait "" ollama pull llama3.2:1b
-) else (
-    echo Llama 3.2 1B model already installed.
-)
+    echo Checking Llama 3.2 1B model...
+    ollama list > "%TEMP%\ollama_list.txt" 2>&1
+    findstr /C:"llama3.2:1b" "%TEMP%\ollama_list.txt" >nul 2>&1
+    if %ERRORLEVEL% NEQ 0 (
+        echo Llama 3.2 1B model not found. Pulling the model...
+        start /wait "" ollama pull llama3.2:1b
+    ) else (
+        echo Llama 3.2 1B model already installed.
+    )
+    del "%TEMP%\ollama_list.txt" 2>nul
 
-REM Start the Ollama server in the background if not running
-echo Checking Ollama server...
-tasklist | findstr "ollama" >nul 2>&1
-if %ERRORLEVEL% NEQ 0 (
-    echo Starting Ollama server in the background...
-    start /B "" ollama serve >nul 2>&1
-    timeout /t 5 /nobreak >nul
-) else (
-    echo Ollama server already running.
+    echo Checking Ollama server...
+    tasklist /FI "IMAGENAME eq ollama.exe" 2>nul | find /I "ollama.exe" >nul
+    if %ERRORLEVEL% NEQ 0 (
+        echo Starting Ollama server in the background...
+        start /B "" ollama serve >nul 2>&1
+        timeout /t 5 /nobreak >nul
+    ) else (
+        echo Ollama server already running.
+    )
 )
 
 REM Check and install Visual Studio Code
@@ -116,6 +152,16 @@ if %ERRORLEVEL% EQU 0 (
     )
 )
 
+REM Build the CLI if the executable is missing (first run after a fresh install)
+if not exist "%TARGET_PROGRAM%" (
+    echo Building WorkshopCli...
+    REM Refresh PATH so a freshly installed dotnet is picked up without reopening the shell
+    set "PATH=%PATH%;C:\Program Files\dotnet"
+    pushd "%~dp0CLI\CLI\WorkshopCli"
+    dotnet build
+    popd
+)
+
 REM Delete session file if it exists
 if exist "%SESSION_FILE%" (
     echo Deleting session file...
@@ -139,4 +185,4 @@ REM echo Deleting script...
 REM del "%~f0"
 
 echo Installations completed successfully, shortcut created, and script finished.
-exit
+pause
