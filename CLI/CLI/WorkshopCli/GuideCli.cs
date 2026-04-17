@@ -102,7 +102,12 @@ namespace workshopCli
         if (step.Type != "code" && step.Type != "open-file" && step.Type != "intro")
         {
             var filePath = $"{step.Id}.md";
-            string resourcePrefix = isGuide2 ? "workshop_cli.Guide_2." : "workshop_cli.Guide.";
+            string resourcePrefix = guideNumber switch
+            {
+                2 => "workshop_cli.Guide_2.",
+                3 => "workshop_cli.Guide_3.",
+                _ => "workshop_cli.Guide."
+            };
             var resourceName = $"{resourcePrefix}{filePath}";
             var resourceStream = assembly.GetManifestResourceStream(resourceName);
             if (resourceStream != null)
@@ -135,8 +140,8 @@ namespace workshopCli
             { "challenge", new ChallengeAction(delay, session.Name) },
             { "install", new InstallAction() },
             { "open-file", new OpenFileL2DAction(step.Id, delay) },
-            { "CreateSprites", new CreateSpritesAction(delay, isGuide2) },
-            { "code", new CodeAction(currentIndex) },
+            { "CreateSprites", new CreateSpritesAction(delay, guideNumber) },
+            { "code", new CodeAction(currentIndex, guideNumber) },
             { "ask-name", new AskNameAction(this) },
             { "ask-age", new AskAgeAction(this) },
             { "ask-email", new AskEmailAction(this) },

@@ -29,26 +29,32 @@ public class Guide
         StepsByVersion[1] = new List<Step>(Steps); // Copia os passos do Guide-1
     }
 
-    public void SetSteps(bool hasParticipatedBefore)
+    public void SetSteps(int guideIndex)
     {
-        var guideIndex = hasParticipatedBefore ? 2 : 1;
-        if (guideIndex == 2 && !StepsByVersion.ContainsKey(2))
+        if (guideIndex >= 2 && !StepsByVersion.ContainsKey(guideIndex))
         {
             var assembly = Assembly.GetExecutingAssembly();
-            using (var stream = assembly.GetManifestResourceStream("workshop_cli.Guide_2.Steps.json"))
+            var resourceName = $"workshop_cli.Guide_{guideIndex}.Steps.json";
+            using (var stream = assembly.GetManifestResourceStream(resourceName))
             {
                 if (stream == null)
                 {
-                    throw new FileNotFoundException("Resource 'workshop_cli.Guide_2.Steps.json' not found in the assembly.");
+                    throw new FileNotFoundException($"Resource '{resourceName}' not found in the assembly.");
                 }
                 using (var reader = new StreamReader(stream))
                 {
                     var json = reader.ReadToEnd();
-                    StepsByVersion[2] = JsonConvert.DeserializeObject<List<Step>>(json) ?? new List<Step>();
+                    StepsByVersion[guideIndex] = JsonConvert.DeserializeObject<List<Step>>(json) ?? new List<Step>();
                 }
             }
         }
         // Substituir completamente os Steps pelo guia selecionado
         Steps = new List<Step>(StepsByVersion[guideIndex]); // Cria uma nova cópia para evitar referências compartilhadas
+    }
+
+    // Manter compatibilidade com chamadas antigas
+    public void SetSteps(bool hasParticipatedBefore)
+    {
+        SetSteps(hasParticipatedBefore ? 2 : 1);
     }
 }
