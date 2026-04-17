@@ -13,7 +13,7 @@ public class GitHubManager
         var processStartInfo = new ProcessStartInfo
         {
             FileName = "python",
-            Arguments = pythonScriptPath,
+            Arguments = $"\"{pythonScriptPath}\"",
             RedirectStandardOutput = true,
             RedirectStandardError = true,
             UseShellExecute = false,
@@ -67,7 +67,7 @@ public class GitHubManager
         var processStartInfo = new ProcessStartInfo
         {
             FileName = "python",
-            Arguments = pythonScriptPath,
+            Arguments = $"\"{pythonScriptPath}\"",
             RedirectStandardOutput = true,
             RedirectStandardError = true,
             UseShellExecute = false,
