@@ -2,8 +2,7 @@
 
 1. Clone the repository.
 2. Download the API keys and add them to the `Resources` folder from the following [Google Drive link](https://drive.google.com/drive/folders/1BnHV73TDjjBz409cYiKzdfZMoD3cgLwp?usp=sharing).
-3. Install .NET 8.0 by running `Resources/dotnet-runtime-8.0.4-win-x64.exe`.
-4. Run `Install.bat` with administrator permissions in the project folder.
+3. Run `Install.bat` with administrator permissions in the project folder. It installs the .NET 8 SDK, Python, Git, Visual Studio Code, and the required VS Code extensions automatically if they are missing.
 
 ### Troubleshooting
 
