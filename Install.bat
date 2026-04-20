@@ -128,29 +128,56 @@ if %ERRORLEVEL% NEQ 0 (
     echo Visual Studio Code already installed.
 )
 
-REM Install VS Code extensions (re-check `code` command in case VS Code was just installed)
+REM Install VS Code extensions (re-check `code` command in case VS Code was just installed).
+REM Prefer the canonical code.cmd install paths over `where code`: a stray/broken
+REM code.cmd wrapper on PATH (seen in the wild pointing to C:\Code.exe) would otherwise
+REM shadow the real one and make every --install-extension call fail.
+set "CODE_CMD="
+if exist "%LOCALAPPDATA%\Programs\Microsoft VS Code\bin\code.cmd" set "CODE_CMD=%LOCALAPPDATA%\Programs\Microsoft VS Code\bin\code.cmd"
+if not defined CODE_CMD if exist "%ProgramFiles%\Microsoft VS Code\bin\code.cmd" set "CODE_CMD=%ProgramFiles%\Microsoft VS Code\bin\code.cmd"
+if not defined CODE_CMD if exist "%ProgramFiles(x86)%\Microsoft VS Code\bin\code.cmd" set "CODE_CMD=%ProgramFiles(x86)%\Microsoft VS Code\bin\code.cmd"
+if defined CODE_CMD goto code_cmd_found
 where code >nul 2>&1
-if %ERRORLEVEL% EQU 0 (
-    REM sumneko.lua - Lua language support
-    echo Checking VS Code extension sumneko.lua...
-    call code --list-extensions | findstr /I "sumneko.lua" >nul
-    if %ERRORLEVEL% NEQ 0 (
-        echo Extension not found. Installing sumneko.lua...
-        call code --install-extension sumneko.lua
-    ) else (
-        echo Extension sumneko.lua already installed.
-    )
+if %ERRORLEVEL% EQU 0 set "CODE_CMD=code"
+:code_cmd_found
 
-    REM pixelbyte-studios.pixelbyte-love2d - Love2D run command (Alt+L)
-    echo Checking VS Code extension pixelbyte-studios.pixelbyte-love2d...
-    call code --list-extensions | findstr /I "pixelbyte-studios.pixelbyte-love2d" >nul
-    if %ERRORLEVEL% NEQ 0 (
-        echo Extension not found. Installing pixelbyte-studios.pixelbyte-love2d...
-        call code --install-extension pixelbyte-studios.pixelbyte-love2d
-    ) else (
-        echo Extension pixelbyte-studios.pixelbyte-love2d already installed.
-    )
+if not defined CODE_CMD goto skip_extensions
+
+REM Sanity-check: call --version so a broken wrapper gets rejected rather than swallowed.
+call "%CODE_CMD%" --version >nul 2>&1
+if %ERRORLEVEL% EQU 0 goto code_cmd_ok
+echo WARNING: "%CODE_CMD%" failed to run. Skipping extension install.
+goto skip_extensions
+:code_cmd_ok
+
+REM sumneko.lua - Lua language support
+echo Checking VS Code extension sumneko.lua...
+call "%CODE_CMD%" --list-extensions | findstr /I "sumneko.lua" >nul
+if %ERRORLEVEL% NEQ 0 (
+    echo Extension not found. Installing sumneko.lua...
+    call "%CODE_CMD%" --install-extension sumneko.lua
+) else (
+    echo Extension sumneko.lua already installed.
 )
+
+REM pixelbyte-studios.pixelbyte-love2d - Love2D run command (Alt+L)
+echo Checking VS Code extension pixelbyte-studios.pixelbyte-love2d...
+call "%CODE_CMD%" --list-extensions | findstr /I "pixelbyte-studios.pixelbyte-love2d" >nul
+if %ERRORLEVEL% NEQ 0 (
+    echo Extension not found. Installing pixelbyte-studios.pixelbyte-love2d...
+    call "%CODE_CMD%" --install-extension pixelbyte-studios.pixelbyte-love2d
+) else (
+    echo Extension pixelbyte-studios.pixelbyte-love2d already installed.
+)
+goto extensions_done
+
+:skip_extensions
+echo WARNING: VS Code "code" command not found in PATH or expected install locations.
+echo Skipping extension installation. Install manually after reopening a shell:
+echo   code --install-extension sumneko.lua
+echo   code --install-extension pixelbyte-studios.pixelbyte-love2d
+
+:extensions_done
 
 REM Build the CLI if the executable is missing (first run after a fresh install)
 if not exist "%TARGET_PROGRAM%" (
