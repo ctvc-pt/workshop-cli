@@ -27,7 +27,7 @@ namespace workshopCli
                 var processStartInfo = new ProcessStartInfo
                 {
                     FileName = "python",
-                    Arguments = $"\"{pythonScriptPath}\"",
+                    Arguments = pythonScriptPath,
                     RedirectStandardOutput = true,
                     RedirectStandardError = true,
                     UseShellExecute = false,
