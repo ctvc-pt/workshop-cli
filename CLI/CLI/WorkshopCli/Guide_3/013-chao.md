@@ -3,7 +3,7 @@ Fantastico! Ja tens o fundo e o chao. Agora vamos desenhar
 o teu skater!
 
 No "love.load()" o codigo ja carregou a imagem do skater e
-preparou 3 poses diferentes usando "recortes" (Quads):
+preparou 3 poses diferentes a usar "recortes" (Quads):
 
 - poseAndar - quando o skater esta a andar
 - poseSaltar - quando o skater esta no ar

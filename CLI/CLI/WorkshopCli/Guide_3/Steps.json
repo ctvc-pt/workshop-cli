@@ -81,12 +81,6 @@
         "Delay": "0"
     },
     {
-        "Id": "016-video",
-        "Type": "video",
-        "Message": "mid.mp4",
-        "Delay": "0"
-    },
-    {
         "Id": "017-saltar",
         "Type": "information",
         "Delay": "0"

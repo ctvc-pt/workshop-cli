@@ -62,7 +62,7 @@ banco, adiciona:
 [/color] [color=white]
 
 A animacao funciona assim: 8 vezes por segundo muda entre
-frame 1 e frame 2, fazendo a gaivota bater as asas!
+frame 1 e frame 2, e a gaivota bate as asas!
 
 Executa o jogo (Alt + L). Agacha-te com seta BAIXO quando
 vires uma gaivota!

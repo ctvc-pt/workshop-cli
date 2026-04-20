@@ -76,11 +76,6 @@
         "Delay": "0"
     },
     {
-        "Id": "015-video",
-        "Type": "video",
-        "Message": "mid.mp4"
-    },
-    {
         "Id": "016-Canos",
         "Type": "challenge",
         "Delay": "0"
