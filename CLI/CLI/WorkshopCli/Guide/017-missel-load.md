@@ -12,6 +12,13 @@ Adiciona o seguinte código na função "load()" antes da palavra "end":
     misseis = {}
     podeDisparar = true
 [/color] [color=white]
+Aqui:
+- "missilImagem" guarda a imagem que vais usar em cada míssil.
+- "misseis = {}" cria uma lista vazia. De cada vez que disparas, 
+  um novo míssil é adicionado a esta lista.
+- "podeDisparar" é uma flag (verdadeiro/falso) que indica se a 
+  nave já pode disparar o próximo míssil.
+
 2. Agora vamos desenhar os mísseis na função "draw()"
    [/color] [color=blue]
     for index, missil in ipairs(misseis) do
@@ -33,9 +40,12 @@ Adiciona o seguinte código na função "load()" antes da palavra "end":
       end
     end
    [/color] [color=white]
-Fantástico! Aquilo que fizeste agora foi configurar a tecla 'ESPAÇO', 
-quando pressionares esta tecla a nave dispara um míssil.
-
+Como funciona:
+- "love.keyboard.isDown('space')" é verdadeiro enquanto a tecla 
+  ESPAÇO estiver pressionada.
+- "table.insert(misseis, missil)" adiciona o novo míssil à lista.
+- O ciclo "for" na função "draw()" percorre todos os mísseis da 
+  lista e desenha cada um na sua posição.
 
 4. Inicia o jogo e vê o que há de novo.
 

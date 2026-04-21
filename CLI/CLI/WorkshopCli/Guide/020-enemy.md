@@ -36,9 +36,16 @@ Já tens tudo programado para tua nave, agora falta criar os inimigos.
        end
    end
    [/color] [color=white]
-Esta função faz com que o inimigo apareça de certo em certo tempo
-(não precisas de saber mais que isto, mas se quiseres explorar 
-estás à vontade).
+Como funciona:
+- "geraInimigoTempo" é um contador que baixa a cada frame 
+  ("- dt"). Quando chega a zero, criamos um novo inimigo e o 
+  contador volta a "geraInimigoTempoMax".
+- "love.math.random(0, ...)" escolhe uma posição Y aleatória, 
+  para que os inimigos apareçam em alturas diferentes.
+- "inimigo.posicaoX = love.graphics.getWidth()" faz com que o 
+  inimigo apareça na borda direita do ecrã.
+- "table.insert(inimigos, inimigo)" adiciona o novo inimigo à 
+  lista, tal como fazemos com os mísseis.
 
 4. Por último, na função "update(dt)" depois da linha "atualizarMisseis(dt)" 
 adiciona esta linha:
