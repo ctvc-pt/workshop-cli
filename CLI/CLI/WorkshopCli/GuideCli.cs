@@ -121,7 +121,7 @@ namespace workshopCli
         {
             VsCode.Open();
         }
-        if (step.Type != "code" && step.Type != "open-file" && step.Type != "intro")
+        if (step.Type != "code" && step.Type != "open-file")
         {
             var filePath = $"{step.Id}.md";
             string resourcePrefix = guideNumber switch

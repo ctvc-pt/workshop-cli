@@ -197,6 +197,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <EmbeddedResource Include="Guide_2\004-intro.md" />
       <EmbeddedResource Include="Guide_2\005-love2D-install.md" />
       <EmbeddedResource Include="Guide_2\006-Criar-ficheiro.md" />
       <EmbeddedResource Include="Guide_2\007-code.md" />
