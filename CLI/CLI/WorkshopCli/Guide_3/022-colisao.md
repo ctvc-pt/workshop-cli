@@ -43,6 +43,12 @@ end
 Quando o skater se agacha, a hitbox fica mais baixa.
 Isso permite que as gaivotas passem por cima!
 
+O "ajusteX = 7" encolhe a hitbox 7 pixels para dentro no eixo X.
+Como a imagem do skater tem um bocadinho de espaco transparente
+nas bordas, este ajuste faz com que o jogo so diga que ha
+colisao quando a imagem toca mesmo no obstaculo (mais justo
+para o jogador).
+
 Agora vamos verificar a colisao no "love.update(dt)".
 Adiciona o seguinte NO FINAL da funcao update, DEPOIS
 do movimento dos obstaculos:

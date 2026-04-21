@@ -61,8 +61,15 @@ banco, adiciona:
         end
 [/color] [color=white]
 
-A animacao funciona assim: 8 vezes por segundo muda entre
-frame 1 e frame 2, e a gaivota bate as asas!
+A animacao funciona assim:
+- "love.timer.getTime()" devolve os segundos desde que o jogo
+  comecou. Multiplicado por 8, avanca 8 unidades por segundo.
+- "math.floor(...)" arredonda para baixo (da-nos um numero
+  inteiro que sobe de 1 em 1, 8 vezes por segundo).
+- "% 2" e o resto da divisao por 2 — alterna entre 0 e 1. Quando
+  e 1 usamos o frame 2, quando e 0 usamos o frame 1.
+
+Resultado: a gaivota bate as asas 8 vezes por segundo.
 
 Executa o jogo (Alt + L). Agacha-te com seta BAIXO quando
 vires uma gaivota!
