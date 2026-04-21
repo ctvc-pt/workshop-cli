@@ -28,6 +28,16 @@ Este código verifica se o pássaro está dentro da área dos canos e,
 se estiver, vai verificar se ele bateu nos canos superior ou inferior e vai tocar 
 o som da colisão com os canos.
 
+Como funciona:
+- A primeira condição ("passaro.x + passaro.largura > cano.x and 
+  passaro.x < cano.x + larguraCano") confirma que o pássaro e o 
+  cano se sobrepõem no eixo horizontal (X).
+- A segunda condição verifica se o pássaro está acima do cano de 
+  cima ou abaixo do cano de baixo — ou seja, se tocou numa das 
+  duas partes.
+- Só quando as duas condições são verdadeiras é que marcamos 
+  "gameOver = true" e tocamos os sons.
+
 Agora, para que o jogo acabe temos que adicionar a tela de "Game Over".
 
 3. No fim da função "draw()" adiciona:

@@ -16,6 +16,10 @@ Para dar mais dificuldade vamos criar os obstáculos do jogo.
 Aqui definimos a largura dos canos, (larguraCano = 50), o espaço 
 entre o cano superior e o inferior (espacoCano = 150) e a velocidade (velocidadeCano = 2).
 
+"canos = {}" cria uma lista vazia. Como vão aparecer vários canos 
+ao longo do jogo, guardamo-los todos numa lista e vamos 
+adicionando novos à medida que o tempo passa.
+
 2. Dentro da função "update(dt)", adiciona o que faz os canos moverem-se para a esquerda:
 [/color] [color=blue]
    for i, cano in ipairs(canos) do
@@ -46,8 +50,19 @@ entre o cano superior e o inferior (espacoCano = 150) e a velocidade (velocidade
 
 [/color] [color=white]
 
+Como funciona:
+- "for i, cano in ipairs(canos)" percorre todos os canos da lista. 
+  "ipairs" é uma função do Lua que serve para atravessar listas.
+- "cano.x = cano.x - velocidadeCano" faz cada cano mover-se para 
+  a esquerda em cada frame.
+- "temporizadorCanos" soma "dt" a cada frame. Quando passa o 
+  "tempoGerarCano" (2 segundos), criamos um novo par de canos 
+  com altura aleatória e pomos o contador a zero.
+- "table.insert(canos, { x = ..., y = ... })" adiciona um novo 
+  cano ao fim da lista.
+
 Agora os canos já vão aparecer dentro do jogo, e também vão andar para o lado 
-esquerdo da tela, Executa o jogo com "Alt + L", e diverte-te um pouco.
+esquerdo do ecrã. Executa o jogo com "Alt + L", e diverte-te um pouco.
 
 [/color] [color=red]
      ____  _____ ____    _    _____ ___ ___  
