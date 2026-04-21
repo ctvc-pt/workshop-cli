@@ -38,6 +38,23 @@ The script is idempotent: each step checks whether the component is already pres
 
 The script also deletes any pre-existing `Resources\session.txt` (so the first launch is a clean session), creates the `cli.lnk` shortcut on the Desktop, and launches it once.
 
+## Google Sheets credentials
+
+The CLI logs each student's session progress to a shared Google Sheet (see `CsvController` in `CLI/CLI/WorkshopCli/CsvController.cs`). This requires a service account key at:
+
+```
+Resources/client_secrets.json
+```
+
+The file is git-ignored by design — never commit it. Grab the current key from the Google Drive link in [`HowToRunWorkshopCLI.md`](./HowToRunWorkshopCLI.md).
+
+If the key needs to be regenerated or the target sheet changes:
+
+1. In Google Cloud Console, open the GCP project that owns the service account and create a new JSON key under **IAM & Admin → Service Accounts → Keys → Add Key**. Save it as `Resources/client_secrets.json`.
+2. Share the target spreadsheet with the service account's `client_email` and grant **Editor** permission.
+3. Enable the **Google Sheets API** for that GCP project (`APIs & Services → Library → Google Sheets API → Enable`). Without this the CLI silently fails to write rows.
+4. If you are pointing the CLI at a different spreadsheet, update the `SpreadsheetId` constant in `CsvController.cs` and make sure the target sheet has the tabs named `Sessions` and `Ajudas`.
+
 ## After installation
 
 - Students launch the workshop via the `cli.lnk` Desktop shortcut.

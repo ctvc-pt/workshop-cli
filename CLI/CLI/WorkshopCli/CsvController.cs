@@ -16,7 +16,7 @@ namespace workshopCli
     public class CsvController
     {
         readonly string csvFilePath;
-        const string SpreadsheetId = "1t3i31uzqSklK0R57V2AI38vWLoZPhhwADmbDtqJSKb4";
+        const string SpreadsheetId = "1njSnYweZnBLdnoUnJjJFSO73pb7huFEOxt2J3Bc4BYw";
 
         public CsvController()
         {
