@@ -13,6 +13,14 @@ using Newtonsoft.Json;
 
 namespace workshopCli
 {
+    public enum HelpState
+    {
+        None,
+        Pending,
+        Resolved,
+        NeedsTeacher
+    }
+
     public class CsvController
     {
         readonly string csvFilePath;
@@ -145,10 +153,7 @@ namespace workshopCli
             for ( var i = 0; i < lines.Count; i++ )
             {
                 var values = lines[ i ].Split( ';' );
-                if ( values[ 0 ] != name ) continue;
-                values[ 1 ] = stepId;
-                lines[ i ] = string.Join( ";", values );
-                File.WriteAllLines( csvFilePath, lines );
+                if ( values.Length < 5 || values[ 4 ] != name ) continue;
 
                 bool isNetworkAvailable = NetworkInterface.GetIsNetworkAvailable();
 
@@ -177,7 +182,7 @@ namespace workshopCli
                             for ( int y = 0; y < getResponse.Values.Count; y++ )
                             {
                                 var row = getResponse.Values[ y ];
-                                if ( row.Count > 0 && row[ 0 ]?.ToString() == values[ 0 ] )
+                                if ( row.Count > 0 && row[ 0 ]?.ToString() == name )
                                 {
                                     rowToUpdate = y + 1;
                                     existingStepId = row.Count > 1 ? row[ 1 ]?.ToString() : "";
@@ -192,7 +197,7 @@ namespace workshopCli
 
                         var valuesCell = new List<IList<object>>
                         {
-                            new List<object> { values[ 0 ], stepIdToUse }
+                            new List<object> { name, stepIdToUse }
                         };
                         var valueRange = new ValueRange { Values = valuesCell };
 
@@ -226,141 +231,106 @@ namespace workshopCli
             File.WriteAllLines( csvFilePath, lines );
         }
 
-        public static void PrintHelp( bool needsHelp, bool orange )
+        public static void PrintHelp( HelpState state )
         {
-            string message;
             var txtFilePath = Path.Combine( GuideCli.ResourcesPath, "session.txt" );
             var session = JsonConvert.DeserializeObject<Session>( File.ReadAllText( txtFilePath ) );
             var name = session.NameId;
 
-            bool isNetworkAvailable = NetworkInterface.GetIsNetworkAvailable();
-
-            if ( isNetworkAvailable )
+            if ( !NetworkInterface.GetIsNetworkAvailable() )
             {
-                message = needsHelp ? "needs help" : "";
-                
-                var sheetName = "Ajudas";
-                var service = new CsvController().GetSheetsService();
+                Console.WriteLine( "No network connection available. Unable to update Google Sheets." );
+                return;
+            }
 
-                var spreadsheet = service.Spreadsheets.Get( SpreadsheetId ).Execute();
-                var sheetId = GetSheetId( spreadsheet, sheetName );
+            var (bgColor, message) = GetStateStyle( state );
 
-                if ( sheetId != null )
+            var sheetName = "Ajudas";
+            var service = new CsvController().GetSheetsService();
+
+            var spreadsheet = service.Spreadsheets.Get( SpreadsheetId ).Execute();
+            var sheetId = GetSheetId( spreadsheet, sheetName );
+            if ( sheetId == null ) return;
+
+            var searchRequest = service.Spreadsheets.Values.Get( SpreadsheetId, $"{sheetName}!A:A" );
+            searchRequest.ValueRenderOption = SpreadsheetsResource.ValuesResource.GetRequest
+                .ValueRenderOptionEnum.UNFORMATTEDVALUE;
+            var searchResponse = searchRequest.Execute();
+            var foundRowIndex = -1;
+
+            if ( searchResponse.Values != null && searchResponse.Values.Count > 0 )
+            {
+                for ( int y = 0; y < searchResponse.Values.Count; y++ )
                 {
-                    var searchRequest = service.Spreadsheets.Values.Get( SpreadsheetId, $"{sheetName}!A:A" );
-                    searchRequest.ValueRenderOption = SpreadsheetsResource.ValuesResource.GetRequest
-                        .ValueRenderOptionEnum.UNFORMATTEDVALUE;
-                    var searchResponse = searchRequest.Execute();
-                    var foundRowIndex = -1;
-
-                    if ( searchResponse.Values != null && searchResponse.Values.Count > 0 )
+                    var rowValue = searchResponse.Values[ y ].Count > 0
+                        ? searchResponse.Values[ y ][ 0 ]?.ToString()
+                        : null;
+                    if ( rowValue == name )
                     {
-                        for ( int y = 0; y < searchResponse.Values.Count; y++ )
-                        {
-                            var rowValue = searchResponse.Values[ y ].Count > 0
-                                ? searchResponse.Values[ y ][ 0 ]?.ToString()
-                                : null;
-                            if ( rowValue == name )
-                            {
-                                foundRowIndex = y + 1;
-                                break;
-                            }
-                        }
-                    }
-
-                    if ( foundRowIndex != -1 )
-                    {
-                        var valuesCell = new List<IList<object>> { new List<object> { message } };
-                        var valueRange = new ValueRange { Values = valuesCell };
-
-                        var range = $"{sheetName}!A{foundRowIndex}:B{foundRowIndex}";
-                        var cellFormat = new CellFormat
-                            { BackgroundColor = new Color { Red = 1.0f, Green = 1.0f, Blue = 1.0f } };
-                        if ( needsHelp )
-                        {
-                            cellFormat.BackgroundColor = new Color { Red = 1.0f, Green = 0.0f, Blue = 0.0f };
-                        }
-
-                        if ( orange )
-                        {
-                            cellFormat.BackgroundColor = new Color { Red = 1.0f, Green = 0.5f, Blue = 0.0f };
-                        }
-
-                        var formatRequest = new Request
-                        {
-                            RepeatCell = new RepeatCellRequest
-                            {
-                                Range = new GridRange
-                                {
-                                    SheetId = sheetId, StartRowIndex = foundRowIndex - 1, EndRowIndex = foundRowIndex,
-                                    StartColumnIndex = 0, EndColumnIndex = 2
-                                },
-                                Cell = new CellData { UserEnteredFormat = cellFormat },
-                                Fields = "userEnteredFormat.backgroundColor"
-                            }
-                        };
-
-                        message = needsHelp ? "Precisa de ajuda" : "";
-                        valueRange = new ValueRange { Values = valuesCell };
-                        cellFormat = new CellFormat
-                            { BackgroundColor = new Color { Red = 1.0f, Green = 1.0f, Blue = 1.0f } };
-                        if ( needsHelp )
-                        {
-                            cellFormat.BackgroundColor = new Color { Red = 1.0f, Green = 0.0f, Blue = 0.0f };
-                        }
-
-                        if ( orange )
-                        {
-                            cellFormat.BackgroundColor = new Color { Red = 1.0f, Green = 0.5f, Blue = 0.0f };
-                        }
-
-                        var updateRequest = service.Spreadsheets.Values.Update( valueRange, SpreadsheetId,
-                            $"{sheetName}!C{foundRowIndex}" );
-                        updateRequest.ValueInputOption =
-                            SpreadsheetsResource.ValuesResource.UpdateRequest.ValueInputOptionEnum.RAW;
-                        updateRequest.IncludeValuesInResponse = true;
-                        updateRequest.Fields = "userEnteredFormat.backgroundColor";
-
-                        var requests = new List<Request>
-                        {
-                            formatRequest,
-                            new Request
-                            {
-                                UpdateCells = new UpdateCellsRequest
-                                {
-                                    Range = new GridRange
-                                    {
-                                        SheetId = sheetId, StartRowIndex = foundRowIndex - 1,
-                                        EndRowIndex = foundRowIndex, StartColumnIndex = 2, EndColumnIndex = 3
-                                    },
-                                    Rows = new List<RowData>
-                                    {
-                                        new RowData
-                                        {
-                                            Values = new List<CellData>
-                                            {
-                                                new CellData
-                                                {
-                                                    UserEnteredValue = new ExtendedValue { StringValue = message },
-                                                    UserEnteredFormat = cellFormat
-                                                }
-                                            }
-                                        }
-                                    },
-                                    Fields = "userEnteredValue,userEnteredFormat.backgroundColor"
-                                }
-                            }
-                        };
-                        var batchUpdateRequest = new BatchUpdateSpreadsheetRequest { Requests = requests };
-                        service.Spreadsheets.BatchUpdate( batchUpdateRequest, SpreadsheetId ).Execute();
+                        foundRowIndex = y + 1;
+                        break;
                     }
                 }
             }
-            else
+
+            if ( foundRowIndex == -1 ) return;
+
+            var cellFormat = new CellFormat { BackgroundColor = bgColor };
+
+            var requests = new List<Request>
             {
-                Console.WriteLine( "No network connection available. Unable to update Google Sheets." );
-            }
+                new Request
+                {
+                    RepeatCell = new RepeatCellRequest
+                    {
+                        Range = new GridRange
+                        {
+                            SheetId = sheetId, StartRowIndex = foundRowIndex - 1, EndRowIndex = foundRowIndex,
+                            StartColumnIndex = 0, EndColumnIndex = 2
+                        },
+                        Cell = new CellData { UserEnteredFormat = cellFormat },
+                        Fields = "userEnteredFormat.backgroundColor"
+                    }
+                },
+                new Request
+                {
+                    UpdateCells = new UpdateCellsRequest
+                    {
+                        Range = new GridRange
+                        {
+                            SheetId = sheetId, StartRowIndex = foundRowIndex - 1,
+                            EndRowIndex = foundRowIndex, StartColumnIndex = 2, EndColumnIndex = 3
+                        },
+                        Rows = new List<RowData>
+                        {
+                            new RowData
+                            {
+                                Values = new List<CellData>
+                                {
+                                    new CellData
+                                    {
+                                        UserEnteredValue = new ExtendedValue { StringValue = message },
+                                        UserEnteredFormat = cellFormat
+                                    }
+                                }
+                            }
+                        },
+                        Fields = "userEnteredValue,userEnteredFormat.backgroundColor"
+                    }
+                }
+            };
+
+            var batchUpdateRequest = new BatchUpdateSpreadsheetRequest { Requests = requests };
+            service.Spreadsheets.BatchUpdate( batchUpdateRequest, SpreadsheetId ).Execute();
         }
+
+        static (Color color, string message) GetStateStyle( HelpState state ) => state switch
+        {
+            HelpState.Pending      => (new Color { Red = 1.0f, Green = 0.5f, Blue = 0.0f }, ""),
+            HelpState.Resolved     => (new Color { Red = 0.0f, Green = 1.0f, Blue = 0.0f }, "Resolvido"),
+            HelpState.NeedsTeacher => (new Color { Red = 1.0f, Green = 0.0f, Blue = 0.0f }, "Precisa de ajuda"),
+            _                      => (new Color { Red = 1.0f, Green = 1.0f, Blue = 1.0f }, ""),
+        };
 
         private static int? GetSheetId( Spreadsheet spreadsheet, string sheetName )
         {

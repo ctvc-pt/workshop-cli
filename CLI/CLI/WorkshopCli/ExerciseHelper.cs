@@ -92,7 +92,7 @@ namespace workshopCli
         {
             try
             {
-                CsvController.PrintHelp( false, true );
+                CsvController.PrintHelp( HelpState.Pending );
             }
             catch ( Exception e )
             {
@@ -132,7 +132,7 @@ namespace workshopCli
                 {
                     try
                     {
-                        CsvController.PrintHelp( true, false );
+                        CsvController.PrintHelp( HelpState.Resolved );
                     }
                     catch ( Exception e )
                     {
@@ -159,7 +159,7 @@ namespace workshopCli
         {
             try
             {
-                CsvController.PrintHelp( true, false );
+                CsvController.PrintHelp( HelpState.NeedsTeacher );
             }
             catch ( Exception e )
             {
@@ -181,7 +181,7 @@ namespace workshopCli
                 {
                     try
                     {
-                        CsvController.PrintHelp( false, false );
+                        CsvController.PrintHelp( HelpState.None );
                     }
                     catch ( Exception e )
                     {
