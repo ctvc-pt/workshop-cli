@@ -2,7 +2,7 @@
 
 1. Clone the repository.
 2. Download `client_secrets.json` (the Google service account key used to update the Sessions spreadsheet) from the following [Google Drive link](https://drive.google.com/drive/folders/1BnHV73TDjjBz409cYiKzdfZMoD3cgLwp?usp=sharing) and place it at `Resources/client_secrets.json`. See [SETUP.md — Google Sheets credentials](./SETUP.md#google-sheets-credentials) if the key needs to be regenerated.
-3. Run `Install.bat` with administrator permissions in the project folder. It installs the .NET 8 SDK, Python, Git, Visual Studio Code, and the required VS Code extensions automatically if they are missing.
+3. Run `Install.bat` with administrator permissions in the project folder. It installs the .NET 8 SDK, Python, Git, Ollama (plus pulling the `qwen2.5:3b` model for the in-workshop `ajuda` command), Visual Studio Code, and the required VS Code extensions automatically if they are missing.
 
 ### Troubleshooting
 

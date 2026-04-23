@@ -11,6 +11,6 @@
 
 <img src="image4.png" alt="alt text" width="300">
 
-6. If `Install.bat` gets stuck checking the Llama model, as shown in the image, just close the window and run `Install.bat` again.
+6. If `Install.bat` looks stuck while pulling the `qwen2.5:3b` Ollama model (the *"Pulling the model (~2 GB)"* step), give it a few minutes — on a slow connection this can take 2–8 minutes and the progress only refreshes occasionally. Only close the window and re-run `Install.bat` if the download is clearly frozen (no network activity for several minutes).
 ![alt text](image5.png)
 

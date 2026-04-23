@@ -30,8 +30,8 @@ The script is idempotent: each step checks whether the component is already pres
 | Python 3                               | `python-installer.exe`                     | Used by helper scripts (e.g. `open_vscode.py`) |
 | PyGithub                               | installed via `pip`                        | Git operations from Python helpers       |
 | Git                                    | `Git-2.46.2-64-bit.exe`                    | Used by the Git-based workshop workflow  |
-| Ollama (runtime)                       | not bundled — must be installed manually if missing | Hosts the local LLM the CLI talks to |
-| `qwen2.5:3b` model                     | pulled via `ollama pull`                   | Provides on-device help responses        |
+| Ollama (runtime)                       | `OllamaSetup.exe` (fallback — primary path is `winget install Ollama.Ollama`) | Hosts the local LLM the CLI talks to; the script also starts `ollama serve` in the background |
+| `qwen2.5:3b` model                     | pulled via `ollama pull` (~2 GB)           | Provides on-device help responses for the `ajuda` command |
 | Visual Studio Code                     | `VSCodeSetup.exe` (User Setup)             | The editor students use                  |
 | VS Code extension `sumneko.lua`        | installed via `code --install-extension`   | Lua language support                     |
 | VS Code extension `pixelbyte-studios.pixelbyte-love2d` | installed via `code --install-extension`   | Provides the Alt+L run command the guides reference |
@@ -60,6 +60,23 @@ If the key needs to be regenerated or the target sheet changes:
 - Students launch the workshop via the `cli.lnk` Desktop shortcut.
 - The shortcut targets `CLI\CLI\WorkshopCli\bin\Debug\net8.0\WorkshopCli.exe` and runs it as administrator.
 - Inside the editor, **Alt + L** runs the current Love2D game (provided by the `pixelbyte-love2d` extension).
+
+## In-workshop help flow (`ajuda` command)
+
+While solving an exercise the student can type `ajuda` (or `h`) to ask the local LLM for help:
+
+1. The CLI sends the current step text, the student's `main.lua`, and their question to Ollama (`http://localhost:11434/api/generate`, model `qwen2.5:3b`).
+2. The LLM's answer is printed in the terminal, then the CLI asks *"Conseguiste resolver? (sim ou não)"*.
+3. The student's row in the `Ajudas` tab of the Google Sheet is colour-coded so mentors can see who needs attention at a glance:
+
+   | State          | Colour  | Label in column C  | When it is set                                |
+   |----------------|---------|--------------------|-----------------------------------------------|
+   | `Pending`      | Orange  | —                  | Right when the student types `ajuda`          |
+   | `Resolved`     | Green   | `Resolvido`        | Student answered *sim* — LLM fixed it         |
+   | `NeedsTeacher` | Red     | `Precisa de ajuda` | Student answered *não* or the LLM call failed |
+   | `None`         | White   | —                  | After a mentor marks the request as handled   |
+
+The states live in the `HelpState` enum in `CLI/CLI/WorkshopCli/CsvController.cs`; the transitions are driven from `ExerciseHelper.HandleHelp`.
 
 ## Building a distributable installer
 
