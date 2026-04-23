@@ -15,6 +15,7 @@ set DOTNET_INSTALLER=%~dp0Resources\dotnet-sdk-8.0.420-win-x64.exe
 set PYTHON_INSTALLER=%~dp0Resources\python-installer.exe
 set GIT_INSTALLER=%~dp0Resources\Git-2.46.2-64-bit.exe
 set VSCODE_INSTALLER=%~dp0Resources\VSCodeSetup.exe
+set OLLAMA_INSTALLER=%~dp0Resources\OllamaSetup.exe
 set TARGET_PROGRAM=%~dp0CLI\CLI\WorkshopCli\bin\Debug\net8.0\WorkshopCli.exe
 set "DESKTOP_DIR="
 for /f "usebackq delims=" %%i in (`powershell -NoProfile -ExecutionPolicy Bypass -Command "[Environment]::GetFolderPath('Desktop')"`) do set "DESKTOP_DIR=%%i"
@@ -84,35 +85,100 @@ if %ERRORLEVEL% NEQ 0 (
     echo Git already installed.
 )
 
-REM Check Ollama (and only run ollama-dependent steps if it's actually installed)
-echo Checking Ollama...
+REM Check and install Ollama (provides the local LLM for the 'ajuda' helper)
+echo.
+echo === Checking Ollama ===
+where ollama >nul 2>&1
+if %ERRORLEVEL% EQU 0 goto ollama_present
+
+REM Primary path: winget. It's Microsoft-signed and is often whitelisted on managed
+REM machines where direct installers get blocked by Device Guard / WDAC policies.
+where winget >nul 2>&1
+if %ERRORLEVEL% NEQ 0 goto ollama_try_local
+
+echo Ollama not found. Installing via winget.
+echo This usually takes 1-3 minutes. Please do not close this window...
+winget install --id Ollama.Ollama --exact --silent --accept-source-agreements --accept-package-agreements
+REM winget installs Ollama per-user into %LocalAppData%\Programs\Ollama but does not
+REM refresh PATH in this shell; append the expected install dir before re-checking.
+set "PATH=%PATH%;%LocalAppData%\Programs\Ollama"
+where ollama >nul 2>&1
+if %ERRORLEVEL% EQU 0 goto ollama_installed
+echo winget install did not produce a working 'ollama' command. Falling back to local installer.
+
+:ollama_try_local
+if not exist "%OLLAMA_INSTALLER%" (
+    echo Local installer missing at %OLLAMA_INSTALLER%.
+    echo Skipping Ollama install, model pull and server start.
+    goto ollama_done
+)
+
+echo Trying silent install from local installer...
+REM OllamaSetup.exe is NSIS-based: /S (uppercase) is the silent-install flag.
+start /wait "" "%OLLAMA_INSTALLER%" /S
+set "PATH=%PATH%;%LocalAppData%\Programs\Ollama"
+where ollama >nul 2>&1
+if %ERRORLEVEL% EQU 0 goto ollama_installed
+
+REM Silent install failed. Fall back to an interactive install so the student can click
+REM through the wizard without leaving this window.
+echo.
+echo Silent install did not produce a working 'ollama' command.
+echo Opening the Ollama installer wizard. Please click through Next/Install.
+echo This window will wait until you finish.
+echo.
+start /wait "" "%OLLAMA_INSTALLER%"
+set "PATH=%PATH%;%LocalAppData%\Programs\Ollama"
 where ollama >nul 2>&1
 if %ERRORLEVEL% NEQ 0 (
-    echo Ollama not found. Please install Ollama manually if needed. Skipping model pull and server start.
-) else (
-    echo Ollama already installed.
-
-    echo Checking Llama 3.2 1B model...
-    ollama list > "%TEMP%\ollama_list.txt" 2>&1
-    findstr /C:"llama3.2:1b" "%TEMP%\ollama_list.txt" >nul 2>&1
-    if %ERRORLEVEL% NEQ 0 (
-        echo Llama 3.2 1B model not found. Pulling the model...
-        start /wait "" ollama pull llama3.2:1b
-    ) else (
-        echo Llama 3.2 1B model already installed.
-    )
-    del "%TEMP%\ollama_list.txt" 2>nul
-
-    echo Checking Ollama server...
-    tasklist /FI "IMAGENAME eq ollama.exe" 2>nul | find /I "ollama.exe" >nul
-    if %ERRORLEVEL% NEQ 0 (
-        echo Starting Ollama server in the background...
-        start /B "" ollama serve >nul 2>&1
-        timeout /t 5 /nobreak >nul
-    ) else (
-        echo Ollama server already running.
-    )
+    echo.
+    echo *** WARNING: Ollama is still not detected after install.
+    echo *** The CLI's 'ajuda' helper will not work until Ollama is available on PATH.
+    echo *** If Device Guard / WDAC is blocking the installer, ask IT to whitelist it,
+    echo *** or install Ollama manually on another machine.
+    echo.
+    goto ollama_done
 )
+
+:ollama_installed
+echo Ollama installed successfully.
+goto ollama_serve
+
+:ollama_present
+echo Ollama already installed.
+
+REM Start the server BEFORE checking/pulling the model, because `ollama list` and
+REM `ollama pull` both require the daemon to be listening on localhost:11434.
+:ollama_serve
+echo Checking Ollama server...
+tasklist /FI "IMAGENAME eq ollama.exe" 2>nul | find /I "ollama.exe" >nul
+if %ERRORLEVEL% EQU 0 (
+    echo Ollama server already running.
+    goto ollama_model
+)
+echo Starting Ollama server in the background...
+start /B "" ollama serve >nul 2>&1 < nul
+REM Give the server a few seconds to bind to localhost:11434 before we call ollama list/pull
+timeout /t 5 /nobreak >nul
+
+:ollama_model
+echo Checking Llama 3.2 1B model...
+REM Redirect stdin from nul so any accidental prompt inside ollama cannot block.
+ollama list < nul > "%TEMP%\ollama_list.txt" 2>&1
+findstr /C:"llama3.2:1b" "%TEMP%\ollama_list.txt" >nul 2>&1
+set "HAS_MODEL=%ERRORLEVEL%"
+del "%TEMP%\ollama_list.txt" 2>nul
+if "%HAS_MODEL%"=="0" (
+    echo Llama 3.2 1B model already installed.
+    goto ollama_done
+)
+echo Llama 3.2 1B model not found. Pulling the model (~1.3 GB).
+echo Depending on your connection this can take 1-5 minutes. Please wait...
+REM Run inline (no start /wait) so progress streams to this window and no second
+REM console can linger waiting for a keypress. < nul neutralises any stdin prompt.
+ollama pull llama3.2:1b < nul
+
+:ollama_done
 
 REM Check and install Visual Studio Code
 echo Checking Visual Studio Code...
