@@ -162,21 +162,21 @@ REM Give the server a few seconds to bind to localhost:11434 before we call olla
 timeout /t 5 /nobreak >nul
 
 :ollama_model
-echo Checking Llama 3.2 1B model...
+echo Checking Qwen 2.5 3B model...
 REM Redirect stdin from nul so any accidental prompt inside ollama cannot block.
 ollama list < nul > "%TEMP%\ollama_list.txt" 2>&1
-findstr /C:"llama3.2:1b" "%TEMP%\ollama_list.txt" >nul 2>&1
+findstr /C:"qwen2.5:3b" "%TEMP%\ollama_list.txt" >nul 2>&1
 set "HAS_MODEL=%ERRORLEVEL%"
 del "%TEMP%\ollama_list.txt" 2>nul
 if "%HAS_MODEL%"=="0" (
-    echo Llama 3.2 1B model already installed.
+    echo Qwen 2.5 3B model already installed.
     goto ollama_done
 )
-echo Llama 3.2 1B model not found. Pulling the model (~1.3 GB).
-echo Depending on your connection this can take 1-5 minutes. Please wait...
+echo Qwen 2.5 3B model not found. Pulling the model (~2 GB).
+echo Depending on your connection this can take 2-8 minutes. Please wait...
 REM Run inline (no start /wait) so progress streams to this window and no second
 REM console can linger waiting for a keypress. < nul neutralises any stdin prompt.
-ollama pull llama3.2:1b < nul
+ollama pull qwen2.5:3b < nul
 
 :ollama_done
 

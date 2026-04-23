@@ -53,7 +53,7 @@ namespace workshopCli
             // Configurar a requisição para o Ollama
             var requestBody = new
             {
-                model = "llama3.2:1b",
+                model = "qwen2.5:3b",
                 prompt = prompt,
                 stream = false
             };

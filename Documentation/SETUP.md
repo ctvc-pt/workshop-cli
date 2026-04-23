@@ -31,7 +31,7 @@ The script is idempotent: each step checks whether the component is already pres
 | PyGithub                               | installed via `pip`                        | Git operations from Python helpers       |
 | Git                                    | `Git-2.46.2-64-bit.exe`                    | Used by the Git-based workshop workflow  |
 | Ollama (runtime)                       | not bundled — must be installed manually if missing | Hosts the local LLM the CLI talks to |
-| `llama3.2:1b` model                    | pulled via `ollama pull`                   | Provides on-device help responses        |
+| `qwen2.5:3b` model                     | pulled via `ollama pull`                   | Provides on-device help responses        |
 | Visual Studio Code                     | `VSCodeSetup.exe` (User Setup)             | The editor students use                  |
 | VS Code extension `sumneko.lua`        | installed via `code --install-extension`   | Lua language support                     |
 | VS Code extension `pixelbyte-studios.pixelbyte-love2d` | installed via `code --install-extension`   | Provides the Alt+L run command the guides reference |
