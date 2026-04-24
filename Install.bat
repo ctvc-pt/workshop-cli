@@ -22,6 +22,7 @@ for /f "usebackq delims=" %%i in (`powershell -NoProfile -ExecutionPolicy Bypass
 if not defined DESKTOP_DIR set "DESKTOP_DIR=%USERPROFILE%\Desktop"
 set "SHORTCUT_NAME=%DESKTOP_DIR%\cli.lnk"
 set SESSION_FILE=%~dp0Resources\session.txt
+set RECEIVER_FILE=%~dp0Resources\receiver.json
 
 REM Check and install .NET 8 SDK (a .NET 6 SDK alone is not enough)
 echo Checking .NET 8 SDK...
@@ -260,6 +261,36 @@ if exist "%SESSION_FILE%" (
     echo Deleting session file...
     del "%SESSION_FILE%"
 )
+
+REM Configure receiver URL (monitor's laptop IP) for end-of-guide game upload.
+REM This is asked ONCE per PC during setup. Kids never see it at runtime.
+echo.
+echo === Configuracao do receptor dos jogos ===
+if not exist "%RECEIVER_FILE%" goto receiver_ask
+echo Receptor ja configurado em %RECEIVER_FILE%:
+type "%RECEIVER_FILE%"
+echo.
+set /p RECONFIG_RECEIVER="Reconfigurar? (s/N): "
+if /I not "%RECONFIG_RECEIVER%"=="s" goto receiver_done
+
+:receiver_ask
+echo Qual o IP (ou hostname) do portatil do monitor que vai receber os jogos?
+echo Exemplos: 192.168.1.42  ou  workshop.local
+echo Deixa em branco e carrega Enter para saltar (o envio automatico fica desativado).
+set /p RECEIVER_HOST="IP/hostname: "
+if "%RECEIVER_HOST%"=="" (
+    echo Receptor nao configurado. O envio automatico do jogo fica desativado neste PC.
+    goto receiver_done
+)
+set /p RECEIVER_PORT="Porta [5000]: "
+if "%RECEIVER_PORT%"=="" set RECEIVER_PORT=5000
+set "RECEIVER_URL=http://%RECEIVER_HOST%:%RECEIVER_PORT%/upload"
+echo { "ReceiverUrl": "%RECEIVER_URL%" } > "%RECEIVER_FILE%"
+echo Receptor gravado: %RECEIVER_URL%
+
+REM Ping para validar (se o monitor ja tiver o receptor a correr).
+powershell -NoProfile -Command "try { $r = Invoke-WebRequest -Uri 'http://%RECEIVER_HOST%:%RECEIVER_PORT%/ping' -UseBasicParsing -TimeoutSec 3; if ($r.StatusCode -eq 200) { Write-Host 'Receptor respondeu OK.' } else { Write-Host ('Receptor devolveu status ' + $r.StatusCode) } } catch { Write-Host 'Aviso: receptor nao respondeu (pode nao estar ligado agora, esta bem).' }"
+:receiver_done
 
 REM Create the shortcut
 echo Creating shortcut...
