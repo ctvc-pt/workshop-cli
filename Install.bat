@@ -264,26 +264,33 @@ if exist "%SESSION_FILE%" (
 
 REM Configure receiver URL (monitor's laptop IP) for end-of-guide game upload.
 REM This is asked ONCE per PC during setup. Kids never see it at runtime.
+REM
+REM We use PowerShell's Read-Host instead of "set /p" because "set /p" silently
+REM skips the prompt on some Windows setups — typically after earlier commands
+REM in this script redirect stdin (e.g. "ollama pull < nul"). Read-Host reopens
+REM the console handle and is immune to that.
 echo.
 echo === Configuracao do receptor dos jogos ===
 if not exist "%RECEIVER_FILE%" goto receiver_ask
 echo Receptor ja configurado em %RECEIVER_FILE%:
 type "%RECEIVER_FILE%"
 echo.
-set /p RECONFIG_RECEIVER="Reconfigurar? (s/N): "
-if /I not "%RECONFIG_RECEIVER%"=="s" goto receiver_done
+choice /c SN /n /m "Reconfigurar? [S/N]: "
+if errorlevel 2 goto receiver_done
 
 :receiver_ask
 echo Qual o IP (ou hostname) do portatil do monitor que vai receber os jogos?
 echo Exemplos: 192.168.1.42  ou  workshop.local
 echo Deixa em branco e carrega Enter para saltar (o envio automatico fica desativado).
-set /p RECEIVER_HOST="IP/hostname: "
+set "RECEIVER_HOST="
+for /f "usebackq delims=" %%i in (`powershell -NoProfile -Command "Read-Host 'IP/hostname'"`) do set "RECEIVER_HOST=%%i"
 if "%RECEIVER_HOST%"=="" (
     echo Receptor nao configurado. O envio automatico do jogo fica desativado neste PC.
     goto receiver_done
 )
-set /p RECEIVER_PORT="Porta [5000]: "
-if "%RECEIVER_PORT%"=="" set RECEIVER_PORT=5000
+set "RECEIVER_PORT="
+for /f "usebackq delims=" %%i in (`powershell -NoProfile -Command "$p = Read-Host 'Porta [5000]'; if ($p) { $p } else { '5000' }"`) do set "RECEIVER_PORT=%%i"
+if "%RECEIVER_PORT%"=="" set "RECEIVER_PORT=5000"
 set "RECEIVER_URL=http://%RECEIVER_HOST%:%RECEIVER_PORT%/upload"
 echo { "ReceiverUrl": "%RECEIVER_URL%" } > "%RECEIVER_FILE%"
 echo Receptor gravado: %RECEIVER_URL%
