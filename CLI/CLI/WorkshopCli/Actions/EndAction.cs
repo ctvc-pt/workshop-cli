@@ -6,6 +6,8 @@ public class EndAction : IAction
 {
     public void Execute()
     {
+        new SendGameAction().Execute();
+
         Process.Start(new ProcessStartInfo
         {
             FileName = "cmd",
