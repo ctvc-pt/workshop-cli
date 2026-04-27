@@ -63,7 +63,7 @@ namespace workshopCli
                 var sheetName = "Sessions";
                 var service = _service.Value;
 
-                var fullRange = $"{sheetName}!A:E";
+                var fullRange = $"{sheetName}!A:F";
                 var getRequest = service.Spreadsheets.Values.Get( SpreadsheetId, fullRange );
                 getRequest.ValueRenderOption = SpreadsheetsResource.ValuesResource.GetRequest.ValueRenderOptionEnum
                     .UNFORMATTEDVALUE;
@@ -95,27 +95,30 @@ namespace workshopCli
                 if ( sheetId != null )
                 {
                     string stepIdToUse = isChallenge ? stepId : ( rowToUpdate != -1 ? existingStepId : "" );
+                    string timestamp = DateTime.Now.ToString( "o" );
 
                     var valuesCell = new List<IList<object>>
                     {
-                        new List<object> { name, age, email, stepIdToUse, nameId }
+                        new List<object> { name, age, email, stepIdToUse, nameId, timestamp }
                     };
                     var valueRange = new ValueRange { Values = valuesCell };
 
                     string range;
                     if ( rowToUpdate != -1 )
                     {
-                        range = $"{sheetName}!A{rowToUpdate}:E{rowToUpdate}";
+                        range = $"{sheetName}!A{rowToUpdate}:F{rowToUpdate}";
                     }
                     else
                     {
-                        range = $"{sheetName}!A{rowToInsert}:E{rowToInsert}";
+                        range = $"{sheetName}!A{rowToInsert}:F{rowToInsert}";
                     }
 
                     var updateRequest = service.Spreadsheets.Values.Update( valueRange, SpreadsheetId, range );
                     updateRequest.ValueInputOption =
                         SpreadsheetsResource.ValuesResource.UpdateRequest.ValueInputOptionEnum.RAW;
                     updateRequest.Execute();
+
+                    AppendTimeline( service, nameId, stepId, timestamp );
                 }
             }
             else
@@ -146,6 +149,29 @@ namespace workshopCli
             }
 
             File.WriteAllLines( csvFilePath, lines );
+        }
+
+        // Append-only history para analytics: cada transicao de step gera uma linha
+        // (nameId, stepId, timestamp). A sheet "Timeline" tem de existir no spreadsheet.
+        private static void AppendTimeline( SheetsService service, string nameId, string stepId, string timestamp )
+        {
+            try
+            {
+                var values = new List<IList<object>>
+                {
+                    new List<object> { nameId, stepId, timestamp }
+                };
+                var append = service.Spreadsheets.Values.Append(
+                    new ValueRange { Values = values },
+                    SpreadsheetId,
+                    "Timeline!A:C" );
+                append.ValueInputOption = SpreadsheetsResource.ValuesResource.AppendRequest.ValueInputOptionEnum.RAW;
+                append.Execute();
+            }
+            catch
+            {
+                // Se a sheet Timeline nao existir ou o append falhar, nao bloqueamos a sessao do miudo.
+            }
         }
 
         public void GetHelp( string name, string stepId, bool isChallenge = false )
