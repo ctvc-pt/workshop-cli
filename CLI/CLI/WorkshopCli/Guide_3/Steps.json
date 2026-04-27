@@ -121,18 +121,33 @@
         "Delay": "0"
     },
     {
-        "Id": "025-desafio",
+        "Id": "025-somFundo",
+        "Type": "information",
+        "Delay": "0"
+    },
+    {
+        "Id": "026-somSaltar",
+        "Type": "information",
+        "Delay": "0"
+    },
+    {
+        "Id": "027-desafioSom",
         "Type": "challenge",
         "Delay": "0"
     },
     {
-        "Id": "026-video",
+        "Id": "028-desafio",
+        "Type": "challenge",
+        "Delay": "0"
+    },
+    {
+        "Id": "029-video",
         "Type": "video",
         "Message": "end.mp4",
         "Delay": "0"
     },
     {
-        "Id": "027-end",
+        "Id": "030-end",
         "Type": "end"
     }
 ]

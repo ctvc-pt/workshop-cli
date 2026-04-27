@@ -237,8 +237,11 @@
       <EmbeddedResource Include="Guide_3\022-colisao.md" />
       <EmbeddedResource Include="Guide_3\023-fimDeJogo.md" />
       <EmbeddedResource Include="Guide_3\024-reiniciar.md" />
-      <EmbeddedResource Include="Guide_3\025-desafio.md" />
-      <EmbeddedResource Include="Guide_3\027-end.md" />
+      <EmbeddedResource Include="Guide_3\025-somFundo.md" />
+      <EmbeddedResource Include="Guide_3\026-somSaltar.md" />
+      <EmbeddedResource Include="Guide_3\027-desafioSom.md" />
+      <EmbeddedResource Include="Guide_3\028-desafio.md" />
+      <EmbeddedResource Include="Guide_3\030-end.md" />
       <EmbeddedResource Include="Guide\008-HelloWorld-1.md" />
       <EmbeddedResource Include="Guide\009-helloWorld.md" />
       <EmbeddedResource Include="Guide\010-code.md" />
