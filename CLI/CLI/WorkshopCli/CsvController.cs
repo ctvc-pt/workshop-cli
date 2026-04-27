@@ -26,12 +26,14 @@ namespace workshopCli
         readonly string csvFilePath;
         const string SpreadsheetId = "1njSnYweZnBLdnoUnJjJFSO73pb7huFEOxt2J3Bc4BYw";
 
+        private static readonly Lazy<SheetsService> _service = new( BuildService );
+
         public CsvController()
         {
             csvFilePath = Path.Combine( GuideCli.ResourcesPath, "sessions.csv" );
         }
 
-        SheetsService GetSheetsService()
+        private static SheetsService BuildService()
         {
             var credentialsPath = Path.Combine( GuideCli.ResourcesPath, "client_secrets.json" );
 
@@ -59,7 +61,7 @@ namespace workshopCli
             if ( isNetworkAvailable )
             {
                 var sheetName = "Sessions";
-                var service = GetSheetsService();
+                var service = _service.Value;
 
                 var fullRange = $"{sheetName}!A:E";
                 var getRequest = service.Spreadsheets.Values.Get( SpreadsheetId, fullRange );
@@ -160,7 +162,7 @@ namespace workshopCli
                 if ( isNetworkAvailable )
                 {
                     var sheetName = "Ajudas";
-                    var service = GetSheetsService();
+                    var service = _service.Value;
 
                     var spreadsheet = service.Spreadsheets.Get( SpreadsheetId ).Execute();
                     var sheetId = GetSheetId( spreadsheet, sheetName );
@@ -246,7 +248,7 @@ namespace workshopCli
             var (bgColor, message) = GetStateStyle( state );
 
             var sheetName = "Ajudas";
-            var service = new CsvController().GetSheetsService();
+            var service = _service.Value;
 
             var spreadsheet = service.Spreadsheets.Get( SpreadsheetId ).Execute();
             var sheetId = GetSheetId( spreadsheet, sheetName );

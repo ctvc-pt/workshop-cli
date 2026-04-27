@@ -10,7 +10,7 @@ namespace workshopCli
         private Process vsCodeProcess;
         private Process autoHotkeyProcess;
 
-        public void Open()
+        public bool Open()
         {
             string vsCodeExecutable = "code.exe";
             vsCodeProcess = GetProcessByName(vsCodeExecutable);
@@ -18,6 +18,7 @@ namespace workshopCli
             if (vsCodeProcess != null)
             {
                 Console.WriteLine("Visual Studio Code is already open.");
+                return false;
             }
             else
             {
@@ -62,6 +63,7 @@ namespace workshopCli
                         Console.WriteLine("AutoHotkey has been closed.");
                     }
                 };
+                return true;
             }
         }
 

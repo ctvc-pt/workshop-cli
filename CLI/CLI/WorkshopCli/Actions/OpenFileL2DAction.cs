@@ -63,8 +63,11 @@ namespace workshopCli
             try
             {
 
-                VsCode.Open();
-                Thread.Sleep(1000);
+                bool justLaunched = VsCode.Open();
+                if (justLaunched)
+                {
+                    Thread.Sleep(1000);
+                }
 
                 // Open CLI using AutoHotKey
                 var startAhkR = new ProcessStartInfo
@@ -217,8 +220,6 @@ namespace workshopCli
                 Console.WriteLine("Error opening file: " + ex.Message);
             }
 
-
-            Thread.Sleep(500);
 
             // Console.Clear();
 

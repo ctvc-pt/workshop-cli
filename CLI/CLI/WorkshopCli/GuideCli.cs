@@ -194,16 +194,20 @@ namespace workshopCli
         session.NameId = NameId;
         if (i >= 4)
         {
-            try
+            bool isChallenge = step.Type == "challenge";
+            var snapshot = (Name: session.Name, Age: session.Age, Email: session.Email, StepId: session.StepId, NameId: NameId, IsChallenge: isChallenge);
+            _ = System.Threading.Tasks.Task.Run(() =>
             {
-                bool isChallenge = step.Type == "challenge";
-                csvController.UpdateSession(session.Name, session.Age, session.Email, session.StepId, NameId, isChallenge);
-                csvController.GetHelp(NameId, session.StepId, isChallenge);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine($"Os dados não foram guardados: {e.Message}");
-            }
+                try
+                {
+                    csvController.UpdateSession(snapshot.Name, snapshot.Age, snapshot.Email, snapshot.StepId, snapshot.NameId, snapshot.IsChallenge);
+                    csvController.GetHelp(snapshot.NameId, snapshot.StepId, snapshot.IsChallenge);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine($"Os dados não foram guardados: {e.Message}");
+                }
+            });
         }
 
         File.WriteAllText(txtFilePath, JsonConvert.SerializeObject(session));

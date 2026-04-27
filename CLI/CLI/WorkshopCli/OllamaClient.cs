@@ -22,6 +22,7 @@ namespace workshopCli
         public OllamaClient()
         {
             httpClient = new HttpClient();
+            httpClient.Timeout = TimeSpan.FromSeconds(30);
         }
 
         public async Task<string> AskOllama(string userMessage, string stepMessage)
@@ -65,11 +66,26 @@ namespace workshopCli
             Console.Write("A preparar a tua resposta ");
             Task<string> responseTask = Task.Run(async () =>
             {
-                var response = await httpClient.PostAsync("http://localhost:11434/api/generate", content);
-                response.EnsureSuccessStatusCode();
-                var responseContent = await response.Content.ReadAsStringAsync();
-                var responseData = JsonConvert.DeserializeObject<OllamaResponse>(responseContent);
-                return responseData.Response + "\n";
+                try
+                {
+                    var response = await httpClient.PostAsync("http://localhost:11434/api/generate", content);
+                    response.EnsureSuccessStatusCode();
+                    var responseContent = await response.Content.ReadAsStringAsync();
+                    var responseData = JsonConvert.DeserializeObject<OllamaResponse>(responseContent);
+                    return responseData.Response + "\n";
+                }
+                catch (TaskCanceledException)
+                {
+                    return "A ajuda automática está indisponível neste momento. Chama o monitor.\n";
+                }
+                catch (HttpRequestException)
+                {
+                    return "A ajuda automática está indisponível neste momento. Chama o monitor.\n";
+                }
+                catch (Exception)
+                {
+                    return "A ajuda automática está indisponível neste momento. Chama o monitor.\n";
+                }
             });
 
             // Animação de loading (barra giratória)
@@ -79,8 +95,8 @@ namespace workshopCli
             while (!responseTask.IsCompleted)
             {
                 Console.Write($"\b{spinner[spinnerIndex]}");
-                spinnerIndex = (spinnerIndex + 1) % spinner.Length; 
-                await Task.Delay(200); 
+                spinnerIndex = (spinnerIndex + 1) % spinner.Length;
+                await Task.Delay(200);
             }
 
             // Limpar a linha de loading e retornar a resposta
