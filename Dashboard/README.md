@@ -46,11 +46,10 @@ Edita `src/lib/sheets.ts:5` — variável `SPREADSHEET_ID`.
 |---|---|---|
 | Total inscritos | Sessions | nº de miúdos com sessão |
 | Concluíram | Sessions | quantos chegaram ao último step (e %) |
-| Em curso | Sessions | activos (sem ser concluídos, mexeram nos últimos 30min) |
+| À tua espera | Sessions+Ajudas+Timeline | miúdos com pedido de ajuda em aberto, parados >5min, ou >2x a média do step |
 | Duração média | Timeline | tempo médio do primeiro ao último step por miúdo |
-| Distribuição por step | Sessions | bar chart de quantos estão em cada step |
-| Quem está preso | Sessions | miúdos sem mexer há >5min, ordenados |
-| Ajudas pendentes | Ajudas | pedidos de ajuda não resolvidos |
+| Atenção agora | Sessions+Ajudas+Timeline | fila ordenada por urgência (🚨 ajuda urgente → 🆘 ajuda → ⏱️ preso → 🐢 lento) |
+| Distribuição por step | Sessions | bar chart, barra verde = mediana da turma, hover mostra nomes |
 | Steps mais demorados | Timeline | top 5 steps por tempo médio (analytics post-workshop) |
 
 ## Identificar passos finais

@@ -201,7 +201,6 @@ namespace workshopCli
                 try
                 {
                     csvController.UpdateSession(snapshot.Name, snapshot.Age, snapshot.Email, snapshot.StepId, snapshot.NameId, snapshot.IsChallenge);
-                    csvController.GetHelp(snapshot.NameId, snapshot.StepId, snapshot.IsChallenge);
                 }
                 catch (Exception e)
                 {

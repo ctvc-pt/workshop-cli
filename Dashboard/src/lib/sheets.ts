@@ -22,6 +22,7 @@ export interface HelpEntry {
   name: string;
   stepId: string;
   status: string;
+  timestamp: string;
 }
 
 const sheetUrl = (sheet: string) =>
@@ -91,6 +92,7 @@ export async function fetchHelp(): Promise<HelpEntry[]> {
       name: r[0] ?? "",
       stepId: r[1] ?? "",
       status: r[2] ?? "",
+      timestamp: r[3] ?? "",
     }));
   } catch {
     return [];

@@ -11,16 +11,20 @@ The dashboard is a single page split into three zones:
 ### Top: KPIs at a glance
 - **Total inscritos** — number of kids with an active session
 - **Concluíram** — kids who reached the final step (and percentage)
-- **Em curso** — kids actively working (mexeram nos últimos 30min)
+- **À tua espera** — kids who need attention right now (open help request,
+  stuck >5 min, or unusually slow on the current step). The single number
+  you scan when you walk into the room.
 - **Duração média** — mean total time from first to last step, per kid
 
 ### Middle: live operational widgets
+- **Atenção agora** — unified queue of every kid that needs you, ordered by
+  urgency: 🚨 marked "precisa de ajuda" → 🆘 typed `ajuda` (pending) → ⏱️ stuck
+  >10 min → ⏱️ stuck >5 min → 🐢 unusually slow on this step (>2× the running
+  average for it). One row per kid, with the step they're on and how long
+  they've been there.
 - **Distribuição por step** — bar chart, how many kids are sitting on each
-  step. Tells you at a glance whether the class is bunched up or spread out.
-- **Quem está preso** — kids whose last activity was more than 5 minutes ago,
-  sorted by stuckness. Anyone in red (>10 min) probably needs you.
-- **Ajudas pendentes** — kids who typed `ajuda` and haven't been resolved.
-  "URGENTE" badge means the monitor (you) marked them as needing teacher help.
+  step. The green bar is the median step (mid-point of the class). Hover any
+  bar to see the names of kids on that step.
 
 ### Bottom: post-workshop analytics
 - **Steps mais demorados** — average time per step across all kids who passed
@@ -35,7 +39,7 @@ The dashboard reads three Google Sheets directly from the browser, no backend:
 |---|---|---|
 | `Sessions` | `CsvController.UpdateSession` (CLI) | current state per kid |
 | `Timeline` | `CsvController.AppendTimeline` (CLI) | step-by-step history for analytics |
-| `Ajudas` | `CsvController.GetHelp` + `PrintHelp` (CLI) | help requests + monitor responses |
+| `Ajudas` | `CsvController.PrintHelp` (CLI) | help requests + monitor responses (append-only, one row per request: A=name, B=step, C=status, D=timestamp) |
 
 It uses Google's `gviz` CSV endpoint, refreshing every 5 seconds.
 
@@ -95,14 +99,12 @@ Then open <http://localhost:5173>.
 
 ## During the workshop — what to watch
 
-- **Quem está preso** — scan this every couple of minutes. Anyone red (>10
-  min) is probably stuck on something they don't know how to ask about. Walk
-  over.
-- **Ajudas pendentes** — if a kid pops up here, they explicitly asked for
-  help. Resolve from the spreadsheet (mark the row green) or talk to them.
-- **Distribuição por step** — if the class is supposed to be at step
-  `015-gravidade` but the bar at `010-code` is huge, you're losing them
-  somewhere between those steps.
+- **Atenção agora** — scan this every couple of minutes. Top of the list is
+  always your most urgent: 🚨 then 🆘 then ⏱️ then 🐢. If the queue is empty,
+  the class is fine.
+- **Distribuição por step** — green bar is the class median. If the bars
+  before it are tall, the class is stretched out and a few kids are dragging.
+  Hover any bar to see exactly who's on that step.
 
 ## After the workshop — what to look at
 
@@ -119,8 +121,9 @@ Then open <http://localhost:5173>.
 |---|---|
 | Spreadsheet ID | `Dashboard/src/lib/sheets.ts:5` |
 | Refresh interval | `Dashboard/src/App.tsx` (call to `useSheetData(5000)`) |
-| "Stuck" threshold | `Dashboard/src/App.tsx` (passed to `<StuckTable thresholdMin={5} />`) |
-| Final-step patterns | `Dashboard/src/lib/analytics.ts:5` (`FINAL_STEP_REGEXES`) |
+| "Stuck" threshold | `Dashboard/src/App.tsx` (passed to `<AttentionQueue thresholdMin={5} />`) |
+| "Slow" floor | `Dashboard/src/lib/analytics.ts` (`SLOW_MIN_AVG_SECONDS`) |
+| Final-step patterns | `Dashboard/src/lib/analytics.ts` (`FINAL_STEP_REGEXES`) |
 
 ## Troubleshooting
 

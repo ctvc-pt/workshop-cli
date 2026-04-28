@@ -1,4 +1,4 @@
-import { Session, TimelineEntry } from "./sheets";
+import { HelpEntry, Session, TimelineEntry } from "./sheets";
 
 // Padroes que identificam o ultimo step de qualquer guide. Atualiza se
 // adicionares guides com IDs finais diferentes.
@@ -90,6 +90,140 @@ export function totalDurationByKid(timeline: TimelineEntry[]): number[] {
     durations.push((end - start) / 1000);
   }
   return durations;
+}
+
+export type AttentionReason = "urgent" | "help" | "stuck-long" | "stuck" | "slow";
+
+export interface AttentionEntry {
+  nameId: string;
+  name: string;
+  stepId: string;
+  stuckMinutes: number;
+  hasOpenHelp: boolean;
+  isUrgent: boolean;
+  isSlow: boolean;
+  avgStepSeconds: number | null;
+  reason: AttentionReason;
+}
+
+// So flagamos como "lento" steps cuja media seja > 30s. Steps muito curtos
+// (mensagens informativas) sao demasiado ruidosos para esta heuristica.
+const SLOW_MIN_AVG_SECONDS = 30;
+
+// Cruza sessions + ajudas + timeline numa fila ordenada por urgencia. Cada
+// miudo aparece no maximo uma vez. So entram miudos com pelo menos um sinal:
+// pedido de ajuda em aberto, parado >=5min, ou >2x a media do step.
+export function buildAttentionQueue(
+  sessions: Session[],
+  help: HelpEntry[],
+  timeline: TimelineEntry[],
+  stuckThresholdMin = 5,
+): AttentionEntry[] {
+  const lastHelpByKid = new Map<string, HelpEntry>();
+  for (const h of help) {
+    if (!h.name) continue;
+    const prev = lastHelpByKid.get(h.name);
+    if (!prev || (h.timestamp && h.timestamp.localeCompare(prev.timestamp) > 0)) {
+      lastHelpByKid.set(h.name, h);
+    }
+  }
+
+  const avgByStep = new Map<string, number>();
+  for (const d of avgDurationByStep(timeline)) {
+    avgByStep.set(d.stepId, d.avgSeconds);
+  }
+
+  const entries: AttentionEntry[] = [];
+  for (const s of sessions) {
+    if (isCompleted(s.stepId)) continue;
+
+    const stuck = minutesSince(s.timestamp);
+    const stuckMin = Number.isFinite(stuck) ? stuck : 0;
+
+    const lastHelp = lastHelpByKid.get(s.nameId);
+    const helpStatus = lastHelp?.status.toLowerCase() ?? "";
+    const hasOpenHelp = !!lastHelp && helpStatus !== "resolvido";
+    const isUrgent = hasOpenHelp && helpStatus.includes("precisa");
+
+    const avgSec = avgByStep.get(s.stepId) ?? null;
+    const isSlow =
+      avgSec !== null &&
+      avgSec >= SLOW_MIN_AVG_SECONDS &&
+      stuckMin * 60 > 2 * avgSec;
+
+    if (!hasOpenHelp && stuckMin < stuckThresholdMin && !isSlow) continue;
+
+    let reason: AttentionReason;
+    if (isUrgent) reason = "urgent";
+    else if (hasOpenHelp) reason = "help";
+    else if (stuckMin >= 10) reason = "stuck-long";
+    else if (stuckMin >= stuckThresholdMin) reason = "stuck";
+    else reason = "slow";
+
+    entries.push({
+      nameId: s.nameId,
+      name: s.name || s.nameId,
+      stepId: s.stepId,
+      stuckMinutes: stuckMin,
+      hasOpenHelp,
+      isUrgent,
+      isSlow,
+      avgStepSeconds: avgSec,
+      reason,
+    });
+  }
+
+  const bucket = (e: AttentionEntry): number => {
+    if (e.reason === "urgent") return 0;
+    if (e.reason === "help") return 1;
+    if (e.reason === "stuck-long") return 2;
+    if (e.reason === "stuck") return 3;
+    return 4;
+  };
+
+  return entries.sort((a, b) => {
+    const ba = bucket(a);
+    const bb = bucket(b);
+    if (ba !== bb) return ba - bb;
+    return b.stuckMinutes - a.stuckMinutes;
+  });
+}
+
+// Quantos miudos precisam da tua atencao agora (mesmo criterio que a fila).
+export function pendingAttentionCount(
+  sessions: Session[],
+  help: HelpEntry[],
+  timeline: TimelineEntry[],
+): number {
+  return buildAttentionQueue(sessions, help, timeline).length;
+}
+
+// Mediana do step actual da turma (so miudos nao concluidos). Util para
+// dar uma nocao de pace ao monitor sem precisar de configurar nada.
+export function medianStep(sessions: Session[]): string | null {
+  const active = sessions.filter((s) => s.stepId && !isCompleted(s.stepId));
+  if (active.length === 0) return null;
+  const sorted = [...active].sort((a, b) => a.stepId.localeCompare(b.stepId));
+  return sorted[Math.floor(sorted.length / 2)].stepId;
+}
+
+// Quantos miudos estao ATRAS do step S (stepId < S em ordem alfabetica).
+export function countBehind(sessions: Session[], stepId: string): number {
+  return sessions.filter(
+    (s) => s.stepId && !isCompleted(s.stepId) && s.stepId.localeCompare(stepId) < 0,
+  ).length;
+}
+
+// Para o tooltip do StepDistribution: lista de nomes em cada step.
+export function namesByStep(sessions: Session[]): Map<string, string[]> {
+  const map = new Map<string, string[]>();
+  for (const s of sessions) {
+    if (!s.stepId) continue;
+    const list = map.get(s.stepId) ?? [];
+    list.push(s.name || s.nameId);
+    map.set(s.stepId, list);
+  }
+  return map;
 }
 
 export function formatDuration(seconds: number): string {

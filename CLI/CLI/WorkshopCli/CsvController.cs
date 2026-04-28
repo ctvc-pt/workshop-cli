@@ -174,96 +174,18 @@ namespace workshopCli
             }
         }
 
-        public void GetHelp( string name, string stepId, bool isChallenge = false )
-        {
-            var lines = File.ReadAllLines( csvFilePath ).ToList();
-            Console.WriteLine();
-            for ( var i = 0; i < lines.Count; i++ )
-            {
-                var values = lines[ i ].Split( ';' );
-                if ( values.Length < 5 || values[ 4 ] != name ) continue;
-
-                bool isNetworkAvailable = NetworkInterface.GetIsNetworkAvailable();
-
-                if ( isNetworkAvailable )
-                {
-                    var sheetName = "Ajudas";
-                    var service = _service.Value;
-
-                    var spreadsheet = service.Spreadsheets.Get( SpreadsheetId ).Execute();
-                    var sheetId = GetSheetId( spreadsheet, sheetName );
-
-                    if ( sheetId != null )
-                    {
-                        var fullRange = $"{sheetName}!A:B";
-                        var getRequest = service.Spreadsheets.Values.Get( SpreadsheetId, fullRange );
-                        getRequest.ValueRenderOption = SpreadsheetsResource.ValuesResource.GetRequest
-                            .ValueRenderOptionEnum.UNFORMATTEDVALUE;
-                        var getResponse = getRequest.Execute();
-
-                        int rowToUpdate = -1;
-                        int rowToInsert = 1;
-                        string existingStepId = "";
-
-                        if ( getResponse.Values != null && getResponse.Values.Count > 0 )
-                        {
-                            for ( int y = 0; y < getResponse.Values.Count; y++ )
-                            {
-                                var row = getResponse.Values[ y ];
-                                if ( row.Count > 0 && row[ 0 ]?.ToString() == name )
-                                {
-                                    rowToUpdate = y + 1;
-                                    existingStepId = row.Count > 1 ? row[ 1 ]?.ToString() : "";
-                                    break;
-                                }
-                            }
-
-                            rowToInsert = getResponse.Values.Count + 1;
-                        }
-
-                        string stepIdToUse = isChallenge ? stepId : ( rowToUpdate != -1 ? existingStepId : "" );
-
-                        var valuesCell = new List<IList<object>>
-                        {
-                            new List<object> { name, stepIdToUse }
-                        };
-                        var valueRange = new ValueRange { Values = valuesCell };
-
-                        if ( rowToUpdate != -1 )
-                        {
-                            var range = $"{sheetName}!A{rowToUpdate}:B{rowToUpdate}";
-                            var updateRequest = service.Spreadsheets.Values.Update( valueRange, SpreadsheetId, range );
-                            updateRequest.ValueInputOption = SpreadsheetsResource.ValuesResource.UpdateRequest
-                                .ValueInputOptionEnum.RAW;
-                            updateRequest.Execute();
-                        }
-                        else
-                        {
-                            var range = $"{sheetName}!A{rowToInsert}:B{rowToInsert}";
-                            var appendRequest = service.Spreadsheets.Values.Append( valueRange, SpreadsheetId, range );
-                            appendRequest.ValueInputOption = SpreadsheetsResource.ValuesResource.AppendRequest
-                                .ValueInputOptionEnum.RAW;
-                            appendRequest.Execute();
-                        }
-                    }
-                }
-                else
-                {
-                    Console.WriteLine( "No network connection available. Unable to update Google Sheets." );
-                }
-
-                return;
-            }
-
-            lines.Add( $"{name};{stepId}" );
-            File.WriteAllLines( csvFilePath, lines );
-        }
-
+        // Sheet "Ajudas" e append-only com timestamp:
+        //   A=nameId, B=stepId, C=status ("", "Resolvido", "Precisa de ajuda"), D=timestamp ISO
+        //
+        // Pending  -> APPEND nova linha + pinta laranja (cada "ajuda" do miudo = 1 linha)
+        // Resolved -> UPDATE da linha mais recente do miudo + pinta verde
+        // NeedsTeacher -> UPDATE da linha mais recente do miudo + pinta vermelho
         public static void PrintHelp( HelpState state )
         {
             var txtFilePath = Path.Combine( GuideCli.ResourcesPath, "session.txt" );
             var session = JsonConvert.DeserializeObject<Session>( File.ReadAllText( txtFilePath ) );
             var name = session.NameId;
+            var stepId = session.StepId ?? "";
 
             if ( !NetworkInterface.GetIsNetworkAvailable() )
             {
@@ -280,15 +202,33 @@ namespace workshopCli
             var sheetId = GetSheetId( spreadsheet, sheetName );
             if ( sheetId == null ) return;
 
+            // Pending = pedido novo: append uma linha vazia (sera pintada e preenchida em baixo).
+            if ( state == HelpState.Pending )
+            {
+                string timestamp = DateTime.Now.ToString( "o" );
+                var newRow = new List<IList<object>>
+                {
+                    new List<object> { name, stepId, "", timestamp }
+                };
+                var appendRequest = service.Spreadsheets.Values.Append(
+                    new ValueRange { Values = newRow },
+                    SpreadsheetId,
+                    $"{sheetName}!A:D" );
+                appendRequest.ValueInputOption = SpreadsheetsResource.ValuesResource.AppendRequest
+                    .ValueInputOptionEnum.RAW;
+                appendRequest.Execute();
+            }
+
             var searchRequest = service.Spreadsheets.Values.Get( SpreadsheetId, $"{sheetName}!A:A" );
             searchRequest.ValueRenderOption = SpreadsheetsResource.ValuesResource.GetRequest
                 .ValueRenderOptionEnum.UNFORMATTEDVALUE;
             var searchResponse = searchRequest.Execute();
             var foundRowIndex = -1;
 
+            // Procuramos a linha mais recente do miudo (de baixo para cima — ordem de append).
             if ( searchResponse.Values != null && searchResponse.Values.Count > 0 )
             {
-                for ( int y = 0; y < searchResponse.Values.Count; y++ )
+                for ( int y = searchResponse.Values.Count - 1; y >= 0; y-- )
                 {
                     var rowValue = searchResponse.Values[ y ].Count > 0
                         ? searchResponse.Values[ y ][ 0 ]?.ToString()

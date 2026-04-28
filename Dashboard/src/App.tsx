@@ -3,14 +3,15 @@ import {
   isCompleted,
   totalDurationByKid,
   formatDuration,
-  minutesSince,
+  buildAttentionQueue,
 } from "./lib/analytics";
 import { Header } from "./components/Header";
 import { StatCard } from "./components/StatCard";
-import { StuckTable } from "./components/StuckTable";
-import { HelpQueue } from "./components/HelpQueue";
+import { AttentionQueue } from "./components/AttentionQueue";
 import { StepDistribution } from "./components/StepDistribution";
 import { SlowestSteps } from "./components/SlowestSteps";
+
+const TOP_NAMES_IN_KPI = 3;
 
 export default function App() {
   const { sessions, timeline, help, error, lastRefresh } = useSheetData(5000);
@@ -18,9 +19,19 @@ export default function App() {
   const total = sessions.length;
   const finished = sessions.filter((s) => isCompleted(s.stepId)).length;
   const completionPct = total > 0 ? Math.round((finished / total) * 100) : 0;
-  const active = sessions.filter(
-    (s) => !isCompleted(s.stepId) && minutesSince(s.timestamp) < 30,
-  ).length;
+
+  const attentionQueue = buildAttentionQueue(sessions, help, timeline);
+  const pending = attentionQueue.length;
+  const topNames = attentionQueue
+    .slice(0, TOP_NAMES_IN_KPI)
+    .map((e) => e.name)
+    .join(", ");
+  const pendingHint =
+    pending === 0
+      ? "tudo a correr bem"
+      : pending <= TOP_NAMES_IN_KPI
+        ? topNames
+        : `${topNames} +${pending - TOP_NAMES_IN_KPI}`;
 
   const durations = totalDurationByKid(timeline);
   const avgDuration =
@@ -38,7 +49,12 @@ export default function App() {
             value={`${finished} (${completionPct}%)`}
             accent="emerald"
           />
-          <StatCard label="Em curso" value={active} accent="amber" />
+          <StatCard
+            label="À tua espera"
+            value={pending}
+            hint={pendingHint}
+            accent={pending > 0 ? "rose" : "emerald"}
+          />
           <StatCard
             label="Duração média"
             value={formatDuration(avgDuration)}
@@ -47,13 +63,9 @@ export default function App() {
           />
         </div>
 
-        <div className="mb-6">
-          <StepDistribution sessions={sessions} />
-        </div>
-
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
-          <StuckTable sessions={sessions} />
-          <HelpQueue help={help} />
+          <AttentionQueue queue={attentionQueue} />
+          <StepDistribution sessions={sessions} />
         </div>
 
         <SlowestSteps timeline={timeline} />
