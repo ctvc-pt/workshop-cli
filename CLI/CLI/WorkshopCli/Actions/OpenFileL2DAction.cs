@@ -69,9 +69,7 @@ namespace workshopCli
                 using (var reader = new StreamReader(resourceStream))
                 {
                     var fileContents = reader.ReadToEnd();
-                    Console.ForegroundColor = ConsoleColor.White;
-                    Console.WriteLine(fileContents);
-                    Console.ForegroundColor = ConsoleColor.Black;
+                    HtmlConsoleRenderer.Render(fileContents);
                 }
             }
             Thread.Sleep(Delay);

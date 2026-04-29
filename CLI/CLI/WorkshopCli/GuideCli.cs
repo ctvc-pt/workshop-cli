@@ -145,7 +145,6 @@ namespace workshopCli
                 using (var reader = new StreamReader(resourceStream))
                 {
                     var markdown = reader.ReadToEnd();
-                    WrapString(markdown, 100);
                     HtmlConsoleRenderer.Render(markdown);
                 }
             }
@@ -155,10 +154,16 @@ namespace workshopCli
             }
         }
         Console.ForegroundColor = ConsoleColor.White;
-        if (i > 4)
-            Console.ForegroundColor = ConsoleColor.Red;
+        var trailingColor = i > 4 ? ConsoleColor.Red : ConsoleColor.White;
+        Console.ForegroundColor = trailingColor;
         Console.WriteLine(step.Message);
         Console.ForegroundColor = ConsoleColor.White;
+
+        lock (RenderState.RenderLock)
+        {
+            RenderState.CurrentTrailingMessage = step.Message ?? string.Empty;
+            RenderState.CurrentTrailingColor = trailingColor;
+        }
 
         stepMessage = step.Message;
 
@@ -219,6 +224,7 @@ namespace workshopCli
 
         File.WriteAllText(txtFilePath, JsonConvert.SerializeObject(session));
 
+        RenderState.Clear();
         Console.Clear();
     }
 

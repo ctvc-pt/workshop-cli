@@ -302,7 +302,7 @@ powershell -NoProfile -Command "try { $r = Invoke-WebRequest -Uri 'http://%RECEI
 REM Create the shortcut. Do NOT also Start-Process the exe directly here:
 REM doing both spawns two CLI instances, each opens its own VS Code window.
 echo Creating shortcut...
-powershell -Command "$shell = New-Object -ComObject WScript.Shell; $shortcut = $shell.CreateShortcut('%SHORTCUT_NAME%'); $shortcut.TargetPath = '%TARGET_PROGRAM%'; $shortcut.WorkingDirectory = (Split-Path -Path '%TARGET_PROGRAM%'); $shortcut.Save()"
+powershell -Command "$shell = New-Object -ComObject WScript.Shell; $shortcut = $shell.CreateShortcut('%SHORTCUT_NAME%'); $shortcut.TargetPath = '%TARGET_PROGRAM%'; $shortcut.WorkingDirectory = (Split-Path -Path '%TARGET_PROGRAM%'); $shortcut.WindowStyle = 3; $shortcut.Save()"
 
 REM Open the shortcut (single launch — same path students will use afterwards)
 echo Opening shortcut...
