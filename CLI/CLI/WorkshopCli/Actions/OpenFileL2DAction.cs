@@ -60,6 +60,22 @@ namespace workshopCli
                     sw.WriteLine("--É aqui onde começa a tua aventura");
                 }
             }
+
+            var MDPath = $"{stepId}.md";
+            var assembly = Assembly.GetExecutingAssembly();
+            var resourceStream = assembly.GetManifestResourceStream($"workshop_cli.Guide.{MDPath}");
+            if (resourceStream != null)
+            {
+                using (var reader = new StreamReader(resourceStream))
+                {
+                    var fileContents = reader.ReadToEnd();
+                    Console.ForegroundColor = ConsoleColor.White;
+                    Console.WriteLine(fileContents);
+                    Console.ForegroundColor = ConsoleColor.Black;
+                }
+            }
+            Thread.Sleep(Delay);
+
             try
             {
 
@@ -220,25 +236,6 @@ namespace workshopCli
                 Console.WriteLine("Error opening file: " + ex.Message);
             }
 
-
-            // Console.Clear();
-
-            var MDPath = $"{stepId}.md";
-            var assembly = Assembly.GetExecutingAssembly();
-
-            var resourceStream = assembly.GetManifestResourceStream($"workshop_cli.Guide.{MDPath}");
-            if (resourceStream != null)
-            {
-                using (var reader = new StreamReader(resourceStream))
-                {
-                    var fileContents = reader.ReadToEnd();
-                    Console.ForegroundColor = ConsoleColor.White;
-                    Console.WriteLine(fileContents);
-                    Console.ForegroundColor = ConsoleColor.Black;
-                }
-            }
-            
-            Thread.Sleep(Delay);
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine();
             Console.ForegroundColor = ConsoleColor.Yellow;

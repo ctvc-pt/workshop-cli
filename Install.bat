@@ -299,15 +299,12 @@ REM Ping para validar (se o monitor ja tiver o receptor a correr).
 powershell -NoProfile -Command "try { $r = Invoke-WebRequest -Uri 'http://%RECEIVER_HOST%:%RECEIVER_PORT%/ping' -UseBasicParsing -TimeoutSec 3; if ($r.StatusCode -eq 200) { Write-Host 'Receptor respondeu OK.' } else { Write-Host ('Receptor devolveu status ' + $r.StatusCode) } } catch { Write-Host 'Aviso: receptor nao respondeu (pode nao estar ligado agora, esta bem).' }"
 :receiver_done
 
-REM Create the shortcut
+REM Create the shortcut. Do NOT also Start-Process the exe directly here:
+REM doing both spawns two CLI instances, each opens its own VS Code window.
 echo Creating shortcut...
-powershell -Command "Start-Process -FilePath '%TARGET_PROGRAM%' -Verb RunAs; $shell = New-Object -ComObject WScript.Shell; $shortcut = $shell.CreateShortcut('%SHORTCUT_NAME%'); $shortcut.TargetPath = '%TARGET_PROGRAM%'; $shortcut.Save()"
+powershell -Command "$shell = New-Object -ComObject WScript.Shell; $shortcut = $shell.CreateShortcut('%SHORTCUT_NAME%'); $shortcut.TargetPath = '%TARGET_PROGRAM%'; $shortcut.WorkingDirectory = (Split-Path -Path '%TARGET_PROGRAM%'); $shortcut.Save()"
 
-REM Set the shortcut to run as administrator
-echo Setting shortcut to run as administrator...
-powershell -Command "$shell = New-Object -ComObject WScript.Shell; $shortcut = $shell.CreateShortcut('%SHORTCUT_NAME%'); $shortcut.WorkingDirectory = (Split-Path -Path '%TARGET_PROGRAM%'); $shortcut.Save()"
-
-REM Open the shortcut
+REM Open the shortcut (single launch — same path students will use afterwards)
 echo Opening shortcut...
 start "" "%SHORTCUT_NAME%"
 

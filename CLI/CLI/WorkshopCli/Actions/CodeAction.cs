@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using System.Linq;
 using System.Reflection;
 using Newtonsoft.Json;
 using Sharprompt;
@@ -72,20 +73,22 @@ public class CodeAction : IAction
             Console.WriteLine( $"Could not find resource file: {mdFilePath}" );
         }
 
-        
-        
-        var startFolderInfo = new ProcessStartInfo {
-            FileName = $"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}/../Local/Programs/Microsoft VS Code/Code.exe",
-            Arguments = $"\"{ folderPath }\" --disable-workspace-trust",
-            WorkingDirectory = @"C:\",
-            Verb = "runas",
-            Environment =
-            {
-                { "VSCODE_LOG_LEVEL", "error" },
-                { "VSCODE_DISABLE_REDACTED_EXTENSIONS", "true" }
-            }
-        };
-        Process.Start(startFolderInfo);
+    
+        if (!Process.GetProcessesByName("Code").Any())
+        {
+            var startFolderInfo = new ProcessStartInfo {
+                FileName = $"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}/../Local/Programs/Microsoft VS Code/Code.exe",
+                Arguments = $"\"{ folderPath }\" --disable-workspace-trust",
+                WorkingDirectory = @"C:\",
+                Verb = "runas",
+                Environment =
+                {
+                    { "VSCODE_LOG_LEVEL", "error" },
+                    { "VSCODE_DISABLE_REDACTED_EXTENSIONS", "true" }
+                }
+            };
+            Process.Start(startFolderInfo);
+        }
         //Prompt.Confirm("Verifica o código e clica ENTER para continuar\n", false);
     }
 }

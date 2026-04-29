@@ -119,7 +119,15 @@ namespace workshopCli
 
         if (step.Type == "information" || step.Type == "challenge" || step.Type == "CreateSprites")
         {
-            VsCode.Open();
+            // Don't open VS Code before step 006-Criar-ficheiro creates main.lua 
+            var desktopPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory), "repoWorkshop");
+            var username = session.Name?.Replace(" ", "-") ?? "default-user";
+            var dateStamp = DateTime.Now.ToString("dd-MM-yyyy");
+            var mainLuaPath = Path.Combine(desktopPath, $"{username}_{dateStamp}", "mygame", "main.lua");
+            if (File.Exists(mainLuaPath))
+            {
+                VsCode.Open();
+            }
         }
         if (step.Type != "code" && step.Type != "open-file")
         {
