@@ -12,8 +12,7 @@ namespace workshopCli
 
         public void Open()
         {
-            string vsCodeExecutable = "code.exe";
-            vsCodeProcess = GetProcessByName(vsCodeExecutable);
+            vsCodeProcess = GetProcessByName("Code");
 
             if (vsCodeProcess != null)
             {
@@ -21,20 +20,13 @@ namespace workshopCli
             }
             else
             {
-                // Start VS Code
-                var pythonScriptPath = $"{GuideCli.ResourcesPath}/open_vscode.py"; // Script Path
+                var txtFilePath = Path.Combine(GuideCli.ResourcesPath, "session.txt");
+                var session = Newtonsoft.Json.JsonConvert.DeserializeObject<Session>(File.ReadAllText(txtFilePath));
+                var username = session.Name?.Replace(" ", "-");
+                var desktopPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory), "repoWorkshop");
+                var folderPath = Path.Combine(desktopPath, $"{username}_{DateTime.Now:dd-MM-yyyy}", "mygame");
 
-                var processStartInfo = new ProcessStartInfo
-                {
-                    FileName = "python",
-                    Arguments = pythonScriptPath,
-                    RedirectStandardOutput = true,
-                    RedirectStandardError = true,
-                    UseShellExecute = false,
-                    CreateNoWindow = true
-                };
-                vsCodeProcess = new Process { StartInfo = processStartInfo };
-                vsCodeProcess.Start();
+                VSCodeLauncher.Open(folderPath);
 
                 // Wait VS Code to open
                 Thread.Sleep(2000);
@@ -72,7 +64,8 @@ namespace workshopCli
             {
                 try
                 {
-                    if (process.MainModule.FileName.EndsWith(processName, StringComparison.OrdinalIgnoreCase))
+                    var fileName = Path.GetFileNameWithoutExtension(process.MainModule.FileName);
+                    if (fileName.Equals(processName, StringComparison.OrdinalIgnoreCase))
                     {
                         return process;
                     }

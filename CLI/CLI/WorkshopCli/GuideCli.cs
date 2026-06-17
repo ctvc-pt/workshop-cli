@@ -16,6 +16,10 @@ namespace workshopCli
         CsvController csvController = new CsvController();
         public static int adminInput;
         public static string stepMessage;
+        private static string currentStepId = string.Empty;
+        private static string currentStepMarkdown = string.Empty;
+        private static string currentStepMessage = string.Empty;
+        private static bool currentStepMessageIsRed;
 
         public GuideCli(Guide guide)
         {
@@ -94,12 +98,15 @@ namespace workshopCli
         Console.WriteLine(step.Id);
         Console.ForegroundColor = ConsoleColor.Black;
         session.StepId = step.Id;
+        ExerciseHelper.SetCurrentSession(session);
         currentIndex = i;
 
         if (step.Type == "information" || step.Type == "challenge" || step.Type == "CreateSprites")
         {
+            ExerciseHelper.SaveStepBackup(session);
             VsCode.Open();
         }
+        string markdown = string.Empty;
         if (step.Type != "code" && step.Type != "open-file" && step.Type != "intro")
         {
             var filePath = $"{step.Id}.md";
@@ -110,7 +117,7 @@ namespace workshopCli
             {
                 using (var reader = new StreamReader(resourceStream))
                 {
-                    var markdown = reader.ReadToEnd();
+                    markdown = reader.ReadToEnd();
                     WrapString(markdown, 100);
                     HtmlConsoleRenderer.Render(markdown);
                 }
@@ -127,6 +134,7 @@ namespace workshopCli
         Console.ForegroundColor = ConsoleColor.White;
 
         stepMessage = step.Message;
+        SetCurrentStepDisplay(step.Id, markdown, step.Message, i > 4);
 
         var delay = step.Delay;
 
@@ -141,7 +149,6 @@ namespace workshopCli
             { "ask-name", new AskNameAction(this) },
             { "ask-age", new AskAgeAction(this) },
             { "ask-email", new AskEmailAction(this) },
-            { "ask-mesa", new AskTableAction(this) },
             { "video", new VideoAction(currentIndex, this) },
             { "end", new EndAction() }
         };
@@ -164,7 +171,7 @@ namespace workshopCli
             Console.WriteLine($"Unknown action type: {step.Type}");
         }
 
-        var NameId = session.Name + session.Mesa;
+        var NameId = session.Name;
         session.NameId = NameId;
         if (i >= 4)
         {
@@ -172,7 +179,6 @@ namespace workshopCli
             {
                 bool isChallenge = step.Type == "challenge";
                 csvController.UpdateSession(session.Name, session.Age, session.Email, session.StepId, NameId, isChallenge);
-                csvController.GetHelp(NameId, session.StepId, isChallenge);
             }
             catch (Exception e)
             {
@@ -218,6 +224,35 @@ namespace workshopCli
             return wrappedString.ToString().TrimEnd();
         }
         
+        public static void SetCurrentStepDisplay(string stepId, string markdown, string message, bool messageIsRed)
+        {
+            currentStepId = stepId;
+            currentStepMarkdown = markdown;
+            currentStepMessage = message;
+            currentStepMessageIsRed = messageIsRed;
+        }
+
+        public static void RenderCurrentStep()
+        {
+            if (string.IsNullOrEmpty(currentStepId) && string.IsNullOrEmpty(currentStepMessage))
+            {
+                return;
+            }
+
+            Console.ForegroundColor = ConsoleColor.DarkGray;
+            Console.WriteLine(currentStepId);
+            Console.ForegroundColor = ConsoleColor.Black;
+
+            if (!string.IsNullOrEmpty(currentStepMarkdown))
+            {
+                HtmlConsoleRenderer.Render(currentStepMarkdown);
+            }
+
+            Console.ForegroundColor = currentStepMessageIsRed ? ConsoleColor.Red : ConsoleColor.White;
+            Console.WriteLine(currentStepMessage);
+            Console.ForegroundColor = ConsoleColor.White;
+        }
+
         
     }
 }

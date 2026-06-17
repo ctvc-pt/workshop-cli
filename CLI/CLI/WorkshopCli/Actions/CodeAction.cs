@@ -60,18 +60,7 @@ public class CodeAction : IAction
 
         
         
-        var startFolderInfo = new ProcessStartInfo {
-            FileName = $"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}/../Local/Programs/Microsoft VS Code/Code.exe",
-            Arguments = $"\"{ folderPath }\" --disable-workspace-trust",
-            WorkingDirectory = @"C:\",
-            Verb = "runas",
-            Environment =
-            {
-                { "VSCODE_LOG_LEVEL", "error" },
-                { "VSCODE_DISABLE_REDACTED_EXTENSIONS", "true" }
-            }
-        };
-        Process.Start(startFolderInfo);
+        VSCodeLauncher.Open(folderPath);
         //Prompt.Confirm("Verifica o código e clica ENTER para continuar\n", false);
     }
 }

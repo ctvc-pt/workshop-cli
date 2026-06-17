@@ -1,7 +1,16 @@
 [color=white]
-Falta fazer com que os inimigos se movam, é o passo seguinte.
+Agora os inimigos ja aparecem, mas ainda estao parados.
+Neste passo vamos ensinar cada inimigo a andar sozinho.
 
-5. Adiciona este código à função "atualizarInimigos(dt)":
+1. No VS Code, procura esta funcao:
+   [/color] [color=blue]
+    function atualizarInimigos(dt)
+   [/color] [color=white]
+2. Dentro dessa funcao ja existe codigo que cria inimigos novos.
+
+3. Vai ate ao fim da funcao, mas fica antes do ultimo "end".
+
+4. Cola este codigo nesse sitio:
    [/color] [color=blue]
     for i = #inimigos, 1, -1 do
         local inimigo = inimigos[i]
@@ -13,5 +22,16 @@ Falta fazer com que os inimigos se movam, é o passo seguinte.
         end
     end
    [/color] [color=white]
-Agora deves ter um monte de inimigos a vir em direção da tua nave.
+O que este codigo faz:
+
+- Olha para todos os inimigos que existem no jogo.
+- Muda a posicao X para o inimigo andar para os lados.
+- Muda a posicao Y para o inimigo andar para cima ou para baixo.
+- Se um inimigo sair do ecra, ele e apagado para o jogo nao ficar lento.
+
+Atencao: este codigo tem de ficar dentro da funcao "atualizarInimigos(dt)".
+Nao o coloques dentro da funcao "draw" nem dentro da funcao "update".
+
+Quando terminares, guarda o ficheiro e carrega em Alt + L para testar.
+Se estiver certo, os inimigos vao comecar a entrar no ecra e a andar.
    [/color]

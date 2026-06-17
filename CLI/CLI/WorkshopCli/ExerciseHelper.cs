@@ -10,6 +10,12 @@ namespace workshopCli
     public class ExerciseHelper
     {
         static ProcessLuv processLuv = new ProcessLuv();
+        static Session currentSession;
+
+        public static void SetCurrentSession( Session session )
+        {
+            currentSession = session;
+        }
 
         public static string PromptAnswerAndPrint()
         {
@@ -36,9 +42,8 @@ namespace workshopCli
         public static bool PromptAnswerAndConfirm(string prompt)
         {
             var txtFilePath = Path.Combine(GuideCli.ResourcesPath, "session.txt");
-            var session = JsonConvert.DeserializeObject<Session>(File.ReadAllText(txtFilePath));
+            var session = currentSession ?? JsonConvert.DeserializeObject<Session>(File.ReadAllText(txtFilePath));
 
-            var chatGptClient = new OllamaClient();
             while (true)
             {
                 var wrappedString = GuideCli.WrapString(prompt, 50);
@@ -59,9 +64,6 @@ namespace workshopCli
 
                 switch ( answer.ToLower() )
                 {
-                    case "ajuda" or "h":
-                        HandleHelp( session, chatGptClient );
-                        break;
                     case "admin":
                         HandleAdmin();
                         break;
@@ -75,7 +77,7 @@ namespace workshopCli
                         ClearConsole();
                         return true;
                     case "reset":
-                        ResetToLastStep( session.Name );
+                        ResetToLastStep( session );
                         break;
                     case "s":
                         return false;
@@ -85,116 +87,6 @@ namespace workshopCli
                         Console.WriteLine( "Resposta inválida. Insere 'proximo' ou 'p'." );
                         Console.ResetColor();
                         break;
-                }
-            }
-        }
-
-        static void HandleHelp( Session session, OllamaClient ollamaClient )
-        {
-            try
-            {
-                CsvController.PrintHelp( false, true );
-            }
-            catch ( Exception e )
-            {
-                Console.ForegroundColor = ConsoleColor.Black;
-                Console.WriteLine( e );
-            }
-
-            Console.ForegroundColor = ConsoleColor.DarkCyan;
-            Console.WriteLine( "Qual é o problema?" );
-            Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.Write( $"{session.Name}: " );
-            var userMessage = Prompt.Input<string>( "" );
-            var urgent = false;
-            var GPTfailed = false;
-
-            try
-            {
-                var response = ollamaClient.AskOllama( userMessage, GuideCli.stepMessage ).Result;
-                var typewriter = new TypewriterEffect( 50 );
-                typewriter.Type( response, ConsoleColor.Cyan );
-            }
-            catch ( Exception ex )
-            {
-                Console.ForegroundColor = ConsoleColor.Black;
-                Console.WriteLine( "Não foi possível pedir ajuda" );
-                Console.ResetColor();
-                Console.ForegroundColor = ConsoleColor.Yellow;
-                GPTfailed = true;
-            }
-
-            if ( !GPTfailed )
-            {
-                Console.WriteLine( "\nConseguiste resolver? (sim ou não)" );
-                var input = Prompt.Input<string>( "" ).ToLower();
-
-                if ( input == "sim" || input == "s" )
-                {
-                    try
-                    {
-                        CsvController.PrintHelp( true, false );
-                    }
-                    catch ( Exception e )
-                    {
-                        Console.ForegroundColor = ConsoleColor.Black;
-                        Console.WriteLine( e );
-                    }
-                }
-                else if ( input == "não" || input == "nao" || input == "n" )
-                {
-                    HandleHelpRequest();
-                }
-                else
-                {
-                    Console.WriteLine( "Resposta inválida. Escreve 'sim' ou 'não'." );
-                }
-            }
-            else
-            {
-                HandleHelpRequest();
-            }
-        }
-
-        static void HandleHelpRequest()
-        {
-            try
-            {
-                CsvController.PrintHelp( true, false );
-            }
-            catch ( Exception e )
-            {
-                Console.ForegroundColor = ConsoleColor.Black;
-                Console.WriteLine( e );
-            }
-
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine( "Fizeste um pedido de ajuda, espera por um professor." );
-            Console.WriteLine( "ATENÇÃO: se saires desta mensagem o teu pedido de ajuda desaparece" );
-            Console.WriteLine( "Escreve 'continuar' ou 'done' para continuar o workshop." );
-            Console.ResetColor();
-            var urgent = true;
-
-            while ( urgent )
-            {
-                var inputHelp = Prompt.Input<string>( "" ).ToLower();
-                if ( inputHelp == "continuar" || inputHelp == "done" )
-                {
-                    try
-                    {
-                        CsvController.PrintHelp( false, false );
-                    }
-                    catch ( Exception e )
-                    {
-                        Console.ForegroundColor = ConsoleColor.Black;
-                        Console.WriteLine( e );
-                    }
-
-                    urgent = false;
-                }
-                else
-                {
-                    Console.WriteLine( "Resposta inválida. Escreve 'continuar' ou 'done'." );
                 }
             }
         }
@@ -215,26 +107,72 @@ namespace workshopCli
             }
         }
 
-        static void ResetToLastStep( string username )
+        public static string GetStudentGameFolder( string username )
         {
+            if ( !string.IsNullOrWhiteSpace( username ) )
+            {
+                username = username.Replace( " ", "-" );
+            }
+
             var desktopPath = Path.Combine( Environment.GetFolderPath( Environment.SpecialFolder.DesktopDirectory ),
                 "repoWorkshop" );
-            var folderPath = Path.Combine( desktopPath, $"{username}_{DateTime.Now.ToString( "dd-MM-yyyy" )}",
-                "mygame" );
-            string destinationFilePath = Path.Combine( folderPath, "main.lua" );
-            string sourceFilePath = $"{GuideCli.ResourcesPath}/backup.lua";
+
+            return Path.Combine( desktopPath, $"{username}_{DateTime.Now.ToString( "dd-MM-yyyy" )}", "mygame" );
+        }
+
+        public static void SaveStepBackup( Session session )
+        {
+            if ( session == null || string.IsNullOrWhiteSpace( session.Name ) || string.IsNullOrWhiteSpace( session.StepId ) )
+            {
+                return;
+            }
 
             try
             {
-                string content = File.ReadAllText( sourceFilePath );
+                var folderPath = GetStudentGameFolder( session.Name );
+                var sourceFilePath = Path.Combine( folderPath, "main.lua" );
 
-                File.WriteAllText( destinationFilePath, content );
+                if ( !File.Exists( sourceFilePath ) )
+                {
+                    return;
+                }
 
-                Console.WriteLine( "O código foi restaurado." );
+                var backupFolder = Path.Combine( folderPath, ".workshop-backups" );
+                Directory.CreateDirectory( backupFolder );
+
+                var backupFilePath = Path.Combine( backupFolder, $"{session.StepId}.lua" );
+                if ( !File.Exists( backupFilePath ) )
+                {
+                    File.Copy( sourceFilePath, backupFilePath );
+                }
+            }
+            catch
+            {
+            }
+        }
+
+        static void ResetToLastStep( Session session )
+        {
+            try
+            {
+                var folderPath = GetStudentGameFolder( session?.Name );
+                string destinationFilePath = Path.Combine( folderPath, "main.lua" );
+                string sourceFilePath = Path.Combine( folderPath, ".workshop-backups", $"{session?.StepId}.lua" );
+
+                if ( string.IsNullOrWhiteSpace( session?.StepId ) || !File.Exists( sourceFilePath ) )
+                {
+                    Console.WriteLine( "Ainda nao existe uma copia guardada deste desafio." );
+                    Console.WriteLine( "Chama um professor antes de usar reset aqui." );
+                    return;
+                }
+
+                File.Copy( sourceFilePath, destinationFilePath, true );
+
+                Console.WriteLine( $"O codigo voltou ao inicio do desafio {session.StepId}." );
             }
             catch ( Exception ex )
             {
-                Console.WriteLine( "Ocorreu um erro ao fazer backup: " + ex.Message );
+                Console.WriteLine( "Ocorreu um erro ao fazer reset: " + ex.Message );
             }
         }
 

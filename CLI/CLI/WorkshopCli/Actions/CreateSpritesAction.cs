@@ -56,6 +56,6 @@ public class CreateSpritesAction : IAction
 
         Thread.Sleep(Delay);
         Console.ForegroundColor = ConsoleColor.Yellow;
-        ExerciseHelper.PromptAnswerAndConfirm("Escreve 'proximo' ou 'p' para avançar ou para retroceder escreve 'anterior' ou 'a'. Se precisares de ajuda escreve 'ajuda'. Se por alguma razão desejares voltar ao codigo anterior, escreve 'reset'");
+        ExerciseHelper.PromptAnswerAndConfirm("Escreve 'proximo' ou 'p' para avancar. Para retroceder escreve 'anterior' ou 'a'. Para voltar ao codigo anterior deste desafio, escreve 'reset'.");
     }
 }

@@ -231,6 +231,7 @@ namespace workshopCli
                 using (var reader = new StreamReader(resourceStream))
                 {
                     var fileContents = reader.ReadToEnd();
+                    GuideCli.SetCurrentStepDisplay(stepId, fileContents, GuideCli.stepMessage, true);
                     Console.ForegroundColor = ConsoleColor.White;
                     Console.WriteLine(fileContents);
                     Console.ForegroundColor = ConsoleColor.Black;
@@ -241,7 +242,7 @@ namespace workshopCli
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine();
             Console.ForegroundColor = ConsoleColor.Yellow;
-            ExerciseHelper.PromptAnswerAndConfirm("Verifica o código e escreve 'proximo' ou 'p' para continuar ou para retroceder escreve 'anterior' (ou 'ajuda')\n");
+            ExerciseHelper.PromptAnswerAndConfirm("Verifica o codigo e escreve 'proximo' ou 'p' para continuar. Para retroceder escreve 'anterior' ou 'a'.\n");
         }
 
         // Add event to close AutoHotKeys

@@ -1,5 +1,8 @@
 function love.load() -- Inicio da função "load()"
-    love.window.setMode(1200, 960)
+    local ecraLargura, ecraAltura = love.window.getDesktopDimensions()
+    local janelaLargura = math.min(1000, ecraLargura - 80)
+    local janelaAltura = math.min(700, ecraAltura - 120)
+    love.window.setMode(janelaLargura, janelaAltura)
 
 
 end -- Fim da função "load()"
