@@ -7,11 +7,6 @@ namespace workshopCli
 {
     public static class VSCodeLauncher
     {
-        public static string UserDataDirectory => Path.Combine(
-            Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
-            "WorkshopCli",
-            "vscode-user-data");
-
         public static bool Open(string targetPath, bool runAs = false)
         {
             PrepareWorkshopWorkspace(targetPath);
@@ -34,7 +29,7 @@ namespace workshopCli
                     var startInfo = new ProcessStartInfo
                     {
                         FileName = executablePath,
-                        Arguments = $"--disable-extensions --user-data-dir \"{UserDataDirectory}\" --disable-workspace-trust \"{targetPath}\"",
+                        Arguments = $"--disable-extension pixelbyte-studios.pixelbyte-love2d --disable-workspace-trust \"{targetPath}\"",
                         WorkingDirectory = @"C:\",
                         UseShellExecute = false,
                         CreateNoWindow = true,
@@ -98,11 +93,10 @@ namespace workshopCli
         {
             Directory.CreateDirectory(targetPath);
             Directory.CreateDirectory(Path.Combine(targetPath, ".vscode"));
-            Directory.CreateDirectory(Path.Combine(UserDataDirectory, "User"));
 
             WriteRunLoveTask(targetPath);
             KeyboardShortcut.AddKeyboardShortcut();
-            WriteWorkshopSettings();
+            WriteWorkshopSettings(targetPath);
         }
 
         private static void WriteRunLoveTask(string targetPath)
@@ -138,9 +132,9 @@ namespace workshopCli
             File.WriteAllText(tasksPath, json.ToString());
         }
 
-        private static void WriteWorkshopSettings()
+        private static void WriteWorkshopSettings(string targetPath)
         {
-            var settingsPath = Path.Combine(UserDataDirectory, "User", "settings.json");
+            var settingsPath = Path.Combine(targetPath, ".vscode", "settings.json");
             File.WriteAllText(settingsPath,
                 "{\n" +
                 "  \"files.autoSave\": \"afterDelay\",\n" +

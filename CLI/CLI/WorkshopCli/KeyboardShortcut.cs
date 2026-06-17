@@ -6,7 +6,8 @@ public class KeyboardShortcut
     public static void AddKeyboardShortcut()
     {
         var userKeybindingsFilePath = Path.Combine(
-            VSCodeLauncher.UserDataDirectory,
+            Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
+            "Code",
             "User",
             "keybindings.json");
 
