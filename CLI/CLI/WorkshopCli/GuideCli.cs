@@ -88,6 +88,7 @@ namespace workshopCli
     int currentIndex = 0;
     for (var i = startIndex; i < guide.Steps.Count; i++)
     {
+        ExerciseHelper.ClearConsole();
         var step = guide.Steps[i];
         Console.ForegroundColor = ConsoleColor.DarkGray;
         Console.WriteLine(step.Id);
@@ -181,7 +182,7 @@ namespace workshopCli
 
         File.WriteAllText(txtFilePath, JsonConvert.SerializeObject(session));
 
-        Console.Clear();
+        ExerciseHelper.ClearConsole();
     }
 
     Thread.Sleep(2000);

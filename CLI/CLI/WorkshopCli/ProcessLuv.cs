@@ -7,15 +7,18 @@ namespace workshopCli
     {
         public void CloseLovecProcess()
         {
-            Process[] processes = Process.GetProcessesByName("lovec,love");
-
-            foreach (Process process in processes)
+            foreach (var processName in new[] { "lovec", "love" })
             {
-                process.CloseMainWindow();
-                process.WaitForExit();
+                foreach (Process process in Process.GetProcessesByName(processName))
+                {
+                    process.CloseMainWindow();
+                    if (!process.WaitForExit(2000))
+                    {
+                        process.Kill();
+                        process.WaitForExit();
+                    }
+                }
             }
-
-            //Console.WriteLine("lovec.exe process closed.");
         }
     }
 }

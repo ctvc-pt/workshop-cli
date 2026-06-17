@@ -12,35 +12,35 @@ public class KeyboardShortcut
 {
     public static void AddKeyboardShortcut()
     {
-        // Specify the shortcut keybinding to add
         var shortcutName = "pixelbyte.love2d.run";
+        var newShortcut = "alt+l";
 
-        // Specify the new keybinding
-        var newShortcut = "alt+j";
-
-        // Find the user keybindings file
         var userKeybindingsFilePath = Path.Combine(
             Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
             "Code/User/keybindings.json"
         );
 
-        // Read the user keybindings file into a string
-        var userKeybindingsJson = File.ReadAllText(userKeybindingsFilePath);
+        Directory.CreateDirectory(Path.GetDirectoryName(userKeybindingsFilePath)!);
 
-        // Check if the keybinding already exists
+        var userKeybindingsJson = File.Exists(userKeybindingsFilePath)
+            ? File.ReadAllText(userKeybindingsFilePath)
+            : "[]";
+
         if (userKeybindingsJson.Contains($"\"command\": \"{shortcutName}\""))
         {
-            //Console.WriteLine($"The keybinding \"{shortcutName}\" already exists.");
+            userKeybindingsJson = userKeybindingsJson.Replace(
+                "\"key\": \"alt+j\", \"command\": \"pixelbyte.love2d.run\"",
+                $"\"key\": \"{newShortcut}\", \"command\": \"{shortcutName}\""
+            );
+            File.WriteAllText(userKeybindingsFilePath, userKeybindingsJson);
             return;
         }
 
-        // Add the new keybinding
         userKeybindingsJson = userKeybindingsJson.Replace(
             "[",
             $"[{{\"key\": \"{newShortcut}\", \"command\": \"{shortcutName}\"}},"
         );
 
-        // Write the modified keybindings back to the file
         File.WriteAllText(userKeybindingsFilePath, userKeybindingsJson);
     }
 }

@@ -27,6 +27,7 @@ namespace workshopCli
             InstallGit();
             InstallVSCode();
             InstallVSCodeExtension("sumneko.lua");
+            InstallVSCodeExtension("pixelbyte-studios.pixelbyte-love2d");
 
             isInstalled = true;
         }

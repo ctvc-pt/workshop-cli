@@ -67,11 +67,12 @@ namespace workshopCli
                         break;
                     case "anterior" or "a":
                         GuideCli.adminInput = -1;
+                        ClearConsole();
                         return true;
                     case "proximo" or "p":
                         processLuv.CloseLovecProcess();
-                        Task.Run(() => ShowSpinnerAnimation().GetAwaiter().GetResult());
-                        Task.Delay(50).GetAwaiter().GetResult();
+                        ShowSpinnerAnimation().GetAwaiter().GetResult();
+                        ClearConsole();
                         return true;
                     case "reset":
                         ResetToLastStep( session.Name );
@@ -237,10 +238,44 @@ namespace workshopCli
             }
         }
 
+        public static void ClearConsole()
+        {
+            Console.ResetColor();
+
+            try
+            {
+                Console.Clear();
+            }
+            catch
+            {
+            }
+
+            try
+            {
+                Console.SetCursorPosition(0, 0);
+                if (Console.BufferHeight > Console.WindowHeight)
+                {
+                    Console.SetBufferSize(Console.WindowWidth, Console.WindowHeight);
+                }
+            }
+            catch
+            {
+            }
+
+            Console.Write("\u001b[2J\u001b[3J\u001b[H");
+            Console.Out.Flush();
+        }
+
         static void ClearLines( int numberLines )
         {
+            if (numberLines <= 0)
+            {
+                ClearConsole();
+                return;
+            }
+
             int currentLineCursor = Console.CursorTop;
-            int startLine = currentLineCursor - numberLines;
+            int startLine = Math.Max(0, currentLineCursor - numberLines);
 
             for ( int i = 0; i < numberLines; i++ )
             {
@@ -258,7 +293,7 @@ namespace workshopCli
             int delay = 100;
             int iterations = durationMs / delay;
 
-            Console.Clear();
+            ClearConsole();
             Console.CursorVisible = false;
             Console.SetCursorPosition(0, 0);
 
@@ -273,6 +308,7 @@ namespace workshopCli
             Console.SetCursorPosition(0, 0);
             Console.Write(new string(' ', Console.WindowWidth));
             Console.CursorVisible = true;
+            ClearConsole();
         }
     }
 }
