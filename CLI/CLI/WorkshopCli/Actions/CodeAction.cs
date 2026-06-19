@@ -78,9 +78,12 @@ public class CodeAction : IAction
         {
             var startFolderInfo = new ProcessStartInfo {
                 FileName = $"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}/../Local/Programs/Microsoft VS Code/Code.exe",
-                Arguments = $"\"{ folderPath }\" --disable-workspace-trust",
+                Arguments = $"\"{ folderPath }\" --disable-workspace-trust --log error",
                 WorkingDirectory = @"C:\",
-                Verb = "runas",
+                UseShellExecute = false,
+                RedirectStandardOutput = true,
+                RedirectStandardError = true,
+                CreateNoWindow = true,
                 Environment =
                 {
                     { "VSCODE_LOG_LEVEL", "error" },

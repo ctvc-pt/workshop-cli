@@ -6,7 +6,11 @@ from datetime import datetime
 def open_vscode(folder_path):
     try:
         file_name = os.path.join(os.path.expanduser("~"), "AppData/Local/Programs/Microsoft VS Code/Code.exe")
-        subprocess.Popen([file_name, '--add','--disable-workspace-trust', folder_path])
+        subprocess.Popen(
+            [file_name, '--add', '--disable-workspace-trust', '--log', 'error', folder_path],
+            stdout=subprocess.DEVNULL,
+            stderr=subprocess.DEVNULL,
+        )
     except OSError as e:
         print(e)
 

@@ -73,8 +73,9 @@ _ = System.Threading.Tasks.Task.Run(() =>
         {
             lock (RenderState.RenderLock)
             {
+                if (RenderState.IsPrompting) continue;
                 if (string.IsNullOrEmpty(RenderState.CurrentMarkdown)) continue;
-                Console.Clear();
+                ConsoleScreen.Clear();
                 HtmlConsoleRenderer.RenderInternal(RenderState.CurrentMarkdown);
                 if (!string.IsNullOrEmpty(RenderState.CurrentTrailingMessage))
                 {

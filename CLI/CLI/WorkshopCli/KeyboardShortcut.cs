@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json.Linq;
 
 namespace workshopCli;
 
@@ -24,23 +25,38 @@ public class KeyboardShortcut
             "Code/User/keybindings.json"
         );
 
-        // Read the user keybindings file into a string
-        var userKeybindingsJson = File.ReadAllText(userKeybindingsFilePath);
+        if ( !File.Exists( userKeybindingsFilePath ) )
+        {
+            File.WriteAllText( userKeybindingsFilePath, "[]" );
+        }
+
+        var keybindings = JArray.Parse( File.ReadAllText( userKeybindingsFilePath ) );
+
+        for ( var i = keybindings.Count - 1; i >= 0; i-- )
+        {
+            var keybinding = keybindings[ i ];
+            var key = keybinding[ "key" ]?.ToString();
+            var command = keybinding[ "command" ]?.ToString();
+
+            if ( key == newShortcut && command != shortcutName )
+            {
+                keybindings.RemoveAt( i );
+            }
+        }
 
         // Check if the keybinding already exists
-        if (userKeybindingsJson.Contains($"\"command\": \"{shortcutName}\""))
+        if ( keybindings.Any( keybinding => keybinding[ "command" ]?.ToString() == shortcutName ) )
         {
-            //Console.WriteLine($"The keybinding \"{shortcutName}\" already exists.");
+            File.WriteAllText( userKeybindingsFilePath, keybindings.ToString() );
             return;
         }
 
-        // Add the new keybinding
-        userKeybindingsJson = userKeybindingsJson.Replace(
-            "[",
-            $"[{{\"key\": \"{newShortcut}\", \"command\": \"{shortcutName}\"}},"
-        );
+        keybindings.Insert( 0, new JObject
+        {
+            [ "key" ] = newShortcut,
+            [ "command" ] = shortcutName
+        } );
 
-        // Write the modified keybindings back to the file
-        File.WriteAllText(userKeybindingsFilePath, userKeybindingsJson);
+        File.WriteAllText( userKeybindingsFilePath, keybindings.ToString() );
     }
 }

@@ -17,7 +17,6 @@ namespace workshopCli
 
             if (vsCodeProcess != null)
             {
-                Console.WriteLine("Visual Studio Code is already open.");
                 return false;
             }
             else
