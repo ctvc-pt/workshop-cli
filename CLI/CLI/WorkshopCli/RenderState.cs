@@ -9,6 +9,7 @@ namespace workshopCli
         public static string CurrentMarkdown = string.Empty;
         public static string CurrentTrailingMessage = string.Empty;
         public static ConsoleColor CurrentTrailingColor = ConsoleColor.White;
+        public static bool IsPrompting = false;
 
         public static void Clear()
         {
@@ -16,6 +17,7 @@ namespace workshopCli
             {
                 CurrentMarkdown = string.Empty;
                 CurrentTrailingMessage = string.Empty;
+                IsPrompting = false;
             }
         }
     }

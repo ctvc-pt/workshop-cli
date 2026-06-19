@@ -214,9 +214,6 @@ namespace workshopCli
 
         File.WriteAllText(settingsPath, jsonset);
 
-        Console.WriteLine("Configurações atualizadas com sucesso.");
-    
-
                 KeyboardShortcut.AddKeyboardShortcut();
 
                 var startFileInfo = new ProcessStartInfo
@@ -237,7 +234,7 @@ namespace workshopCli
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine();
             Console.ForegroundColor = ConsoleColor.Yellow;
-            ExerciseHelper.PromptAnswerAndConfirm("Verifica o código e escreve 'proximo' ou 'p' para continuar ou para retroceder escreve 'anterior' (ou 'ajuda')\n");
+            ExerciseHelper.PromptAnswerAndConfirm("Verifica o código e escreve 'proximo' ou 'p' para continuar ou para retroceder escreve 'anterior'\n");
         }
 
         // Add event to close AutoHotKeys

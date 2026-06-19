@@ -39,51 +39,62 @@ namespace workshopCli
             var session = JsonConvert.DeserializeObject<Session>(File.ReadAllText(txtFilePath));
 
             var chatGptClient = new OllamaClient();
-            while (true)
+            lock ( RenderState.RenderLock )
             {
-                var wrappedString = GuideCli.WrapString(prompt, 50);
-                Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.WriteLine(wrappedString);
-                Console.ResetColor();
+                RenderState.IsPrompting = true;
+            }
 
-                var answer = Prompt.Input<string>("Resposta ");
-
-                if (string.IsNullOrWhiteSpace(answer))
+            try
+            {
+                while (true)
                 {
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    ClearLines(-1);
-                    Console.WriteLine("Resposta inválida. Insere 'proximo' ou 'p'.");
+                    var wrappedString = GuideCli.WrapString(prompt, 50);
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.WriteLine(wrappedString);
                     Console.ResetColor();
-                    continue;
-                }
 
-                switch ( answer.ToLower() )
-                {
-                    case "ajuda" or "h":
-                        HandleHelp( session, chatGptClient );
-                        break;
-                    case "admin":
-                        HandleAdmin();
-                        break;
-                    case "anterior" or "a":
-                        GuideCli.adminInput = -1;
-                        return true;
-                    case "proximo" or "p":
-                        processLuv.CloseLovecProcess();
-                        Task.Run(() => ShowSpinnerAnimation().GetAwaiter().GetResult());
-                        Task.Delay(50).GetAwaiter().GetResult();
-                        return true;
-                    case "reset":
-                        ResetToLastStep( session.Name );
-                        break;
-                    case "s":
-                        return false;
-                    default:
+                    var answer = Prompt.Input<string>("Resposta ");
+
+                    if (string.IsNullOrWhiteSpace(answer))
+                    {
                         Console.ForegroundColor = ConsoleColor.Red;
-                        ClearLines( -1 );
+                        ClearLines(-1);
                         Console.WriteLine( "Resposta inválida. Insere 'proximo' ou 'p'." );
                         Console.ResetColor();
-                        break;
+                        continue;
+                    }
+
+                    switch ( answer.ToLower() )
+                    {
+                        case "admin":
+                            HandleAdmin();
+                            break;
+                        case "anterior" or "a":
+                            GuideCli.adminInput = -1;
+                            return true;
+                        case "proximo" or "p":
+                            processLuv.CloseLovecProcess();
+                            ConsoleScreen.Clear();
+                            return true;
+                        case "reset":
+                            ResetToLastStep( session.Name );
+                            break;
+                        case "s":
+                            return false;
+                        default:
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            ClearLines( -1 );
+                            Console.WriteLine( "Resposta inválida. Insere 'proximo' ou 'p'." );
+                            Console.ResetColor();
+                            break;
+                    }
+                }
+            }
+            finally
+            {
+                lock ( RenderState.RenderLock )
+                {
+                    RenderState.IsPrompting = false;
                 }
             }
         }
@@ -258,7 +269,7 @@ namespace workshopCli
             int delay = 100;
             int iterations = durationMs / delay;
 
-            Console.Clear();
+            ConsoleScreen.Clear();
             Console.CursorVisible = false;
             Console.SetCursorPosition(0, 0);
 

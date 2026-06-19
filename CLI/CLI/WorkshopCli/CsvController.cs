@@ -56,9 +56,35 @@ namespace workshopCli
         {
             var lines = File.ReadAllLines( csvFilePath ).ToList();
 
-            bool isNetworkAvailable = NetworkInterface.GetIsNetworkAvailable();
+            bool nameFound = false;
+            for ( var i = 0; i < lines.Count; i++ )
+            {
+                var values = lines[ i ].Split( ';' );
+                if ( values[ 0 ] == name )
+                {
+                    values[ 1 ] = age;
+                    values[ 2 ] = email;
+                    values[ 3 ] = stepId;
+                    values[ 4 ] = nameId;
+                    lines[ i ] = string.Join( ";", values );
+                    nameFound = true;
+                    break;
+                }
+            }
 
-            if ( isNetworkAvailable )
+            if ( !nameFound )
+            {
+                lines.Add( $"{name};{age};{email};{stepId};{nameId}" );
+            }
+
+            File.WriteAllLines( csvFilePath, lines );
+
+            if ( !NetworkInterface.GetIsNetworkAvailable() )
+            {
+                return;
+            }
+
+            try
             {
                 var sheetName = "Sessions";
                 var service = _service.Value;
@@ -121,34 +147,10 @@ namespace workshopCli
                     AppendTimeline( service, nameId, stepId, timestamp );
                 }
             }
-            else
+            catch
             {
-                Console.WriteLine(
-                    "Cannot update session in Google Sheets. No internet connection. Updating CSV only." );
+                // Keep the student flow clean. The local CSV was already updated above.
             }
-
-            bool nameFound = false;
-            for ( var i = 0; i < lines.Count; i++ )
-            {
-                var values = lines[ i ].Split( ';' );
-                if ( values[ 0 ] == name )
-                {
-                    values[ 1 ] = age;
-                    values[ 2 ] = email;
-                    values[ 3 ] = stepId;
-                    values[ 4 ] = nameId;
-                    lines[ i ] = string.Join( ";", values );
-                    nameFound = true;
-                    break;
-                }
-            }
-
-            if ( !nameFound )
-            {
-                lines.Add( $"{name};{age};{email};{stepId};{nameId}" );
-            }
-
-            File.WriteAllLines( csvFilePath, lines );
         }
 
         // Append-only history para analytics: cada transicao de step gera uma linha

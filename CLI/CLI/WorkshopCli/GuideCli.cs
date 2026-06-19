@@ -65,25 +65,10 @@ namespace workshopCli
     // Determinar o guia com base na resposta (ou manter o salvo)
     var participation = session.Participation?.Trim().ToLower();
 
-    // Se disse "sim", pergunta qual guia quer seguir (Flappy Bird ou Endless Skater)
+    // Participacao anterior vai diretamente para Endless Skater.
     if (participation == "sim" && string.IsNullOrEmpty(session.StepId))
     {
-        int cursorTop = Console.CursorTop;
-        Console.WriteLine("Qual jogo queres fazer?");
-        Console.WriteLine("  1 - Flappy Bird");
-        Console.WriteLine("  2 - Endless Skater\n");
-
-        string escolha;
-        do
-        {
-            escolha = ExerciseHelper.PromptAnswerAndPrint()?.Trim();
-            if (escolha != "1" && escolha != "2")
-            {
-                Console.WriteLine("Resposta invalida. Por favor, responde '1' ou '2'.");
-            }
-        } while (escolha != "1" && escolha != "2");
-
-        participation = escolha == "1" ? "2" : "3";
+        participation = "3";
         session.Participation = participation;
     }
 
@@ -110,7 +95,14 @@ namespace workshopCli
     int currentIndex = 0;
     for (var i = startIndex; i < guide.Steps.Count; i++)
     {
+        ConsoleScreen.Clear();
         var step = guide.Steps[i];
+        if (step.Type == "ask-mesa")
+        {
+            session.Mesa = string.Empty;
+            continue;
+        }
+
         Console.ForegroundColor = ConsoleColor.DarkGray;
         Console.WriteLine(step.Id);
         Console.ForegroundColor = ConsoleColor.Black;
@@ -225,7 +217,7 @@ namespace workshopCli
         File.WriteAllText(txtFilePath, JsonConvert.SerializeObject(session));
 
         RenderState.Clear();
-        Console.Clear();
+        ConsoleScreen.Clear();
     }
 
     Thread.Sleep(2000);
