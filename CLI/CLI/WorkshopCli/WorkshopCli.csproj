@@ -2,7 +2,7 @@
 
     <PropertyGroup>
         <OutputType>Exe</OutputType>
-        <TargetFramework>net6.0</TargetFramework>
+        <TargetFramework>net8.0</TargetFramework>
         <RootNamespace>workshop_cli</RootNamespace>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
@@ -197,6 +197,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <EmbeddedResource Include="Guide_2\004-intro.md" />
       <EmbeddedResource Include="Guide_2\005-love2D-install.md" />
       <EmbeddedResource Include="Guide_2\006-Criar-ficheiro.md" />
       <EmbeddedResource Include="Guide_2\007-code.md" />
@@ -216,6 +217,31 @@
       <EmbeddedResource Include="Guide_2\022-SomVoar.md" />
       <EmbeddedResource Include="Guide_2\024-end.md" />
       <EmbeddedResource Include="Guide_2\Steps.json" />
+      <EmbeddedResource Include="Guide_3\Steps.json" />
+      <EmbeddedResource Include="Guide_3\004-intro.md" />
+      <EmbeddedResource Include="Guide_3\005-love2D-install.md" />
+      <EmbeddedResource Include="Guide_3\007-code.md" />
+      <EmbeddedResource Include="Guide_3\008-HelloWorld-1.md" />
+      <EmbeddedResource Include="Guide_3\009-helloWorld.md" />
+      <EmbeddedResource Include="Guide_3\010-code.md" />
+      <EmbeddedResource Include="Guide_3\011-recursos.md" />
+      <EmbeddedResource Include="Guide_3\012-fundo.md" />
+      <EmbeddedResource Include="Guide_3\013-chao.md" />
+      <EmbeddedResource Include="Guide_3\014-skater.md" />
+      <EmbeddedResource Include="Guide_3\015-gravidade.md" />
+      <EmbeddedResource Include="Guide_3\017-saltar.md" />
+      <EmbeddedResource Include="Guide_3\018-agachar.md" />
+      <EmbeddedResource Include="Guide_3\019-banco.md" />
+      <EmbeddedResource Include="Guide_3\020-spawnObstaculos.md" />
+      <EmbeddedResource Include="Guide_3\021-gaivota.md" />
+      <EmbeddedResource Include="Guide_3\022-colisao.md" />
+      <EmbeddedResource Include="Guide_3\023-fimDeJogo.md" />
+      <EmbeddedResource Include="Guide_3\024-reiniciar.md" />
+      <EmbeddedResource Include="Guide_3\025-somFundo.md" />
+      <EmbeddedResource Include="Guide_3\026-somSaltar.md" />
+      <EmbeddedResource Include="Guide_3\027-desafioSom.md" />
+      <EmbeddedResource Include="Guide_3\028-desafio.md" />
+      <EmbeddedResource Include="Guide_3\030-end.md" />
       <EmbeddedResource Include="Guide\008-HelloWorld-1.md" />
       <EmbeddedResource Include="Guide\009-helloWorld.md" />
       <EmbeddedResource Include="Guide\010-code.md" />

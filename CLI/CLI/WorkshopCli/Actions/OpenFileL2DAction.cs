@@ -60,11 +60,28 @@ namespace workshopCli
                     sw.WriteLine("--É aqui onde começa a tua aventura");
                 }
             }
+
+            var MDPath = $"{stepId}.md";
+            var assembly = Assembly.GetExecutingAssembly();
+            var resourceStream = assembly.GetManifestResourceStream($"workshop_cli.Guide.{MDPath}");
+            if (resourceStream != null)
+            {
+                using (var reader = new StreamReader(resourceStream))
+                {
+                    var fileContents = reader.ReadToEnd();
+                    HtmlConsoleRenderer.Render(fileContents);
+                }
+            }
+            Thread.Sleep(Delay);
+
             try
             {
 
-                VsCode.Open();
-                Thread.Sleep(1000);
+                bool justLaunched = VsCode.Open();
+                if (justLaunched)
+                {
+                    Thread.Sleep(1000);
+                }
 
                 // Open CLI using AutoHotKey
                 var startAhkR = new ProcessStartInfo
@@ -217,27 +234,6 @@ namespace workshopCli
                 Console.WriteLine("Error opening file: " + ex.Message);
             }
 
-
-            Thread.Sleep(500);
-
-            // Console.Clear();
-
-            var MDPath = $"{stepId}.md";
-            var assembly = Assembly.GetExecutingAssembly();
-
-            var resourceStream = assembly.GetManifestResourceStream($"workshop_cli.Guide.{MDPath}");
-            if (resourceStream != null)
-            {
-                using (var reader = new StreamReader(resourceStream))
-                {
-                    var fileContents = reader.ReadToEnd();
-                    Console.ForegroundColor = ConsoleColor.White;
-                    Console.WriteLine(fileContents);
-                    Console.ForegroundColor = ConsoleColor.Black;
-                }
-            }
-            
-            Thread.Sleep(Delay);
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine();
             Console.ForegroundColor = ConsoleColor.Yellow;

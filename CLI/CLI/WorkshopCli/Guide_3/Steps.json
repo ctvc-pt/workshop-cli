@@ -1,0 +1,153 @@
+[
+    {
+        "Id": "000-video",
+        "Type": "video",
+        "Message": "intro.mp4"
+    },
+    {
+        "Id": "001-nome",
+        "Type": "ask-name",
+        "Message": "Qual \u00e9 o teu primeiro nome e o teu apelido?"
+    },
+    {
+        "Id": "002-idade",
+        "Type": "ask-age",
+        "Message": "Qual \u00e9 a tua idade?"
+    },
+    {
+        "Id": "003-email",
+        "Type": "ask-email",
+        "Message": "Qual \u00e9 o teu email?"
+    },
+    {
+        "Id": "003-mesa",
+        "Type": "ask-mesa",
+        "Message": "Qual \u00e9 o teu numero da mesa?"
+    },
+    {
+        "Id": "004-intro",
+        "Type": "information"
+    },
+    {
+        "Id": "005-love2D-install",
+        "Type": "install"
+    },
+    {
+        "Id": "006-Criar-ficheiro",
+        "Type": "open-file",
+        "Delay": "5000"
+    },
+    {
+        "Id": "007-code",
+        "Type": "code"
+    },
+    {
+        "Id": "008-HelloWorld-1",
+        "Type": "challenge",
+        "Delay": "5000"
+    },
+    {
+        "Id": "009-helloWorld",
+        "Type": "challenge",
+        "Delay": "0"
+    },
+    {
+        "Id": "010-code",
+        "Type": "code"
+    },
+    {
+        "Id": "011-recursos",
+        "Type": "CreateSprites",
+        "Delay": "0"
+    },
+    {
+        "Id": "012-fundo",
+        "Type": "information",
+        "Delay": "0"
+    },
+    {
+        "Id": "013-chao",
+        "Type": "information",
+        "Delay": "0"
+    },
+    {
+        "Id": "014-skater",
+        "Type": "information",
+        "Delay": "0"
+    },
+    {
+        "Id": "015-gravidade",
+        "Type": "information",
+        "Delay": "0"
+    },
+    {
+        "Id": "017-saltar",
+        "Type": "information",
+        "Delay": "0"
+    },
+    {
+        "Id": "018-agachar",
+        "Type": "information",
+        "Delay": "0"
+    },
+    {
+        "Id": "019-banco",
+        "Type": "information",
+        "Delay": "0"
+    },
+    {
+        "Id": "020-spawnObstaculos",
+        "Type": "information",
+        "Delay": "0"
+    },
+    {
+        "Id": "021-gaivota",
+        "Type": "information",
+        "Delay": "0"
+    },
+    {
+        "Id": "022-colisao",
+        "Type": "information",
+        "Delay": "0"
+    },
+    {
+        "Id": "023-fimDeJogo",
+        "Type": "information",
+        "Delay": "0"
+    },
+    {
+        "Id": "024-reiniciar",
+        "Type": "information",
+        "Delay": "0"
+    },
+    {
+        "Id": "025-somFundo",
+        "Type": "information",
+        "Delay": "0"
+    },
+    {
+        "Id": "026-somSaltar",
+        "Type": "information",
+        "Delay": "0"
+    },
+    {
+        "Id": "027-desafioSom",
+        "Type": "challenge",
+        "Delay": "0"
+    },
+    {
+        "Id": "028-desafio",
+        "Type": "challenge",
+        "Delay": "0"
+    },
+    {
+        "Id": "029-video",
+        "Type": "video",
+        "Message": "end.mp4",
+        "Delay": "0"
+    },
+    {
+        "Id": "030-end",
+        "Type": "end"
+    }
+]

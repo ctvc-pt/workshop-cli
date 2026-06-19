@@ -1,0 +1,91 @@
+# Workshop CLI — Setup Guide
+
+This guide describes how to prepare a fresh Windows PC to run the Workshop CLI. It is aimed at whoever prepares the machines for a workshop (mentors, organizers), not at the students using it.
+
+## Prerequisites
+
+- Windows 10 or 11, 64-bit.
+- Administrator privileges on the target machine.
+- Internet connection (for Ollama model pulls and, if missing locally, extension downloads).
+
+## Quick setup
+
+1. Copy (or clone) the repository to the user's Desktop, so the final path is:
+   ```
+   %USERPROFILE%\Desktop\workshop-cli
+   ```
+   The `Install.bat` script assumes this exact location.
+2. Open `Install.bat` **as administrator** (right-click → *Run as administrator*).
+3. Wait for it to finish. A `cli.lnk` shortcut is created on the Desktop and the workshop CLI opens automatically on the first run.
+
+On subsequent sessions, launching the workshop is just a double-click on `cli.lnk`.
+
+## What `Install.bat` does
+
+The script is idempotent: each step checks whether the component is already present and only installs it if missing.
+
+| Component                              | Source in `Resources/`                     | Purpose                                  |
+|----------------------------------------|--------------------------------------------|------------------------------------------|
+| .NET SDK                               | `dotnet-sdk-8.0.420-win-x64.exe`           | Required to run the CLI executable       |
+| Python 3                               | `python-installer.exe`                     | Used by helper scripts (e.g. `open_vscode.py`) |
+| PyGithub                               | installed via `pip`                        | Git operations from Python helpers       |
+| Git                                    | `Git-2.46.2-64-bit.exe`                    | Used by the Git-based workshop workflow  |
+| Ollama (runtime)                       | `OllamaSetup.exe` (fallback — primary path is `winget install Ollama.Ollama`) | Hosts the local LLM the CLI talks to; the script also starts `ollama serve` in the background |
+| `qwen2.5:3b` model                     | pulled via `ollama pull` (~2 GB)           | Provides on-device help responses for the `ajuda` command |
+| Visual Studio Code                     | `VSCodeSetup.exe` (User Setup)             | The editor students use                  |
+| VS Code extension `sumneko.lua`        | installed via `code --install-extension`   | Lua language support                     |
+| VS Code extension `pixelbyte-studios.pixelbyte-love2d` | installed via `code --install-extension`   | Provides the Alt+L run command the guides reference |
+
+The script also deletes any pre-existing `Resources\session.txt` (so the first launch is a clean session), creates the `cli.lnk` shortcut on the Desktop, and launches it once.
+
+## Google Sheets credentials
+
+The CLI logs each student's session progress to a shared Google Sheet (see `CsvController` in `CLI/CLI/WorkshopCli/CsvController.cs`). This requires a service account key at:
+
+```
+Resources/client_secrets.json
+```
+
+The file is git-ignored by design — never commit it. Grab the current key from the Google Drive link in [`HowToRunWorkshopCLI.md`](./HowToRunWorkshopCLI.md).
+
+If the key needs to be regenerated or the target sheet changes:
+
+1. In Google Cloud Console, open the GCP project that owns the service account and create a new JSON key under **IAM & Admin → Service Accounts → Keys → Add Key**. Save it as `Resources/client_secrets.json`.
+2. Share the target spreadsheet with the service account's `client_email` and grant **Editor** permission.
+3. Enable the **Google Sheets API** for that GCP project (`APIs & Services → Library → Google Sheets API → Enable`). Without this the CLI silently fails to write rows.
+4. If you are pointing the CLI at a different spreadsheet, update the `SpreadsheetId` constant in `CsvController.cs` and make sure the target sheet has the tabs named `Sessions` and `Ajudas`.
+
+## After installation
+
+- Students launch the workshop via the `cli.lnk` Desktop shortcut.
+- The shortcut targets `CLI\CLI\WorkshopCli\bin\Debug\net8.0\WorkshopCli.exe` and runs it as administrator.
+- Inside the editor, **Alt + L** runs the current Love2D game (provided by the `pixelbyte-love2d` extension).
+
+## In-workshop help flow (`ajuda` command)
+
+While solving an exercise the student can type `ajuda` (or `h`) to ask the local LLM for help:
+
+1. The CLI sends the current step text, the student's `main.lua`, and their question to Ollama (`http://localhost:11434/api/generate`, model `qwen2.5:3b`).
+2. The LLM's answer is printed in the terminal, then the CLI asks *"Conseguiste resolver? (sim ou não)"*.
+3. The student's row in the `Ajudas` tab of the Google Sheet is colour-coded so mentors can see who needs attention at a glance:
+
+   | State          | Colour  | Label in column C  | When it is set                                |
+   |----------------|---------|--------------------|-----------------------------------------------|
+   | `Pending`      | Orange  | —                  | Right when the student types `ajuda`          |
+   | `Resolved`     | Green   | `Resolvido`        | Student answered *sim* — LLM fixed it         |
+   | `NeedsTeacher` | Red     | `Precisa de ajuda` | Student answered *não* or the LLM call failed |
+   | `None`         | White   | —                  | After a mentor marks the request as handled   |
+
+The states live in the `HelpState` enum in `CLI/CLI/WorkshopCli/CsvController.cs`; the transitions are driven from `ExerciseHelper.HandleHelp`.
+
+## Building a distributable installer
+
+If you need a single-file installer instead of running `Install.bat` directly on each machine, see the "How to Make an Installer" section in [`HowToRunWorkshopCLI.md`](./HowToRunWorkshopCLI.md). It uses Inno Setup against `Installer/workhopCLI.iss`, which bundles all the installers from `Resources/` and runs them during setup.
+
+## Troubleshooting
+
+- **`Install.bat` cannot find an installer** (e.g. `VSCodeSetup.exe` missing). The `Resources/` folder on disk may be incomplete. Copy the missing installer into `Resources/` and re-run `Install.bat`. The bundled binaries are tracked via Git LFS, so make sure LFS is installed and `git lfs pull` has run.
+- **VS Code is installed but `code` is not found on PATH.** Restart the terminal after installation — the User Setup adds `code` to the PATH of the current user, but the update is only visible to new shells.
+- **Alt+L does nothing inside VS Code.** Confirm the `pixelbyte-studios.pixelbyte-love2d` extension is installed (`code --list-extensions`). If it is, check `%APPDATA%\Code\User\keybindings.json` for a stale binding of `pixelbyte.love2d.run` to a different key.
+- **Workshop asks for the name again even though the student already started.** The session file was deleted. If that was not intentional, restore `Resources/session.txt` from backup; otherwise just proceed.
+- **Student wants to restart the workshop from scratch.** Delete `Resources/session.txt` (or run `delete_session.bat` if present).

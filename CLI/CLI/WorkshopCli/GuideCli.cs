@@ -63,16 +63,38 @@ namespace workshopCli
     askParticipation.Execute();
 
     // Determinar o guia com base na resposta (ou manter o salvo)
-    bool isGuide2 = session.Participation?.Trim().ToLower().Replace("ã", "a").Replace("á", "a").Replace("õ", "o") == "sim";
-    if (isGuide2)
+    var participation = session.Participation?.Trim().ToLower();
+
+    // Se disse "sim", pergunta qual guia quer seguir (Flappy Bird ou Endless Skater)
+    if (participation == "sim" && string.IsNullOrEmpty(session.StepId))
     {
-        guide.SetSteps(true); // Carrega Guide-2
-        // Não reseta StepId aqui, pois queremos manter o salvo
+        int cursorTop = Console.CursorTop;
+        Console.WriteLine("Qual jogo queres fazer?");
+        Console.WriteLine("  1 - Flappy Bird");
+        Console.WriteLine("  2 - Endless Skater\n");
+
+        string escolha;
+        do
+        {
+            escolha = ExerciseHelper.PromptAnswerAndPrint()?.Trim();
+            if (escolha != "1" && escolha != "2")
+            {
+                Console.WriteLine("Resposta invalida. Por favor, responde '1' ou '2'.");
+            }
+        } while (escolha != "1" && escolha != "2");
+
+        participation = escolha == "1" ? "2" : "3";
+        session.Participation = participation;
     }
-    else
+
+    int guideNumber = participation switch
     {
-        guide.SetSteps(false); // Mantém Guide-1
-    }
+        "2" or "sim" => 2,
+        "3" => 3,
+        _ => 1
+    };
+    bool isGuide2 = guideNumber >= 2;
+    guide.SetSteps(guideNumber);
 
     // Iniciar o loop a partir do StepId salvo ou do início
     var startIndex = guide.Steps.FindIndex(step => step.Id == session.StepId);
@@ -97,12 +119,25 @@ namespace workshopCli
 
         if (step.Type == "information" || step.Type == "challenge" || step.Type == "CreateSprites")
         {
-            VsCode.Open();
+            // Don't open VS Code before step 006-Criar-ficheiro creates main.lua 
+            var desktopPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory), "repoWorkshop");
+            var username = session.Name?.Replace(" ", "-") ?? "default-user";
+            var dateStamp = DateTime.Now.ToString("dd-MM-yyyy");
+            var mainLuaPath = Path.Combine(desktopPath, $"{username}_{dateStamp}", "mygame", "main.lua");
+            if (File.Exists(mainLuaPath))
+            {
+                VsCode.Open();
+            }
         }
-        if (step.Type != "code" && step.Type != "open-file" && step.Type != "intro")
+        if (step.Type != "code" && step.Type != "open-file")
         {
             var filePath = $"{step.Id}.md";
-            string resourcePrefix = isGuide2 ? "workshop_cli.Guide_2." : "workshop_cli.Guide.";
+            string resourcePrefix = guideNumber switch
+            {
+                2 => "workshop_cli.Guide_2.",
+                3 => "workshop_cli.Guide_3.",
+                _ => "workshop_cli.Guide."
+            };
             var resourceName = $"{resourcePrefix}{filePath}";
             var resourceStream = assembly.GetManifestResourceStream(resourceName);
             if (resourceStream != null)
@@ -110,7 +145,6 @@ namespace workshopCli
                 using (var reader = new StreamReader(resourceStream))
                 {
                     var markdown = reader.ReadToEnd();
-                    WrapString(markdown, 100);
                     HtmlConsoleRenderer.Render(markdown);
                 }
             }
@@ -120,10 +154,16 @@ namespace workshopCli
             }
         }
         Console.ForegroundColor = ConsoleColor.White;
-        if (i > 4)
-            Console.ForegroundColor = ConsoleColor.Red;
+        var trailingColor = i > 4 ? ConsoleColor.Red : ConsoleColor.White;
+        Console.ForegroundColor = trailingColor;
         Console.WriteLine(step.Message);
         Console.ForegroundColor = ConsoleColor.White;
+
+        lock (RenderState.RenderLock)
+        {
+            RenderState.CurrentTrailingMessage = step.Message ?? string.Empty;
+            RenderState.CurrentTrailingColor = trailingColor;
+        }
 
         stepMessage = step.Message;
 
@@ -135,8 +175,8 @@ namespace workshopCli
             { "challenge", new ChallengeAction(delay, session.Name) },
             { "install", new InstallAction() },
             { "open-file", new OpenFileL2DAction(step.Id, delay) },
-            { "CreateSprites", new CreateSpritesAction(delay, isGuide2) },
-            { "code", new CodeAction(currentIndex) },
+            { "CreateSprites", new CreateSpritesAction(delay, guideNumber) },
+            { "code", new CodeAction(currentIndex, guideNumber) },
             { "ask-name", new AskNameAction(this) },
             { "ask-age", new AskAgeAction(this) },
             { "ask-email", new AskEmailAction(this) },
@@ -167,20 +207,24 @@ namespace workshopCli
         session.NameId = NameId;
         if (i >= 4)
         {
-            try
+            bool isChallenge = step.Type == "challenge";
+            var snapshot = (Name: session.Name, Age: session.Age, Email: session.Email, StepId: session.StepId, NameId: NameId, IsChallenge: isChallenge);
+            _ = System.Threading.Tasks.Task.Run(() =>
             {
-                bool isChallenge = step.Type == "challenge";
-                csvController.UpdateSession(session.Name, session.Age, session.Email, session.StepId, NameId, isChallenge);
-                csvController.GetHelp(NameId, session.StepId, isChallenge);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine($"Os dados não foram guardados: {e.Message}");
-            }
+                try
+                {
+                    csvController.UpdateSession(snapshot.Name, snapshot.Age, snapshot.Email, snapshot.StepId, snapshot.NameId, snapshot.IsChallenge);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine($"Os dados não foram guardados: {e.Message}");
+                }
+            });
         }
 
         File.WriteAllText(txtFilePath, JsonConvert.SerializeObject(session));
 
+        RenderState.Clear();
         Console.Clear();
     }
 

@@ -20,13 +20,16 @@ disparas.
    [/color] [color=blue]
     atualizarMisseis(dt)
    [/color] [color=white]
-O código agora faz o seguinte:
- - Se a tecla "espaço" for pressionada, um míssil é disparado com 
-base na velocidade do jogador. A velocidade do míssil é ajustada 
-se o jogador estiver a mover-se para a esquerda ou direita. 
-O míssil também é definido aqui.
- - A função "atualizarMisseis(dt)" é chamada para atualizar o 
-movimento dos mísseis existentes no jogo.
+Como funciona:
+- O "dt" (delta time) é o tempo, em segundos, entre cada frame 
+  do jogo. Multiplicar a velocidade por "dt" faz o jogo correr à 
+  mesma velocidade em qualquer computador.
+- O ciclo "for i=#misseis, 1, -1" percorre a lista de trás para 
+  a frente. Fazemos assim para podermos remover mísseis da lista 
+  sem atrapalhar o ciclo (mais à frente vais precisar de os 
+  remover quando saírem do ecrã ou acertarem em inimigos).
+- "atualizarMisseis(dt)" é chamada todos os frames para atualizar 
+  a posição de cada míssil na lista.
 
 Agora podes iniciar o teu jogo e divertir-te um pouco.
 [/color]

@@ -1,7 +1,0 @@
-Olá {NOME},
-
-Segue em anexo a pasta zipada.
-
-{LINK}
-
-

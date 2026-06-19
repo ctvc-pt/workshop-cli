@@ -16,7 +16,7 @@ public class KeyboardShortcut
         var shortcutName = "pixelbyte.love2d.run";
 
         // Specify the new keybinding
-        var newShortcut = "alt+j";
+        var newShortcut = "alt+l";
 
         // Find the user keybindings file
         var userKeybindingsFilePath = Path.Combine(

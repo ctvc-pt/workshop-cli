@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Threading;
 
 namespace workshopCli
@@ -10,14 +11,14 @@ namespace workshopCli
         private Process vsCodeProcess;
         private Process autoHotkeyProcess;
 
-        public void Open()
+        public bool Open()
         {
-            string vsCodeExecutable = "code.exe";
-            vsCodeProcess = GetProcessByName(vsCodeExecutable);
+            vsCodeProcess = Process.GetProcessesByName("Code").FirstOrDefault();
 
             if (vsCodeProcess != null)
             {
                 Console.WriteLine("Visual Studio Code is already open.");
+                return false;
             }
             else
             {
@@ -62,27 +63,9 @@ namespace workshopCli
                         Console.WriteLine("AutoHotkey has been closed.");
                     }
                 };
+                return true;
             }
         }
 
-        private static Process GetProcessByName(string processName)
-        {
-            Process[] processes = Process.GetProcessesByName(processName);
-            foreach (Process process in processes)
-            {
-                try
-                {
-                    if (process.MainModule.FileName.EndsWith(processName, StringComparison.OrdinalIgnoreCase))
-                    {
-                        return process;
-                    }
-                }
-                catch (Exception)
-                {
-                    // Ignore any process that throws an exception when accessing MainModule
-                }
-            }
-            return null;
-        }
     }
 }

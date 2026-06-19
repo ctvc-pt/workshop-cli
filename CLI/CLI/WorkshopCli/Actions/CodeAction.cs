@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using System.Linq;
 using System.Reflection;
 using Newtonsoft.Json;
 using Sharprompt;
@@ -8,10 +9,12 @@ namespace workshopCli;
 public class CodeAction : IAction
 {
     int currentIndex;
+    int guideNumber;
 
-    public CodeAction( int currentIndex )
+    public CodeAction( int currentIndex, int guideNumber = 1 )
     {
         this.currentIndex = currentIndex;
+        this.guideNumber = guideNumber;
     }
 
     public void Execute()
@@ -30,7 +33,13 @@ public class CodeAction : IAction
         var username = session.Name;
         if(username != null) username = username.Replace(" ", "-");
 
-        using ( var stream = assembly.GetManifestResourceStream( "workshop_cli.Guide.Steps.json" ) )
+        var stepsResource = guideNumber switch
+        {
+            2 => "workshop_cli.Guide_2.Steps.json",
+            3 => "workshop_cli.Guide_3.Steps.json",
+            _ => "workshop_cli.Guide.Steps.json"
+        };
+        using ( var stream = assembly.GetManifestResourceStream( stepsResource ) )
         using ( var reader = new StreamReader( stream ) )
         {
             var json = reader.ReadToEnd();
@@ -45,7 +54,13 @@ public class CodeAction : IAction
         var folderPath = Path.Combine(desktopPath, $"{username}_{DateTime.Now.ToString("dd-MM-yyyy")}", "mygame");
         
         var mdFilePath =$"{step.Id}.md";
-        using var resourceStream = assembly.GetManifestResourceStream( $"workshop_cli.Guide.{mdFilePath}" );
+        var codeResourcePrefix = guideNumber switch
+        {
+            2 => "workshop_cli.Guide_2.",
+            3 => "workshop_cli.Guide_3.",
+            _ => "workshop_cli.Guide."
+        };
+        using var resourceStream = assembly.GetManifestResourceStream( $"{codeResourcePrefix}{mdFilePath}" );
         if ( resourceStream != null )
         {
             var mdFileContents = new StreamReader( resourceStream ).ReadToEnd();
@@ -58,20 +73,22 @@ public class CodeAction : IAction
             Console.WriteLine( $"Could not find resource file: {mdFilePath}" );
         }
 
-        
-        
-        var startFolderInfo = new ProcessStartInfo {
-            FileName = $"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}/../Local/Programs/Microsoft VS Code/Code.exe",
-            Arguments = $"\"{ folderPath }\" --disable-workspace-trust",
-            WorkingDirectory = @"C:\",
-            Verb = "runas",
-            Environment =
-            {
-                { "VSCODE_LOG_LEVEL", "error" },
-                { "VSCODE_DISABLE_REDACTED_EXTENSIONS", "true" }
-            }
-        };
-        Process.Start(startFolderInfo);
+    
+        if (!Process.GetProcessesByName("Code").Any())
+        {
+            var startFolderInfo = new ProcessStartInfo {
+                FileName = $"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}/../Local/Programs/Microsoft VS Code/Code.exe",
+                Arguments = $"\"{ folderPath }\" --disable-workspace-trust",
+                WorkingDirectory = @"C:\",
+                Verb = "runas",
+                Environment =
+                {
+                    { "VSCODE_LOG_LEVEL", "error" },
+                    { "VSCODE_DISABLE_REDACTED_EXTENSIONS", "true" }
+                }
+            };
+            Process.Start(startFolderInfo);
+        }
         //Prompt.Confirm("Verifica o código e clica ENTER para continuar\n", false);
     }
 }

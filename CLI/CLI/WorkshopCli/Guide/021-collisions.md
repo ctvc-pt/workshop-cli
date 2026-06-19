@@ -3,6 +3,12 @@ O jogo está a ganhar forma, mas ainda falta uma coisa importante:
 tu não consegues acertar nos inimigos, nem os inimigos conseguem 
 acertar em ti.
 
+Para saber se dois objetos se tocam, imaginamos um retângulo à 
+volta de cada um (chama-se "hitbox" ou "caixa de colisão"). Há 
+colisão quando os dois retângulos se sobrepõem ao mesmo tempo no 
+eixo X e no eixo Y — é exatamente isto que a função "intercepta" 
+verifica, com uma condição por cada lado do retângulo.
+
 Vamos adicionar 3 funções para verificar colisões entre o jogador 
 e os inimigos.
 

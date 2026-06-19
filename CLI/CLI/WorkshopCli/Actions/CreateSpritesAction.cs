@@ -7,18 +7,30 @@ namespace workshopCli;
 public class CreateSpritesAction : IAction
 {
     public int Delay;
-    private bool isGuide2; // Novo campo para determinar o guia ativo
+    private int guideNumber;
 
     public CreateSpritesAction(int delay, bool isGuide2)
     {
         Delay = delay;
-        this.isGuide2 = isGuide2;
+        this.guideNumber = isGuide2 ? 2 : 1;
+    }
+
+    public CreateSpritesAction(int delay, int guideNumber)
+    {
+        Delay = delay;
+        this.guideNumber = guideNumber;
     }
 
     public void Execute()
     {
         // Escolhe a pasta de origem com base no guia ativo
-        var sourceFolderPath = Path.Combine(GuideCli.ResourcesPath, isGuide2 ? "imagesGuide2" : "Images");
+        var imageFolder = guideNumber switch
+        {
+            2 => "imagesGuide2",
+            3 => "imagesGuide3",
+            _ => "Images"
+        };
+        var sourceFolderPath = Path.Combine(GuideCli.ResourcesPath, imageFolder);
         var desktopPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory), "repoWorkshop");
         var txtFilePath = Path.Combine(GuideCli.ResourcesPath, "session.txt");
 

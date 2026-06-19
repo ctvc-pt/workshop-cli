@@ -20,4 +20,17 @@ adiciona:
    else
      podeDisparar = true
    end
-   [/color]
+   [/color] [color=white]
+
+Como funciona:
+- "missilTempoMax = 0.2" é o tempo mínimo (em segundos) entre 
+  disparos. "missilTempo" é o contador que baixa a cada frame.
+- Quando disparas, "podeDisparar" passa a falso e "missilTempo" 
+  volta ao máximo — a nave fica "em espera".
+- Frame a frame, subtraímos "dt" ao contador. Quando chega a 
+  zero, "podeDisparar" volta a ser verdadeiro e já podes disparar 
+  outra vez.
+
+Experimenta mudar "missilTempoMax" para 0.05 ou 0.5 e vê como 
+afeta a cadência de tiro.
+[/color]
