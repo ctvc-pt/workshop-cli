@@ -6,7 +6,7 @@ DENTRO da funcao "love.load()", no fim, adiciona:
 
 [/color] [color=blue]
     -- Musica de fundo
-    musicaFundo = love.audio.newSource("musicaFundo.ogg", "stream")
+    musicaFundo = love.audio.newSource("musicaFundo.wav", "stream")
     musicaFundo:setLooping(true)
     musicaFundo:setVolume(0.4)
     musicaFundo:play()
