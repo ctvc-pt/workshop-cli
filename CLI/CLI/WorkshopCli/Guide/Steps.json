@@ -2,7 +2,7 @@
     {
         "Id": "000-video",
         "Type": "video",
-        "Message": "intro.mp4"
+        "Message": "Neo.mp4"
     }, 
     {
         "Id": "001-nome",
@@ -73,12 +73,6 @@
     {
         "Id": "015-speed",
         "Type": "challenge",
-        "Delay": "0"
-    },
-    {
-        "Id": "016-video",
-        "Type": "video",
-        "Message": "mid.mp4",
         "Delay": "0"
     },
     {
@@ -154,12 +148,6 @@
     {
         "Id": "030-end-5",
         "Type": "information",
-        "Delay": "0"
-    },
-    {
-        "Id": "031-Fim",
-        "Type": "video",
-        "Message": "end.mp4",
         "Delay": "0"
     },
     {

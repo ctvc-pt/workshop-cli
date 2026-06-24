@@ -2,7 +2,7 @@
     {
         "Id": "000-video",
         "Type": "video",
-        "Message": "intro.mp4"
+        "Message": "Neo.mp4"
     },
     {
         "Id": "001-nome",
@@ -138,12 +138,6 @@
     {
         "Id": "028-desafio",
         "Type": "challenge",
-        "Delay": "0"
-    },
-    {
-        "Id": "029-video",
-        "Type": "video",
-        "Message": "end.mp4",
         "Delay": "0"
     },
     {

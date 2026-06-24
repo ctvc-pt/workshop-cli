@@ -2,7 +2,7 @@
     {
         "Id": "000-video",
         "Type": "video",
-        "Message": "intro.mp4"
+        "Message": "Neo.mp4"
     }, 
     {
         "Id": "001-nome",
@@ -108,12 +108,6 @@
     {
         "Id": "022-SomVoar",
         "Type": "information",
-        "Delay": "0"
-    },
-    {
-        "Id": "023-video",
-        "Type": "video",
-        "Message": "end.mp4",
         "Delay": "0"
     },
     {
